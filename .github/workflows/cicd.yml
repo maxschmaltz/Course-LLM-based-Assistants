@@ -6,12 +6,13 @@ on:
       - main
 
 jobs:
+
   build-book:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v4
