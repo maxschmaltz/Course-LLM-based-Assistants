@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Topics Overview &#8212; LLM-based Assistants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'infos/Topics Overview';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">LLM-based Assistants</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    LLM-based Assistants
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/maxschmaltz/Course-LLM-based-Assistants" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues/new?title=Issue%20on%20page%20%2Finfos/Topics Overview.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/infos/Topics Overview.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Topics Overview</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-1-intro">Block 1: Intro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1">Week 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine">22.04. <em>Lecture</em>: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-llm-agent-basics">24.04. <em>Lecture</em>: LLM &amp; Agent Basics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2">Week 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#debates-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine">29.04. <em>Debates</em>: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">01.05.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-core-topics">Block 2: Core Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-business-applications">Part 1: Business Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3">Week 3</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-virtual-assistants-pt-1-chatbots">06.05. <em>Lecture</em>: Virtual Assistants Pt. 1: Chatbots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-chatbot">08.05. <em>Lab</em>: Chatbot</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4">Week 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-virtual-assistants-pt-2-rag">13.05. <em>Lecture</em>: Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-rag-chatbot">15.05. <em>Lab</em>: RAG Chatbot</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-5">Week 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-virtual-assistants-pt-3-multi-agent-environment">20.05. <em>Lecture</em>: Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-multi-agent-environment">22.05. <em>Lab</em>: Multi-agent Environment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6">Week 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-software-development-pt-1-code-generation-evaluation-testing">27.05. <em>Lecture</em>: Software Development Pt. 1: Code Generation, Evaluation &amp; Testing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">29.05.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7">Week 7</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-software-development-pt-2-copilots-llm-powered-websites">03.06. <em>Lecture</em>: Software Development Pt. 2: Copilots, LLM-powered Websites</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-llm-powered-website">05.06 <em>Lab</em>: LLM-powered Website</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-8-having-some-rest">Week 8: Having Some Rest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.06.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">12.06.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-9">Week 9</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-rag-chatbot">17.06. <em>Pitch</em>: RAG Chatbot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">19.06.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-10">Week 10</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-handling-customer-requests-in-a-multi-agent-environment">24.06. <em>Pitch</em>: Handling Customer Requests in a Multi-agent Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-other-business-applications-game-design-financial-analysis-etc">26.06. <em>Lecture</em>: Other Business Applications: Game Design, Financial Analysis etc.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-applications-in-science">Part 2: Applications in Science</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-11">Week 11</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-llms-in-research-experiment-planning-hypothesis-generation">01.07. <em>Lecture</em>: LLMs in Research: Experiment Planning &amp; Hypothesis Generation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-experiment-planning-hypothesis-generation">03.07: <em>Lab</em>: Experiment Planning &amp; Hypothesis Generation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-12">Week 12</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-agent-for-code-generation">08.07: <em>Pitch</em>: Agent for Code Generation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-other-applications-in-science-drug-discovery-math-etc-scientific-reliability">10.07. <em>Lecture</em>: Other Applications in Science: Drug Discovery, Math etc. &amp; Scientific Reliability</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-wrap-up">Block 3: Wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-13">Week 13</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-agent-for-web-development">15.07. <em>Pitch</em>: Agent for Web Development</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-role-of-ai-in-recent-years">17.07. <em>Lecture</em>: Role of AI in Recent Years</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-14">Week 14</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-llm-based-research-assistant">22.07. <em>Pitch</em>: LLM-based Research Assistant</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#debate-role-of-ai-in-recent-years-wrap-up">24.07. <em>Debate</em>: Role of AI in Recent Years + Wrap-up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="topics-overview">
+<h1>Topics Overview<a class="headerlink" href="#topics-overview" title="Link to this heading">#</a></h1>
+<p>The schedule is preliminary and subject to changes!</p>
+<p>The reading for each <em>lecture</em> is given as references to the sources the respective lectures base on. You are <strong>not</strong> obliged to read anything. However, you are strongly <strong>encouraged</strong> to read references marked by pin emojis 📌: those are comprehensive overviews on the topics or important works that are beneficial for a better understanding of the key concepts of the respective lectures. Some of the sources are also marked with a popcorn emoji 🍿: that is misc material you might want to take a look at: blog posts, GitHub repos, leaderboards etc. (also a couple of LLM-based games).</p>
+<p>For the <em>labs</em>, you are provided with practical tutorials that respective lab tasks will mostly derive from. The core tutorials are marked with a writing emoji ✍️; you are <strong>asked</strong> to inspect them <strong>in advance</strong> (better yet: try them out). On lab sessions, we will only <strong>briefly recap</strong> them so it is up to you to prepare in advance to keep up with the lab.</p>
+<hr class="docutils" />
+<section id="block-1-intro">
+<h2>Block 1: Intro<a class="headerlink" href="#block-1-intro" title="Link to this heading">#</a></h2>
+<section id="week-1">
+<h3>Week 1<a class="headerlink" href="#week-1" title="Link to this heading">#</a></h3>
+<section id="lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine">
+<h4>22.04. <em>Lecture</em>: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine<a class="headerlink" href="#lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine" title="Link to this heading">#</a></h4>
+<p>That is an introductory lecture, in which I will briefly introduce the course and we’ll have a warming up discussion about different perspectives on LLMs’ nature. We will focus on two prominent outlooks: LLM is a form of intelligence and LLM is a complex statistical machine. We’ll discuss differences of LLMs with human intelligence and the degree to which LLMs exhibit (self-)awareness.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Course introduction</p></li>
+<li><p>Different perspectives on the nature of LLMs</p></li>
+<li><p>Similarities and differences between human and artificial intelligence</p></li>
+<li><p>LLMs’ (self-)awareness</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2210.13966">The Debate Over Understanding in AI’s Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Santa</span> <span class="pre">Fe</span> <span class="pre">Institute</span></code></p></li>
+<li><p><a class="reference external" href="https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us">Do Large Language Models Understand Us?</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Research</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2303.12712">Sparks of Artificial General Intelligence: Early experiments with GPT-4</a>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Research</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2208.02957">Meaning without reference in large language models</a>, <code class="docutils literal notranslate"><span class="pre">UC</span> <span class="pre">Berkeley</span> <span class="pre">&amp;</span> <span class="pre">DeepMind</span></code></p></li>
+<li><p><a class="reference external" href="https://dl.acm.org/doi/abs/10.1145/3442188.3445922">On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Washington</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2301.06627">Dissociating language and thought in large language models</a>, <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Texas</span> <span class="pre">at</span> <span class="pre">Austin</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2310.19671">Large Language Models: The Need for Nuance in Current Debates and a Pragmatic Perspective on Understanding</a>, <code class="docutils literal notranslate"><span class="pre">Leiden</span> <span class="pre">Institute</span> <span class="pre">of</span> <span class="pre">Advanced</span> <span class="pre">Computer</span> <span class="pre">Science</span> <span class="pre">&amp;</span> <span class="pre">Leiden</span> <span class="pre">University</span> <span class="pre">Medical</span> <span class="pre">Centre</span></code></p></li>
+</ul>
+</section>
+<section id="lecture-llm-agent-basics">
+<h4>24.04. <em>Lecture</em>: LLM &amp; Agent Basics<a class="headerlink" href="#lecture-llm-agent-basics" title="Link to this heading">#</a></h4>
+<p>In this lecture, we’ll recap some basics about LLMs and LLM-based agents to make sure we’re on the same page.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>LLM architecture recap</p></li>
+<li><p>Structured output</p></li>
+<li><p>Tool calling</p></li>
+<li><p>Piping</p></li>
+<li><p>Reasoning</p></li>
+<li><p>Multimodality</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2303.18223">A Survey of Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Renmin</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">China</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2407.21783">The Llama 3 Herd of Models</a>, <code class="docutils literal notranslate"><span class="pre">Meta</span> <span class="pre">AI</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2404.07362">“We Need Structured Output”: Towards User-centered Constraints on Large Language Model Output</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Research</span> <span class="pre">&amp;</span> <span class="pre">Google</span></code></p></li>
+<li><p><a class="reference external" href="https://openai.com/index/introducing-structured-outputs-in-the-api/">Introducing Structured Outputs in the API</a>, <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2405.17935">Tool Learning with Large Language Models: A Survey</a>, <code class="docutils literal notranslate"><span class="pre">Renmin</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Chin</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2409.00920">ToolACE: Winning the Points of LLM Function Calling</a>, <code class="docutils literal notranslate"><span class="pre">Huawei</span> <span class="pre">Noah’s</span> <span class="pre">Ark</span> <span class="pre">Lab</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2302.04761">Toolformer: Language Models Can Teach Themselves to Use Tools</a>, <code class="docutils literal notranslate"><span class="pre">Meta</span> <span class="pre">AI</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2407.00121">Granite-Function Calling Model: Introducing Function Calling Abilities via Multi-task Learning of Granular Tasks</a>, <code class="docutils literal notranslate"><span class="pre">IBM</span> <span class="pre">Research</span></code></p></li>
+<li><p>🍿 <a class="reference external" href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a>, <code class="docutils literal notranslate"><span class="pre">UC</span> <span class="pre">Berkeley</span></code> (leaderboard)</p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2201.11903">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Research</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2310.03710">Agent Instructs Large Language Models to be General Zero-Shot Reasoners</a>,<code class="docutils literal notranslate"><span class="pre">Washington</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">UC</span> <span class="pre">Berkeley</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2306.13549">A Survey on Multimodal Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Science</span> <span class="pre">and</span> <span class="pre">Technology</span> <span class="pre">of</span> <span class="pre">China</span> <span class="pre">&amp;</span> <span class="pre">Tencent</span> <span class="pre">YouTu</span> <span class="pre">Lab</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-2">
+<h3>Week 2<a class="headerlink" href="#week-2" title="Link to this heading">#</a></h3>
+<section id="debates-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine">
+<h4>29.04. <em>Debates</em>: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine<a class="headerlink" href="#debates-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#2204-lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine"><span class="xref myst">session 22.04</span></a></p>
+</div></blockquote>
+<p>The first debates of the course will revolve around the topic raised in the respective lecture and will utilize concrete evidence in support of the two outlooks on LLMs. There will be two debate rounds (motions will be released on 22.04).</p>
+<!-- * LLMs: a Form of Intelligence or a Complex Statistical Machine?
+* LLM Behavior: Evidence of Awareness or Illusion of Understanding? -->
+<p>Reading: see <a class="reference internal" href="#2204-lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine"><span class="xref myst">session 22.04</span></a></p>
+</section>
+<section id="id1">
+<h4>01.05.<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p><em>Ausfalltermin</em></p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="block-2-core-topics">
+<h2>Block 2: Core Topics<a class="headerlink" href="#block-2-core-topics" title="Link to this heading">#</a></h2>
+</section>
+<section id="part-1-business-applications">
+<h2>Part 1: Business Applications<a class="headerlink" href="#part-1-business-applications" title="Link to this heading">#</a></h2>
+<section id="week-3">
+<h3>Week 3<a class="headerlink" href="#week-3" title="Link to this heading">#</a></h3>
+<section id="lecture-virtual-assistants-pt-1-chatbots">
+<h4>06.05. <em>Lecture</em>: Virtual Assistants Pt. 1: Chatbots<a class="headerlink" href="#lecture-virtual-assistants-pt-1-chatbots" title="Link to this heading">#</a></h4>
+<p>The first core topic concerns chatbots. We’ll discuss how chatbots are built, how they (should) handle harmful requests and you can tune it for your use case.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>LLMs under the hood: alignment, harmlessness, honesty</p></li>
+<li><p>Prompting &amp; automated prompt generation</p></li>
+<li><p>Chat memory</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2307.12966">Aligning Large Language Models with Human: A Survey</a>, <code class="docutils literal notranslate"><span class="pre">Huawei</span> <span class="pre">Noah’s</span> <span class="pre">Ark</span> <span class="pre">Lab</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2203.02155">Training language models to follow instructions with human feedback</a>, <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2204.05862">Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback</a>, <code class="docutils literal notranslate"><span class="pre">Anthropic</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2402.07927">A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications</a>, <code class="docutils literal notranslate"><span class="pre">Indian</span> <span class="pre">Institute</span> <span class="pre">of</span> <span class="pre">Technology</span> <span class="pre">Patna,</span> <span class="pre">Stanford</span> <span class="pre">&amp;</span> <span class="pre">Amazon</span> <span class="pre">AI</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2404.02717">Automatic Prompt Selection for Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Cinnamon</span> <span class="pre">AI,</span> <span class="pre">Hung</span> <span class="pre">Yen</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Technology</span> <span class="pre">and</span> <span class="pre">Education</span> <span class="pre">&amp;</span> <span class="pre">Deakin</span> <span class="pre">University</span></code></p></li>
+<li><p><a class="reference external" href="https://aclanthology.org/2022.findings-naacl.3/">PromptGen: Automatically Generate Prompts using Generative Models</a>, <code class="docutils literal notranslate"><span class="pre">Baidu</span> <span class="pre">Research</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2404.13501">A Survey on the Memory Mechanism of Large Language Model based Agents</a>, <code class="docutils literal notranslate"><span class="pre">Renmin</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">China</span> <span class="pre">&amp;</span> <span class="pre">Huawei</span> <span class="pre">Noah’s</span> <span class="pre">Ark</span> <span class="pre">Lab</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2306.07174">Augmenting Language Models with Long-Term Memory</a>, <code class="docutils literal notranslate"><span class="pre">UC</span> <span class="pre">Santa</span> <span class="pre">Barbara</span> <span class="pre">&amp;</span> <span class="pre">Microsoft</span> <span class="pre">Research</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2401.02777">From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Beike</span> <span class="pre">Inc.</span></code></p></li>
+</ul>
+</section>
+<section id="lab-chatbot">
+<h4>08.05. <em>Lab</em>: Chatbot<a class="headerlink" href="#lab-chatbot" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#0605-lecture-virtual-assistants-pt-1-chatbots"><span class="xref myst">session 06.05</span></a></p>
+</div></blockquote>
+<p>In this lab, we’ll build a chatbot and try different prompts and settings to see how it affects the output.</p>
+<p>Reading:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/chat_models/">Chat models</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://python.langchain.com/docs/concepts/prompt_templates/">Prompt Templates</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/few_shot_prompting/">Few-shot prompting</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/multimodality/">Multimodality</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://python.langchain.com/docs/concepts/structured_outputs/">Structured outputs</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/tools/">Tools</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://python.langchain.com/docs/concepts/tool_calling/">Tool calling</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/runnables/">Runnable interface</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://python.langchain.com/docs/concepts/lcel/#should-i-use-lcel">LangChain Expression Language (LCEL)</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://langchain-ai.github.io/langgraph/tutorials/introduction/">LangGraph Quickstart Parts 1-3: Build a Basic Chatbot</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-4">
+<h3>Week 4<a class="headerlink" href="#week-4" title="Link to this heading">#</a></h3>
+<section id="lecture-virtual-assistants-pt-2-rag">
+<h4>13.05. <em>Lecture</em>: Virtual Assistants Pt. 2: RAG<a class="headerlink" href="#lecture-virtual-assistants-pt-2-rag" title="Link to this heading">#</a></h4>
+<p>Continuing the first part, the second part will expand scope of chatbot functionality and will teach it to refer to custom knowledge base to retrieve and use user-specific information. Finally, the most widely used deployment methods will be briefly introduced.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>General knowledge vs context</p></li>
+<li><p>Knowledge indexing, retrieval &amp; ranking</p></li>
+<li><p>Retrieval tools</p></li>
+<li><p>Agentic RAG</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2407.16833">Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">DeepMind</span> <span class="pre">&amp;</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Michigan</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2412.15605">Don’t Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks</a>, <code class="docutils literal notranslate"><span class="pre">National</span> <span class="pre">Chengchi</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">Academia</span> <span class="pre">Sinica</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2404.10981">A Survey on Retrieval-Augmented Text Generation for Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">York</span> <span class="pre">University</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2403.14403">Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity</a>, <code class="docutils literal notranslate"><span class="pre">Korea</span> <span class="pre">Advanced</span> <span class="pre">Institute</span> <span class="pre">of</span> <span class="pre">Science</span> <span class="pre">and</span> <span class="pre">Technology</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2502.00032">Querying Databases with Function Calling</a>, <code class="docutils literal notranslate"><span class="pre">Weaviate,</span> <span class="pre">Contextual</span> <span class="pre">AI</span> <span class="pre">&amp;</span> <span class="pre">Morningstar</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2411.19443">Auto-RAG: Autonomous Retrieval-Augmented Generation for Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Chinese</span> <span class="pre">Academy</span> <span class="pre">of</span> <span class="pre">Sciences</span></code></p></li>
+</ul>
+</section>
+<section id="lab-rag-chatbot">
+<h4>15.05. <em>Lab</em>: RAG Chatbot<a class="headerlink" href="#lab-rag-chatbot" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#1305-lecture-virtual-assistants-pt-2-rag"><span class="xref myst">session 13.05</span></a></p>
+</div></blockquote>
+<p>In this lab, we’ll expand the functionality of the chatbot built at the last lab to connect it to user-specific information.</p>
+<p>Reading:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://python.langchain.com/docs/how_to/document_loader_pdf/">How to load PDFs</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/text_splitters/">Text splitters</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/embedding_models/">Embedding models</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/vectorstores/">Vector stores</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://python.langchain.com/docs/concepts/retrievers/">Retrievers</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://python.langchain.com/docs/concepts/rag/">Retrieval augmented generation (RAG)</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_agentic_rag/">Agentic RAG</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_adaptive_rag/">Adaptive RAG</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-5">
+<h3>Week 5<a class="headerlink" href="#week-5" title="Link to this heading">#</a></h3>
+<section id="lecture-virtual-assistants-pt-3-multi-agent-environment">
+<h4>20.05. <em>Lecture</em>: Virtual Assistants Pt. 3: Multi-agent Environment<a class="headerlink" href="#lecture-virtual-assistants-pt-3-multi-agent-environment" title="Link to this heading">#</a></h4>
+<p>This lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday / business operations in a multi-agent environment. We’ll look at how agents communicate with each other, how their communication can be guided (both with and without involvement of a human), and this all is used in real applications.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Multi-agent environment</p></li>
+<li><p>Human in the Loop</p></li>
+<li><p>Examples of pipelines for business operations</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2411.14033">LLM-based Multi-Agent Systems: Techniques and Business Perspectives</a>, <code class="docutils literal notranslate"><span class="pre">Shanghai</span> <span class="pre">Jiao</span> <span class="pre">Tong</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">OPPO</span> <span class="pre">Research</span> <span class="pre">Institute</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2304.03442">Generative Agents: Interactive Simulacra of Human Behavior</a>, <code class="docutils literal notranslate"><span class="pre">Stanford,</span> <span class="pre">Google</span> <span class="pre">Research</span> <span class="pre">&amp;</span> <span class="pre">DeepMind</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2305.14325">Improving Factuality and Reasoning in Language Models through Multiagent Debate</a>, <code class="docutils literal notranslate"><span class="pre">MIT</span> <span class="pre">&amp;</span> <span class="pre">Google</span> <span class="pre">Brain</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2310.02124">Exploring Collaboration Mechanisms for LLM Agents: A Social Psychology View</a>, <code class="docutils literal notranslate"><span class="pre">Zhejiang</span> <span class="pre">University,</span> <span class="pre">National</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Singapore</span> <span class="pre">&amp;</span> <span class="pre">DeepMind</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2308.08155">AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</a>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Research</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p>🍿 <a class="reference external" href="https://blogs.microsoft.com/blog/2025/03/10/https-blogs-microsoft-com-blog-2024-11-12-how-real-world-businesses-are-transforming-with-ai/">How real-world businesses are transforming with AI — with more than 140 new stories</a>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span></code> (blog post)</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2502.01390">Plan-Then-Execute: An Empirical Study of User Trust and Team Performance When Using LLM Agents As A Daily Assistant</a>, <code class="docutils literal notranslate"><span class="pre">Delft</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Technology</span> <span class="pre">&amp;</span> <span class="pre">The</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Queensland</span></code></p></li>
+</ul>
+</section>
+<section id="lab-multi-agent-environment">
+<h4>22.05. <em>Lab</em>: Multi-agent Environment<a class="headerlink" href="#lab-multi-agent-environment" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#2005-lecture-virtual-assistants-pt-3-multi-agent-environment"><span class="xref myst">session 20.05</span></a></p>
+</div></blockquote>
+<p>This lab will introduce a short walkthrough to creation of a multi-agent environment for automated meeting scheduling and preparation. We will see how the coordinator agent will communicate with two auxiliary agents to check time availability and prepare an agenda for the meeting.</p>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>✍️ <a class="reference external" href="https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/">Multi-agent network</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://langchain-ai.github.io/langgraph/tutorials/plan-and-execute/plan-and-execute/">Plan-and-Execute</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://langchain-ai.github.io/langgraph/tutorials/reflexion/reflexion/">Reflexion</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://langchain-ai.github.io/langgraph/tutorials/multi_agent/agent_supervisor/">Multi-agent supervisor</a>, <code class="docutils literal notranslate"><span class="pre">LangChain</span></code></p></li>
+<li><p><a class="reference external" href="https://microsoft.github.io/autogen/stable//user-guide/core-user-guide/quickstart.html">Quick Start</a>, <code class="docutils literal notranslate"><span class="pre">AutoGen</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-6">
+<h3>Week 6<a class="headerlink" href="#week-6" title="Link to this heading">#</a></h3>
+<section id="lecture-software-development-pt-1-code-generation-evaluation-testing">
+<h4>27.05. <em>Lecture</em>: Software Development Pt. 1: Code Generation, Evaluation &amp; Testing<a class="headerlink" href="#lecture-software-development-pt-1-code-generation-evaluation-testing" title="Link to this heading">#</a></h4>
+<p>This lectures opens a new lecture mini-cycle dedicated to software development. The first lecture overviews how LLMs are used to generate reliable code and how generated code is tested and improved to deal with the errors.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Code generation &amp; refining</p></li>
+<li><p>Automated testing</p></li>
+<li><p>Code evaluation &amp; benchmarks</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2409.02977">Large Language Model-Based Agents for Software Engineering: A Survey</a>, <code class="docutils literal notranslate"><span class="pre">Fudan</span> <span class="pre">University,</span> <span class="pre">Nanyang</span> <span class="pre">Technological</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Illinois</span> <span class="pre">at</span> <span class="pre">Urbana-Champaign</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2207.01780">CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning</a>, <code class="docutils literal notranslate"><span class="pre">Salesforce</span> <span class="pre">Research</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2303.05510">Planning with Large Language Models for Code Generation</a>, <code class="docutils literal notranslate"><span class="pre">MIT-IBM</span> <span class="pre">Watson</span> <span class="pre">AI</span> <span class="pre">Lab</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2311.07961">The ART of LLM Refinement: Ask, Refine, and Trust</a>, <code class="docutils literal notranslate"><span class="pre">ETH</span> <span class="pre">Zurich</span> <span class="pre">&amp;</span> <span class="pre">Meta</span> <span class="pre">AI</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2405.17503">Code Repair with LLMs gives an Exploration-Exploitation Tradeoff</a>, <code class="docutils literal notranslate"><span class="pre">Cornell,</span> <span class="pre">Shanghai</span> <span class="pre">Jiao</span> <span class="pre">Tong</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Toronto</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2305.04764">ChatUniTest: A Framework for LLM-Based Test Generation</a>, <code class="docutils literal notranslate"><span class="pre">Zhejiang</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">Hangzhou</span> <span class="pre">City</span> <span class="pre">University</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2408.03095">TestART: Improving LLM-based Unit Testing via Co-evolution of Automated Generation and Repair Iteration</a>, <code class="docutils literal notranslate"><span class="pre">Nanjing</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">Huawei</span> <span class="pre">Cloud</span> <span class="pre">Computing</span> <span class="pre">Technologies</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2408.16498">A Survey on Evaluating Large Language Models in Code Generation Tasks</a>, <code class="docutils literal notranslate"><span class="pre">Peking</span> <span class="pre">University,</span> <span class="pre">Microsoft</span> <span class="pre">Research</span> <span class="pre">&amp;</span> <span class="pre">Tokyo</span> <span class="pre">Institute</span> <span class="pre">of</span> <span class="pre">Technology</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2107.03374">Evaluating Large Language Models Trained on Code</a>, `OpenAI</p></li>
+<li><p>🍿 <a class="reference external" href="https://paperswithcode.com/sota/code-generation-on-humaneval">Code Generation on HumanEval</a>, <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code> (leaderboard)</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2406.15877">BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions</a>, <code class="docutils literal notranslate"><span class="pre">Monash</span> <span class="pre">University</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2410.02184">CodeJudge: Evaluating Code Generation with Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Huazhong</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Science</span> <span class="pre">and</span> <span class="pre">Technology</span> <span class="pre">&amp;</span> <span class="pre">Purdue</span> <span class="pre">University</span></code></p></li>
+</ul>
+</section>
+<section id="id2">
+<h4>29.05.<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p><em>Ausfalltermin</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-7">
+<h3>Week 7<a class="headerlink" href="#week-7" title="Link to this heading">#</a></h3>
+<section id="lecture-software-development-pt-2-copilots-llm-powered-websites">
+<h4>03.06. <em>Lecture</em>: Software Development Pt. 2: Copilots, LLM-powered Websites<a class="headerlink" href="#lecture-software-development-pt-2-copilots-llm-powered-websites" title="Link to this heading">#</a></h4>
+<p>The second and the last lecture of the software development cycle focuses on practical application of LLM code generation, in particular, on widely-used copilots (real-time code generation assistants) and LLM-supported web development.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Copilots &amp; real-time hints</p></li>
+<li><p>LLM-powered websites</p></li>
+<li><p>LLM-supported deployment</p></li>
+<li><p>Further considerations: reliability, sustainability etc.</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2407.09512">Design and evaluation of AI copilots – case studies of retail copilot templates</a>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span></code></p></li>
+<li><p>🍿 <a class="reference external" href="https://blogs.microsoft.com/blog/2025/04/04/your-ai-companion/">Your AI Companion</a>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span></code> (blog post)</p></li>
+<li><p><a class="reference external" href="https://github.com/features/copilot">GitHub Copilot</a>, <code class="docutils literal notranslate"><span class="pre">GitHub</span></code> (product page)</p></li>
+<li><p>🍿 <a class="reference external" href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/">Research: quantifying GitHub Copilot’s impact on developer productivity and happiness</a>, <code class="docutils literal notranslate"><span class="pre">GitHub</span></code> (blog post)</p></li>
+<li><p><a class="reference external" href="https://www.cursor.com">Cursor: The AI Code Editor</a>, <code class="docutils literal notranslate"><span class="pre">Cursor</span></code> (product page)</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2402.09171">Automated Unit Test Improvement using Large Language Models at Meta</a>, <code class="docutils literal notranslate"><span class="pre">Meta</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2411.12924">Human-In-the-Loop Software Development Agents</a>, <code class="docutils literal notranslate"><span class="pre">Monash</span> <span class="pre">University,</span> <span class="pre">The</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Melbourne</span> <span class="pre">&amp;</span> <span class="pre">Atlassian</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2404.14459">LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Oslo</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2307.12856">A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">DeepMind</span> <span class="pre">&amp;</span> <span class="pre">The</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Tokyo</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2502.13681">An LLM-based Agent for Reliable Docker Environment Configuration</a>, <code class="docutils literal notranslate"><span class="pre">Harbin</span> <span class="pre">Institute</span> <span class="pre">of</span> <span class="pre">Technology</span> <span class="pre">&amp;</span> <span class="pre">ByteDance</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2308.10335">Can ChatGPT replace StackOverflow? A Study on Robustness and Reliability of Large Language Model Code Generation</a>, <code class="docutils literal notranslate"><span class="pre">UC</span> <span class="pre">San</span> <span class="pre">Diego</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2403.03344">Learn to Code Sustainably: An Empirical Study on LLM-based Green Code Generation</a>, <code class="docutils literal notranslate"><span class="pre">TWT</span> <span class="pre">GmbH</span> <span class="pre">Science</span> <span class="pre">&amp;</span> <span class="pre">Innovation</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2310.16263">Enhancing Large Language Models for Secure Code Generation: A Dataset-driven Study on Vulnerability Mitigation</a>, <code class="docutils literal notranslate"><span class="pre">South</span> <span class="pre">China</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Technology</span> <span class="pre">&amp;</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Innsbruck</span></code></p></li>
+</ul>
+</section>
+<section id="lab-llm-powered-website">
+<h4>05.06 <em>Lab</em>: LLM-powered Website<a class="headerlink" href="#lab-llm-powered-website" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#0306-lecture-software-development-pt-2-copilots-llm-powered-websites"><span class="xref myst">session 03.06</span></a></p>
+</div></blockquote>
+<p>In this lab, we’ll have the LLM make a website for us: it will both generate the contents of the website and generate all the code required for rendering, styling and navigation.</p>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>see <a class="reference internal" href="#2205-lab-multi-agent-environment"><span class="xref myst">session 22.05</span></a></p></li>
+<li><p>✍️ <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content">HTML: Creating the content</a>, <code class="docutils literal notranslate"><span class="pre">MDN</span></code></p></li>
+<li><p>✍️ <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started">Getting started with CSS</a>, <code class="docutils literal notranslate"><span class="pre">MDN</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-8-having-some-rest">
+<h3>Week 8: Having Some Rest<a class="headerlink" href="#week-8-having-some-rest" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h4>10.06.<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p><em>Ausfalltermin</em></p>
+</section>
+<section id="id4">
+<h4>12.06.<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p><em>Ausfalltermin</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-9">
+<h3>Week 9<a class="headerlink" href="#week-9" title="Link to this heading">#</a></h3>
+<section id="pitch-rag-chatbot">
+<h4>17.06. <em>Pitch</em>: RAG Chatbot<a class="headerlink" href="#pitch-rag-chatbot" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#0605-lecture-virtual-assistants-pt-1-chatbots"><span class="xref myst">session 06.05</span></a> and <a class="reference internal" href="#1305-lecture-virtual-assistants-pt-2-rag"><span class="xref myst">session 13.05</span></a></p>
+</div></blockquote>
+<p>The first pitch will be dedicated to a custom RAG chatbot that the <em>contractors</em> (the presenting students, see the <a class="reference internal" href="#./Formats/Pitches.md"><span class="xref myst">infos about Pitches</span></a>) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses. Specific requirements will be released on 22.05.</p>
+<p>Reading: see <a class="reference internal" href="#0605-lecture-virtual-assistants-pt-1-chatbots"><span class="xref myst">session 06.05</span></a>, <a class="reference internal" href="#0805-lab-chatbot"><span class="xref myst">session 08.05</span></a>, <a class="reference internal" href="#1305-lecture-virtual-assistants-pt-2-rag"><span class="xref myst">session 13.05</span></a>, and <a class="reference internal" href="#1505-lab-rag-chatbot"><span class="xref myst">session 15.05</span></a></p>
+</section>
+<section id="id5">
+<h4>19.06.<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p><em>Ausfalltermin</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-10">
+<h3>Week 10<a class="headerlink" href="#week-10" title="Link to this heading">#</a></h3>
+<section id="pitch-handling-customer-requests-in-a-multi-agent-environment">
+<h4>24.06. <em>Pitch</em>: Handling Customer Requests in a Multi-agent Environment<a class="headerlink" href="#pitch-handling-customer-requests-in-a-multi-agent-environment" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#2005-lecture-virtual-assistants-pt-3-multi-agent-environment"><span class="xref myst">session 20.05</span></a></p>
+</div></blockquote>
+<p>In the second pitch, the <em>contractors</em> will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imagined support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 27.05.</p>
+<p>Reading: see <a class="reference internal" href="#2005-lecture-virtual-assistants-pt-3-multi-agent-environment"><span class="xref myst">session 20.05</span></a> and <a class="reference internal" href="#2205-lab-multi-agent-environment"><span class="xref myst">session 22.05</span></a></p>
+</section>
+<section id="lecture-other-business-applications-game-design-financial-analysis-etc">
+<h4>26.06. <em>Lecture</em>: Other Business Applications: Game Design, Financial Analysis etc.<a class="headerlink" href="#lecture-other-business-applications-game-design-financial-analysis-etc" title="Link to this heading">#</a></h4>
+<p>This lecture will serve a small break and will briefly go over other business scenarios that the LLMs are used in.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Game design &amp; narrative games</p></li>
+<li><p>Financial applications</p></li>
+<li><p>Content creation</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2404.17027">Player-Driven Emergence in LLM-Driven Game Narrative</a>, <code class="docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Research</span></code></p></li>
+<li><p><a class="reference external" href="https://aclanthology.org/2024.games-1.6/">Generating Converging Narratives for Games with Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">U.S.</span> <span class="pre">Army</span> <span class="pre">Research</span> <span class="pre">Laboratory</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2402.07442">Game Agent Driven by Free-Form Text Command: Using LLM-based Code Generation and Behavior Branch</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Tokyo</span></code></p></li>
+<li><p>🍿 <a class="reference external" href="https://play.aidungeon.com">AI Dungeon Games</a>, <code class="docutils literal notranslate"><span class="pre">AI</span> <span class="pre">Dungeon</span></code> (game catalogue)</p></li>
+<li><p>🍿 <a class="reference external" href="https://www.convex.dev/ai-town">AI Town</a>, <code class="docutils literal notranslate"><span class="pre">Andreessen</span> <span class="pre">Horowitz</span> <span class="pre">&amp;</span> <span class="pre">Convex</span></code> (game)</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/blog/npc-gigax-cubzh?utm_source=chatgpt.com">Introducing NPC-Playground, a 3D playground to interact with LLM-powered NPCs</a>, <code class="docutils literal notranslate"><span class="pre">HuggingFace</span></code> (blog post)</p></li>
+<li><p><a class="reference external" href="https://github.com/bliporg/blip">Blip</a>, <code class="docutils literal notranslate"><span class="pre">bliporg</span></code> (GitHub repo)</p></li>
+<li><p><a class="reference external" href="https://github.com/GigaxGames/gigax">gigax</a>, <code class="docutils literal notranslate"><span class="pre">GigaxGames</span></code> (GitHub repo)</p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2311.10723">Large Language Models in Finance: A Survey</a>, <code class="docutils literal notranslate"><span class="pre">Columbia</span> <span class="pre">&amp;</span> <span class="pre">New</span> <span class="pre">York</span> <span class="pre">University</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2403.12285">FinLlama: Financial Sentiment Classification for Algorithmic Trading Applications</a>, <code class="docutils literal notranslate"><span class="pre">Imperial</span> <span class="pre">College</span> <span class="pre">London</span> <span class="pre">&amp;</span> <span class="pre">MIT</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2401.15328">Equipping Language Models with Tool Use Capability for Tabular Data Analysis in Finance</a>, <code class="docutils literal notranslate"><span class="pre">Monash</span> <span class="pre">University</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2401.12224">LLM4EDA: Emerging Progress in Large Language Models for Electronic Design Automation</a>, <code class="docutils literal notranslate"><span class="pre">Shanghai</span> <span class="pre">Jiao</span> <span class="pre">Tong</span> <span class="pre">University</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2402.14207">Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Stanford</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2404.11891">Large Language Models Can Solve Real-World Planning Rigorously with Formal Verification Tools</a>, <code class="docutils literal notranslate"><span class="pre">MIT,</span> <span class="pre">Harvard</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">MIT-IBM</span> <span class="pre">Watson</span> <span class="pre">AI</span> <span class="pre">Lab</span></code></p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-2-applications-in-science">
+<h2>Part 2: Applications in Science<a class="headerlink" href="#part-2-applications-in-science" title="Link to this heading">#</a></h2>
+<section id="week-11">
+<h3>Week 11<a class="headerlink" href="#week-11" title="Link to this heading">#</a></h3>
+<section id="lecture-llms-in-research-experiment-planning-hypothesis-generation">
+<h4>01.07. <em>Lecture</em>: LLMs in Research: Experiment Planning &amp; Hypothesis Generation<a class="headerlink" href="#lecture-llms-in-research-experiment-planning-hypothesis-generation" title="Link to this heading">#</a></h4>
+<p>The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Experiment planning</p></li>
+<li><p>Hypothesis generation</p></li>
+<li><p>Predicting possible results</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2404.04326">Hypothesis Generation with Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Chicago</span> <span class="pre">&amp;</span> <span class="pre">Toyota</span> <span class="pre">Technological</span> <span class="pre">Institute</span> <span class="pre">at</span> <span class="pre">Chicago</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2411.02382">Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Virginia</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2311.16733">LLMs for Science: Usage for Code Generation and Data Analysis</a>, <code class="docutils literal notranslate"><span class="pre">TUM</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2304.05332">Emergent autonomous scientific research capabilities of large language models</a>, <code class="docutils literal notranslate"><span class="pre">Carnegie</span> <span class="pre">Mellon</span> <span class="pre">University</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2409.04593">Paper Copilot: A Self-Evolving and Efficient LLM System for Personalized Academic Assistance</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Illinois</span> <span class="pre">at</span> <span class="pre">Urbana-Champaign,</span> <span class="pre">Carnegie</span> <span class="pre">Mellon</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">Carleton</span> <span class="pre">College</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2408.15545">SciLitLLM: How to Adapt LLMs for Scientific Literature Understanding</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Science</span> <span class="pre">and</span> <span class="pre">Technology</span> <span class="pre">of</span> <span class="pre">China</span> <span class="pre">&amp;</span> <span class="pre">DP</span> <span class="pre">Technology</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2404.01268">Mapping the Increasing Use of LLMs in Scientific Papers</a>, <code class="docutils literal notranslate"><span class="pre">Stanford</span></code></p></li>
+</ul>
+</section>
+<section id="lab-experiment-planning-hypothesis-generation">
+<h4>03.07: <em>Lab</em>: Experiment Planning &amp; Hypothesis Generation<a class="headerlink" href="#lab-experiment-planning-hypothesis-generation" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#0107-lecture-llms-in-research-experiment-planning--hypothesis-generation"><span class="xref myst">session 01.07</span></a></p>
+</div></blockquote>
+<p>In this lab, we’ll practice in facilitating researcher’s work with LLMs on the example of a toy scientific research.</p>
+<p>Reading: see <a class="reference internal" href="#2205-lab-multi-agent-environment"><span class="xref myst">session 22.05</span></a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-12">
+<h3>Week 12<a class="headerlink" href="#week-12" title="Link to this heading">#</a></h3>
+<section id="pitch-agent-for-code-generation">
+<h4>08.07: <em>Pitch</em>: Agent for Code Generation<a class="headerlink" href="#pitch-agent-for-code-generation" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#2705-lecture-software-development-pt-1-code-generation-evaluation--testing"><span class="xref myst">session 27.05</span></a></p>
+</div></blockquote>
+<p>This pitch will revolve around the <em>contractors’</em> implementation of a self-improving code generator. The code generator will have to generate both scripts and test cases for a problem given in the input prompt, run the tests and refine the code if needed. Specific requirements will be released on 17.06.</p>
+<p>Reading: see <a class="reference internal" href="#2705-lecture-software-development-pt-1-code-generation-evaluation--testing"><span class="xref myst">session 27.05</span></a> and <a class="reference internal" href="#0506-lab-llm-powered-website"><span class="xref myst">session 05.06</span></a></p>
+</section>
+<section id="lecture-other-applications-in-science-drug-discovery-math-etc-scientific-reliability">
+<h4>10.07. <em>Lecture</em>: Other Applications in Science: Drug Discovery, Math etc. &amp; Scientific Reliability<a class="headerlink" href="#lecture-other-applications-in-science-drug-discovery-math-etc-scientific-reliability" title="Link to this heading">#</a></h4>
+<p>The final core topic will mention other scientific applications of LLMs that were not covered in the previous lectures and address the question of reliability of the results obtained with LLMs.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Drug discovery, math &amp; other applications</p></li>
+<li><p>Scientific confidence &amp; reliability</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2406.10833">A Comprehensive Survey of Scientific Large Language Models and Their Applications in Scientific Discovery</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Illinois</span> <span class="pre">at</span> <span class="pre">Urbana-Champaign</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2409.04481">Large Language Models in Drug Discovery and Development: From Disease Mechanisms to Clinical Trials</a>, <code class="docutils literal notranslate"><span class="pre">Department</span> <span class="pre">of</span> <span class="pre">Data</span> <span class="pre">Science</span> <span class="pre">and</span> <span class="pre">AI,</span> <span class="pre">Monash</span> <span class="pre">University</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2404.18400">LLM-SR: Scientific Equation Discovery via Programming with Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Virginia</span> <span class="pre">Tech</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p>🍿 <a class="reference external" href="https://github.com/yuzhimanhua/Awesome-Scientific-Language-Models">Awesome Scientific Language Models</a>, <code class="docutils literal notranslate"><span class="pre">yuzhimanhua</span></code> (GitHub repo)</p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2409.14037">Can LLMs replace Neil deGrasse Tyson? Evaluating the Reliability of LLMs as Science Communicators</a>, <code class="docutils literal notranslate"><span class="pre">Indian</span> <span class="pre">Institute</span> <span class="pre">of</span> <span class="pre">Technology</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2503.13517">CURIE: Evaluating LLMs On Multitask Scientific Long Context Understanding and Reasoning</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2501.09775">Multiple Choice Questions: Reasoning Makes Large Language Models (LLMs) More Self-Confident Even When They Are Wrong</a>, <code class="docutils literal notranslate"><span class="pre">Nanjing</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Aeronautics</span> <span class="pre">and</span> <span class="pre">Astronautics</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="block-3-wrap-up">
+<h2>Block 3: Wrap-up<a class="headerlink" href="#block-3-wrap-up" title="Link to this heading">#</a></h2>
+<section id="week-13">
+<h3>Week 13<a class="headerlink" href="#week-13" title="Link to this heading">#</a></h3>
+<section id="pitch-agent-for-web-development">
+<h4>15.07. <em>Pitch</em>: Agent for Web Development<a class="headerlink" href="#pitch-agent-for-web-development" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#0306-lecture-software-development-pt-2-copilots-llm-powered-websites"><span class="xref myst">session 03.06</span></a></p>
+</div></blockquote>
+<p>The <em>contractors</em> will present their agent that will have to generate full (minimalistic) websites by a prompt. For each website, the agent will have to generate its own style and a simple menu with working navigation as well as the contents. Specific requirements will be released on 24.06.</p>
+<p>Reading: see <a class="reference internal" href="#0306-lecture-software-development-pt-2-copilots-llm-powered-websites"><span class="xref myst">session 03.06</span></a> and <a class="reference internal" href="#0506-lab-llm-powered-website"><span class="xref myst">session 05.06</span></a></p>
+</section>
+<section id="lecture-role-of-ai-in-recent-years">
+<h4>17.07. <em>Lecture</em>: Role of AI in Recent Years<a class="headerlink" href="#lecture-role-of-ai-in-recent-years" title="Link to this heading">#</a></h4>
+<p>The last lecture of the course will turn to societal considerations regarding LLMs and AI in general and will investigate its role and influence on the humanity nowadays.</p>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Studies on influence of AI in the recent years</p></li>
+<li><p>Studies on AI integration rate</p></li>
+<li><p>Ethical, legal &amp; environmental aspects</p></li>
+</ul>
+<p>Reading:</p>
+<ul class="simple">
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2502.12447">Protecting Human Cognition in the Age of AI</a>, The University of Texas at Austin et al.</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2412.03963">Augmenting Minds or Automating Skills: The Differential Role of Human Capital in Generative AI’s Impact on Creative Tasks</a>, <code class="docutils literal notranslate"><span class="pre">Tsinghua</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">Wuhan</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Technology</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2410.03703">Human Creativity in the Age of LLMs: Randomized Experiments on Divergent and Convergent Thinking</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Toronto</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2409.01754v1">Empirical evidence of Large Language Model’s influence on human spoken communication</a>, <code class="docutils literal notranslate"><span class="pre">Max-Planck</span> <span class="pre">Institute</span> <span class="pre">for</span> <span class="pre">Human</span> <span class="pre">Development</span></code></p></li>
+<li><p>🍿 <a class="reference external" href="https://hai.stanford.edu/ai-index/2025-ai-index-report">The 2025 AI Index Report: Top Takeaways</a>, <code class="docutils literal notranslate"><span class="pre">Stanford</span></code></p></li>
+<li><p><a class="reference external" href="https://ai.wharton.upenn.edu/focus-areas/human-technology-interaction/2024-ai-adoption-report/">Growing Up: Navigating Generative AI’s Early Years – AI Adoption Report: Executive Summary</a>, <code class="docutils literal notranslate"><span class="pre">AI</span> <span class="pre">at</span> <span class="pre">Wharton</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://onlinelibrary.wiley.com/doi/full/10.1111/exsy.13406">Artificial intelligence governance: Ethical considerations and implications for social responsibility</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Malta</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2503.14539">Ethical Implications of AI in Data Collection: Balancing Innovation with Privacy</a>, <code class="docutils literal notranslate"><span class="pre">AI</span> <span class="pre">Data</span> <span class="pre">Chronicles</span></code></p></li>
+<li><p><a class="reference external" href="https://link.springer.com/article/10.1007/s43681-024-00644-x">Legal and ethical implications of AI-based crowd analysis: the AI Act and beyond</a>, <code class="docutils literal notranslate"><span class="pre">Vrije</span> <span class="pre">Universiteit</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2412.04782v1">A Survey of Sustainability in Large Language Models: Applications, Economics, and Challenges</a>, <code class="docutils literal notranslate"><span class="pre">Cleveland</span> <span class="pre">State</span> <span class="pre">University</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="week-14">
+<h3>Week 14<a class="headerlink" href="#week-14" title="Link to this heading">#</a></h3>
+<section id="pitch-llm-based-research-assistant">
+<h4>22.07. <em>Pitch</em>: LLM-based Research Assistant<a class="headerlink" href="#pitch-llm-based-research-assistant" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#0107-lecture-llms-in-research-experiment-planning--hypothesis-generation"><span class="xref myst">session 01.07</span></a></p>
+</div></blockquote>
+<p>The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find the literature etc. for a given scientific problem. It will then have to introduce its results in form of a TODO or a guide for the researcher to start off of. Specific requirements will be released on 01.07.</p>
+<p>Reading: see <a class="reference internal" href="#0107-lecture-llms-in-research-experiment-planning--hypothesis-generation"><span class="xref myst">session 01.07</span></a> and <a class="reference internal" href="#0307-lab-experiment-planning--hypothesis-generation"><span class="xref myst">session 03.07</span></a></p>
+</section>
+<section id="debate-role-of-ai-in-recent-years-wrap-up">
+<h4>24.07. <em>Debate</em>: Role of AI in Recent Years + Wrap-up<a class="headerlink" href="#debate-role-of-ai-in-recent-years-wrap-up" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>On material of <a class="reference internal" href="#1707-lecture-role-of-ai-in-recent-years"><span class="xref myst">session 17.07</span></a></p>
+</div></blockquote>
+<p>The course will be concluded by the final debate (motions will be released on 17.07), after which a short course summary and a Q&amp;A session will be held.</p>
+<!-- * Should We Limit the Usage of AI? -->
+<p>Reading: see <a class="reference internal" href="#1707-lecture-role-of-ai-in-recent-years"><span class="xref myst">session 17.07</span></a></p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./infos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-1-intro">Block 1: Intro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1">Week 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine">22.04. <em>Lecture</em>: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-llm-agent-basics">24.04. <em>Lecture</em>: LLM &amp; Agent Basics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2">Week 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#debates-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine">29.04. <em>Debates</em>: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">01.05.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-core-topics">Block 2: Core Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-business-applications">Part 1: Business Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3">Week 3</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-virtual-assistants-pt-1-chatbots">06.05. <em>Lecture</em>: Virtual Assistants Pt. 1: Chatbots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-chatbot">08.05. <em>Lab</em>: Chatbot</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4">Week 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-virtual-assistants-pt-2-rag">13.05. <em>Lecture</em>: Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-rag-chatbot">15.05. <em>Lab</em>: RAG Chatbot</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-5">Week 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-virtual-assistants-pt-3-multi-agent-environment">20.05. <em>Lecture</em>: Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-multi-agent-environment">22.05. <em>Lab</em>: Multi-agent Environment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6">Week 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-software-development-pt-1-code-generation-evaluation-testing">27.05. <em>Lecture</em>: Software Development Pt. 1: Code Generation, Evaluation &amp; Testing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">29.05.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7">Week 7</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-software-development-pt-2-copilots-llm-powered-websites">03.06. <em>Lecture</em>: Software Development Pt. 2: Copilots, LLM-powered Websites</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-llm-powered-website">05.06 <em>Lab</em>: LLM-powered Website</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-8-having-some-rest">Week 8: Having Some Rest</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">10.06.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">12.06.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-9">Week 9</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-rag-chatbot">17.06. <em>Pitch</em>: RAG Chatbot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">19.06.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-10">Week 10</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-handling-customer-requests-in-a-multi-agent-environment">24.06. <em>Pitch</em>: Handling Customer Requests in a Multi-agent Environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-other-business-applications-game-design-financial-analysis-etc">26.06. <em>Lecture</em>: Other Business Applications: Game Design, Financial Analysis etc.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-applications-in-science">Part 2: Applications in Science</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-11">Week 11</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-llms-in-research-experiment-planning-hypothesis-generation">01.07. <em>Lecture</em>: LLMs in Research: Experiment Planning &amp; Hypothesis Generation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-experiment-planning-hypothesis-generation">03.07: <em>Lab</em>: Experiment Planning &amp; Hypothesis Generation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-12">Week 12</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-agent-for-code-generation">08.07: <em>Pitch</em>: Agent for Code Generation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-other-applications-in-science-drug-discovery-math-etc-scientific-reliability">10.07. <em>Lecture</em>: Other Applications in Science: Drug Discovery, Math etc. &amp; Scientific Reliability</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-wrap-up">Block 3: Wrap-up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-13">Week 13</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-agent-for-web-development">15.07. <em>Pitch</em>: Agent for Web Development</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-role-of-ai-in-recent-years">17.07. <em>Lecture</em>: Role of AI in Recent Years</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-14">Week 14</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pitch-llm-based-research-assistant">22.07. <em>Pitch</em>: LLM-based Research Assistant</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#debate-role-of-ai-in-recent-years-wrap-up">24.07. <em>Debate</em>: Role of AI in Recent Years + Wrap-up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Maksim Shmalts
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
