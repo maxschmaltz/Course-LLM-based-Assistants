@@ -35,9 +35,13 @@ sphinx:
       source_repository: https://github.com/maxschmaltz/Course-LLM-based-Assistants
       source_branch: main
       source_directory: llm-based-assistants
+      top_of_page_buttons:
+      - view
+    html_show_sourcelink: true
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: true
-  use_repository_button: true
+# # Add GitHub buttons to your book
+# # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# html:
+#   use_issues_button: true
+#   use_repository_button: true
+#   use_edit_page_button: false
