@@ -35,6 +35,7 @@ Reading:
 * [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627), `The University of Texas at Austin et al.`
 * [Large Language Models: The Need for Nuance in Current Debates and a Pragmatic Perspective on Understanding](https://arxiv.org/abs/2310.19671), `Leiden Institute of Advanced Computer Science & Leiden University Medical Centre`
 
+<a name="2404"></a>
 #### 24.04. _Lecture_: LLM & Agent Basics
 
 In this lecture, we'll recap some basics about LLMs and LLM-based agents to make sure we're on the same page. 
@@ -66,6 +67,7 @@ _____________________________________
 
 ### Week 2
 
+<a name="2904"></a>
 #### 29.04. _Debates_: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine
 > On material of [session 22.04](#2204)
 
@@ -73,7 +75,7 @@ The first debates of the course will revolve around the topic raised in the resp
 <!-- * LLMs: a Form of Intelligence or a Complex Statistical Machine?
 * LLM Behavior: Evidence of Awareness or Illusion of Understanding? -->
 
-Reading: see [session 22.04](#2204-lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine)
+Reading: see [session 22.04](#2204)
 
 #### 01.05.
 _Ausfalltermin_
@@ -88,6 +90,7 @@ _____________________________________________________________________________
 
 ### Week 3
 
+<a name="0605"></a>
 #### 06.05. _Lecture_: Virtual Assistants Pt. 1: Chatbots
 
 The first core topic concerns chatbots. We'll discuss how chatbots are built, how they (should) handle harmful requests and you can tune it for your use case.
@@ -108,8 +111,9 @@ Reading:
 * [Augmenting Language Models with Long-Term Memory](https://arxiv.org/abs/2306.07174), `UC Santa Barbara & Microsoft Research`
 * [From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models](https://arxiv.org/abs/2401.02777), `Beike Inc.`
 
+<a name="0805"></a>
 #### 08.05. _Lab_: Chatbot
-> On material of [session 06.05](#0605-lecture-virtual-assistants-pt-1-chatbots)
+> On material of [session 06.05](#0605)
 
 In this lab, we'll build a chatbot and try different prompts and settings to see how it affects the output.
 
@@ -130,6 +134,7 @@ _____________________________________
 
 ### Week 4
 
+<a name="1305"></a>
 #### 13.05. _Lecture_: Virtual Assistants Pt. 2: RAG
 
 Continuing the first part, the second part will expand scope of chatbot functionality and will teach it to refer to custom knowledge base to retrieve and use user-specific information. Finally, the most widely used deployment methods will be briefly introduced. 
@@ -148,8 +153,9 @@ Reading:
 * [Querying Databases with Function Calling](https://arxiv.org/abs/2502.00032), `Weaviate, Contextual AI & Morningstar`
 * [Auto-RAG: Autonomous Retrieval-Augmented Generation for Large Language Models](https://arxiv.org/abs/2411.19443), `Chinese Academy of Sciences`
 
+<a name="1505"></a>
 #### 15.05. _Lab_: RAG Chatbot
-> On material of [session 13.05](#1305-lecture-virtual-assistants-pt-2-rag)
+> On material of [session 13.05](#1305)
 
 In this lab, we'll expand the functionality of the chatbot built at the last lab to connect it to user-specific information.
 
@@ -167,6 +173,7 @@ _____________________________________
 
 ### Week 5
 
+<a name="2005"></a>
 #### 20.05. _Lecture_: Virtual Assistants Pt. 3: Multi-agent Environment
 
 This lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday / business operations in a multi-agent environment. We'll look at how agents communicate with each other, how their communication can be guided (both with and without involvement of a human), and this all is used in real applications.
@@ -185,8 +192,9 @@ Reading:
 * 🍿 [How real-world businesses are transforming with AI — with more than 140 new stories](https://blogs.microsoft.com/blog/2025/03/10/https-blogs-microsoft-com-blog-2024-11-12-how-real-world-businesses-are-transforming-with-ai/), `Microsoft` (blog post) 
 * [Plan-Then-Execute: An Empirical Study of User Trust and Team Performance When Using LLM Agents As A Daily Assistant](https://arxiv.org/abs/2502.01390), `Delft University of Technology & The University of Queensland`
 
+<a name="2205"></a>
 #### 22.05. _Lab_: Multi-agent Environment
-> On material of [session 20.05](#2005-lecture-virtual-assistants-pt-3-multi-agent-environment)
+> On material of [session 20.05](#2005)
 
 This lab will introduce a short walkthrough to creation of a multi-agent environment for automated meeting scheduling and preparation. We will see how the coordinator agent will communicate with two auxiliary agents to check time availability and prepare an agenda for the meeting.
 
@@ -202,6 +210,7 @@ _____________________________________
 
 ### Week 6
 
+<a name="2705"></a>
 #### 27.05. _Lecture_: Software Development Pt. 1: Code Generation, Evaluation & Testing
 
 This lectures opens a new lecture mini-cycle dedicated to software development. The first lecture overviews how LLMs are used to generate reliable code and how generated code is tested and improved to deal with the errors.
@@ -233,6 +242,7 @@ _____________________________________
 
 ### Week 7
 
+<a name="0306"></a>
 #### 03.06. _Lecture_: Software Development Pt. 2: Copilots, LLM-powered Websites
 
 The second and the last lecture of the software development cycle focuses on practical application of LLM code generation, in particular, on widely-used copilots (real-time code generation assistants) and LLM-supported web development.
@@ -258,13 +268,14 @@ Reading:
 * [Learn to Code Sustainably: An Empirical Study on LLM-based Green Code Generation](https://arxiv.org/abs/2403.03344), `TWT GmbH Science & Innovation et al.`
 * [Enhancing Large Language Models for Secure Code Generation: A Dataset-driven Study on Vulnerability Mitigation](https://arxiv.org/abs/2310.16263), `South China University of Technology & University of Innsbruck`
 
+<a name="0506"></a>
 #### 05.06 _Lab_: LLM-powered Website
-> On material of [session 03.06](#0306-lecture-software-development-pt-2-copilots-llm-powered-websites)
+> On material of [session 03.06](#0306)
 
 In this lab, we'll have the LLM make a website for us: it will both generate the contents of the website and generate all the code required for rendering, styling and navigation.
 
 Reading:
-* see [session 22.05](#2205-lab-multi-agent-environment)
+* see [session 22.05](#2205)
 * ✍️ [HTML: Creating the content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content), ``MDN``
 * ✍️ [Getting started with CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started), ``MDN``
 
@@ -284,12 +295,13 @@ _____________________________________
 
 ### Week 9
 
+<a name="1706"></a>
 #### 17.06. _Pitch_: RAG Chatbot
-> On material of [session 06.05](#0605-lecture-virtual-assistants-pt-1-chatbots) and [session 13.05](#1305-lecture-virtual-assistants-pt-2-rag)
+> On material of [session 06.05](#0605) and [session 13.05](#1305)
 
 The first pitch will be dedicated to a custom RAG chatbot that the _contractors_ (the presenting students, see the [infos about Pitches](./Formats/Pitches.md)) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses. Specific requirements will be released on 22.05.
 
-Reading: see [session 06.05](#0605-lecture-virtual-assistants-pt-1-chatbots), [session 08.05](#0805-lab-chatbot), [session 13.05](#1305-lecture-virtual-assistants-pt-2-rag), and [session 15.05](#1505-lab-rag-chatbot)
+Reading: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), and [session 15.05](#1505)
 
 #### 19.06.
 _Ausfalltermin_
@@ -299,13 +311,15 @@ _____________________________________
 
 ### Week 10
 
+<a name="2406"></a>
 #### 24.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
-> On material of [session 20.05](#2005-lecture-virtual-assistants-pt-3-multi-agent-environment)
+> On material of [session 20.05](#2005)
 
 In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imagined support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 27.05.
 
-Reading: see [session 20.05](#2005-lecture-virtual-assistants-pt-3-multi-agent-environment) and [session 22.05](#2205-lab-multi-agent-environment)
+Reading: see [session 20.05](#2005) and [session 22.05](#2205)
 
+<a name="2606"></a>
 #### 26.06. _Lecture_: Other Business Applications: Game Design, Financial Analysis etc.
 
 This lecture will serve a small break and will briefly go over other business scenarios that the LLMs are used in. 
@@ -338,6 +352,7 @@ _____________________________________________________________________________
 
 ### Week 11
 
+<a name="0107"></a>
 #### 01.07. _Lecture_: LLMs in Research: Experiment Planning & Hypothesis Generation
 
 The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.
@@ -356,25 +371,28 @@ Reading:
 * [SciLitLLM: How to Adapt LLMs for Scientific Literature Understanding](https://arxiv.org/abs/2408.15545), `University of Science and Technology of China & DP Technology`
 * [Mapping the Increasing Use of LLMs in Scientific Papers](https://arxiv.org/abs/2404.01268), `Stanford`
 
+<a name="0307"></a>
 #### 03.07: _Lab_: Experiment Planning & Hypothesis Generation
-> On material of [session 01.07](#0107-lecture-llms-in-research-experiment-planning--hypothesis-generation)
+> On material of [session 01.07](#0107)
 
 In this lab, we'll practice in facilitating researcher's work with LLMs on the example of a toy scientific research.
 
-Reading: see [session 22.05](#2205-lab-multi-agent-environment)
+Reading: see [session 22.05](#2205)
 
 _____________________________________
 
 
 ### Week 12
 
+<a name="0807"></a>
 #### 08.07: _Pitch_: Agent for Code Generation
-> On material of [session 27.05](#2705-lecture-software-development-pt-1-code-generation-evaluation--testing)
+> On material of [session 27.05](#2705)
 
 This pitch will revolve around the _contractors'_ implementation of a self-improving code generator. The code generator will have to generate both scripts and test cases for a problem given in the input prompt, run the tests and refine the code if needed. Specific requirements will be released on 17.06.
 
-Reading: see [session 27.05](#2705-lecture-software-development-pt-1-code-generation-evaluation--testing) and [session 05.06](#0506-lab-llm-powered-website)
+Reading: see [session 27.05](#2705) and [session 05.06](#0506)
 
+<a name="1007"></a>
 #### 10.07. _Lecture_: Other Applications in Science: Drug Discovery, Math etc. & Scientific Reliability
 
 The final core topic will mention other scientific applications of LLMs that were not covered in the previous lectures and address the question of reliability of the results obtained with LLMs.
@@ -399,13 +417,15 @@ _____________________________________________________________________________
 
 ### Week 13
 
+<a name="1507"></a>
 #### 15.07. _Pitch_: Agent for Web Development
-> On material of [session 03.06](#0306-lecture-software-development-pt-2-copilots-llm-powered-websites)
+> On material of [session 03.06](#0306)
 
 The _contractors_ will present their agent that will have to generate full (minimalistic) websites by a prompt. For each website, the agent will have to generate its own style and a simple menu with working navigation as well as the contents. Specific requirements will be released on 24.06.
 
-Reading: see [session 03.06](#0306-lecture-software-development-pt-2-copilots-llm-powered-websites) and [session 05.06](#0506-lab-llm-powered-website)
+Reading: see [session 03.06](#0306) and [session 05.06](#0506)
 
+<a name="1707"></a>
 #### 17.07. _Lecture_: Role of AI in Recent Years
 
 The last lecture of the course will turn to societal considerations regarding LLMs and AI in general and will investigate its role and influence on the humanity nowadays.
@@ -432,18 +452,19 @@ _____________________________________
 
 ### Week 14
 
+<a name="2207"></a>
 #### 22.07. _Pitch_: LLM-based Research Assistant
-> On material of [session 01.07](#0107-lecture-llms-in-research-experiment-planning--hypothesis-generation)
+> On material of [session 01.07](#0107)
 
 The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find the literature etc. for a given scientific problem. It will then have to introduce its results in form of a TODO or a guide for the researcher to start off of. Specific requirements will be released on 01.07.
 
-Reading: see [session 01.07](#0107-lecture-llms-in-research-experiment-planning--hypothesis-generation) and [session 03.07](#0307-lab-experiment-planning--hypothesis-generation)
+Reading: see [session 01.07](#0107) and [session 03.07](#0307)
 
+<a name="2407"></a>
 #### 24.07. _Debate_: Role of AI in Recent Years + Wrap-up
-> On material of [session 17.07](#1707-lecture-role-of-ai-in-recent-years)
+> On material of [session 17.07](#1707)
 
 The course will be concluded by the final debate (motions will be released on 17.07), after which a short course summary and a Q&A session will be held.
 <!-- * Should We Limit the Usage of AI? -->
 
-
-Reading: see [session 17.07](#1707-lecture-role-of-ai-in-recent-years)
+Reading: see [session 17.07](#1707)
