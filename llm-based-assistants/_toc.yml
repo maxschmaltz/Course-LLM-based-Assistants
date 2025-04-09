@@ -1,0 +1,60 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+
+  - caption: Infos
+    chapters:
+      - file: "llm-based-assistants/infos/Topics Overview.md"
+        title: Topics Overview
+
+  # - caption: Block 1: Intro
+  #   chapters:
+  #     - title: Week 1
+  #       sections:
+  #         - file: block1/week1/lecture1
+  #           title: Lecture 1
+  #         - file: block1/week1/lecture2
+  #           title: Lecture 2
+  #     - title: Week 2
+  #       sections:
+  #         - file: block1/week2/lecture1
+  #           title: Lecture 1
+  #         - file: block1/week2/lecture2
+  #           title: Lecture 2
+
+  # - caption: Block 2: Core Topics
+  #   chapters:
+  #     - title: Part 1: Business Applications
+  #       sections:
+  #         - title: Week 3
+  #           sections:
+  #             - file: block2/part1/week3/lecture1
+  #               title: Lecture 1
+  #             - file: block2/part1/week3/lecture2
+  #               title: Lecture 2
+  #     - title: Part 2: Applications in Science
+  #       sections:
+  #         - title: Week 4
+  #           sections:
+  #             - file: block2/part2/week4/lecture1
+  #               title: Lecture 1
+  #             - file: block2/part2/week4/lecture2
+  #               title: Lecture 2
+
+  # - caption: Block 3: Wrap-up
+  #   chapters:
+  #     - title: Week 1
+  #       sections:
+  #         - file: block1/week1/lecture1
+  #           title: Lecture 1
+  #         - file: block1/week1/lecture2
+  #           title: Lecture 2
+  #     - title: Week 2
+  #       sections:
+  #         - file: block1/week2/lecture1
+  #           title: Lecture 1
+  #         - file: block1/week2/lecture2
+  #           title: Lecture 2
