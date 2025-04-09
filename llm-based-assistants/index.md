@@ -25,7 +25,7 @@ While the course will focus mostly on the practical uses of LLMs, it will also b
 
 ## Contents Overview
 
-The course will consist of the intro (_Weeks 1-2_), the core topics (_Weeks 3-12_), and the wrap-up (_Weeks 13-14_). You can see the schedule in [Topics Overview](Topics%20Overview.md). Important: **the schedule is preliminary and subject to changes!**
+The course will consist of the intro (_Weeks 1-2_), the core topics (_Weeks 3-12_), and the wrap-up (_Weeks 13-14_). You can see the schedule in [Topics Overview](./infos/topic_overview.md). Important: **the schedule is preliminary and subject to changes!**
 
 ### Core Topics
 
@@ -48,9 +48,9 @@ Each week of the course will offer a theoretical and a practical session. Sessio
 
     * _Labs_. In labs, we will practice technical skills by making toy LLM-based solutions. Labs tasks are released 3 days prior to the respective sessions.
 
-    * _Debates_. The debates will be conducted on material of the sessions dedicated to philosophical / ethical etc. considerations (weeks 1 and 13). In the debates, a certain motion (position) will be debated over by two teams: one will support it (the affirmative) and one will oppose it (the negative). See [Debates](./Formats/Debates.md) for more details. The debate motions are released 1 week in advance after the corresponding lecture. 
+    * _Debates_. The debates will be conducted on material of the sessions dedicated to philosophical / ethical etc. considerations (weeks 1 and 13). In the debates, a certain motion (position) will be debated over by two teams: one will support it (the affirmative) and one will oppose it (the negative). See [Debates](./infos/formats/debates.md) for more details. The debate motions are released 1 week in advance after the corresponding lecture. 
 
-    * _Pitches_. This format will simulate a presentation of a software product; there will be a group of students who had made a toy project that they will pitch to another students, and the latter will ask (mostly technical) questions about the solution. See [Pitches](./Formats/Pitches.md) for more details. The requirements to the features and deliverables of the product to pitch are released 3 weeks in advance.
+    * _Pitches_. This format will simulate a presentation of a software product; there will be a group of students who had made a toy project that they will pitch to another students, and the latter will ask (mostly technical) questions about the solution. See [Pitches](./infos/formats/pitches.md) for more details. The requirements to the features and deliverables of the product to pitch are released 3 weeks in advance.
 
 
 ## Target Audience
