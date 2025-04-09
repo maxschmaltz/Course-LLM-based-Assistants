@@ -27,8 +27,13 @@ jobs:
         run: |
           jupyter-book build llm-based-assistants
 
+      - name: Check if gh-pages branch exists
+        run: |
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+        shell: bash
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.ACCESS_TOKEN_FOR_BOT }}
           publish_dir: ./llm-based-assistants/_buildx/html
