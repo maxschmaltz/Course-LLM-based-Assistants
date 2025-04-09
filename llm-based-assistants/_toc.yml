@@ -6,16 +6,16 @@ root: index
 
 parts:
 
-- caption: Infos and Stuff
-  chapters:
-    # - title: Topics Overview
-    - file: infos/topic_overview.md
-    # - title: Formats
-      sections:
-        # - title: Debates
-        - file: infos/formats/debates.md
-        # - title: Pitches
-        - file: infos/formats/pitches.md
+  - caption: Infos and Stuff
+    chapters:
+      # - title: Topics Overview
+      - file: infos/topic_overview.md
+      # - title: Formats
+        sections:
+          # - title: Debates
+          - file: infos/formats/debates.md
+          # - title: Pitches
+          - file: infos/formats/pitches.md
       
 
   # - caption: Block 1: Intro
