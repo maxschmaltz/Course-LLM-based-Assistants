@@ -10,7 +10,8 @@ parts:
     chapters:
     # - title: Topics Overview
     - file: infos/topic_overview.md
-    - title: Formats
+    - file:
+      title: Formats
       sections:
       # - title: Debates
       - file: infos/formats/debates.md
