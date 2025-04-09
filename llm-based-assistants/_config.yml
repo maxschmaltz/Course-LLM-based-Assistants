@@ -44,20 +44,19 @@ sphinx:
           </svg>
         class: footer-icon
 
-      # - name: Issues
-      #   url: https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues
-      #   html: |
-      #     <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-      #          viewBox="0 0 24 24" height="1.1em" width="1.1em"
-      #          xmlns="http://www.w3.org/2000/svg">
-      #       <path d="...issues icon path..."></path>
-      #     </svg>
-      #   class: footer-icon
-      # top_of_page_buttons:
+      - name: Issues
+        url: https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues
+        html: |
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29..."></path>
+          </svg>
+        class: footer-icon
+      
+      top_of_page_buttons: []
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: true
-  use_repository_button: true
-  use_edit_page_button: false
+# # Add GitHub buttons to your book
+# # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# html:
+#   use_issues_button: true
+#   use_repository_button: true
+#   use_edit_page_button: false
