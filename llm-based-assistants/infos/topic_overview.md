@@ -2,9 +2,11 @@
 
 The schedule is preliminary and subject to changes!
 
-The reading for each _lecture_ is given as references to the sources the respective lectures base on. You are **not** obliged to read anything. However, you are strongly **encouraged** to read references marked by pin emojis 📌: those are comprehensive overviews on the topics or important works that are beneficial for a better understanding of the key concepts of the respective lectures. Some of the sources are also marked with a popcorn emoji 🍿: that is misc material you might want to take a look at: blog posts, GitHub repos, leaderboards etc. (also a couple of LLM-based games).
+The reading for each _lecture_ is given as references to the sources the respective lectures base on. You are **not** obliged to read anything. However, you are strongly **encouraged** to read references marked by pin emojis 📌: those are comprehensive overviews on the topics or important works that are beneficial for a better understanding of the key concepts. For the pinned papers, I also specify the pages span for you to focus on the most important fragments. Some of the sources are also marked with a popcorn emoji 🍿: that is misc material you might want to take a look at: blog posts, GitHub repos, leaderboards etc. (also a couple of LLM-based games).
 
 For the _labs_, you are provided with practical tutorials that respective lab tasks will mostly derive from. The core tutorials are marked with a writing emoji ✍️; you are **asked** to inspect them **in advance** (better yet: try them out). On lab sessions, we will only **briefly recap** them so it is up to you to prepare in advance to keep up with the lab.
+
+_Disclaimer_: the reading entries are no proper citations; the bibtex references as well as detailed infos about the authors, publish date etc. can be found under the entry links.
 
 _____________________________________________________________________________
 
@@ -25,7 +27,7 @@ Key points:
 * LLMs' (self-)awareness
 
 Reading:
-* 📌 [The Debate Over Understanding in AI's Large Language Models](https://arxiv.org/abs/2210.13966), `Santa Fe Institute`
+* 📌 [The Debate Over Understanding in AI's Large Language Models](https://arxiv.org/abs/2210.13966) (pages 1-7), `Santa Fe Institute`
 * [Do Large Language Models Understand Us?](https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us), `Google Research`
 * [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712), `Microsoft Research`
 * [Meaning without reference in large language models](https://arxiv.org/abs/2208.02957), `UC Berkeley & DeepMind`
@@ -46,16 +48,16 @@ Key points:
 * Multimodality
 
 Reading:
-* 📌 [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223), `Renmin University of China et al.`
+* [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223), `Renmin University of China et al.`
 * [The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783), `Meta AI`
-* 📌 ["We Need Structured Output": Towards User-centered Constraints on Large Language Model Output](https://arxiv.org/abs/2404.07362), `Google Research & Google`
+* ["We Need Structured Output": Towards User-centered Constraints on Large Language Model Output](https://arxiv.org/abs/2404.07362), `Google Research & Google`
 * [Introducing Structured Outputs in the API](https://openai.com/index/introducing-structured-outputs-in-the-api/), `OpenAI`
-* 📌 [Tool Learning with Large Language Models: A Survey](https://arxiv.org/abs/2405.17935), `Renmin University of Chin et al.`
+* [Tool Learning with Large Language Models: A Survey](https://arxiv.org/abs/2405.17935), `Renmin University of Chin et al.`
 * [ToolACE: Winning the Points of LLM Function Calling](https://arxiv.org/abs/2409.00920), `Huawei Noah’s Ark Lab et al.`
 * [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761), `Meta AI`
 * [Granite-Function Calling Model: Introducing Function Calling Abilities via Multi-task Learning of Granular Tasks](https://arxiv.org/abs/2407.00121), `IBM Research`
 * 🍿 [Berkeley Function-Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html), `UC Berkeley` (leaderboard)
-* 📌 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903), `Google Research`
+* 📌 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903) (pages 1-9), `Google Research`
 * [Agent Instructs Large Language Models to be General Zero-Shot Reasoners](https://arxiv.org/abs/2310.03710),`Washington University & UC Berkeley`
 * [A Survey on Multimodal Large Language Models](https://arxiv.org/abs/2306.13549), `University of Science and Technology of China & Tencent YouTu Lab`
 
@@ -97,13 +99,13 @@ Key points:
 * Chat memory
 
 Reading:
-* 📌 [Aligning Large Language Models with Human: A Survey](https://arxiv.org/abs/2307.12966), `Huawei Noah’s Ark Lab`
+* 📌 [Aligning Large Language Models with Human: A Survey](https://arxiv.org/abs/2307.12966) (pages 1-14), `Huawei Noah’s Ark Lab`
 * [Training language models to follow instructions with human feedback](https://arxiv.org/abs/2203.02155), `OpenAI`
 * [Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback](https://arxiv.org/abs/2204.05862), `Anthropic`
-* 📌 [A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications](https://arxiv.org/abs/2402.07927), `Indian Institute of Technology Patna, Stanford & Amazon AI`
+* [A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications](https://arxiv.org/abs/2402.07927), `Indian Institute of Technology Patna, Stanford & Amazon AI`
 * [Automatic Prompt Selection for Large Language Models](https://arxiv.org/abs/2404.02717), `Cinnamon AI, Hung Yen University of Technology and Education & Deakin University`
 * [PromptGen: Automatically Generate Prompts using Generative Models](https://aclanthology.org/2022.findings-naacl.3/), `Baidu Research`
-* 📌 [A Survey on the Memory Mechanism of Large Language Model based Agents](https://arxiv.org/abs/2404.13501), `Renmin University of China & Huawei Noah’s Ark Lab`
+* [A Survey on the Memory Mechanism of Large Language Model based Agents](https://arxiv.org/abs/2404.13501), `Renmin University of China & Huawei Noah’s Ark Lab`
 * [Augmenting Language Models with Long-Term Memory](https://arxiv.org/abs/2306.07174), `UC Santa Barbara & Microsoft Research`
 * [From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models](https://arxiv.org/abs/2401.02777), `Beike Inc.`
 
@@ -140,9 +142,9 @@ Key points:
 * Agentic RAG
 
 Reading:
-* 📌 [Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach](https://arxiv.org/abs/2407.16833), `Google DeepMind & University of Michigan`
+* [Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach](https://arxiv.org/abs/2407.16833), `Google DeepMind & University of Michigan`
 * [Don't Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks](https://arxiv.org/abs/2412.15605), `National Chengchi University & Academia Sinica`
-* 📌 [A Survey on Retrieval-Augmented Text Generation for Large Language Models](https://arxiv.org/abs/2404.10981), `York University`
+* 📌 [A Survey on Retrieval-Augmented Text Generation for Large Language Models](https://arxiv.org/abs/2404.10981) (pages 1-19), `York University`
 * [Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity](https://arxiv.org/abs/2403.14403), `Korea Advanced Institute of Science and Technology`
 * [Querying Databases with Function Calling](https://arxiv.org/abs/2502.00032), `Weaviate, Contextual AI & Morningstar`
 * [Auto-RAG: Autonomous Retrieval-Augmented Generation for Large Language Models](https://arxiv.org/abs/2411.19443), `Chinese Academy of Sciences`
@@ -176,8 +178,8 @@ Key points:
 * Examples of pipelines for business operations
 
 Reading:
-* 📌 [LLM-based Multi-Agent Systems: Techniques and Business Perspectives](https://arxiv.org/abs/2411.14033), `Shanghai Jiao Tong University & OPPO Research Institute`
-* 📌 [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442), `Stanford, Google Research & DeepMind`
+* 📌 [LLM-based Multi-Agent Systems: Techniques and Business Perspectives](https://arxiv.org/abs/2411.14033) (pages 1-8), `Shanghai Jiao Tong University & OPPO Research Institute`
+* [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442), `Stanford, Google Research & DeepMind`
 * [Improving Factuality and Reasoning in Language Models through Multiagent Debate](https://arxiv.org/abs/2305.14325), `MIT & Google Brain`
 * [Exploring Collaboration Mechanisms for LLM Agents: A Social Psychology View](https://arxiv.org/abs/2310.02124), `Zhejiang University, National University of Singapore & DeepMind`
 * [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155), `Microsoft Research et al.`
@@ -211,15 +213,15 @@ Key points:
 * Code evaluation & benchmarks
 
 Reading:
-* 📌 [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign`
-* 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780), `Salesforce Research`
+* [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign`
+* 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research`
 * [Planning with Large Language Models for Code Generation](https://arxiv.org/abs/2303.05510), `MIT-IBM Watson AI Lab et al.`
 * [The ART of LLM Refinement: Ask, Refine, and Trust](https://arxiv.org/abs/2311.07961), `ETH Zurich & Meta AI`
 * [Code Repair with LLMs gives an Exploration-Exploitation Tradeoff](https://arxiv.org/abs/2405.17503), `Cornell, Shanghai Jiao Tong University & University of Toronto`
 * [ChatUniTest: A Framework for LLM-Based Test Generation](https://arxiv.org/abs/2305.04764), `Zhejiang University & Hangzhou City University`
 * [TestART: Improving LLM-based Unit Testing via Co-evolution of Automated Generation and Repair Iteration](https://arxiv.org/abs/2408.03095), `Nanjing University & Huawei Cloud Computing Technologies`
-* 📌 [A Survey on Evaluating Large Language Models in Code Generation Tasks](https://arxiv.org/abs/2408.16498), `Peking University, Microsoft Research & Tokyo Institute of Technology`
-* 📌 [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374), `OpenAI
+* [A Survey on Evaluating Large Language Models in Code Generation Tasks](https://arxiv.org/abs/2408.16498), `Peking University, Microsoft Research & Tokyo Institute of Technology`
+* [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374), `OpenAI
 * 🍿 [Code Generation on HumanEval](https://paperswithcode.com/sota/code-generation-on-humaneval), `OpenAI` (leaderboard)
 * [BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions](https://arxiv.org/abs/2406.15877), `Monash University et al.`
 * [CodeJudge: Evaluating Code Generation with Large Language Models](https://arxiv.org/abs/2410.02184), `Huazhong University of Science and Technology & Purdue University`
@@ -243,14 +245,14 @@ Key points:
 * Further considerations: reliability, sustainability etc.
 
 Reading:
-* 📌 [Design and evaluation of AI copilots -- case studies of retail copilot templates](https://arxiv.org/abs/2407.09512), `Microsoft`
+* [Design and evaluation of AI copilots -- case studies of retail copilot templates](https://arxiv.org/abs/2407.09512), `Microsoft`
 * 🍿 [Your AI Companion](https://blogs.microsoft.com/blog/2025/04/04/your-ai-companion/), `Microsoft` (blog post)
 * [GitHub Copilot](https://github.com/features/copilot), `GitHub` (product page)
 * 🍿 [Research: quantifying GitHub Copilot’s impact on developer productivity and happiness](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/), `GitHub` (blog post)
 * [Cursor: The AI Code Editor](https://www.cursor.com), `Cursor` (product page)
 * [Automated Unit Test Improvement using Large Language Models at Meta](https://arxiv.org/abs/2402.09171), `Meta`
 * [Human-In-the-Loop Software Development Agents](https://arxiv.org/abs/2411.12924), `Monash University, The University of Melbourne & Atlassian`
-* 📌 [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459), `University of Oslo`
+* 📌 [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459) (pages 1-11), `University of Oslo`
 * [A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis](https://arxiv.org/abs/2307.12856), `Google DeepMind & The University of Tokyo`
 * [An LLM-based Agent for Reliable Docker Environment Configuration](https://arxiv.org/abs/2502.13681), `Harbin Institute of Technology & ByteDance`
 * [Can ChatGPT replace StackOverflow? A Study on Robustness and Reliability of Large Language Model Code Generation](https://arxiv.org/abs/2308.10335), `UC San Diego`
@@ -315,7 +317,7 @@ Key points:
 * Content creation
 
 Reading:
-* 📌 [Player-Driven Emergence in LLM-Driven Game Narrative](https://arxiv.org/abs/2404.17027), `Microsoft Research`
+* [Player-Driven Emergence in LLM-Driven Game Narrative](https://arxiv.org/abs/2404.17027), `Microsoft Research`
 * [Generating Converging Narratives for Games with Large Language Models](https://aclanthology.org/2024.games-1.6/), `U.S. Army Research Laboratory`
 * [Game Agent Driven by Free-Form Text Command: Using LLM-based Code Generation and Behavior Branch](https://arxiv.org/abs/2402.07442), `University of Tokyo`
 * 🍿 [AI Dungeon Games](https://play.aidungeon.com), `AI Dungeon` (game catalogue)
@@ -323,7 +325,7 @@ Reading:
 * [Introducing NPC-Playground, a 3D playground to interact with LLM-powered NPCs](https://huggingface.co/blog/npc-gigax-cubzh?utm_source=chatgpt.com), `HuggingFace` (blog post)
 * [Blip](https://github.com/bliporg/blip), `bliporg` (GitHub repo)
 * [gigax](https://github.com/GigaxGames/gigax), `GigaxGames` (GitHub repo)
-* 📌 [Large Language Models in Finance: A Survey](https://arxiv.org/abs/2311.10723), `Columbia & New York University`
+* [Large Language Models in Finance: A Survey](https://arxiv.org/abs/2311.10723), `Columbia & New York University`
 * [FinLlama: Financial Sentiment Classification for Algorithmic Trading Applications](https://arxiv.org/abs/2403.12285), `Imperial College London & MIT`
 * [Equipping Language Models with Tool Use Capability for Tabular Data Analysis in Finance](https://arxiv.org/abs/2401.15328), `Monash University`
 * [LLM4EDA: Emerging Progress in Large Language Models for Electronic Design Automation](https://arxiv.org/abs/2401.12224), `Shanghai Jiao Tong University et al.`
@@ -349,9 +351,9 @@ Key points:
 * Predicting possible results
 
 Reading:
-* 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326), `University of Chicago & Toyota Technological Institute at Chicago`
+* 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326) (pages 1-9), `University of Chicago & Toyota Technological Institute at Chicago`
 * [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia`
-* 📌 [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733), `TUM`
+* 📌 [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733) (pages 1-6), `TUM`
 * [Emergent autonomous scientific research capabilities of large language models](https://arxiv.org/abs/2304.05332), `Carnegie Mellon University`
 * [Paper Copilot: A Self-Evolving and Efficient LLM System for Personalized Academic Assistance](https://arxiv.org/abs/2409.04593), `University of Illinois at Urbana-Champaign, Carnegie Mellon University & Carleton College`
 * [SciLitLLM: How to Adapt LLMs for Scientific Literature Understanding](https://arxiv.org/abs/2408.15545), `University of Science and Technology of China & DP Technology`
@@ -385,11 +387,11 @@ Key points:
 * Scientific confidence & reliability
 
 Reading:
-* 📌 [A Comprehensive Survey of Scientific Large Language Models and Their Applications in Scientific Discovery](https://arxiv.org/abs/2406.10833), `University of Illinois at Urbana-Champaign et al.`
+* [A Comprehensive Survey of Scientific Large Language Models and Their Applications in Scientific Discovery](https://arxiv.org/abs/2406.10833), `University of Illinois at Urbana-Champaign et al.`
 * [Large Language Models in Drug Discovery and Development: From Disease Mechanisms to Clinical Trials](https://arxiv.org/abs/2409.04481), `Department of Data Science and AI, Monash University et al.`
 * [LLM-SR: Scientific Equation Discovery via Programming with Large Language Models](https://arxiv.org/abs/2404.18400), `Virginia Tech et al.`
 * 🍿 [Awesome Scientific Language Models](https://github.com/yuzhimanhua/Awesome-Scientific-Language-Models), `yuzhimanhua` (GitHub repo)
-* 📌 [Can LLMs replace Neil deGrasse Tyson? Evaluating the Reliability of LLMs as Science Communicators](https://arxiv.org/abs/2409.14037), `Indian Institute of Technology`
+* 📌 [Can LLMs replace Neil deGrasse Tyson? Evaluating the Reliability of LLMs as Science Communicators](https://arxiv.org/abs/2409.14037) (pages 1-9), `Indian Institute of Technology`
 * [CURIE: Evaluating LLMs On Multitask Scientific Long Context Understanding and Reasoning](https://arxiv.org/abs/2503.13517), `Google et al.`
 * [Multiple Choice Questions: Reasoning Makes Large Language Models (LLMs) More Self-Confident Even When They Are Wrong](https://arxiv.org/abs/2501.09775), `Nanjing University of Aeronautics and Astronautics et al.`
 
@@ -417,13 +419,13 @@ Key points:
 * Ethical, legal & environmental aspects
 
 Reading:
-* 📌 [Protecting Human Cognition in the Age of AI](https://arxiv.org/abs/2502.12447), The University of Texas at Austin et al.
+* 📌 [Protecting Human Cognition in the Age of AI](https://arxiv.org/abs/2502.12447) (pages 1-5), The University of Texas at Austin et al.
 * [Augmenting Minds or Automating Skills: The Differential Role of Human Capital in Generative AI's Impact on Creative Tasks](https://arxiv.org/abs/2412.03963), `Tsinghua University & Wuhan University of Technology`
 * [Human Creativity in the Age of LLMs: Randomized Experiments on Divergent and Convergent Thinking](https://arxiv.org/abs/2410.03703), `University of Toronto`
 * [Empirical evidence of Large Language Model's influence on human spoken communication](https://arxiv.org/abs/2409.01754v1), `Max-Planck Institute for Human Development`
 * 🍿 [The 2025 AI Index Report: Top Takeaways](https://hai.stanford.edu/ai-index/2025-ai-index-report), `Stanford`
 * [Growing Up: Navigating Generative AI’s Early Years – AI Adoption Report: Executive Summary](https://ai.wharton.upenn.edu/focus-areas/human-technology-interaction/2024-ai-adoption-report/), `AI at Wharton`
-* 📌 [Artificial intelligence governance: Ethical considerations and implications for social responsibility](https://onlinelibrary.wiley.com/doi/full/10.1111/exsy.13406), `University of Malta`
+* 📌 [Artificial intelligence governance: Ethical considerations and implications for social responsibility](https://onlinelibrary.wiley.com/doi/full/10.1111/exsy.13406) (pages 1-12), `University of Malta`
 * [Ethical Implications of AI in Data Collection: Balancing Innovation with Privacy](https://arxiv.org/abs/2503.14539), `AI Data Chronicles`
 * [Legal and ethical implications of AI-based crowd analysis: the AI Act and beyond](https://link.springer.com/article/10.1007/s43681-024-00644-x), `Vrije Universiteit`
 * [A Survey of Sustainability in Large Language Models: Applications, Economics, and Challenges](https://arxiv.org/abs/2412.04782v1), `Cleveland State University et al.`
