@@ -13,7 +13,6 @@ _____________________________________________________________________________
 ## Block 1: Intro
 
 
-
 ### Week 1
 
 #### 22.04. _Lecture_: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine
@@ -84,7 +83,6 @@ _____________________________________________________________________________
 
 
 ## Part 1: Business Applications
-
 
 
 ### Week 3
@@ -335,8 +333,6 @@ Reading:
 _____________________________________________________________________________
 
 ## Part 2: Applications in Science
-
-
 
 
 ### Week 11
