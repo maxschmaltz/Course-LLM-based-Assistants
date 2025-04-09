@@ -20,13 +20,13 @@ _____________________________________________________________________________
 
 That is an introductory lecture, in which I will briefly introduce the course and we'll have a warming up discussion about different perspectives on LLMs' nature. We will focus on two prominent outlooks: LLM is a form of intelligence and LLM is a complex statistical machine. We'll discuss differences of LLMs with human intelligence and the degree to which LLMs exhibit (self-)awareness.
 
-Key points:
+**Key points**:
 * Course introduction
 * Different perspectives on the nature of LLMs 
 * Similarities and differences between human and artificial intelligence
 * LLMs' (self-)awareness
 
-Reading:
+**Reading**:
 * 📌 [The Debate Over Understanding in AI's Large Language Models](https://arxiv.org/abs/2210.13966) (pages 1-7), `Santa Fe Institute`
 * [Do Large Language Models Understand Us?](https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us), `Google Research`
 * [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712), `Microsoft Research`
@@ -40,7 +40,7 @@ Reading:
 
 In this lecture, we'll recap some basics about LLMs and LLM-based agents to make sure we're on the same page. 
 
-Key points:
+**Key points**:
 * LLM architecture recap
 * Structured output
 * Tool calling
@@ -48,7 +48,7 @@ Key points:
 * Reasoning
 * Multimodality
 
-Reading:
+**Reading**:
 * [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223), `Renmin University of China et al.`
 * [The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783), `Meta AI`
 * ["We Need Structured Output": Towards User-centered Constraints on Large Language Model Output](https://arxiv.org/abs/2404.07362), `Google Research & Google`
@@ -75,7 +75,7 @@ The first debates of the course will revolve around the topic raised in the resp
 <!-- * LLMs: a Form of Intelligence or a Complex Statistical Machine?
 * LLM Behavior: Evidence of Awareness or Illusion of Understanding? -->
 
-Reading: see [session 22.04](#2204)
+**Reading**: see [session 22.04](#2204)
 
 #### 01.05.
 _Ausfalltermin_
@@ -95,12 +95,12 @@ _____________________________________________________________________________
 
 The first core topic concerns chatbots. We'll discuss how chatbots are built, how they (should) handle harmful requests and you can tune it for your use case.
 
-Key points:
+**Key points**:
 * LLMs under the hood: alignment, harmlessness, honesty
 * Prompting & automated prompt generation
 * Chat memory
 
-Reading:
+**Reading**:
 * 📌 [Aligning Large Language Models with Human: A Survey](https://arxiv.org/abs/2307.12966) (pages 1-14), `Huawei Noah’s Ark Lab`
 * [Training language models to follow instructions with human feedback](https://arxiv.org/abs/2203.02155), `OpenAI`
 * [Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback](https://arxiv.org/abs/2204.05862), `Anthropic`
@@ -117,7 +117,7 @@ Reading:
 
 In this lab, we'll build a chatbot and try different prompts and settings to see how it affects the output.
 
-Reading:
+**Reading**:
 *  [Chat models](https://python.langchain.com/docs/concepts/chat_models/), `LangChain`
 * ✍️ [Prompt Templates](https://python.langchain.com/docs/concepts/prompt_templates/), `LangChain`
 * [Few-shot prompting](https://python.langchain.com/docs/concepts/few_shot_prompting/), `LangChain`
@@ -139,13 +139,13 @@ _____________________________________
 
 Continuing the first part, the second part will expand scope of chatbot functionality and will teach it to refer to custom knowledge base to retrieve and use user-specific information. Finally, the most widely used deployment methods will be briefly introduced. 
 
-Key points:
+**Key points**:
 * General knowledge vs context
 * Knowledge indexing, retrieval & ranking
 * Retrieval tools
 * Agentic RAG
 
-Reading:
+**Reading**:
 * [Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach](https://arxiv.org/abs/2407.16833), `Google DeepMind & University of Michigan`
 * [Don't Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks](https://arxiv.org/abs/2412.15605), `National Chengchi University & Academia Sinica`
 * 📌 [A Survey on Retrieval-Augmented Text Generation for Large Language Models](https://arxiv.org/abs/2404.10981) (pages 1-19), `York University`
@@ -159,7 +159,7 @@ Reading:
 
 In this lab, we'll expand the functionality of the chatbot built at the last lab to connect it to user-specific information.
 
-Reading:
+**Reading**:
 * [How to load PDFs](https://python.langchain.com/docs/how_to/document_loader_pdf/), `LangChain`
 * [Text splitters](https://python.langchain.com/docs/concepts/text_splitters/), `LangChain`
 * [Embedding models](https://python.langchain.com/docs/concepts/embedding_models/), `LangChain`
@@ -178,12 +178,12 @@ _____________________________________
 
 This lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday / business operations in a multi-agent environment. We'll look at how agents communicate with each other, how their communication can be guided (both with and without involvement of a human), and this all is used in real applications.
 
-Key points:
+**Key points**:
 * Multi-agent environment
 * Human in the Loop
 * Examples of pipelines for business operations
 
-Reading:
+**Reading**:
 * 📌 [LLM-based Multi-Agent Systems: Techniques and Business Perspectives](https://arxiv.org/abs/2411.14033) (pages 1-8), `Shanghai Jiao Tong University & OPPO Research Institute`
 * [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442), `Stanford, Google Research & DeepMind`
 * [Improving Factuality and Reasoning in Language Models through Multiagent Debate](https://arxiv.org/abs/2305.14325), `MIT & Google Brain`
@@ -198,7 +198,7 @@ Reading:
 
 This lab will introduce a short walkthrough to creation of a multi-agent environment for automated meeting scheduling and preparation. We will see how the coordinator agent will communicate with two auxiliary agents to check time availability and prepare an agenda for the meeting.
 
-Reading:
+**Reading**:
 * ✍️ [Multi-agent network](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/), `LangChain`
 * [Plan-and-Execute](https://langchain-ai.github.io/langgraph/tutorials/plan-and-execute/plan-and-execute/), `LangChain`
 * [Reflexion](https://langchain-ai.github.io/langgraph/tutorials/reflexion/reflexion/), `LangChain`
@@ -215,12 +215,12 @@ _____________________________________
 
 This lectures opens a new lecture mini-cycle dedicated to software development. The first lecture overviews how LLMs are used to generate reliable code and how generated code is tested and improved to deal with the errors.
 
-Key points:
+**Key points**:
 * Code generation & refining
 * Automated testing
 * Code evaluation & benchmarks
 
-Reading:
+**Reading**:
 * [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign`
 * 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research`
 * [Planning with Large Language Models for Code Generation](https://arxiv.org/abs/2303.05510), `MIT-IBM Watson AI Lab et al.`
@@ -247,13 +247,13 @@ _____________________________________
 
 The second and the last lecture of the software development cycle focuses on practical application of LLM code generation, in particular, on widely-used copilots (real-time code generation assistants) and LLM-supported web development.
 
-Key points:
+**Key points**:
 * Copilots & real-time hints
 * LLM-powered websites
 * LLM-supported deployment
 * Further considerations: reliability, sustainability etc.
 
-Reading:
+**Reading**:
 * [Design and evaluation of AI copilots -- case studies of retail copilot templates](https://arxiv.org/abs/2407.09512), `Microsoft`
 * 🍿 [Your AI Companion](https://blogs.microsoft.com/blog/2025/04/04/your-ai-companion/), `Microsoft` (blog post)
 * [GitHub Copilot](https://github.com/features/copilot), `GitHub` (product page)
@@ -274,7 +274,7 @@ Reading:
 
 In this lab, we'll have the LLM make a website for us: it will both generate the contents of the website and generate all the code required for rendering, styling and navigation.
 
-Reading:
+**Reading**:
 * see [session 22.05](#2205)
 * ✍️ [HTML: Creating the content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content), ``MDN``
 * ✍️ [Getting started with CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started), ``MDN``
@@ -301,7 +301,7 @@ _____________________________________
 
 The first pitch will be dedicated to a custom RAG chatbot that the _contractors_ (the presenting students, see the [infos about Pitches](./Formats/Pitches.md)) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses. Specific requirements will be released on 22.05.
 
-Reading: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), and [session 15.05](#1505)
+**Reading**: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), and [session 15.05](#1505)
 
 #### 19.06.
 _Ausfalltermin_
@@ -317,19 +317,19 @@ _____________________________________
 
 In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imagined support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 27.05.
 
-Reading: see [session 20.05](#2005) and [session 22.05](#2205)
+**Reading**: see [session 20.05](#2005) and [session 22.05](#2205)
 
 <a name="2606"></a>
 #### 26.06. _Lecture_: Other Business Applications: Game Design, Financial Analysis etc.
 
 This lecture will serve a small break and will briefly go over other business scenarios that the LLMs are used in. 
 
-Key points:
+**Key points**:
 * Game design & narrative games
 * Financial applications
 * Content creation
 
-Reading:
+**Reading**:
 * [Player-Driven Emergence in LLM-Driven Game Narrative](https://arxiv.org/abs/2404.17027), `Microsoft Research`
 * [Generating Converging Narratives for Games with Large Language Models](https://aclanthology.org/2024.games-1.6/), `U.S. Army Research Laboratory`
 * [Game Agent Driven by Free-Form Text Command: Using LLM-based Code Generation and Behavior Branch](https://arxiv.org/abs/2402.07442), `University of Tokyo`
@@ -357,12 +357,12 @@ _____________________________________________________________________________
 
 The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.
 
-Key points:
+**Key points**:
 * Experiment planning
 * Hypothesis generation
 * Predicting possible results
 
-Reading:
+**Reading**:
 * 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326) (pages 1-9), `University of Chicago & Toyota Technological Institute at Chicago`
 * [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia`
 * 📌 [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733) (pages 1-6), `TUM`
@@ -377,7 +377,7 @@ Reading:
 
 In this lab, we'll practice in facilitating researcher's work with LLMs on the example of a toy scientific research.
 
-Reading: see [session 22.05](#2205)
+**Reading**: see [session 22.05](#2205)
 
 _____________________________________
 
@@ -390,18 +390,18 @@ _____________________________________
 
 This pitch will revolve around the _contractors'_ implementation of a self-improving code generator. The code generator will have to generate both scripts and test cases for a problem given in the input prompt, run the tests and refine the code if needed. Specific requirements will be released on 17.06.
 
-Reading: see [session 27.05](#2705) and [session 05.06](#0506)
+**Reading**: see [session 27.05](#2705) and [session 05.06](#0506)
 
 <a name="1007"></a>
 #### 10.07. _Lecture_: Other Applications in Science: Drug Discovery, Math etc. & Scientific Reliability
 
 The final core topic will mention other scientific applications of LLMs that were not covered in the previous lectures and address the question of reliability of the results obtained with LLMs.
 
-Key points:
+**Key points**:
 * Drug discovery, math & other applications
 * Scientific confidence & reliability
 
-Reading:
+**Reading**:
 * [A Comprehensive Survey of Scientific Large Language Models and Their Applications in Scientific Discovery](https://arxiv.org/abs/2406.10833), `University of Illinois at Urbana-Champaign et al.`
 * [Large Language Models in Drug Discovery and Development: From Disease Mechanisms to Clinical Trials](https://arxiv.org/abs/2409.04481), `Department of Data Science and AI, Monash University et al.`
 * [LLM-SR: Scientific Equation Discovery via Programming with Large Language Models](https://arxiv.org/abs/2404.18400), `Virginia Tech et al.`
@@ -423,19 +423,19 @@ _____________________________________________________________________________
 
 The _contractors_ will present their agent that will have to generate full (minimalistic) websites by a prompt. For each website, the agent will have to generate its own style and a simple menu with working navigation as well as the contents. Specific requirements will be released on 24.06.
 
-Reading: see [session 03.06](#0306) and [session 05.06](#0506)
+**Reading**: see [session 03.06](#0306) and [session 05.06](#0506)
 
 <a name="1707"></a>
 #### 17.07. _Lecture_: Role of AI in Recent Years
 
 The last lecture of the course will turn to societal considerations regarding LLMs and AI in general and will investigate its role and influence on the humanity nowadays.
 
-Key points:
+**Key points**:
 * Studies on influence of AI in the recent years
 * Studies on AI integration rate
 * Ethical, legal & environmental aspects
 
-Reading:
+**Reading**:
 * 📌 [Protecting Human Cognition in the Age of AI](https://arxiv.org/abs/2502.12447) (pages 1-5), The University of Texas at Austin et al.
 * [Augmenting Minds or Automating Skills: The Differential Role of Human Capital in Generative AI's Impact on Creative Tasks](https://arxiv.org/abs/2412.03963), `Tsinghua University & Wuhan University of Technology`
 * [Human Creativity in the Age of LLMs: Randomized Experiments on Divergent and Convergent Thinking](https://arxiv.org/abs/2410.03703), `University of Toronto`
@@ -458,7 +458,7 @@ _____________________________________
 
 The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find the literature etc. for a given scientific problem. It will then have to introduce its results in form of a TODO or a guide for the researcher to start off of. Specific requirements will be released on 01.07.
 
-Reading: see [session 01.07](#0107) and [session 03.07](#0307)
+**Reading**: see [session 01.07](#0107) and [session 03.07](#0307)
 
 <a name="2407"></a>
 #### 24.07. _Debate_: Role of AI in Recent Years + Wrap-up
@@ -467,4 +467,4 @@ Reading: see [session 01.07](#0107) and [session 03.07](#0307)
 The course will be concluded by the final debate (motions will be released on 17.07), after which a short course summary and a Q&A session will be held.
 <!-- * Should We Limit the Usage of AI? -->
 
-Reading: see [session 17.07](#1707)
+**Reading**: see [session 17.07](#1707)
