@@ -5,10 +5,10 @@ format: jb-book
 root: index
 parts:
 
-  - caption: Infos
-    chapters:
-      - file: "llm-based-assistants/infos/Topics Overview.md"
-        title: Topics Overview
+- caption: Infos and Stuff
+  chapters:
+    - file: infos/topic_overview.md
+      title: Topics Overview
 
   # - caption: Block 1: Intro
   #   chapters:
