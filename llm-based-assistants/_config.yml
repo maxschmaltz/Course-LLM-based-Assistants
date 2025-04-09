@@ -25,12 +25,16 @@ latex:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/maxschmaltz/Course-LLM-based-Assistants  # Online location of your book
-  path_to_book: llm-based-assistants  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
+  path_to_book: llm-based-assistants  # Optional path to your book, relative to the repository root
 
 sphinx:
   config:
     html_theme: furo
+    html_theme_options:
+      source_repository: https://github.com/maxschmaltz/Course-LLM-based-Assistants
+      source_branch: main
+      source_directory: llm-based-assistants
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
