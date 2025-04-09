@@ -12,18 +12,18 @@ parts:
     - file: infos/formats/debates.md
     - file: infos/formats/pitches.md
 
-  - caption: Block 1: Intro
+  - caption: "Block 1: Intro"
     chapters:
     - file: infos/under_development.md
 
-  - caption: Block 2: Core Topics | Part 1: Business Applications
+  - caption: "Block 2: Core Topics | Part 1: Business Applications"
     chapters:
     - file: infos/under_development.md
 
-  - caption: Block 2: Core Topics | Part 2: Applications in Science
+  - caption: "Block 2: Core Topics | Part 2: Applications in Science"
     chapters:
     - file: infos/under_development.md
 
-  - caption: Block 3: Wrap-up
+  - caption: "Block 3: Wrap-up"
     chapters:
     - file: infos/under_development.md
