@@ -73,7 +73,8 @@ The first debates of the course will revolve around the topic raised in the resp
 
 Reading: see [session 22.04](#2204-lecture-llms-as-a-form-of-intelligence-vs-llms-as-a-statistical-machine)
 
-#### 01.05. _Ausfalltermin_
+#### 01.05.
+_Ausfalltermin_
 
 _____________________________________________________________________________
 
@@ -223,7 +224,8 @@ Reading:
 * [BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions](https://arxiv.org/abs/2406.15877), `Monash University et al.`
 * [CodeJudge: Evaluating Code Generation with Large Language Models](https://arxiv.org/abs/2410.02184), `Huazhong University of Science and Technology & Purdue University`
 
-#### 29.05. _Ausfalltermin_
+#### 29.05.
+_Ausfalltermin_
 
 _____________________________________
 
@@ -270,9 +272,11 @@ _____________________________________
 
 ### Week 8: Having Some Rest
 
-#### 10.06.  _Ausfalltermin_
+#### 10.06.
+_Ausfalltermin_
 
-#### 12.06.  _Ausfalltermin_
+#### 12.06.
+_Ausfalltermin_
 
 _____________________________________
 
@@ -286,7 +290,8 @@ The first pitch will be dedicated to a custom RAG chatbot that the _contractors_
 
 Reading: see [session 06.05](#0605-lecture-virtual-assistants-pt-1-chatbots), [session 08.05](#0805-lab-chatbot), [session 13.05](#1305-lecture-virtual-assistants-pt-2-rag), and [session 15.05](#1505-lab-rag-chatbot)
 
-#### 19.06.  _Ausfalltermin_
+#### 19.06.
+_Ausfalltermin_
 
 _____________________________________
 
