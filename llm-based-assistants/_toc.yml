@@ -7,8 +7,9 @@ parts:
 
 - caption: Infos and Stuff
   chapters:
-    - file: infos/topic_overview.md
-      title: Topics Overview
+    - title: Topics Overview
+      file: infos/topic_overview.md
+      
 
   # - caption: Block 1: Intro
   #   chapters:
