@@ -10,7 +10,7 @@ parts:
     - title: Topics Overview
       file: infos/topic_overview.md
     - title: Formats
-      sections:
+      chapters:
         - title: Debates
           file: infos/formats/debates.md
         - title: Pitches
