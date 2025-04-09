@@ -14,16 +14,16 @@ parts:
 
   - caption: "Block 1: Intro"
     chapters:
-    - file: infos/under_development.md
+    - file: sessions/block1_intro/under_development.md
 
   - caption: "Block 2: Core Topics | Part 1: Business Applications"
     chapters:
-    - file: infos/under_development.md
+    - file: sessions/block2_core_topics/pt1_business/under_development.md
 
   - caption: "Block 2: Core Topics | Part 2: Applications in Science"
     chapters:
-    - file: infos/under_development.md
+    - file: sessions/block2_core_topics/pt2_science/under_development.md
 
   - caption: "Block 3: Wrap-up"
     chapters:
-    - file: infos/under_development.md
+    - file: sessions/block3_wrapup/under_development.md
