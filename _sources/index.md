@@ -23,6 +23,8 @@ When they were first introduced, LLMs were mainly seen as seq2seq models exclusi
 
 While the course will focus mostly on the practical uses of LLMs, it will also briefly touch on ethical, societal, and broader considerations.
 
+The course contents, slides, tasks, reading, etc. will be hosted in this webbook. [Moodle](https://moodle.zdv.uni-tuebingen.de/course/view.php?id=790) will be used for administrative stuff.
+
 ## Contents Overview
 
 The course will consist of the intro (_Weeks 1-2_), the core topics (_Weeks 3-12_), and the wrap-up (_Weeks 13-14_). You can see the schedule in [Topics Overview](./infos/topic_overview.md). Important: **the schedule is preliminary and subject to changes!**
