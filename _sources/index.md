@@ -55,7 +55,7 @@ Each week of the course will offer a theoretical and a practical session. Sessio
 
 ## Target Audience
 
-The course is intended for advanced BA students of computational linguistics, who have interest in practical applications of LLMs. Practical experience with programming in Python and applying LLMs are a **prerequisite** (more formally, you should have completed ISCL-BA06, ISCL-BA07, and ISCL-BA08 successfully). Knowledge in LangChain and LangGraph is encouraged.
+The course is intended for advanced BA students of computational linguistics, who have interest in practical applications of LLMs. MA students **cannot** attend this course. Practical experience with programming in Python and applying LLMs are a **prerequisite** (more formally, you should have completed ISCL-BA06, ISCL-BA07, and ISCL-BA08 successfully). Knowledge in LangChain and LangGraph is encouraged.
 
 Please note: that is **not** a programming course and we **won't** stop on low-level details of implementation, so you will be expected to understand those on the fly (or to pick them up if necessary).
 
