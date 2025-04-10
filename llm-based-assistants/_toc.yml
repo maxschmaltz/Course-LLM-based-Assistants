@@ -11,6 +11,7 @@ parts:
     - file: infos/topic_overview.md
     - file: infos/formats/debates.md
     - file: infos/formats/pitches.md
+    - file: infos/llm_inference_guide/README.md
 
   - caption: "Block 1: Intro"
     chapters:
