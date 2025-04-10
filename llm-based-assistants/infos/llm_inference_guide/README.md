@@ -4,7 +4,6 @@ For this course, we will be using NVIDIA Cloud that generously hosts various ope
 
 
 ## Contents
-* [Contents](#contents)
 * [Prerequisites](#prerequisites)
 * [Environment Setup](#environment-setup)
 * [Getting API Key](#getting-api-key)
