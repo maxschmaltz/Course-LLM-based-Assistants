@@ -57,11 +57,11 @@ Each week of the course will offer a theoretical and a practical session. Sessio
 
 The course is intended for advanced BA students of computational linguistics, who have interest in practical applications of LLMs. Practical experience with programming in Python and applying LLMs are a **prerequisite** (more formally, you should have completed ISCL-BA06, ISCL-BA07, and ISCL-BA08 successfully). Knowledge in LangChain and LangGraph is encouraged.
 
-Please note: that is **not** a programming course and we **won't** stop on low-level details of implementation, so you will be expected to understand those on the fly (or pick them up if necessary).
+Please note: that is **not** a programming course and we **won't** stop on low-level details of implementation, so you will be expected to understand those on the fly (or to pick them up if necessary).
 
 
 ## Formalia
 
 This is a pass/fail course for 6 credits (there is **no** 9 credits option). The course is counted towards ISCL-BA-11 (Spezialisierungsmodul).
 
-There will be 3 debates and 5 pitches throughout the course. Each student will have to participate in **1 debate (any side) and 2 pitches (once on each side)** to complete it successfully. There will be no exam, and no in-person presence is required.
+There will be 3 debates and 5 pitches throughout the course. Each student will have to participate in **1 [debate](./infos/formats/debates.md) (any side) and 2 [pitches](./infos/formats/pitches.md) (once on each side)** to complete it successfully. There will be no exam, and no in-person presence is required.
