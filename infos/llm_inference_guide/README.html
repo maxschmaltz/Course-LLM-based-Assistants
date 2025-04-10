@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="prev" title="Under development" href="../block2_core_topics/pt2_science/under_development.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Under development" href="../../sessions/block1_intro/under_development.html" /><link rel="prev" title="Pitches" href="../formats/pitches.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>Under development - LLM-based Assistants</title>
+        <title>LLM Inference Guide - LLM-based Assistants</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -183,7 +183,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -204,27 +204,27 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Infos and Stuff</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../infos/topic_overview.html">Topics Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../infos/formats/debates.html">Debates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../infos/formats/pitches.html">Pitches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../infos/llm_inference_guide/README.html">LLM Inference Guide</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../topic_overview.html">Topics Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/debates.html">Debates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../formats/pitches.html">Pitches</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">LLM Inference Guide</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 1: Intro</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../block1_intro/under_development.html">Under development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sessions/block1_intro/under_development.html">Under development</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../block2_core_topics/pt1_business/under_development.html">Under development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/under_development.html">Under development</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 2: Applications in Science</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../block2_core_topics/pt2_science/under_development.html">Under development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt2_science/under_development.html">Under development</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 3: Wrap-up</span></p>
-<ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Under development</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sessions/block3_wrapup/under_development.html">Under development</a></li>
 </ul>
 
 </div>
@@ -253,14 +253,146 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section class="tex2jax_ignore mathjax_ignore" id="under-development">
-<h1>Under development<a class="headerlink" href="#under-development" title="Link to this heading">¶</a></h1>
+          <section class="tex2jax_ignore mathjax_ignore" id="llm-inference-guide">
+<h1>LLM Inference Guide<a class="headerlink" href="#llm-inference-guide" title="Link to this heading">¶</a></h1>
+<p>For this course, we will be using NVIDIA Cloud that generously hosts various open-source LLMs and provides a free API limited by 40 requests per minute (RPM). This guide shows how you set up your account and start using the LLMs.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#contents"><span class="xref myst">Contents</span></a></p></li>
+<li><p><a class="reference internal" href="#prerequisites"><span class="xref myst">Prerequisites</span></a></p></li>
+<li><p><a class="reference internal" href="#environment-setup"><span class="xref myst">Environment Setup</span></a></p></li>
+<li><p><a class="reference internal" href="#getting-api-key"><span class="xref myst">Getting API Key</span></a></p></li>
+<li><p><a class="reference internal" href="#test"><span class="xref myst">Test</span></a></p></li>
+<li><p><a class="reference internal" href="#next-steps"><span class="xref myst">Next Steps</span></a></p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Install <a class="reference external" href="https://www.python.org/downloads/">Python</a> on your machine.</p></li>
+<li><p>Install <a class="reference external" href="https://git-scm.com/downloads">Git</a>.</p></li>
+<li><p>Install any IDE of your choice: <a class="reference external" href="https://code.visualstudio.com/download">VS Code</a>, <a class="reference external" href="https://www.jetbrains.com/help/pycharm/installation-guide.html">Pycharm</a> etc.</p></li>
+<li><p>Create an account at <a class="reference external" href="https://developer.nvidia.com/developer-program">NVIDIA Developer Program</a> with you <strong>student email</strong>: <code class="docutils literal notranslate"><span class="pre">firstname.lastname&#64;student.uni-tuebingen.de</span></code>.</p></li>
+</ol>
+</section>
+<section id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading">¶</a></h2>
+<p>It is a good practice to have a separate isolated environment for each project. Such environment includes all of your code, resources, tests etc, as well as dependencies, (sometimes) executables and such.</p>
+<ol class="arabic">
+<li><p>Make a new directory where your project will be stored and open it in your IDE.</p></li>
+<li><p>Open the terminal. If you are a Windows user, open GitBash (will be available after Git installation) and not the default cmd.</p></li>
+<li><p>Create a Python virtual environment with <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a>. The virtual environment is a directory that will contain a copy of Python and Pip as well as all the dependencies. An example for creating a virtual environment in folder <em>.venv</em> with venv is below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w">   </span><span class="c1"># create a copy of Python and so</span>
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w"> </span><span class="c1"># for Unix-based (including MacOS)</span>
+<span class="nb">source</span><span class="w"> </span>.venv/Scripts/activate<span class="w">   </span><span class="c1"># for Windows</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install requirements. Here, for the setup test purposes, we only need <code class="docutils literal notranslate"><span class="pre">langchain_nvidia_ai_endpoints</span></code> and <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>langchain_nvidia_ai_endpoints<span class="w"> </span>python-dotenv
+</pre></div>
+</div>
+<p>A more robust (and really used) alternative is to create a <em>requirements.txt</em> file like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>langchain_nvidia_ai_endpoints==0.3.9
+python-dotenv==1.1.0
+</pre></div>
+</div>
+<p>and then execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>To make this guide shorter, we do not create a git repository.</p></li>
+</ol>
+</section>
+<section id="getting-api-key">
+<h2>Getting API Key<a class="headerlink" href="#getting-api-key" title="Link to this heading">¶</a></h2>
+<p>Now that you have completed all the prerequisites and prepared an environment to work in, you only need to configure an API key.</p>
+<ol class="arabic">
+<li><p>Create an empty <em>.env</em> file with the following variable (leave empty for now):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">NVIDIA_API_KEY</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Log in to <a class="reference external" href="https://build.nvidia.com/">NVIDIA Cloud</a> with the account you created in <a class="reference internal" href="#prerequisites"><span class="xref myst">prerequisites</span></a>.</p></li>
+<li><p>Go to your profile (upper right corner) &gt; API Keys. Click Generate API Key, name it and copy.</p></li>
+<li><p>Put the key value to your <em>.env</em> under the <code class="docutils literal notranslate"><span class="pre">NVIDIA_API_KEY</span></code> variable.</p></li>
+</ol>
+</section>
+<section id="test">
+<h2>Test<a class="headerlink" href="#test" title="Link to this heading">¶</a></h2>
+<p>Finally, you can test if the API works for you. Here’s a sample code you can run in a <em>.py</em> file in the root of your project directory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_nvidia_ai_endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatNVIDIA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemMessage</span><span class="p">,</span> <span class="n">HumanMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.rate_limiters</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryRateLimiter</span>
+
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>    <span class="c1"># that loads the .env file variables into os.environ</span>
+
+
+<span class="c1"># choose any model, catalogue is available under https://build.nvidia.com/models</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.3-70b-instruct&quot;</span>
+
+<span class="c1"># prompts are usually stored in a separate file</span>
+<span class="c1"># but for the sake of simplicity, we will have it here</span>
+<span class="n">SYSTEM_MESSAGE</span> <span class="o">=</span> <span class="s2">&quot;You are a medieval French knight.&quot;</span>
+
+
+<span class="c1"># the most simple example (synchronous implementation)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Agent</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># this rate limiter will ensure we do not exceed the rate limit</span>
+        <span class="c1"># of 40 RPM given by NVIDIA</span>
+        <span class="n">rate_limiter</span> <span class="o">=</span> <span class="n">InMemoryRateLimiter</span><span class="p">(</span>
+            <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">35</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 35 requests per minute to be sure</span>
+            <span class="n">check_every_n_seconds</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># wake up every 100 ms to check whether allowed to make a request,</span>
+            <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>  <span class="c1"># controls the maximum burst size</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">ChatNVIDIA</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">MODEL_NAME</span><span class="p">,</span>
+            <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NVIDIA_API_KEY&quot;</span><span class="p">),</span> 
+            <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>   <span class="c1"># ensure reproducibility,</span>
+            <span class="n">rate_limiter</span><span class="o">=</span><span class="n">rate_limiter</span>  <span class="c1"># bind the rate limiter</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_query</span><span class="p">):</span>
+        <span class="c1"># prepare the messages</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">SystemMessage</span><span class="p">(</span>
+                <span class="n">content</span><span class="o">=</span><span class="n">SYSTEM_MESSAGE</span>
+            <span class="p">),</span>
+            <span class="n">HumanMessage</span><span class="p">(</span>
+                <span class="n">content</span><span class="o">=</span><span class="n">user_query</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+        <span class="c1"># inference</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+    <span class="c1"># ask the knight a question</span>
+    <span class="n">user_query</span> <span class="o">=</span> <span class="s2">&quot;Give me a summary of the Battle of Agincourt.&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">user_query</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<p>As for now, you’re good to go!</p>
+<p>Later, for each of the projects, you will only do the <a class="reference internal" href="#environment-setup"><span class="xref myst">environment setup</span></a> and the steps 1 and 4 of <a class="reference internal" href="#getting-api-key"><span class="xref myst">getting API Key</span></a>; and instead of the sample code, you will have cool complex stuff, but we’ll get to that yet. Contact me in case of any questions and problems you encounter during the setup.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -276,7 +408,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./sessions/block3_wrapup"
+            path: "./infos/llm_inference_guide"
         },
         predefinedOutput: true
     }
@@ -287,15 +419,23 @@
       <footer>
         
         <div class="related-pages">
-          
-          <a class="prev-page" href="../block2_core_topics/pt2_science/under_development.html">
+          <a class="next-page" href="../../sessions/block1_intro/under_development.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Under development</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../formats/pitches.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Under development</div>
+                <div class="title">Pitches</div>
                 
               </div>
             </a>
@@ -328,8 +468,32 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">LLM Inference Guide</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#environment-setup">Environment Setup</a></li>
+<li><a class="reference internal" href="#getting-api-key">Getting API Key</a></li>
+<li><a class="reference internal" href="#test">Test</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
