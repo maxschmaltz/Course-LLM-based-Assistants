@@ -137,6 +137,9 @@ if __name__ == "__main__":
 
 ## Next Steps
 
-As for now, you're good to go!
+As for now, you're good to go! An example directory you must have gotten after going through this guide is stored [here](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/infos/llm_inference_guide) (excluding _.venv_ and _.env_).
 
-Later, for each of the projects, you will only do the [environment setup](#environment-setup) and the steps 1 and 4 of [getting API Key](#getting-api-key); and instead of the sample code, you will have cool complex stuff, but we'll get to that yet. Contact me in case of any questions and problems you encounter during the setup.
+
+Later, for each of the projects, you will only do the [environment setup](#environment-setup) and the steps 1 and 4 of [getting API Key](#getting-api-key); and instead of the sample code, you will have cool complex stuff, but we'll get to that yet.
+
+Contact me in case of any questions and problems you encounter during the setup.
