@@ -29,7 +29,7 @@ That is an introductory lecture, in which I will briefly introduce the course an
 **Reading**:
 * 📌 [The Debate Over Understanding in AI's Large Language Models](https://arxiv.org/abs/2210.13966) (pages 1-7), `Santa Fe Institute`
 * [Do Large Language Models Understand Us?](https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us), `Google Research`
-* [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712), `Microsoft Research`
+* [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712) (chapters 1-8 & 10), `Microsoft Research`
 * [Meaning without reference in large language models](https://arxiv.org/abs/2208.02957), `UC Berkeley & DeepMind`
 * [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜](https://dl.acm.org/doi/abs/10.1145/3442188.3445922), `University of Washington et al.`
 * [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627), `The University of Texas at Austin et al.`
