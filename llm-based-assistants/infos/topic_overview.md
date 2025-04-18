@@ -2,7 +2,7 @@
 
 The schedule is preliminary and subject to changes!
 
-The reading for each _lecture_ is given as references to the sources the respective lectures base on. You are **not** obliged to read anything. However, you are strongly **encouraged** to read references marked by pin emojis 📌: those are comprehensive overviews on the topics or important works that are beneficial for a better understanding of the key concepts. For the pinned papers, I also specify the pages span for you to focus on the most important fragments. Some of the sources are also marked with a popcorn emoji 🍿: that is misc material you might want to take a look at: blog posts, GitHub repos, leaderboards etc. (also a couple of LLM-based games).
+The reading for each _lecture_ is given as references to the sources the respective lectures base on. You are **not** obliged to read anything. However, you are strongly **encouraged** to read references marked by pin emojis 📌: those are comprehensive overviews on the topics or important works that are beneficial for a better understanding of the key concepts. For the pinned papers, I also specify the pages span for you to focus on the most important fragments. Some of the sources are also marked with a popcorn emoji 🍿: that is misc material you might want to take a look at: blog posts, GitHub repos, leaderboards etc. (also a couple of LLM-based games). For each of the sources, I also leave my **subjective** estimation of how important this work is for **this specific** topic: from yellow 🟡 _'partially useful'_ though orange 🟠 _'useful'_ to red 🔴 '_crucial findings / thoughts_'. These estimations will be continuously updated as I revise the materials.
 
 For the _labs_, you are provided with practical tutorials that respective lab tasks will mostly derive from. The core tutorials are marked with a writing emoji ✍️; you are **asked** to inspect them **in advance** (better yet: try them out). On lab sessions, we will only **briefly recap** them so it is up to you to prepare in advance to keep up with the lab.
 
@@ -27,13 +27,13 @@ That is an introductory lecture, in which I will briefly introduce the course an
 * LLMs' (self-)awareness
 
 **Reading**:
-* 📌 [The Debate Over Understanding in AI's Large Language Models](https://arxiv.org/abs/2210.13966) (pages 1-7), `Santa Fe Institute`
-* [Do Large Language Models Understand Us?](https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us), `Google Research`
-* [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712) (chapters 1-8 & 10), `Microsoft Research`
-* [Meaning without reference in large language models](https://arxiv.org/abs/2208.02957), `UC Berkeley & DeepMind`
-* [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜](https://dl.acm.org/doi/abs/10.1145/3442188.3445922), `University of Washington et al.`
-* [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627), `The University of Texas at Austin et al.`
-* [Large Language Models: The Need for Nuance in Current Debates and a Pragmatic Perspective on Understanding](https://arxiv.org/abs/2310.19671), `Leiden Institute of Advanced Computer Science & Leiden University Medical Centre`
+* 📌 [The Debate Over Understanding in AI's Large Language Models](https://arxiv.org/abs/2210.13966) (pages 1-7), `Santa Fe Institute` 🟠
+* [Do Large Language Models Understand Us?](https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us), `Google Research` 🟠
+* [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712) (chapters 1-8 & 10), `Microsoft Research` 🟡
+* [Meaning without reference in large language models](https://arxiv.org/abs/2208.02957), `UC Berkeley & DeepMind` 🔴
+* [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜](https://dl.acm.org/doi/abs/10.1145/3442188.3445922) (paragraphs 1, 5, 6.1), `University of Washington et al.` 🟡
+* [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627) (intro [right after the abstract, see more on the sectioning in this paper at the bottom of page 2], sections 1, 2.3 [_LLMs are predictive ..._], 3-5), `The University of Texas at Austin et al.` 🔴
+* [Large Language Models: The Need for Nuance in Current Debates and a Pragmatic Perspective on Understanding](https://arxiv.org/abs/2310.19671), `Leiden Institute of Advanced Computer Science & Leiden University Medical Centre` 🟡
 
 <a name="2404"></a>
 #### 24.04. _Lecture_: LLM & Agent Basics
