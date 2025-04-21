@@ -44,7 +44,7 @@ Each week of the course will offer a theoretical and a practical session. Sessio
 
 * **Theory**:
 
-    * _Lectures_. At the lectures, we will mostly discuss applications of LLMs in different fields (on the examples of existing solutions), how the respective solutions are built and how they function, what their limitations are etc. You are highly encouraged to engage in discussions and arguments, constructively criticize the solutions and suggest your improvements and edits. The lecture slides are released 1 day prior to the lecture.
+    * _Lectures_. At the lectures, we will mostly discuss applications of LLMs in different fields (on the examples of existing solutions), how the respective solutions are built and how they function, what their limitations are etc. You are highly encouraged to engage in discussions and arguments, constructively criticize the solutions and suggest your improvements and edits. The lecture slides are released 2 hours prior to the lecture.
 
 * **Practice**:
 
