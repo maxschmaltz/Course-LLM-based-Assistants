@@ -16,7 +16,7 @@ _____________________________________________________________________________
 ### Week 1
 
 <a name="2204"></a>
-#### 22.04. _Lecture_: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine
+#### 22.04. _Lecture_: LLMs as a Form of Intelligence vs LLMs as Statistical Machines
 
 That is an introductory lecture, in which I will briefly introduce the course and we'll have a warming up discussion about different perspectives on LLMs' nature. We will focus on two prominent outlooks: LLM is a form of intelligence and LLM is a complex statistical machine. We'll discuss differences of LLMs with human intelligence and the degree to which LLMs exhibit (self-)awareness.
 
@@ -68,7 +68,7 @@ _____________________________________
 ### Week 2
 
 <a name="2904"></a>
-#### 29.04. _Debates_: LLMs as a Form of Intelligence vs LLMs as a Statistical Machine
+#### 29.04. _Debates_: LLMs as a Form of Intelligence vs LLMs as Statistical Machines
 > On material of [session 22.04](#2204)
 
 The first debates of the course will revolve around the topic raised in the respective lecture and will utilize concrete evidence in support of the two outlooks on LLMs. There will be two debate rounds (motions will be released on 22.04).
