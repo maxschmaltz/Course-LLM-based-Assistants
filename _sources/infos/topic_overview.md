@@ -71,9 +71,9 @@ _____________________________________
 #### 29.04. _Debates_: LLMs as a Form of Intelligence vs LLMs as Statistical Machines
 > On material of [session 22.04](#2204)
 
-The first debates of the course will revolve around the topic raised in the respective lecture and will utilize concrete evidence in support of the two outlooks on LLMs. There will be two debate rounds (motions will be released on 22.04).
-<!-- * LLMs: a Form of Intelligence or a Complex Statistical Machine?
-* LLM Behavior: Evidence of Awareness or Illusion of Understanding? -->
+The first debates of the course will revolve around the topic raised in the respective lecture and will utilize concrete evidence in support of the two outlooks on LLMs. There will be two debate rounds:
+* LLMs: a Form of Intelligence or a Complex Statistical Machine?
+* LLM Behavior: Evidence of Awareness or Illusion of Understanding?
 
 **Reading**: see [session 22.04](#2204)
 
