@@ -18,6 +18,8 @@ _____________________________________________________________________________
 <a name="2204"></a>
 #### 22.04. _Lecture_: LLMs as a Form of Intelligence vs LLMs as Statistical Machines
 
+Zoom link (temp): https://zoom.us/j/94344465636?pwd=Oa0t61bUVCbPfI6RUEcRUalRSkZR1M.1
+
 That is an introductory lecture, in which I will briefly introduce the course and we'll have a warming up discussion about different perspectives on LLMs' nature. We will focus on two prominent outlooks: LLM is a form of intelligence and LLM is a complex statistical machine. We'll discuss differences of LLMs with human intelligence and the degree to which LLMs exhibit (self-)awareness.
 
 **Key points**:
