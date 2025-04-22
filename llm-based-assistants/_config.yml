@@ -29,7 +29,7 @@ repository:
   path_to_book: llm-based-assistants  # Optional path to your book, relative to the repository root
 
 extra_files:
-  - slides/2004.pdf
+  - slides/**
 
 sphinx:
   config:
