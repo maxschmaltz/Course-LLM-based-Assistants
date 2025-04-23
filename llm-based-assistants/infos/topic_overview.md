@@ -49,7 +49,8 @@ In this lecture, we'll recap some basics about LLMs and LLM-based agents to make
 * Multimodality
 
 **Reading**:
-* [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223), `Renmin University of China et al.`
+* [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223), (sections 1, 2.1, 4.1, 4.2.1, 4.2.3-4.2.4, 4.3) `Renmin University of China et al.`
+* [Emergent Abilities of Large Language Models](https://arxiv.org/abs/2206.07682), `Google Research, Stanford, UNC Chapel Hill, DeepMind`
 * [The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783), `Meta AI`
 * ["We Need Structured Output": Towards User-centered Constraints on Large Language Model Output](https://arxiv.org/abs/2404.07362), `Google Research & Google`
 * [Introducing Structured Outputs in the API](https://openai.com/index/introducing-structured-outputs-in-the-api/), `OpenAI`
