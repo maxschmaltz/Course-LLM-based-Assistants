@@ -15,7 +15,8 @@ parts:
 
   - caption: "Block 1: Intro"
     chapters:
-    - file: sessions/block1_intro/2004.md
+    - file: sessions/block1_intro/2204.md
+    - file: sessions/block1_intro/2404.md
     # title: 22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines
 
   - caption: "Block 2: Core Topics | Part 1: Business Applications"
