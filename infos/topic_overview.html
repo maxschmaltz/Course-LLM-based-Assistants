@@ -212,7 +212,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 1: Intro</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../sessions/block1_intro/2004.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block1_intro/2204.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block1_intro/2404.html">24.04. LLM &amp; Agent Basics</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
 <ul>
@@ -298,29 +299,27 @@
 <p>In this lecture, we’ll recap some basics about LLMs and LLM-based agents to make sure we’re on the same page.</p>
 <p><strong>Key points</strong>:</p>
 <ul class="simple">
-<li><p>LLM architecture recap</p></li>
+<li><p>LLM recap</p></li>
 <li><p>Prompting</p></li>
 <li><p>Structured output</p></li>
 <li><p>Tool calling</p></li>
-<li><p>Piping</p></li>
-<li><p>Reasoning</p></li>
-<li><p>Multimodality</p></li>
+<li><p>Piping &amp; Planning</p></li>
 </ul>
 <p><strong>Reading</strong>:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/2303.18223">A Survey of Large Language Models</a>, (sections 1, 2.1, 4.1, 4.2.1, 4.2.3-4.2.4, 4.3, 5.1.1-5.1.3, 5.2.1-5.2.4, 5.3.1, 6, 7.1-7.2, 8) <code class="docutils literal notranslate"><span class="pre">Renmin</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">China</span> <span class="pre">et</span> <span class="pre">al.</span></code> 🔴</p></li>
-<li><p><a class="reference external" href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners</a>, <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/2206.07682">Emergent Abilities of Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Research,</span> <span class="pre">Stanford,</span> <span class="pre">UNC</span> <span class="pre">Chapel</span> <span class="pre">Hill,</span> <span class="pre">DeepMind</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2005.14165">Language Models are Few-Shot Learners</a>, <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2201.11903">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Research</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/2407.21783">The Llama 3 Herd of Models</a>, <code class="docutils literal notranslate"><span class="pre">Meta</span> <span class="pre">AI</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/2404.07362">“We Need Structured Output”: Towards User-centered Constraints on Large Language Model Output</a>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Research</span> <span class="pre">&amp;</span> <span class="pre">Google</span></code></p></li>
 <li><p><a class="reference external" href="https://openai.com/index/introducing-structured-outputs-in-the-api/">Introducing Structured Outputs in the API</a>, <code class="docutils literal notranslate"><span class="pre">OpenAI</span></code></p></li>
-<li><p><a class="reference external" href="https://arxiv.org/abs/2405.17935">Tool Learning with Large Language Models: A Survey</a>, <code class="docutils literal notranslate"><span class="pre">Renmin</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">Chin</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2405.17935">Tool Learning with Large Language Models: A Survey</a>, <code class="docutils literal notranslate"><span class="pre">Renmin</span> <span class="pre">University</span> <span class="pre">of</span> <span class="pre">China</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/2409.00920">ToolACE: Winning the Points of LLM Function Calling</a>, <code class="docutils literal notranslate"><span class="pre">Huawei</span> <span class="pre">Noah’s</span> <span class="pre">Ark</span> <span class="pre">Lab</span> <span class="pre">et</span> <span class="pre">al.</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/2302.04761">Toolformer: Language Models Can Teach Themselves to Use Tools</a>, <code class="docutils literal notranslate"><span class="pre">Meta</span> <span class="pre">AI</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/2407.00121">Granite-Function Calling Model: Introducing Function Calling Abilities via Multi-task Learning of Granular Tasks</a>, <code class="docutils literal notranslate"><span class="pre">IBM</span> <span class="pre">Research</span></code></p></li>
 <li><p>🍿 <a class="reference external" href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a>, <code class="docutils literal notranslate"><span class="pre">UC</span> <span class="pre">Berkeley</span></code> (leaderboard)</p></li>
-<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2201.11903">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a> (pages 1-9), <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Research</span></code></p></li>
-<li><p><a class="reference external" href="https://arxiv.org/abs/2310.03710">Agent Instructs Large Language Models to be General Zero-Shot Reasoners</a>,<code class="docutils literal notranslate"><span class="pre">Washington</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">UC</span> <span class="pre">Berkeley</span></code></p></li>
+<li><p>📌 <a class="reference external" href="https://arxiv.org/abs/2310.03710">Agent Instructs Large Language Models to be General Zero-Shot Reasoners</a> (pages 1-9), <code class="docutils literal notranslate"><span class="pre">Washington</span> <span class="pre">University</span> <span class="pre">&amp;</span> <span class="pre">UC</span> <span class="pre">Berkeley</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/2306.13549">A Survey on Multimodal Large Language Models</a>, <code class="docutils literal notranslate"><span class="pre">University</span> <span class="pre">of</span> <span class="pre">Science</span> <span class="pre">and</span> <span class="pre">Technology</span> <span class="pre">of</span> <span class="pre">China</span> <span class="pre">&amp;</span> <span class="pre">Tencent</span> <span class="pre">YouTu</span> <span class="pre">Lab</span></code></p></li>
 </ul>
 </section>

@@ -41,28 +41,26 @@ That is an introductory lecture, in which I will briefly introduce the course an
 In this lecture, we'll recap some basics about LLMs and LLM-based agents to make sure we're on the same page. 
 
 **Key points**:
-* LLM architecture recap
+* LLM recap
 * Prompting
 * Structured output
 * Tool calling
-* Piping
-* Reasoning
-* Multimodality
+* Piping & Planning
 
 **Reading**:
 * [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223), (sections 1, 2.1, 4.1, 4.2.1, 4.2.3-4.2.4, 4.3, 5.1.1-5.1.3, 5.2.1-5.2.4, 5.3.1, 6, 7.1-7.2, 8) `Renmin University of China et al.` 🔴
-* [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165), `OpenAI`
 * [Emergent Abilities of Large Language Models](https://arxiv.org/abs/2206.07682), `Google Research, Stanford, UNC Chapel Hill, DeepMind`
+* [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165), `OpenAI`
+* [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903), `Google Research`
 * [The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783), `Meta AI`
 * ["We Need Structured Output": Towards User-centered Constraints on Large Language Model Output](https://arxiv.org/abs/2404.07362), `Google Research & Google`
 * [Introducing Structured Outputs in the API](https://openai.com/index/introducing-structured-outputs-in-the-api/), `OpenAI`
-* [Tool Learning with Large Language Models: A Survey](https://arxiv.org/abs/2405.17935), `Renmin University of Chin et al.`
+* [Tool Learning with Large Language Models: A Survey](https://arxiv.org/abs/2405.17935), `Renmin University of China et al.`
 * [ToolACE: Winning the Points of LLM Function Calling](https://arxiv.org/abs/2409.00920), `Huawei Noah’s Ark Lab et al.`
 * [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761), `Meta AI`
 * [Granite-Function Calling Model: Introducing Function Calling Abilities via Multi-task Learning of Granular Tasks](https://arxiv.org/abs/2407.00121), `IBM Research`
 * 🍿 [Berkeley Function-Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html), `UC Berkeley` (leaderboard)
-* 📌 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903) (pages 1-9), `Google Research`
-* [Agent Instructs Large Language Models to be General Zero-Shot Reasoners](https://arxiv.org/abs/2310.03710),`Washington University & UC Berkeley`
+* 📌 [Agent Instructs Large Language Models to be General Zero-Shot Reasoners](https://arxiv.org/abs/2310.03710) (pages 1-9), `Washington University & UC Berkeley`
 * [A Survey on Multimodal Large Language Models](https://arxiv.org/abs/2306.13549), `University of Science and Technology of China & Tencent YouTu Lab`
 
 _____________________________________
