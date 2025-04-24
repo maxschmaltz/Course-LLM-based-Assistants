@@ -120,7 +120,7 @@ In this lab, we'll build a chatbot and try different prompts and settings to see
 
 **Reading**:
 *  [Chat models](https://python.langchain.com/docs/concepts/chat_models/), `LangChain`
-* ✍️ [Prompt Templates](https://python.langchain.com/docs/concepts/prompt_templates/), `LangChain`
+* ✍️ [Messages](https://python.langchain.com/docs/concepts/messages/), `LangChain`
 * [Few-shot prompting](https://python.langchain.com/docs/concepts/few_shot_prompting/), `LangChain`
 * [Multimodality](https://python.langchain.com/docs/concepts/multimodality/), `LangChain`
 * ✍️ [Structured outputs](https://python.langchain.com/docs/concepts/structured_outputs/), `LangChain`
