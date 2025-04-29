@@ -487,7 +487,7 @@ The last pitch will introduce an agent that will have to plan the research, gene
 The course will be concluded by the final debates, after which a short Q&A session will be held.
 
 Debate topics:
-* Should We Limit the Usage of AI?
 * LLM Behavior: Evidence of Awareness or Illusion of Understanding?
+* Should We Limit the Usage of AI?
 
 **Reading**: see [session 17.07](#1707)
