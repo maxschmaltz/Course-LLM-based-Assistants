@@ -79,12 +79,12 @@ The final introductory session will guide you through the most basic concepts of
 
 **Reading**:
 * [Runnable interface](https://python.langchain.com/docs/concepts/runnables/), `LangChain`
-* [Chat models](https://python.langchain.com/docs/concepts/chat_models/), `LangChain`
+* [LangChain Expression Language (LCEL)](https://python.langchain.com/docs/concepts/lcel/#should-i-use-lcel), `LangChain`
 * [Messages](https://python.langchain.com/docs/concepts/messages/), `LangChain`
+* [Chat models](https://python.langchain.com/docs/concepts/chat_models/), `LangChain`
 * [Structured outputs](https://python.langchain.com/docs/concepts/structured_outputs/), `LangChain`
 * [Tools](https://python.langchain.com/docs/concepts/tools/), `LangChain`
 * [Tool calling](https://python.langchain.com/docs/concepts/tool_calling/), `LangChain`
-* [LangChain Expression Language (LCEL)](https://python.langchain.com/docs/concepts/lcel/#should-i-use-lcel), `LangChain`
 
 #### 01.05.
 _Ausfalltermin_
