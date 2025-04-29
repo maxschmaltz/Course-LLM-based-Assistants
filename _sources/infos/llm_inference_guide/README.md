@@ -16,7 +16,7 @@ For this course, we will be using NVIDIA Cloud that generously hosts various ope
 1. Install [Python](https://www.python.org/downloads/) on your machine.
 2. Install [Git](https://git-scm.com/downloads).
 3. Install any IDE of your choice: [VS Code](https://code.visualstudio.com/download), [Pycharm](https://www.jetbrains.com/help/pycharm/installation-guide.html) etc.
-4. Create an account at [NVIDIA Developer Program](https://developer.nvidia.com/developer-program) with you **student email**: `firstname.lastname@student.uni-tuebingen.de`.
+4. Create an account at [NVIDIA Developer Program](https://developer.nvidia.com/developer-program) with your **student email**: `firstname.lastname@student.uni-tuebingen.de`.
 
 
 ## Environment Setup

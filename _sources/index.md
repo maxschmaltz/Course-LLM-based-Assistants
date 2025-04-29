@@ -35,7 +35,7 @@ Core topics are divided into two parts, one covering applications of LLMs in bus
 
 ### Intro & Wrap-up
 
-Both intro and wrap-up will (superficially) address some less practical and more philosophical / societal aspects of LLMs. In particular, we will discuss such questions, as whether LLMs exhibit awareness, which impact they have on society and environment, and more.
+Both intro and wrap-up will (superficially) address some less practical and more philosophical / societal aspects of LLMs. In particular, we will discuss such questions, as whether LLMs exhibit awareness, what impact they have on society and environment, and more.
 
 
 ## Formats
