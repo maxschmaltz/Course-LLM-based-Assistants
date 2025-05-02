@@ -124,16 +124,17 @@ The first core topic concerns chatbots. We'll discuss how chatbots are built, ho
 * [From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models](https://arxiv.org/abs/2401.02777), `Beike Inc.`
 
 <a name="0805"></a>
-#### 08.05. _Lab_: Chatbot
+#### 08.05. _Lab_: Basic LLM-based Chatbot
 > On material of [session 06.05](#0605)
 
 In this lab, we'll build a chatbot and try different prompts and settings to see how it affects the output.
 
 **Reading**:
-* ✍️ [LangGraph Quickstart Parts 1-3: Build a Basic Chatbot](https://langchain-ai.github.io/langgraph/tutorials/introduction/), `LangGraph`
+* ✍️ [Build a Chatbot](https://python.langchain.com/docs/tutorials/chatbot/), `LangChain`
+* ✍️ [LangGraph Quickstart: Build a Basic Chatbot](https://langchain-ai.github.io/langgraph/tutorials/introduction/) (parts 1, 3), `LangGraph`
 * ✍️ [How to add summary of the conversation history](https://langchain-ai.github.io/langgraph/how-tos/memory/add-summary-conversation-history/), `LangGraph`
+* [Prompt Templates](https://python.langchain.com/docs/concepts/prompt_templates/), `LangChain`
 * [Few-shot prompting](https://python.langchain.com/docs/concepts/few_shot_prompting/), `LangChain`
-* [Multimodality](https://python.langchain.com/docs/concepts/multimodality/), `LangChain`
 
 _____________________________________
 
@@ -174,8 +175,10 @@ In this lab, we'll expand the functionality of the chatbot built at the last lab
 * [Vector stores](https://python.langchain.com/docs/concepts/vectorstores/), `LangChain`
 * [Retrievers](https://python.langchain.com/docs/concepts/retrievers/), `LangChain`
 * ✍️ [Retrieval augmented generation (RAG)](https://python.langchain.com/docs/concepts/rag/), `LangChain`
+* ✍️ [LangGraph Quickstart: Build a Basic Chatbot](https://langchain-ai.github.io/langgraph/tutorials/introduction/) (part 2), `LangGraph`
 * ✍️ [Agentic RAG](https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_agentic_rag/), `LangGraph`
 * [Adaptive RAG](https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_adaptive_rag/), `LangGraph`
+* [Multimodality](https://python.langchain.com/docs/concepts/multimodality/), `LangChain`
 _____________________________________
 
 
@@ -200,7 +203,8 @@ This lectures concludes the Virtual Assistants cycle and directs its attention t
 * [Improving Factuality and Reasoning in Language Models through Multiagent Debate](https://arxiv.org/abs/2305.14325), `MIT & Google Brain`
 * [Exploring Collaboration Mechanisms for LLM Agents: A Social Psychology View](https://arxiv.org/abs/2310.02124), `Zhejiang University, National University of Singapore & DeepMind`
 * [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155), `Microsoft Research et al.`
-* 🍿 [How real-world businesses are transforming with AI — with more than 140 new stories](https://blogs.microsoft.com/blog/2025/03/10/https-blogs-microsoft-com-blog-2024-11-12-how-real-world-businesses-are-transforming-with-ai/), `Microsoft` (blog post) 
+* 🍿 [How real-world businesses are transforming with AI — with more than 140 new stories](https://blogs.microsoft.com/blog/2025/03/10/https-blogs-microsoft-com-blog-2024-11-12-how-real-world-businesses-are-transforming-with-ai/), `Microsoft` (blog post)
+* 🍿 [Built with LangGraph](https://www.langchain.com/built-with-langgraph), `LangGraph` (website page)
 * [Plan-Then-Execute: An Empirical Study of User Trust and Team Performance When Using LLM Agents As A Daily Assistant](https://arxiv.org/abs/2502.01390), `Delft University of Technology & The University of Queensland`
 
 <a name="2205"></a>
@@ -213,7 +217,7 @@ This lab will introduce a short walkthrough to creation of a multi-agent environ
 * ✍️ [Multi-agent network](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/), `LangGraph`
 * ✍️ [Human-in-the-loop](https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/), `LangGraph`
 * [Plan-and-Execute](https://langchain-ai.github.io/langgraph/tutorials/plan-and-execute/plan-and-execute/), `LangGraph`
-* [Reflexion](https://langchain-ai.github.io/langgraph/tutorials/reflexion/reflexion/), `LangGraph`
+* [Reflection](https://langchain-ai.github.io/langgraph/tutorials/reflexion/reflexion/), `LangGraph`
 * ✍️ [Multi-agent supervisor](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/agent_supervisor/), `LangGraph`
 * [Quick Start](https://microsoft.github.io/autogen/stable//user-guide/core-user-guide/quickstart.html), `AutoGen`
 
