@@ -105,9 +105,10 @@ _____________________________________________________________________________
 The first core topic concerns chatbots. We'll discuss how chatbots are built, how they (should) handle harmful requests and you can tune it for your use case.
 
 **Key points**:
-* LLMs under the hood: alignment, harmlessness, honesty
-* Prompting & automated prompt generation
+* LLMs alignment
 * Memory
+* Prompting & automated prompt generation
+* Evaluation
 
 **Core Reading**:
 * 📌 [Aligning Large Language Models with Human: A Survey](https://arxiv.org/abs/2307.12966) (pages 1-14), `Huawei Noah’s Ark Lab`
@@ -117,11 +118,12 @@ The first core topic concerns chatbots. We'll discuss how chatbots are built, ho
 **Additional Reading**:
 * [Training language models to follow instructions with human feedback](https://arxiv.org/abs/2203.02155), `OpenAI`
 * [Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback](https://arxiv.org/abs/2204.05862), `Anthropic`
-* [Automatic Prompt Selection for Large Language Models](https://arxiv.org/abs/2404.02717), `Cinnamon AI, Hung Yen University of Technology and Education & Deakin University`
-* [PromptGen: Automatically Generate Prompts using Generative Models](https://aclanthology.org/2022.findings-naacl.3/), `Baidu Research`
 * [A Survey on the Memory Mechanism of Large Language Model based Agents](https://arxiv.org/abs/2404.13501), `Renmin University of China & Huawei Noah’s Ark Lab`
 * [Augmenting Language Models with Long-Term Memory](https://arxiv.org/abs/2306.07174), `UC Santa Barbara & Microsoft Research`
 * [From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models](https://arxiv.org/abs/2401.02777), `Beike Inc.`
+* [Automatic Prompt Selection for Large Language Models](https://arxiv.org/abs/2404.02717), `Cinnamon AI, Hung Yen University of Technology and Education & Deakin University`
+* [PromptGen: Automatically Generate Prompts using Generative Models](https://aclanthology.org/2022.findings-naacl.3/), `Baidu Research`
+* [Evaluating Large Language Models. A Comprehensive Survey](https://arxiv.org/abs/2310.19736), `Tianjin University`
 
 <a name="0805"></a>
 #### 08.05. _Lab_: Basic LLM-based Chatbot
