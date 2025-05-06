@@ -21,7 +21,7 @@ parts:
 
   - caption: "Block 2: Core Topics | Part 1: Business Applications"
     chapters:
-    - file: sessions/block1_intro/2404.md
+    - file: sessions/block1_intro/0605.md
     - file: sessions/block1_intro/0805/0805.ipynb
 
   - caption: "Block 2: Core Topics | Part 2: Applications in Science"
