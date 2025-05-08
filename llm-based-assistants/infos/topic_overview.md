@@ -155,14 +155,15 @@ Continuing the first part, the second part will expand scope of chatbot function
 * Agentic RAG
 
 **Core Reading**:
-* 📌 [Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach](https://arxiv.org/abs/2407.16833) (pages 1-7), `Google DeepMind & University of Michigan`
-* [A Survey on Retrieval-Augmented Text Generation for Large Language Models](https://arxiv.org/abs/2404.10981) (pages 1-19), `York University`
+* 📌 [Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach](https://arxiv.org/abs/2407.16833) (pages 1-7), `Google DeepMind & University of Michigan` 🔴
+* [A Survey on Retrieval-Augmented Text Generation for Large Language Models](https://arxiv.org/abs/2404.10981) (sections 1-7), `York University` 🔴
 
 **Additional Reading**:
-* [Don't Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks](https://arxiv.org/abs/2412.15605), `National Chengchi University & Academia Sinica`
+* [Don't Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks](https://arxiv.org/abs/2412.15605), `National Chengchi University & Academia Sinica` 🟠
+* [Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection](https://arxiv.org/abs/2310.11511), `University of Washington, Allen Institute for AI & IBM Research AI`
 * [Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity](https://arxiv.org/abs/2403.14403), `Korea Advanced Institute of Science and Technology`
-* [Querying Databases with Function Calling](https://arxiv.org/abs/2502.00032), `Weaviate, Contextual AI & Morningstar`
 * [Auto-RAG: Autonomous Retrieval-Augmented Generation for Large Language Models](https://arxiv.org/abs/2411.19443), `Chinese Academy of Sciences`
+* [Querying Databases with Function Calling](https://arxiv.org/abs/2502.00032), `Weaviate, Contextual AI & Morningstar`
 
 <a name="1505"></a>
 #### 15.05. _Lab_: RAG Chatbot
