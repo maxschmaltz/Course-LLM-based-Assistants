@@ -1,0 +1,5 @@
+langgraph
+pyppeteer
+pypdf
+langchain_community
+langchain-qdrant
