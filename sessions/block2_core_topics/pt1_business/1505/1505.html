@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" />
+<link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" /><link rel="next" title="Under development" href="../../pt2_science/under_development.html" /><link rel="prev" title="13.05. Virtual Assistants Pt. 2: RAG" href="../1305.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
         <title>15.05. RAG Chatbot 📚 - LLM-based Assistants</title>
@@ -217,10 +217,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../block1_intro/2904/2904.html">29.04. Intro to LangChain 🦜🔗</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../0605.html">06.05. Virtual Assistants Pt. 1: Chatbots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../0805/0805.html">08.05. Basic LLM-based Chatbot 🤖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../1305.html">13.05. Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">15.05. RAG Chatbot 📚</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 2: Applications in Science</span></p>
 <ul>
@@ -324,9 +325,9 @@ After that, you need to install a few more packages:</p>
 <span class="c1"># this rate limiter will ensure we do not exceed the rate limit</span>
 <span class="c1"># of 40 RPM given by NVIDIA</span>
 <span class="n">rate_limiter</span> <span class="o">=</span> <span class="n">InMemoryRateLimiter</span><span class="p">(</span>
-    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">35</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 35 requests per minute to be sure</span>
+    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">30</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 30 requests per minute to be sure</span>
     <span class="n">check_every_n_seconds</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># wake up every 100 ms to check whether allowed to make a request,</span>
-    <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>  <span class="c1"># controls the maximum burst size</span>
+    <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># controls the maximum burst size</span>
 <span class="p">)</span>
 
 <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatNVIDIA</span><span class="p">(</span>
@@ -1931,7 +1932,1134 @@ Search
 </div>
 </div>
 </div>
-<h2 id="rag">4. Simple RAG 💉</h2><h2 id="adv_rag">5. Advanced RAG 😎</h2></section>
+</section>
+<section id="indexing">
+<h3>Indexing<a class="headerlink" href="#indexing" title="Link to this heading">¶</a></h3>
+<p>Now that we have split our data and initialized the embeddings, we can start indexing it. There are a lot of different implementations of indexes, you can take a lot at available options in <a class="reference external" href="https://python.langchain.com/docs/integrations/vectorstores/">Vector stores</a>. One of the popular choices is <a class="reference external" href="https://python.langchain.com/docs/integrations/vectorstores/qdrant/">Qdrant</a> that provides a simple data management and can be deployed both locally, on a remote machine, and on the cloud.</p>
+<p>Qdrant support persisting your vector storage, i.e. storing it on the working machine, but for simplicity, we will use it in the in-memory mode, so that the storage exists only as long as the notebook does.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_qdrant</span><span class="w"> </span><span class="kn">import</span> <span class="n">QdrantVectorStore</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qdrant_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">QdrantClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qdrant_client.http.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Distance</span><span class="p">,</span> <span class="n">VectorParams</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">uuid</span><span class="w"> </span><span class="kn">import</span> <span class="n">uuid4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First things first, we need to create a <em>client</em> – a Qdrant instance that will be the entrypoint for all the actions we do with the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qd_client</span> <span class="o">=</span> <span class="n">QdrantClient</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>    <span class="c1"># in-memory Qdrant client</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, as we use an in-memory client that does not store the index between the notebook sessions, we need to initialize a <em>collection</em>. Alternatively, if we were persisting the data, we would perform a check if the collection exists and then either create or load it.</p>
+<p>For Qdrant to initialize the structure of the index correctly, we need to provide the dimentionality of the embedding we will be using as well as teh distance metric.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection_name</span> <span class="o">=</span> <span class="s2">&quot;1505&quot;</span>
+
+<span class="n">qd_client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span>
+    <span class="c1"># embedding params here</span>
+    <span class="n">vectors_config</span><span class="o">=</span><span class="n">VectorParams</span><span class="p">(</span>
+        <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">test_embedding</span><span class="p">),</span>   <span class="c1"># is there a better way?</span>
+        <span class="n">distance</span><span class="o">=</span><span class="n">Distance</span><span class="o">.</span><span class="n">COSINE</span>    <span class="c1"># cosine distance</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we use a LangChain wrapper to connect to the index to unify the workflow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vector_store</span> <span class="o">=</span> <span class="n">QdrantVectorStore</span><span class="p">(</span>
+    <span class="n">client</span><span class="o">=</span><span class="n">qd_client</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we are ready to add our chunks to the vector storage. As we will be adding the chunks, the index will take care about converting our passages into embeddings.</p>
+<p>In order to be able to delete / modify the chunks afterwards, we assign them with unique ids that we generate dynamically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">))]</span>
+<span class="n">vector_store</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span>
+    <span class="n">docs</span><span class="p">,</span>
+    <span class="n">ids</span><span class="o">=</span><span class="n">ids</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2032c410-99b3-4163-83e2-676a60e2c23c&#39;,
+ &#39;ab7e1e6b-8641-447c-8a6b-81412a60b62a&#39;,
+ &#39;c0522e25-3ac4-4e03-8118-87002c6d5d3b&#39;,
+ &#39;3e0e8303-d763-4d2a-bb79-1df40b004b53&#39;,
+ &#39;83b7105a-f903-47e9-8102-417c0a4086e2&#39;,
+ &#39;fa346f5e-5f96-4846-85e8-30195a48984d&#39;,
+ &#39;c9bce4cd-a789-46f4-94f4-dee67c5c8f51&#39;,
+ &#39;2e00441d-36ed-4a28-8a1d-9fe77ffd081f&#39;,
+ &#39;b3dc5a78-b7ec-4f13-8d88-dc855b446f1b&#39;,
+ &#39;044c7db0-38b3-4113-b2a3-bf802c27e448&#39;,
+ &#39;bbece7a7-b622-4db3-b2e2-56d557225379&#39;,
+ &#39;5d10cd5b-00e8-45bc-b33c-d5665dd81ecc&#39;,
+ &#39;269d4146-1ece-433f-84da-e065137e6813&#39;,
+ &#39;1e61d0bb-97c1-41f9-950e-a4844bcba337&#39;,
+ &#39;c7eefc1d-c296-4db0-b18b-9a905c1373e3&#39;,
+ &#39;714bddd1-a313-44dd-ac6a-6eb89e794cd3&#39;,
+ &#39;e3d7142d-a78f-4213-8800-640c291ee799&#39;,
+ &#39;a23e9c23-fb06-4123-9d2f-b963d935ea7f&#39;,
+ &#39;863bd9ad-65f4-42cb-8d39-424f623c744b&#39;,
+ &#39;1d632eeb-ecb2-4794-b588-539b50c6947e&#39;,
+ &#39;db5554f7-18a8-49bc-a052-0d5a718176d4&#39;,
+ &#39;06c10ade-ce8f-45e5-ae98-eadb207b77ec&#39;,
+ &#39;30d944b1-7b30-4c08-9234-e2716049047a&#39;,
+ &#39;29db095e-4c03-4cd2-a9b1-78addc0da21e&#39;,
+ &#39;d82ef95a-20de-45fc-9a7a-60a0fb0dd7ae&#39;,
+ &#39;a79ef0e7-5290-4ed1-b279-24631ed5389c&#39;,
+ &#39;0071b83c-b829-42a5-afee-61a4eb6f7c00&#39;,
+ &#39;12c0e756-a1f6-44c6-bfed-7cc88acdbe17&#39;,
+ &#39;c41466b7-0d87-4424-bca1-883df076cdf4&#39;,
+ &#39;8c7869e4-3de0-433e-a81c-bd2120caae90&#39;,
+ &#39;f4393a61-d7fe-4bcc-9847-3fcef287feb4&#39;,
+ &#39;99782261-911b-48a7-abf7-c44aec203dc0&#39;,
+ &#39;abaf799b-4964-43d7-bed4-2fbd37d1e473&#39;,
+ &#39;b1507637-6a97-418a-bc4a-60b4cb4e29db&#39;,
+ &#39;45b5c62f-2649-4f57-951c-06dece86af2c&#39;,
+ &#39;b5f85104-6624-4d1b-9517-425fdd4f72ca&#39;,
+ &#39;4210b091-ed08-4220-9e42-5194163dbc99&#39;,
+ &#39;d6351ab3-5049-4f65-9d26-0d288d7a249a&#39;,
+ &#39;60353b1a-5b53-4a49-b0f7-b7478f54824d&#39;,
+ &#39;3c2386b4-d71a-47e2-9e43-8ddfda43c24a&#39;,
+ &#39;081b5a7e-1efa-471c-b1f1-dd05da31c573&#39;,
+ &#39;3d9ef8b8-4376-4694-88bf-b51f0daa8b50&#39;,
+ &#39;c5443c07-1fa1-4038-93b6-2fe4ba26440a&#39;,
+ &#39;032216e5-fe96-4004-b973-33494972abe9&#39;,
+ &#39;10d8feea-0fd8-4be7-a57e-1aae8ab29d61&#39;,
+ &#39;a0229a81-59c5-46fc-853c-1f1f1daf2026&#39;,
+ &#39;777189d3-3946-4564-9a5c-4a9572dc98da&#39;,
+ &#39;38a0fdc8-f782-4a4b-802d-0ba13e85fb87&#39;,
+ &#39;6bc5f959-0f07-47e0-a1d4-ea5a3f1ed8db&#39;,
+ &#39;4d13c075-318e-4d94-8c31-47441ea68560&#39;,
+ &#39;0de9b240-3453-4515-8616-5b95663a69f6&#39;,
+ &#39;123bb7ae-5493-4c71-bf17-977a5aa7d06e&#39;,
+ &#39;78895ca9-be3d-42f5-911f-16d38e054dad&#39;,
+ &#39;6ad56b1f-b617-4206-9421-101cf7f47fa9&#39;,
+ &#39;ad8fd90b-cc6f-4218-9778-05718255bdaa&#39;,
+ &#39;7adc826d-0679-42a2-bc92-9e420825fbfa&#39;,
+ &#39;5a726ca6-4849-4449-945f-61d949928872&#39;,
+ &#39;2807dcc1-75d5-4573-b4f2-4cb4f1f65dc0&#39;,
+ &#39;d93cec74-6552-4036-922e-11e02b29c5fd&#39;,
+ &#39;608e98e5-db53-4af3-a75c-f71765904304&#39;,
+ &#39;90f2e696-b6aa-4aef-94e6-e571499be00a&#39;,
+ &#39;fdf2dde1-f2f3-46f7-a5e1-fd53d4658539&#39;,
+ &#39;04b62c0b-9d8a-4275-9437-9170657115eb&#39;,
+ &#39;a531b7e9-1d4e-4c0c-8eb4-3fcc1f1ef2b1&#39;,
+ &#39;626403e0-9ee4-4bf8-85c3-159951c181a1&#39;,
+ &#39;629eff22-bcc5-46f3-b787-ec424ac54999&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="rag">4. Simple RAG 💉</h2>
+<p>The basic RAG workflow is pretty straightforward: we just retrieve <em>k</em> most relevant documents and them insert them into the prompt as a part of the context.</p>
+<p>For that, we will combine the skills we have obtained so far to build a LangGraph agent that receives the input, checks if the user wants to quit, then do the retrieval and generate a context-aware response if not. We will build on the basic version of our first chatbot; to add the RAG functionality, we need to add a retrieval node and modify the generation prompt to inject the retrieved documents.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.tools.retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_retriever_tool</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># role: restrict it from the parametric knowledge</span>
+<span class="n">basic_rag_system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">You are an assistant that has access to a knowledge base. </span><span class="se">\</span>
+<span class="s2">You should use the knowledge base to answer the user&#39;s questions.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="c1"># this will add the context to the input</span>
+<span class="n">context_injection_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">The user is asking a question. </span><span class="se">\</span>
+<span class="s2">You should answer using the following context:</span>
+
+<span class="s2">==========================</span>
+<span class="si">{context}</span>
+<span class="s2">==========================</span>
+
+
+<span class="s2">The user question is:</span>
+<span class="si">{input}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="c1"># finally, gather the system message, the previous messages,</span>
+<span class="c1"># and the input with the context</span>
+<span class="n">basic_rag_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="n">basic_rag_system_prompt</span><span class="p">),</span>   <span class="c1"># system message</span>
+        <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;messages&quot;</span><span class="p">),</span>  <span class="c1"># previous messages</span>
+        <span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">context_injection_prompt</span><span class="p">)</span>  <span class="c1"># user message</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>LangGraph provides a pre-built tool to conveniently create a retriever tool. As this is basic RAG, we don’t generate queries for the retriever for now and just use the user input as the query.</p>
+<p>Also, we will create a new simpler state because we won’t be using the <code class="docutils literal notranslate"><span class="pre">n_turns</span></code> and <code class="docutils literal notranslate"><span class="pre">language</span></code> properties.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SimpleRAGState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="c1"># `messages` is a list of messages of any kind. The `add_messages` function</span>
+    <span class="c1"># in the annotation defines how this state key should be updated</span>
+    <span class="c1"># (in this case, it appends messages to the list, rather than overwriting them)</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">BasicRAGChatbot</span><span class="p">(</span><span class="n">Chatbot</span><span class="p">):</span>
+
+    <span class="n">_graph_path</span> <span class="o">=</span> <span class="s2">&quot;./graph_basic_rag.png&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">basic_rag_prompt</span> <span class="o">=</span> <span class="n">basic_rag_prompt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">})</span>    <span class="c1"># retrieve 5 documents</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retriever_tool</span> <span class="o">=</span> <span class="n">create_retriever_tool</span><span class="p">(</span>    <span class="c1"># and this is the tool</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="p">,</span>
+            <span class="s2">&quot;retrieve_internal_data&quot;</span><span class="p">,</span>  <span class="c1"># name</span>
+            <span class="s2">&quot;Search relevant information in internal documents.&quot;</span><span class="p">,</span>   <span class="c1"># description</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># graph builder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SimpleRAGState</span><span class="p">)</span>
+        <span class="c1"># add the nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_respond_node</span><span class="p">)</span>
+        <span class="c1"># define edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="c1"># basic rag: no planning, just always retrieve</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_quitting_node</span><span class="p">,</span> <span class="p">{</span><span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span> <span class="n">END</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="s2">&quot;respond&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="c1"># compile the graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_input_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">user_query</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your message: &quot;</span><span class="p">)</span>
+        <span class="n">human_message</span> <span class="o">=</span> <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_query</span><span class="p">)</span>
+        <span class="c1"># add the input to the messages</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">human_message</span>   <span class="c1"># this will append the input to the messages</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_retrieve_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># retrieve the context</span>
+        <span class="n">user_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># use the last message as the query</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever_tool</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">user_query</span><span class="p">})</span>
+        <span class="c1"># add the context to the messages</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">context</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_respond_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># the workflow is designed so that the context is always the last message</span>
+        <span class="c1"># and the user query is the second to last message;</span>
+        <span class="c1"># finally, we will be combining the context and the user query</span>
+        <span class="c1"># into a single message so we remove those two from the messages</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">user_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">basic_rag_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">],</span>  <span class="c1"># this goes to the message placeholder</span>
+                <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span>  <span class="c1"># this goes to the user message</span>
+                <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">user_query</span>    <span class="c1"># this goes to the user message</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="c1"># add the response to the messages</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">response</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chatbot</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+                <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_rag_chatbot</span> <span class="o">=</span> <span class="n">BasicRAGChatbot</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_rag_chatbot</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+what sessions do I have about virtual assistants?
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 8 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 8: Having Some Rest10.06.Ausfalltermin
+12.06.Ausfalltermin
+Week 917.06. Pitch: RAG Chatbot
+On material of session 06.05 and session 13.05
+
+Prompt Templates, LangChain
+Few-shot prompting, LangChain
+Week 413.05. Lecture: Virtual Assistants Pt. 2: RAGContinuing the first part, the second part will expand scope of chatbot functionality and will teach it torefer to custom knowledge base to retrieve and use user-specific information. Finally, the most widelyused deployment methods will be briefly introduced.
+Key points:
+General knowledge vs context
+Knowledge indexing, retrieval &amp; ranking
+Retrieval tools
+Agentic RAG
+Core Reading:
+
+01.05.Ausfalltermin
+Block 2: Core T opics
+Part 1: Business ApplicationsWeek 306.05. Lecture: Virtual Assistants Pt. 1: ChatbotsThe first core topic concerns chatbots. We’ll discuss how chatbots are built, how they (should) handleharmful requests and you can tune it for your use case.
+Key points:
+LLMs alignment
+Memory
+Prompting &amp; automated prompt generation
+Evaluation
+Core Reading:
+ Aligning Large Language Models with Human: A Survey (pages 1-14), Huawei Noah’s Ark Lab
+
+On material of session 20.05
+In the second pitch, the contractors will present their solution to automated handling of customerrequests. The solution will have to introduce a multi-agent environment to take off working load froman imagined support team. The solution will have to read and categorize tickets, generate replies and(in case of need) notify the human that their interference is required. Specific requirements will bereleased on 27.05.
+Reading: see session 20.05 and session 22.05
+
+Adaptive RAG, LangGraph
+Multimodality, LangChain
+Week 520.05. Lecture: Virtual Assistants Pt. 3: Multi-agent EnvironmentThis lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday /business operations in a multi-agent environment. We’ll look at how agents communicate with eachother, how their communication can be guided (both with and without involvement of a human), andthis all is used in real applications.
+Key points:
+Multi-agent environment
+Human in the loop
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+You have three sessions about Virtual Assistants:
+
+1. Week 3: 06.05. Lecture: Virtual Assistants Pt. 1: Chatbots
+2. Week 4: 13.05. Lecture: Virtual Assistants Pt. 2: RAG
+3. Week 5: 20.05. Lecture: Virtual Assistants Pt. 3: Multi-agent Environment
+
+These sessions cover topics such as building chatbots, expanding chatbot functionality, and automating everyday/business operations in a multi-agent environment.
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+what are they dates?
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 8 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 8: Having Some Rest10.06.Ausfalltermin
+12.06.Ausfalltermin
+Week 917.06. Pitch: RAG Chatbot
+On material of session 06.05 and session 13.05
+
+On material of session 03.06
+The contractors will present their agent that will have to generate full (minimalistic) websites by aprompt. For each website, the agent will have to generate its own style and a simple menu with workingnavigation as well as the contents. Specific requirements will be released on 24.06.
+Reading: see session 03.06 and session 05.06
+
+On material of session 20.05
+In the second pitch, the contractors will present their solution to automated handling of customerrequests. The solution will have to introduce a multi-agent environment to take off working load froman imagined support team. The solution will have to read and categorize tickets, generate replies and(in case of need) notify the human that their interference is required. Specific requirements will bereleased on 27.05.
+Reading: see session 20.05 and session 22.05
+
+On material of session 06.05 and session 13.05
+The first pitch will be dedicated to a custom RAG chatbot that the contractors (the presentingstudents, see the infos about Pitches) will have prepared to present. The RAG chatbot will have to beable to retrieve specific information from the given documents (not from the general knowledge!) anduse it in its responses. Specific requirements will be released on 22.05.
+Reading: see session 06.05, session 08.05, session 13.05, and session 15.05
+19.06.Ausfalltermin
+
+Debates
+Pitches
+LLM Inference Guide
+22.04. LLMs as a Form ofIntelligence vs LLMs asStatistical Machines
+24.04. LLM &amp; Agent Basics
+29.04. Intro to LangChain 
+!
+&quot;
+06.05. Virtual Assistants Pt. 1:Chatbots
+08.05. Basic LLM-basedChatbot 
+#
+Under development
+Under development
+Search
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+The dates mentioned in the text are:
+
+1. 12.05.25
+2. 10.06 (Ausfalltermin)
+3. 12.06 (Ausfalltermin)
+4. 17.06 (Pitch: RAG Chatbot)
+5. 24.06 (release of specific requirements for generating websites)
+6. 22.05 (release of specific requirements for RAG chatbot)
+7. 27.05 (release of specific requirements for automated handling of customer requests)
+8. 19.06 (Ausfalltermin)
+9. 22.04 (Debate: LLMs as a Form of Intelligence vs LLMs as Statistical Machines)
+10. 24.04 (Debate: LLM &amp; Agent Basics)
+11. 29.04 (Intro to LangChain)
+12. 06.05 (Lecture: Virtual Assistants Pt. 1: Chatbots)
+13. 08.05 (Lecture: Basic LLM-based Chatbot)
+14. 03.06 (session on generating websites)
+15. 05.06 (session on generating websites)
+16. 20.05 (session on multi-agent environment)
+17. 22.05 (session on automated handling of customer requests)
+18. 13.05 (Lecture: Virtual Assistants Pt. 2: RAG)
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+quit
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, it already works pretty well, but as the retrieval goes by the user query directly, all the previous context of the conversation is not considered. To handle that, let’s add a node that would reformulate the query taking in consideration the previous interaction.</p>
+<p>For that, we need an additional prompt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># finally, gather the system message, the previous messages,</span>
+<span class="c1"># and the input with the context</span>
+<span class="n">reformulate_query_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Given the previous conversation, reformulate the user query in the last message to a full question. &quot;</span>
+            <span class="s2">&quot;Return only the reformulated query, without any other text.&quot;</span>
+        <span class="p">),</span>   <span class="c1"># system message</span>
+        <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;messages&quot;</span><span class="p">)</span>  <span class="c1"># previous messages</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">BasicPlusRAGChatbot</span><span class="p">(</span><span class="n">BasicRAGChatbot</span><span class="p">):</span>
+
+    <span class="n">_graph_path</span> <span class="o">=</span> <span class="s2">&quot;./graph_basic_plus_rag.png&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reformulate_query_prompt</span> <span class="o">=</span> <span class="n">reformulate_query_prompt</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># graph builder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SimpleRAGState</span><span class="p">)</span>
+        <span class="c1"># add the nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;reformulate_query&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reformulate_query_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_respond_node</span><span class="p">)</span>
+        <span class="c1"># define edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="c1"># basic rag: no planning, just always retrieve</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_quitting_node</span><span class="p">,</span> <span class="p">{</span><span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;reformulate_query&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span> <span class="n">END</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;reformulate_query&quot;</span><span class="p">,</span> <span class="s2">&quot;retrieve&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="s2">&quot;respond&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="c1"># compile the graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reformulate_query_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reformulate_query_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="n">generated_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="c1"># since we use the generated query instead of the user query,</span>
+        <span class="c1"># we need to remove the user query from the messages</span>
+        <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">generated_query</span> <span class="c1"># append the generated query to the messages</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_plus_rag_chatbot</span> <span class="o">=</span> <span class="n">BasicPlusRAGChatbot</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_plus_rag_chatbot</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+what sessions do I have about virtual assistants?
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+What sessions do I have scheduled that are related to virtual assistants?
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 8 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 8: Having Some Rest10.06.Ausfalltermin
+12.06.Ausfalltermin
+Week 917.06. Pitch: RAG Chatbot
+On material of session 06.05 and session 13.05
+
+Adaptive RAG, LangGraph
+Multimodality, LangChain
+Week 520.05. Lecture: Virtual Assistants Pt. 3: Multi-agent EnvironmentThis lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday /business operations in a multi-agent environment. We’ll look at how agents communicate with eachother, how their communication can be guided (both with and without involvement of a human), andthis all is used in real applications.
+Key points:
+Multi-agent environment
+Human in the loop
+
+01.05.Ausfalltermin
+Block 2: Core T opics
+Part 1: Business ApplicationsWeek 306.05. Lecture: Virtual Assistants Pt. 1: ChatbotsThe first core topic concerns chatbots. We’ll discuss how chatbots are built, how they (should) handleharmful requests and you can tune it for your use case.
+Key points:
+LLMs alignment
+Memory
+Prompting &amp; automated prompt generation
+Evaluation
+Core Reading:
+ Aligning Large Language Models with Human: A Survey (pages 1-14), Huawei Noah’s Ark Lab
+
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 6 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+This lab will introduce a short walkthrough to creation of a multi-agent environment for automatedmeeting scheduling and preparation. We will see how the coordinator agent will communicate with twoauxiliary agents to check time availability and prepare an agenda for the meeting.
+Reading:
+ Multi-agent network, LangGraph
+ Human-in-the-loop, LangGraph
+
+On material of session 20.05
+In the second pitch, the contractors will present their solution to automated handling of customerrequests. The solution will have to introduce a multi-agent environment to take off working load froman imagined support team. The solution will have to read and categorize tickets, generate replies and(in case of need) notify the human that their interference is required. Specific requirements will bereleased on 27.05.
+Reading: see session 20.05 and session 22.05
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+Based on the provided context, you have the following sessions related to virtual assistants:
+
+1. Week 3: 06.05 - Lecture: Virtual Assistants Pt. 1: Chatbots
+2. Week 5: 20.05 - Lecture: Virtual Assistants Pt. 3: Multi-agent Environment
+3. Week 9: 17.06 - Pitch: RAG Chatbot (related to material from sessions 06.05 and 13.05)
+
+These sessions cover topics such as chatbots, multi-agent environments, and human-in-the-loop systems, all of which are related to virtual assistants.
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+what are their dates?
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+What are the dates of the sessions related to virtual assistants?
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+On material of session 20.05
+In the second pitch, the contractors will present their solution to automated handling of customerrequests. The solution will have to introduce a multi-agent environment to take off working load froman imagined support team. The solution will have to read and categorize tickets, generate replies and(in case of need) notify the human that their interference is required. Specific requirements will bereleased on 27.05.
+Reading: see session 20.05 and session 22.05
+
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 8 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 8: Having Some Rest10.06.Ausfalltermin
+12.06.Ausfalltermin
+Week 917.06. Pitch: RAG Chatbot
+On material of session 06.05 and session 13.05
+
+01.05.Ausfalltermin
+Block 2: Core T opics
+Part 1: Business ApplicationsWeek 306.05. Lecture: Virtual Assistants Pt. 1: ChatbotsThe first core topic concerns chatbots. We’ll discuss how chatbots are built, how they (should) handleharmful requests and you can tune it for your use case.
+Key points:
+LLMs alignment
+Memory
+Prompting &amp; automated prompt generation
+Evaluation
+Core Reading:
+ Aligning Large Language Models with Human: A Survey (pages 1-14), Huawei Noah’s Ark Lab
+
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 6 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+This lab will introduce a short walkthrough to creation of a multi-agent environment for automatedmeeting scheduling and preparation. We will see how the coordinator agent will communicate with twoauxiliary agents to check time availability and prepare an agenda for the meeting.
+Reading:
+ Multi-agent network, LangGraph
+ Human-in-the-loop, LangGraph
+
+Adaptive RAG, LangGraph
+Multimodality, LangChain
+Week 520.05. Lecture: Virtual Assistants Pt. 3: Multi-agent EnvironmentThis lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday /business operations in a multi-agent environment. We’ll look at how agents communicate with eachother, how their communication can be guided (both with and without involvement of a human), andthis all is used in real applications.
+Key points:
+Multi-agent environment
+Human in the loop
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+Based on the provided context, the dates of the sessions related to virtual assistants are:
+
+1. Week 3: 06.05 - Lecture: Virtual Assistants Pt. 1: Chatbots
+2. Week 5: 20.05 - Lecture: Virtual Assistants Pt. 3: Multi-agent Environment
+3. Week 9: 17.06 - Pitch: RAG Chatbot (related to material from sessions 06.05 and 13.05)
+
+So, the dates are: 
+- 06.05
+- 20.05
+- 17.06
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+quit
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="adv_rag">5. Advanced RAG 😎</h2>
+<p>Now we can move to a more complicated implementation. We will no make an iterative RAG chatbot: this chatbot will retrieve contexts iteratively and decide at each step whether the chunks retrieved so far are sufficient to answer the question; the answer is generated only when the retrieved contexts are enough.</p>
+<p>Basically, we have almost everything we need to implement an iterative RAG pipeline. We only need to add three more nodes:</p>
+<ol class="arabic simple">
+<li><p>A node to generate search queries for the index: now we won’t use the user query but specifically generate queries for the index.</p></li>
+<li><p>A decision node, in which the LLM will decide whether the context retrieved so far is enough to proceed to generation of the response.</p></li>
+<li><p>Query transformer that will reformulate the query to retrieve further chunks when it’s needed.</p></li>
+</ol>
+<p>As a useful addition, we will also add LLM-based filtering of the retrieved documents to filter out the documents that are semantically similar to the query but are not really relevant for answering the question.</p>
+<p>Thus, we need to add 4 nodes totally.</p>
+<p>We will start with the grader that will output a binary score for the relevance: <code class="docutils literal notranslate"><span class="pre">True</span></code>(relevant) or <code class="docutils literal notranslate"><span class="pre">False</span></code> (irrelevant). To implement this functionality, we’ll bind the LLM to a true/false structured output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">YesNoVerdict</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">verdict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Boolean answer to the given binary question.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will also need to transform the state to accumulate the contexts gathered so far.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AdvancedRAGState</span><span class="p">(</span><span class="n">SimpleRAGState</span><span class="p">):</span> <span class="c1"># &quot;messages&quot; is already defined in SimpleRAGState</span>
+    <span class="n">contexts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]]</span>    <span class="c1"># this is the list of retrieved documents, one list per retrieval</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we also need prompts to filter the documents, to decide whether the contexts are supportive enough, and to transform the query if not.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generate_query_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">The user is asking a question. </span><span class="se">\</span>
+<span class="s2">You have an access to a knowledge base. </span><span class="se">\</span>
+<span class="s2">Your task is to generate a query that will retrieve the most relevant documents </span><span class="se">\</span>
+<span class="s2">from the knowledge base to answer the user question. </span><span class="se">\</span>
+<span class="s2">Return the query only, without any other text.</span>
+
+
+<span class="s2">The user question is:</span>
+<span class="si">{input}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">generate_query_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">generate_query_template</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">context_relevant_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">The user is asking a question. </span><span class="se">\</span>
+<span class="s2">For answering the question, you colleague have retrieved the following document:</span>
+
+
+<span class="s2">===========================</span>
+<span class="si">{context}</span>
+<span class="s2">===========================</span>
+
+
+<span class="s2">You task is to assess whether this document is relevant to answer the user question. </span><span class="se">\</span>
+<span class="s2">Relevant means that the document contains specific information should be used </span><span class="se">\</span>
+<span class="s2">directly to answer the user question. </span><span class="se">\</span>
+<span class="s2">Return True if the document is relevant, and False otherwise.</span>
+
+
+<span class="s2">The user question is:</span>
+<span class="si">{input}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">context_relevant_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">context_relevant_template</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contexts_sufficient_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">The user is asking a question. </span><span class="se">\</span>
+
+<span class="s2">For answering the question, you colleague have retrieved the following document:</span>
+
+
+<span class="s2">===========================</span>
+<span class="si">{contexts_str}</span>
+<span class="s2">===========================</span>
+
+
+<span class="s2">You task is to assess whether the retrieved documents contain an answer the user question. </span><span class="se">\</span>
+<span class="s2">Return True if the documents are sufficient, and False otherwise.</span>
+
+
+<span class="s2">The user question is:</span>
+<span class="si">{input}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">contexts_sufficient_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">contexts_sufficient_template</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transform_query_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">The user is asking a question. </span><span class="se">\</span>
+
+<span class="s2">For answering the question, your colleague the following document has been retrieved:</span>
+
+
+<span class="s2">===========================</span>
+<span class="si">{contexts_str}</span>
+<span class="s2">===========================</span>
+
+
+<span class="s2">To retrieve these documents, the following query has been used:</span>
+<span class="si">{query}</span>
+
+
+<span class="s2">However, the query is not very good so the retrieved documents were not helpful. </span><span class="se">\</span>
+<span class="s2">Your task is to transform the query into a better one, so that the retrieved documents are more relevant. </span><span class="se">\</span>
+<span class="s2">Return the transformed query only, without any other text.</span>
+
+
+<span class="s2">The user question is:</span>
+<span class="si">{input}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">transform_query_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">transform_query_template</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">IterativeRAGChatbot</span><span class="p">(</span><span class="n">BasicPlusRAGChatbot</span><span class="p">):</span>
+
+    <span class="n">_graph_path</span> <span class="o">=</span> <span class="s2">&quot;./graph_iterative_rag.png&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_generations</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_generations</span> <span class="o">=</span> <span class="n">max_generations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boolean_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">YesNoVerdict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_query_prompt</span> <span class="o">=</span> <span class="n">generate_query_prompt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_relevant_grader</span> <span class="o">=</span> <span class="n">context_relevant_prompt</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">boolean_llm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contexts_sufficient_grader</span> <span class="o">=</span> <span class="n">contexts_sufficient_prompt</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">boolean_llm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform_query_prompt</span> <span class="o">=</span> <span class="n">transform_query_prompt</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># graph builder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">AdvancedRAGState</span><span class="p">)</span>
+        <span class="c1"># add the nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;reformulate_query&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reformulate_query_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;generate_query&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_query_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;filter_documents&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_documents_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;transform_query&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_query_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_respond_node</span><span class="p">)</span>
+        <span class="c1"># define edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="c1"># basic rag: no planning, just always retrieve</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_quitting_node</span><span class="p">,</span> <span class="p">{</span><span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;reformulate_query&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span> <span class="n">END</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;reformulate_query&quot;</span><span class="p">,</span> <span class="s2">&quot;generate_query&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;generate_query&quot;</span><span class="p">,</span> <span class="s2">&quot;retrieve&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="s2">&quot;filter_documents&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span>
+            <span class="s2">&quot;filter_documents&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_contexts_sufficient_node</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;transform_query&quot;</span><span class="p">,</span>
+                <span class="kc">True</span><span class="p">:</span> <span class="s2">&quot;respond&quot;</span><span class="p">,</span>
+                <span class="kc">None</span><span class="p">:</span> <span class="n">END</span>   <span class="c1"># max generations reached</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;transform_query&quot;</span><span class="p">,</span> <span class="s2">&quot;retrieve&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="c1"># compile the graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_query_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">AdvancedRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>    
+        <span class="n">user_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># that will be the reformulated user query</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="n">generate_query_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">user_query</span><span class="p">})</span>
+        <span class="n">search_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">search_query</span>
+        <span class="p">}</span>
+
+    <span class="c1"># now store the contexts in the separate field</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_retrieve_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">AdvancedRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>    
+        <span class="c1"># retrieve the context</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># that will be the generated query</span>
+        <span class="c1"># now use the retriever directly to get a list of documents and not a combined string</span>
+        <span class="n">contexts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="c1"># add the context to the messages</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;contexts&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">contexts</span><span class="p">]</span>  <span class="c1"># could have also used `Annotated` here</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_filter_documents_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">AdvancedRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># that will be the generated query</span>
+        <span class="c1"># since the retrieved documents are graded at the same step,</span>
+        <span class="c1"># we only need to pass the last batch of documents</span>
+        <span class="n">contexts</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;contexts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># will be replaced with the filtered ones</span>
+        <span class="c1"># grade each document separately and only keep the relevant ones</span>
+        <span class="n">relevant_contexts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">contexts</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grading document:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>
+            <span class="n">verdict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_relevant_grader</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">context</span><span class="o">.</span><span class="n">page_content</span><span class="p">,</span>    <span class="c1"># this is a Document object</span>
+                    <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Verdict: </span><span class="si">{</span><span class="n">verdict</span><span class="o">.</span><span class="n">verdict</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">=====================</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">verdict</span><span class="o">.</span><span class="n">verdict</span><span class="p">:</span>    <span class="c1"># boolean value according to the Pydantic model</span>
+                <span class="n">relevant_contexts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;contexts&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">relevant_contexts</span><span class="p">]</span>  <span class="c1"># could have also used `Annotated` here</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_contexts_sufficient_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">AdvancedRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>   <span class="c1"># that will be the reformulated user query, -1 is the generated search query</span>
+        <span class="n">all_contexts</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;contexts&quot;</span><span class="p">]</span>
+        <span class="c1"># flatten and transform the list of lists into a single list</span>
+        <span class="n">contexts</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">all_contexts</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+        <span class="n">contexts_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">context</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">contexts</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deciding whether the documents are sufficient&quot;</span><span class="p">)</span>
+        <span class="n">verdict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contexts_sufficient_grader</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+                <span class="p">{</span>
+                <span class="s2">&quot;contexts_str&quot;</span><span class="p">:</span> <span class="n">contexts_str</span><span class="p">,</span>    <span class="c1"># this is a Document object</span>
+                <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Verdict: </span><span class="si">{</span><span class="n">verdict</span><span class="o">.</span><span class="n">verdict</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">=====================</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">verdict</span><span class="o">.</span><span class="n">verdict</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_contexts</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_generations</span><span class="p">:</span>
+            <span class="k">return</span>  <span class="c1"># will route to END</span>
+        <span class="k">return</span> <span class="n">verdict</span><span class="o">.</span><span class="n">verdict</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_transform_query_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">AdvancedRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># since we will be replacing the user query with the transformed one,</span>
+        <span class="c1"># we need to remove the old query</span>
+        <span class="n">search_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>   <span class="c1"># this is the generated search query</span>
+        <span class="c1"># the the reformulated user query is the last message</span>
+        <span class="n">user_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">all_contexts</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;contexts&quot;</span><span class="p">]</span>
+        <span class="c1"># flatten and transform the list of lists into a single list</span>
+        <span class="n">contexts</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">all_contexts</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+        <span class="n">contexts_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">context</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="n">contexts</span><span class="p">])</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_query_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;contexts_str&quot;</span><span class="p">:</span> <span class="n">contexts_str</span><span class="p">,</span>
+                <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">search_query</span><span class="p">,</span>
+                <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">user_query</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">transformed_search_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">transformed_search_query</span>   <span class="c1"># this will append the transformed query to the messages</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;contexts&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;suka&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chatbot</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+                <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make small k to ensure one retrieval is not enough</span>
+<span class="n">iterative_rag_chatbot</span> <span class="o">=</span> <span class="n">IterativeRAGChatbot</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iterative_rag_chatbot</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+what are the key point of the next lecture after the one on 13.05
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+What are the key points of the next lecture after the one on May 13th?
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+lecture after May 13th key points
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+lecture after May 13th key points
+
+
+Grading document:
+
+ 12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 1 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+To p i c s  O v e r v i e wThe schedule is preliminary and subject to changes!
+The reading for each lecture is given as references to the sources the respective lectures base on. Youare not obliged to read anything. However, you are strongly encouraged to read references marked bypin emojis
+Verdict: False
+
+
+=====================
+
+
+Grading document:
+
+ 12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 7 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 703.06. Lecture: Software Development Pt. 2: Copilots, LLM-powered WebsitesThe second and the last lecture of the software development cycle focuses on practical application ofLLM code generation, in particular, on widely-used copilots (real-time code generation assistants) andLLM-supported web development.
+Key points:
+Copilots &amp; real-time hints
+Verdict: True
+
+
+=====================
+
+
+Deciding whether the documents are sufficient
+Verdict: False
+
+
+=====================
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+lecture after May 13th key points
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+next lecture after May 13th key points summary
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+next lecture after May 13th key points summary
+
+
+Grading document:
+
+ 12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 1 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+To p i c s  O v e r v i e wThe schedule is preliminary and subject to changes!
+The reading for each lecture is given as references to the sources the respective lectures base on. Youare not obliged to read anything. However, you are strongly encouraged to read references marked bypin emojis
+Verdict: False
+
+
+=====================
+
+
+Grading document:
+
+ On material of session 17.07
+The course will be concluded by the final debates, after which a short Q&amp;A session will be held.
+Debate topics:
+LLM Behavior: Evidence of Awareness or Illusion of Understanding?
+Should We Limit the Usage of AI?
+Reading: see session 17.07
+Copyright © 2025, Maksim ShmaltsMade with Sphinx and @pradyunsg&#39;s Furo
+Verdict: False
+
+
+=====================
+
+
+Deciding whether the documents are sufficient
+Verdict: False
+
+
+=====================
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+next lecture after May 13th key points summary
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+lecture key points after May 13th summary
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+lecture key points after May 13th summary
+
+
+Grading document:
+
+ 12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 1 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+To p i c s  O v e r v i e wThe schedule is preliminary and subject to changes!
+The reading for each lecture is given as references to the sources the respective lectures base on. Youare not obliged to read anything. However, you are strongly encouraged to read references marked bypin emojis
+Verdict: False
+
+
+=====================
+
+
+Grading document:
+
+ 12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 7 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 703.06. Lecture: Software Development Pt. 2: Copilots, LLM-powered WebsitesThe second and the last lecture of the software development cycle focuses on practical application ofLLM code generation, in particular, on widely-used copilots (real-time code generation assistants) andLLM-supported web development.
+Key points:
+Copilots &amp; real-time hints
+Verdict: True
+
+
+=====================
+
+
+Deciding whether the documents are sufficient
+Verdict: False
+
+
+=====================
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+lecture key points after May 13th summary
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+next lecture key points after May 13th summary
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+next lecture key points after May 13th summary
+
+
+Grading document:
+
+ 12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 1 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+To p i c s  O v e r v i e wThe schedule is preliminary and subject to changes!
+The reading for each lecture is given as references to the sources the respective lectures base on. Youare not obliged to read anything. However, you are strongly encouraged to read references marked bypin emojis
+Verdict: False
+
+
+=====================
+
+
+Grading document:
+
+ 12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 7 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 703.06. Lecture: Software Development Pt. 2: Copilots, LLM-powered WebsitesThe second and the last lecture of the software development cycle focuses on practical application ofLLM code generation, in particular, on widely-used copilots (real-time code generation assistants) andLLM-supported web development.
+Key points:
+Copilots &amp; real-time hints
+Verdict: True
+
+
+=====================
+
+
+Deciding whether the documents are sufficient
+Verdict: False
+
+
+=====================
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+next lecture key points after May 13th summary
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1959,8 +3087,26 @@ Search
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="../../pt2_science/under_development.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Under development</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../1305.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">13.05. Virtual Assistants Pt. 2: RAG</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -2007,6 +3153,7 @@ Search
 <li><a class="reference internal" href="#loading">Loading</a></li>
 <li><a class="reference internal" href="#chunking">Chunking</a></li>
 <li><a class="reference internal" href="#convert-to-embeddings">Convert to Embeddings</a></li>
+<li><a class="reference internal" href="#indexing">Indexing</a></li>
 </ul>
 </li>
 </ul>
