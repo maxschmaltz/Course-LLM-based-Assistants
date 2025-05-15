@@ -200,8 +200,8 @@ This lectures concludes the Virtual Assistants cycle and directs its attention t
 * Examples of pipelines for business operations
 
 **Core Reading**:
-* 📌 [LLM-based Multi-Agent Systems: Techniques and Business Perspectives](https://arxiv.org/abs/2411.14033) (pages 1-8), `Shanghai Jiao Tong University & OPPO Research Institute`
-* [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442), `Stanford, Google Research & DeepMind`
+* 📌 [LLM-based Multi-Agent Systems: Techniques and Business Perspectives](https://arxiv.org/abs/2411.14033) (pages 1-8), `Shanghai Jiao Tong University & OPPO Research Institute` 🟠
+* [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442), `Stanford, Google Research & DeepMind` 🔴
 
 **Additional Reading**:
 * [Improving Factuality and Reasoning in Language Models through Multiagent Debate](https://arxiv.org/abs/2305.14325), `MIT & Google Brain`
