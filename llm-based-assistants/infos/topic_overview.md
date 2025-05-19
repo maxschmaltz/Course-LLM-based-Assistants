@@ -167,10 +167,10 @@ Continuing the first part, the second part will be dedicated to techniques of pr
 * [Querying Databases with Function Calling](https://arxiv.org/abs/2502.00032), `Weaviate, Contextual AI & Morningstar`
 
 <a name="1505"></a>
-#### 15.05. _Lab_: RAG Chatbot
+#### 15.05. _Lab_: RAG Chatbot Pt. 1
 > On material of [session 13.05](#1305)
 
-In this lab, we'll expand the functionality of the chatbot built at the last lab to connect it to user-specific information.
+In this lab, we'll start expanding the functionality of the chatbot built at the last lab to connect it to user-specific information. In this first part, we'll preprocess our custom data for further retrieval.
 
 **Reading**:
 * [How to load PDFs](https://python.langchain.com/docs/how_to/document_loader_pdf/), `LangChain`
@@ -189,14 +189,22 @@ _____________________________________
 ### Week 5
 
 <a name="2005"></a>
-#### 20.05. _Lecture_: Virtual Assistants Pt. 3: Multi-agent Environment
+#### 20.05. _Lab_: RAG Chatbot Pt. 2
+
+> On material of [session 13.05](#1305)
+
+In this lab, we'll complete the first part and move from data preprocessing to implementing the RAG chatbot.
+
+**Reading**: see [session 13.05](#1305), and [session 15.05](#1505)
+
+<a name="2205"></a>
+#### 22.05. _Lecture_: Virtual Assistants Pt. 3: Multi-agent Environment
 
 This lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday / business operations in a multi-agent environment. We'll look at how agents communicate with each other, how their communication can be guided (both with and without involvement of a human), and this all is used in real applications.
 
 **Key points**:
 * Multi-agent environment
 * Human in the loop
-* LLMs as evaluators
 * Examples of pipelines for business operations
 
 **Core Reading**:
@@ -211,9 +219,15 @@ This lectures concludes the Virtual Assistants cycle and directs its attention t
 * 🍿 [Built with LangGraph](https://www.langchain.com/built-with-langgraph), `LangGraph` (website page)
 * [Plan-Then-Execute: An Empirical Study of User Trust and Team Performance When Using LLM Agents As A Daily Assistant](https://arxiv.org/abs/2502.01390), `Delft University of Technology & The University of Queensland`
 
-<a name="2205"></a>
-#### 22.05. _Lab_: Multi-agent Environment
-> On material of [session 20.05](#2005)
+
+_____________________________________
+
+
+### Week 6
+
+<a name="2705"></a>
+#### 27.05. _Lab_: Multi-agent Environment
+> On material of [session 22.05](#2205)
 
 This lab will introduce a short walkthrough to creation of a multi-agent environment for automated meeting scheduling and preparation. We will see how the coordinator agent will communicate with two auxiliary agents to check time availability and prepare an agenda for the meeting.
 
@@ -225,35 +239,6 @@ This lab will introduce a short walkthrough to creation of a multi-agent environ
 * ✍️ [Multi-agent supervisor](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/agent_supervisor/), `LangGraph`
 * [Quick Start](https://microsoft.github.io/autogen/stable//user-guide/core-user-guide/quickstart.html), `AutoGen`
 
-_____________________________________
-
-
-### Week 6
-
-<a name="2705"></a>
-#### 27.05. _Lecture_: Software Development Pt. 1: Code Generation, Evaluation & Testing
-
-This lectures opens a new lecture mini-cycle dedicated to software development. The first lecture overviews how LLMs are used to generate reliable code and how generated code is tested and improved to deal with the errors.
-
-**Key points**:
-* Code generation & refining
-* Automated testing
-* Generated code evaluation
-
-**Core Reading**:
-* [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign`
-* 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research`
-* [The ART of LLM Refinement: Ask, Refine, and Trust](https://arxiv.org/abs/2311.07961), `ETH Zurich & Meta AI`
-
-**Additional Reading**:
-* [Planning with Large Language Models for Code Generation](https://arxiv.org/abs/2303.05510), `MIT-IBM Watson AI Lab et al.`
-* [Code Repair with LLMs gives an Exploration-Exploitation Tradeoff](https://arxiv.org/abs/2405.17503), `Cornell, Shanghai Jiao Tong University & University of Toronto`
-* [ChatUniTest: A Framework for LLM-Based Test Generation](https://arxiv.org/abs/2305.04764), `Zhejiang University & Hangzhou City University`
-* [TestART: Improving LLM-based Unit Testing via Co-evolution of Automated Generation and Repair Iteration](https://arxiv.org/abs/2408.03095), `Nanjing University & Huawei Cloud Computing Technologies`
-* [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374), `OpenAI
-* 🍿 [Code Generation on HumanEval](https://paperswithcode.com/sota/code-generation-on-humaneval), `OpenAI` (leaderboard)
-* [CodeJudge: Evaluating Code Generation with Large Language Models](https://arxiv.org/abs/2410.02184), `Huazhong University of Science and Technology & Purdue University`
-
 #### 29.05.
 _Ausfalltermin_
 
@@ -263,30 +248,42 @@ _____________________________________
 ### Week 7
 
 <a name="0306"></a>
-#### 03.06. _Lecture_: Software Development Pt. 2: Copilots, LLM-powered Websites
+#### 03.06. _Lecture_: LLMs in Software Development
 
-The second and the last lecture of the software development cycle focuses on practical application of LLM code generation, in particular, on widely-used copilots (real-time code generation assistants) and LLM-supported web development.
+This lecture gives an overview on how LLMs are used to generate reliable code and how generated code is tested and improved to deal with the errors.
 
 **Key points**:
-* Copilots & real-time hints
-* LLM-powered websites
-* LLM-supported deployment
+* Code generation & refining
+* Automated testing
+* Copilots & LLM-supported deployment
+* Generated code evaluation
 * Further considerations: reliability, sustainability etc.
 
 **Core Reading**:
-* 📌 [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459) (pages 1-11), `University of Oslo`
-* [A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis](https://arxiv.org/abs/2307.12856), `Google DeepMind & The University of Tokyo`
-* [Can ChatGPT replace StackOverflow? A Study on Robustness and Reliability of Large Language Model Code Generation](https://arxiv.org/abs/2308.10335), `UC San Diego`
+* [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign`
+* 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research`
+* [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459) (pages 1-11), `University of Oslo`
+
 
 **Additional Reading**:
+* [Planning with Large Language Models for Code Generation](https://arxiv.org/abs/2303.05510), `MIT-IBM Watson AI Lab et al.`
+* [Human-In-the-Loop Software Development Agents](https://arxiv.org/abs/2411.12924), `Monash University, The University of Melbourne & Atlassian`
+* [A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis](https://arxiv.org/abs/2307.12856), `Google DeepMind & The University of Tokyo`
+* [Code Repair with LLMs gives an Exploration-Exploitation Tradeoff](https://arxiv.org/abs/2405.17503), `Cornell, Shanghai Jiao Tong University & University of Toronto`
+* [ChatUniTest: A Framework for LLM-Based Test Generation](https://arxiv.org/abs/2305.04764), `Zhejiang University & Hangzhou City University`
+* [TestART: Improving LLM-based Unit Testing via Co-evolution of Automated Generation and Repair Iteration](https://arxiv.org/abs/2408.03095), `Nanjing University & Huawei Cloud Computing Technologies`
+* [The ART of LLM Refinement: Ask, Refine, and Trust](https://arxiv.org/abs/2311.07961), `ETH Zurich & Meta AI`
+* [Automated Unit Test Improvement using Large Language Models at Meta](https://arxiv.org/abs/2402.09171), `Meta`
 * [Design and evaluation of AI copilots -- case studies of retail copilot templates](https://arxiv.org/abs/2407.09512), `Microsoft`
 * 🍿 [Your AI Companion](https://blogs.microsoft.com/blog/2025/04/04/your-ai-companion/), `Microsoft` (blog post)
-* [GitHub Copilot](https://github.com/features/copilot), `GitHub` (product page)
+* 🍿 [GitHub Copilot](https://github.com/features/copilot), `GitHub` (product page)
 * 🍿 [Research: quantifying GitHub Copilot’s impact on developer productivity and happiness](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/), `GitHub` (blog post)
 * 🍿 [Cursor: The AI Code Editor](https://www.cursor.com), `Cursor` (product page)
-* [Automated Unit Test Improvement using Large Language Models at Meta](https://arxiv.org/abs/2402.09171), `Meta`
-* [Human-In-the-Loop Software Development Agents](https://arxiv.org/abs/2411.12924), `Monash University, The University of Melbourne & Atlassian`
 * [An LLM-based Agent for Reliable Docker Environment Configuration](https://arxiv.org/abs/2502.13681), `Harbin Institute of Technology & ByteDance`
+* [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374), `OpenAI
+* 🍿 [Code Generation on HumanEval](https://paperswithcode.com/sota/code-generation-on-humaneval), `OpenAI` (leaderboard)
+* [CodeJudge: Evaluating Code Generation with Large Language Models](https://arxiv.org/abs/2410.02184), `Huazhong University of Science and Technology & Purdue University`
+* [Can ChatGPT replace StackOverflow? A Study on Robustness and Reliability of Large Language Model Code Generation](https://arxiv.org/abs/2308.10335), `UC San Diego`
 * [Learn to Code Sustainably: An Empirical Study on LLM-based Green Code Generation](https://arxiv.org/abs/2403.03344), `TWT GmbH Science & Innovation et al.`
 * [Enhancing Large Language Models for Secure Code Generation: A Dataset-driven Study on Vulnerability Mitigation](https://arxiv.org/abs/2310.16263), `South China University of Technology & University of Innsbruck`
 
@@ -297,7 +294,7 @@ The second and the last lecture of the software development cycle focuses on pra
 In this lab, we'll have the LLM make a website for us: it will both generate the contents of the website and generate all the code required for rendering, styling and navigation.
 
 **Reading**:
-* see [session 22.05](#2205)
+* see [session 27.05](#2705)
 * ✍️ [HTML: Creating the content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content), ``MDN``
 * ✍️ [Getting started with CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started), ``MDN``
 
@@ -323,7 +320,7 @@ _____________________________________
 
 The first pitch will be dedicated to a custom RAG chatbot that the _contractors_ (the presenting students, see the [infos about Pitches](./Formats/Pitches.md)) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses. Specific requirements will be released on 22.05.
 
-**Reading**: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), and [session 15.05](#1505)
+**Reading**: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), [session 15.05](#1505), and [session 20.05](#2005)
 
 #### 19.06.
 _Ausfalltermin_
@@ -335,11 +332,11 @@ _____________________________________
 
 <a name="2406"></a>
 #### 24.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
-> On material of [session 20.05](#2005)
+> On material of [session 22.05](#2205)
 
 In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imagined support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 27.05.
 
-**Reading**: see [session 20.05](#2005) and [session 22.05](#2205)
+**Reading**: see [session 22.05](#2205) and [session 27.05](#2705)
 
 <a name="2606"></a>
 #### 26.06. _Lecture_: Other Business Applications: Game Design, Financial Analysis etc.
@@ -357,9 +354,9 @@ This lecture will serve a small break and will briefly go over other business sc
 * [Game Agent Driven by Free-Form Text Command: Using LLM-based Code Generation and Behavior Branch](https://arxiv.org/abs/2402.07442), `University of Tokyo`
 * 🍿 [AI Dungeon Games](https://play.aidungeon.com), `AI Dungeon` (game catalogue)
 * 🍿 [AI Town](https://www.convex.dev/ai-town), `Andreessen Horowitz & Convex` (game)
-* [Introducing NPC-Playground, a 3D playground to interact with LLM-powered NPCs](https://huggingface.co/blog/npc-gigax-cubzh?utm_source=chatgpt.com), `HuggingFace` (blog post)
-* [Blip](https://github.com/bliporg/blip), `bliporg` (GitHub repo)
-* [gigax](https://github.com/GigaxGames/gigax), `GigaxGames` (GitHub repo)
+* 🍿 [Introducing NPC-Playground, a 3D playground to interact with LLM-powered NPCs](https://huggingface.co/blog/npc-gigax-cubzh?utm_source=chatgpt.com), `HuggingFace` (blog post)
+* 🍿 [Blip](https://github.com/bliporg/blip), `bliporg` (GitHub repo)
+* 🍿 [gigax](https://github.com/GigaxGames/gigax), `GigaxGames` (GitHub repo)
 * [Large Language Models in Finance: A Survey](https://arxiv.org/abs/2311.10723), `Columbia & New York University`
 * [FinLlama: Financial Sentiment Classification for Algorithmic Trading Applications](https://arxiv.org/abs/2403.12285), `Imperial College London & MIT`
 * [Equipping Language Models with Tool Use Capability for Tabular Data Analysis in Finance](https://arxiv.org/abs/2401.15328), `Monash University`
@@ -375,7 +372,7 @@ _____________________________________________________________________________
 ### Week 11
 
 <a name="0107"></a>
-#### 01.07. _Lecture_: LLMs in Research: Experiment Planning & Hypothesis Generation
+#### 01.07. _Lecture_: LLMs in Research Pt. 1: Experiment Planning & Hypothesis Generation
 
 The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.
 
@@ -401,7 +398,7 @@ The first lecture dedicated to scientific applications shows how LLMs are used t
 
 In this lab, we'll practice in facilitating researcher's work with LLMs on the example of a toy scientific research.
 
-**Reading**: see [session 22.05](#2205)
+**Reading**: see [session 27.05](#2705)
 
 _____________________________________
 
@@ -409,12 +406,7 @@ _____________________________________
 ### Week 12
 
 <a name="0807"></a>
-#### 08.07: _Pitch_: Agent for Code Generation
-> On material of [session 27.05](#2705)
-
-This pitch will revolve around the _contractors'_ implementation of a self-improving code generator. The code generator will have to generate both scripts and test cases for a problem given in the input prompt, run the tests and refine the code if needed. Specific requirements will be released on 17.06.
-
-**Reading**: see [session 27.05](#2705) and [session 05.06](#0506)
+#### 08.07: _Lecture_: LLMs in Research Pt. 2: TODO
 
 <a name="1007"></a>
 #### 10.07. _Lecture_: Other Applications in Science: Drug Discovery, Math etc. & Scientific Reliability
@@ -486,7 +478,7 @@ _____________________________________
 
 The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find the literature etc. for a given scientific problem. It will then have to introduce its results in form of a TODO or a guide for the researcher to start off of. Specific requirements will be released on 01.07.
 
-**Reading**: see [session 01.07](#0107) and [session 03.07](#0307)
+**Reading**: see [session 01.07](#0107), [session 08.07](#0807), and [session 03.07](#0307)
 
 <a name="2407"></a>
 #### 24.07. _Debate_: Role of AI in Recent Years + Wrap-up
