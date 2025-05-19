@@ -66,4 +66,4 @@ Please note: that is **not** a programming course and we **won't** stop on low-l
 
 This is a pass/fail course for 6 credits (there is **no** 9 credits option). The course is counted towards ISCL-BA-11 (Spezialisierungsmodul).
 
-There will be 3 debates and 5 pitches throughout the course. Each student will have to participate in **1 [debate](./infos/formats/debates.md) (any side) and 2 [pitches](./infos/formats/pitches.md) (once on each side)** to complete it successfully. There will be no exam, and no in-person presence is required.
+There will be 2 debates and 4 pitches throughout the course. Each student will have to participate in **1 [debate](./infos/formats/debates.md) (any side) and 2 [pitches](./infos/formats/pitches.md) (once on each side)** to complete it successfully. There will be no exam, and no in-person presence is required.
