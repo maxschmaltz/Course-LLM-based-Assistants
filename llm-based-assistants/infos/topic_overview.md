@@ -334,7 +334,7 @@ _____________________________________
 #### 24.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
 > On material of [session 22.05](#2205)
 
-In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imagined support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 27.05.
+In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imagined support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 29.05.
 
 **Reading**: see [session 22.05](#2205) and [session 27.05](#2705)
 
@@ -439,7 +439,7 @@ _____________________________________________________________________________
 #### 15.07. _Pitch_: Agent for Web Development
 > On material of [session 03.06](#0306)
 
-The _contractors_ will present their agent that will have to generate full (minimalistic) websites by a prompt. For each website, the agent will have to generate its own style and a simple menu with working navigation as well as the contents. Specific requirements will be released on 24.06.
+The _contractors_ will present their agent that will have to generate full (minimalistic) websites by a prompt. For each website, the agent will have to generate its own style and a simple menu with working navigation as well as the contents. Specific requirements will be released on 26.06.
 
 **Reading**: see [session 03.06](#0306) and [session 05.06](#0506)
 
@@ -476,7 +476,7 @@ _____________________________________
 #### 22.07. _Pitch_: LLM-based Research Assistant
 > On material of [session 01.07](#0107)
 
-The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find the literature etc. for a given scientific problem. It will then have to introduce its results in form of a TODO or a guide for the researcher to start off of. Specific requirements will be released on 01.07.
+The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find the literature etc. for a given scientific problem. It will then have to introduce its results in form of a TODO or a guide for the researcher to start off of. Specific requirements will be released on 03.07.
 
 **Reading**: see [session 01.07](#0107), [session 08.07](#0807), and [session 03.07](#0307)
 
