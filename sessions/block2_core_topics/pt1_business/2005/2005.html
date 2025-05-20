@@ -283,6 +283,161 @@ After that, you need to install a few more packages:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
+<p>We will also reproduce the basic chatbot we implemented <a class="reference internal" href="../0805/0805.html"><span class="std std-doc">earlier</span></a> as the base for the future RAG Chatbot. The only difference will be that we now need a simpler state that only keeps track of the message history (the other fields were demonstrational).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemMessage</span><span class="p">,</span> <span class="n">HumanMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_nvidia_ai_endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatNVIDIA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.rate_limiters</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryRateLimiter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read system variables</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dotenv</span>
+
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>    <span class="c1"># that loads the .env file variables into os.environ</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose any model, catalogue is available under https://build.nvidia.com/models</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.3-70b-instruct&quot;</span>
+
+<span class="c1"># this rate limiter will ensure we do not exceed the rate limit</span>
+<span class="c1"># of 40 RPM given by NVIDIA</span>
+<span class="n">rate_limiter</span> <span class="o">=</span> <span class="n">InMemoryRateLimiter</span><span class="p">(</span>
+    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">30</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 30 requests per minute to be sure</span>
+    <span class="n">check_every_n_seconds</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># wake up every 100 ms to check whether allowed to make a request,</span>
+    <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># controls the maximum burst size</span>
+<span class="p">)</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatNVIDIA</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">MODEL_NAME</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NVIDIA_API_KEY&quot;</span><span class="p">),</span> 
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>   <span class="c1"># ensure reproducibility,</span>
+    <span class="n">rate_limiter</span><span class="o">=</span><span class="n">rate_limiter</span>  <span class="c1"># bind the rate limiter</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">START</span><span class="p">,</span> <span class="n">END</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph.message</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_messages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">MermaidDrawMethod</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nest_asyncio</span>
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>  <span class="c1"># this is needed to draw the PNG in Jupyter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SimpleState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="c1"># `messages` is a list of messages of any kind. The `add_messages` function</span>
+    <span class="c1"># in the annotation defines how this state key should be updated</span>
+    <span class="c1"># (in this case, it appends messages to the list, rather than overwriting them)</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Chatbot</span><span class="p">:</span>
+
+    <span class="n">_graph_path</span> <span class="o">=</span> <span class="s2">&quot;./graph.png&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_display_graph</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># graph builder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SimpleState</span><span class="p">)</span>
+        <span class="c1"># add the nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_node</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_respond_node</span><span class="p">)</span>
+        <span class="c1"># define edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_quitting_node</span><span class="p">,</span> <span class="p">{</span><span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span> <span class="n">END</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;respond&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
+        <span class="c1"># compile the graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chatbot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_input_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">user_query</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your message: &quot;</span><span class="p">)</span>
+        <span class="n">human_message</span> <span class="o">=</span> <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_query</span><span class="p">)</span>
+        <span class="c1"># add the input to the messages</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">human_message</span>   <span class="c1"># this will append the input to the messages</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_respond_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span>    <span class="c1"># will already contain the user query</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+        <span class="c1"># add the response to the messages</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">response</span>   <span class="c1"># this will append the response to the messages</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_quitting_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># check if the user wants to quit</span>
+        <span class="n">user_message</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>
+        <span class="k">return</span> <span class="n">user_message</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;quit&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_display_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># unstable</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chatbot</span><span class="o">.</span><span class="n">get_graph</span><span class="p">()</span><span class="o">.</span><span class="n">draw_mermaid_png</span><span class="p">(</span>
+                <span class="n">draw_method</span><span class="o">=</span><span class="n">MermaidDrawMethod</span><span class="o">.</span><span class="n">PYPPETEER</span><span class="p">,</span>
+                <span class="n">output_file_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_graph_path</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="c1"># add the run method</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="n">SystemMessage</span><span class="p">(</span>
+                    <span class="n">content</span><span class="o">=</span><span class="s2">&quot;You are a helpful and honest assistant.&quot;</span> <span class="c1"># role</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chatbot</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">):</span>   <span class="c1">#stream_mode=&quot;updates&quot;):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">event</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">:</span><span class="se">\t</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <h2 id="data">1. Recap: Data Preprocessing 📕</h2>
 <p>We will now go over data preprocessing to rehearse the workflow and also to recreate the data collection (we used an in-memory index, so the index we created the last time was deleted after we interrupted the notebook kernel).</p>
 <p>Data preprocessing includes:</p>
@@ -410,6 +565,7 @@ Search
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 </pre></div>
 </div>
 </div>
@@ -467,22 +623,19 @@ Search
 <section id="convert-to-embeddings">
 <h3>Convert to Embeddings<a class="headerlink" href="#convert-to-embeddings" title="Link to this heading">¶</a></h3>
 <p>As discussed, the retrieval usually succeeds by vector similarity and the index contains not the actual texts but their vector representations. Vector representations are created by <em>embedding models</em> – models usually made specifically for this objective by being trained to create more similar vectors for more similar sentences and to push apart dissimilar sentences in the vector space.</p>
-<p>We will use the <a class="reference external" href="https://build.nvidia.com/nvidia/nv-embedqa-e5-v5?snippet_tab=LangChain"><code class="docutils literal notranslate"><span class="pre">nv-embedqa-e5-v5</span></code></a> model – a model from NVIDIA pretrained for English QA.</p>
+<p>In the last session, we used the <a class="reference external" href="https://build.nvidia.com/nvidia/nv-embedqa-e5-v5?snippet_tab=LangChain"><code class="docutils literal notranslate"><span class="pre">nv-embedqa-e5-v5</span></code></a> model – a model from NVIDIA pretrained for English QA. However, their didn’t work very stable, so in this session, we’ll substitute them with <a class="reference external" href="https://huggingface.co/sentence-transformers">HF Sentence Transformers Embeddings</a>: an open-source lightweight alternative that runs <strong>locally</strong>. However, the choice of the model here also heavily depends on the use case; for example, the model we will be using – <a class="reference external" href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"><code class="docutils literal notranslate"><span class="pre">all-MiniLM-L6-v2</span></code></a> – truncates input text longer than 256 word pieces by default, which is fine for our short passages but may be critical in other applications.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_nvidia_ai_endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">NVIDIAEmbeddings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EMBEDDING_NAME</span> <span class="o">=</span> <span class="s2">&quot;nvidia/nv-embedqa-e5-v5&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EMBEDDING_NAME</span> <span class="o">=</span> <span class="s2">&quot;all-MiniLM-L6-v2&quot;</span>
 
-<span class="n">embeddings</span> <span class="o">=</span> <span class="n">NVIDIAEmbeddings</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">EMBEDDING_NAME</span><span class="p">,</span> 
-    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NVIDIA_API_KEY&quot;</span><span class="p">)</span>
-<span class="p">)</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">EMBEDDING_NAME</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -496,1007 +649,390 @@ Search
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.0149383544921875,
- -0.03466796875,
- 0.0280303955078125,
- 0.0283050537109375,
- 0.0264892578125,
- 0.0285186767578125,
- 0.00839996337890625,
- -0.034698486328125,
- 0.02716064453125,
- -0.0160980224609375,
- 0.06634521484375,
- 0.041412353515625,
- 0.0421142578125,
- -0.02703857421875,
- -0.033599853515625,
- 0.0215606689453125,
- 0.0092010498046875,
- -0.0203857421875,
- -0.033447265625,
- 0.036468505859375,
- -0.0037174224853515625,
- -0.0267791748046875,
- 0.0172119140625,
- 0.027191162109375,
- 0.03961181640625,
- 0.01403045654296875,
- 0.0002256631851196289,
- -0.0247802734375,
- 0.006275177001953125,
- 0.057891845703125,
- 0.033355712890625,
- -0.0011873245239257812,
- 0.023223876953125,
- 0.0181427001953125,
- -0.00308990478515625,
- -0.016998291015625,
- -0.0247039794921875,
- 0.0113067626953125,
- 0.053863525390625,
- -0.0166168212890625,
- -0.0241546630859375,
- -0.06439208984375,
- 0.049652099609375,
- 0.04217529296875,
- -0.0178375244140625,
- -0.0159149169921875,
- 0.01025390625,
- -0.04742431640625,
- 0.01513671875,
- 0.0248565673828125,
- -0.01312255859375,
- -0.01031494140625,
- 0.036865234375,
- -0.0175933837890625,
- 0.0026874542236328125,
- 0.040557861328125,
- 0.0341796875,
- -0.01544189453125,
- -0.0030155181884765625,
- -0.02008056640625,
- -0.005878448486328125,
- -0.00128936767578125,
- -0.040191650390625,
- -0.0572509765625,
- -0.040069580078125,
- 0.0264892578125,
- 0.0272674560546875,
- 0.01898193359375,
- 0.023345947265625,
- -0.00994873046875,
- 0.0036106109619140625,
- 0.00020182132720947266,
- -0.017852783203125,
- 0.0224609375,
- 0.01148223876953125,
- -0.0226898193359375,
- -0.055816650390625,
- 0.0169677734375,
- 0.01413726806640625,
- -0.0211944580078125,
- -0.0236663818359375,
- 0.006343841552734375,
- -0.01413726806640625,
- 0.04730224609375,
- -0.00844573974609375,
- -0.0257568359375,
- 0.0224609375,
- -0.0039520263671875,
- 0.020172119140625,
- -0.0187835693359375,
- 0.0050506591796875,
- 0.0072479248046875,
- 0.029144287109375,
- 0.0238494873046875,
- 0.0014591217041015625,
- -0.0196533203125,
- -0.051605224609375,
- 0.050750732421875,
- -0.033294677734375,
- -0.0014400482177734375,
- -0.043701171875,
- -0.037139892578125,
- 0.0548095703125,
- 0.04132080078125,
- -0.005390167236328125,
- -0.011932373046875,
- -0.0240020751953125,
- -0.060089111328125,
- 0.03997802734375,
- -0.040496826171875,
- -0.032440185546875,
- 0.02215576171875,
- 0.0150299072265625,
- 0.00702667236328125,
- 0.055145263671875,
- -0.025970458984375,
- -0.01206207275390625,
- -0.0025539398193359375,
- 0.0203704833984375,
- 0.09100341796875,
- 0.03985595703125,
- -0.02471923828125,
- 0.03778076171875,
- 0.0197906494140625,
- -0.0618896484375,
- 0.050384521484375,
- 0.032196044921875,
- -0.0126495361328125,
- -0.038055419921875,
- 0.00605010986328125,
- 0.004913330078125,
- 0.0208587646484375,
- -0.0570068359375,
- -0.0233154296875,
- 0.04315185546875,
- 0.032958984375,
- -0.109619140625,
- -0.0238037109375,
- 0.04669189453125,
- 0.01160430908203125,
- 0.008880615234375,
- -0.04119873046875,
- 0.0007123947143554688,
- -0.00258636474609375,
- 0.02496337890625,
- 0.050750732421875,
- -0.027679443359375,
- 0.07110595703125,
- -0.042083740234375,
- 0.0533447265625,
- 0.013580322265625,
- -0.0203094482421875,
- -0.0400390625,
- 0.03076171875,
- -0.0055084228515625,
- -0.052734375,
- 0.0272064208984375,
- 0.061065673828125,
- 0.009552001953125,
- -0.043853759765625,
- 0.0283203125,
- -0.0093231201171875,
- -0.0215606689453125,
- 0.01263427734375,
- -0.0296630859375,
- -0.0518798828125,
- 0.0302276611328125,
- 0.0294952392578125,
- 0.025177001953125,
- 0.0166778564453125,
- 0.00391387939453125,
- -0.004611968994140625,
- -0.0013332366943359375,
- 0.0004973411560058594,
- 0.0192718505859375,
- 0.025299072265625,
- 0.04998779296875,
- 0.069091796875,
- 0.009918212890625,
- -0.0029144287109375,
- -0.0038509368896484375,
- -0.045867919921875,
- 0.039794921875,
- 0.034271240234375,
- -0.026947021484375,
- 0.03680419921875,
- -0.00124359130859375,
- -0.0005440711975097656,
- 0.001010894775390625,
- -0.037506103515625,
- -0.057342529296875,
- -0.069580078125,
- 0.08404541015625,
- -0.013580322265625,
- -0.0186004638671875,
- -0.05718994140625,
- 0.007843017578125,
- -0.0118255615234375,
- -0.05596923828125,
- -0.01555633544921875,
- -0.005893707275390625,
- -0.01551055908203125,
- 0.0394287109375,
- -0.039459228515625,
- -0.0047454833984375,
- 0.0287933349609375,
- 0.031646728515625,
- 0.0260009765625,
- 0.03076171875,
- 0.01485443115234375,
- 0.004825592041015625,
- 7.158517837524414e-05,
- 0.01491546630859375,
- 0.0090484619140625,
- -0.0116119384765625,
- -0.0198211669921875,
- 0.033050537109375,
- -0.044189453125,
- -0.007450103759765625,
- 0.01528167724609375,
- -0.0141143798828125,
- 0.043701171875,
- 0.0009212493896484375,
- 0.003612518310546875,
- -0.0061798095703125,
- -0.0255279541015625,
- 0.057647705078125,
- 0.0149383544921875,
- 0.038116455078125,
- -0.033935546875,
- -0.00676727294921875,
- -0.058135986328125,
- 0.035858154296875,
- -0.00732421875,
- -0.0360107421875,
- 0.0111236572265625,
- 0.036895751953125,
- -0.0615234375,
- 0.01161956787109375,
- -0.0215606689453125,
- -0.047149658203125,
- 0.005767822265625,
- 0.05035400390625,
- 0.00829315185546875,
- 0.038421630859375,
- 0.047271728515625,
- -0.07818603515625,
- 0.02313232421875,
- 0.04266357421875,
- 0.0017232894897460938,
- 0.0129852294921875,
- 0.032684326171875,
- 0.01025390625,
- -0.00722503662109375,
- 0.02825927734375,
- -0.0650634765625,
- 0.0242156982421875,
- -0.0172119140625,
- -0.026458740234375,
- -0.0183563232421875,
- -0.06439208984375,
- 0.047943115234375,
- 0.010345458984375,
- -0.0245513916015625,
- 0.03900146484375,
- 0.04083251953125,
- -0.013824462890625,
- -0.02215576171875,
- 0.0635986328125,
- -0.043487548828125,
- 0.0220947265625,
- 0.007678985595703125,
- -0.0469970703125,
- -0.019989013671875,
- -0.01806640625,
- 0.00447845458984375,
- -0.0236663818359375,
- -0.031341552734375,
- 0.01004791259765625,
- 0.0278167724609375,
- -0.0087127685546875,
- 0.018218994140625,
- -0.01654052734375,
- 0.0061798095703125,
- -0.037353515625,
- 0.04522705078125,
- -0.0167236328125,
- -0.022735595703125,
- 0.0066680908203125,
- 0.0200958251953125,
- 0.011016845703125,
- -0.006195068359375,
- -0.0218963623046875,
- -0.07635498046875,
- -0.010009765625,
- 0.0194091796875,
- 0.0009889602661132812,
- -0.02264404296875,
- -0.025665283203125,
- 0.01021575927734375,
- -0.015411376953125,
- -0.01348876953125,
- -0.0163421630859375,
- 0.03607177734375,
- -0.01207733154296875,
- -0.0204315185546875,
- -0.045196533203125,
- 0.0265960693359375,
- -0.031494140625,
- 0.0413818359375,
- 0.004802703857421875,
- -0.05010986328125,
- 0.042816162109375,
- 0.008880615234375,
- -0.0007367134094238281,
- 0.044769287109375,
- 0.0229644775390625,
- 0.0433349609375,
- -0.035491943359375,
- 0.01203155517578125,
- 0.03167724609375,
- -0.039093017578125,
- -0.04864501953125,
- -0.00131988525390625,
- -0.01812744140625,
- 0.0078887939453125,
- -0.00991058349609375,
- 0.02923583984375,
- -0.0004565715789794922,
- -0.02471923828125,
- -0.053955078125,
- 0.0006866455078125,
- 0.022064208984375,
- -0.0288848876953125,
- -0.0107879638671875,
- -0.0509033203125,
- -0.04473876953125,
- -0.0261688232421875,
- 0.01126861572265625,
- 0.01451873779296875,
- 0.048675537109375,
- 0.01861572265625,
- 0.034637451171875,
- 0.03485107421875,
- 0.04559326171875,
- -0.01479339599609375,
- -0.04132080078125,
- 0.051239013671875,
- -0.02471923828125,
- -0.0186614990234375,
- -0.00839996337890625,
- 0.0027980804443359375,
- 0.0094451904296875,
- 0.01336669921875,
- -0.003398895263671875,
- 0.01067352294921875,
- 0.0296478271484375,
- 0.0046234130859375,
- -0.01312255859375,
- 0.0131378173828125,
- 0.0555419921875,
- 0.0218963623046875,
- -0.03387451171875,
- -0.041839599609375,
- -0.0396728515625,
- 0.01308441162109375,
- 0.0010004043579101562,
- 0.006893157958984375,
- 0.006748199462890625,
- 0.07275390625,
- 0.01329803466796875,
- 0.020599365234375,
- -0.0038890838623046875,
- 0.0204925537109375,
- 0.00167083740234375,
- 0.011749267578125,
- 0.02777099609375,
- 0.0130767822265625,
- 0.0175933837890625,
- -0.020294189453125,
- 0.002025604248046875,
- -0.0047760009765625,
- -0.022552490234375,
- -0.01019287109375,
- -0.0660400390625,
- -0.0263519287109375,
- -0.008270263671875,
- 0.032318115234375,
- 0.00299835205078125,
- -0.01605224609375,
- 0.055633544921875,
- -0.0055999755859375,
- -0.0200958251953125,
- -0.003330230712890625,
- -0.03179931640625,
- 0.01230621337890625,
- -0.0003800392150878906,
- -0.04315185546875,
- -0.00653839111328125,
- 0.0207672119140625,
- -0.0411376953125,
- 0.07562255859375,
- 0.019622802734375,
- 0.01129913330078125,
- 0.02691650390625,
- 0.0023059844970703125,
- -0.02783203125,
- -0.015289306640625,
- -6.639957427978516e-05,
- 0.055816650390625,
- 0.0355224609375,
- 0.038330078125,
- 0.01007843017578125,
- -0.028106689453125,
- 0.0008792877197265625,
- -0.0241546630859375,
- -0.0084686279296875,
- 0.02752685546875,
- 0.058013916015625,
- 0.01338958740234375,
- 0.016510009765625,
- -0.0263214111328125,
- 0.020721435546875,
- 0.03607177734375,
- -0.07855224609375,
- -0.03436279296875,
- 0.055511474609375,
- -0.007534027099609375,
- -0.0032329559326171875,
- 0.0389404296875,
- 0.02490234375,
- 0.02423095703125,
- -0.0150299072265625,
- -0.01091766357421875,
- -0.0445556640625,
- 0.0235595703125,
- -0.007198333740234375,
- -0.0350341796875,
- 0.0146484375,
- -0.0172119140625,
- -0.010467529296875,
- 0.0272064208984375,
- -0.027130126953125,
- -0.00777435302734375,
- 0.0163421630859375,
- 0.0012426376342773438,
- -0.03094482421875,
- -0.0184478759765625,
- -0.0282440185546875,
- 0.0266571044921875,
- 0.0438232421875,
- -0.0191650390625,
- -0.010009765625,
- -0.008087158203125,
- -0.08538818359375,
- 0.022064208984375,
- 0.06011962890625,
- 0.070068359375,
- -0.0308074951171875,
- -0.0209197998046875,
- -0.047332763671875,
- 0.0185699462890625,
- -0.01129913330078125,
- -0.001155853271484375,
- -0.005718231201171875,
- -0.065185546875,
- 0.00330352783203125,
- -0.00018036365509033203,
- -0.004703521728515625,
- -0.009246826171875,
- 0.0230255126953125,
- -0.0160980224609375,
- 0.0033321380615234375,
- -0.0166168212890625,
- -0.008270263671875,
- 0.011199951171875,
- 0.035064697265625,
- 0.0211944580078125,
- -0.018310546875,
- 0.0093231201171875,
- 0.0007100105285644531,
- -0.006504058837890625,
- 0.0401611328125,
- -0.058349609375,
- -0.058563232421875,
- 0.0307769775390625,
- 0.045196533203125,
- -0.004322052001953125,
- 0.00554656982421875,
- -0.0200958251953125,
- 0.01476287841796875,
- 0.001979827880859375,
- 0.0219879150390625,
- -0.038177490234375,
- 0.0024852752685546875,
- -0.051025390625,
- -0.0188140869140625,
- 0.0125579833984375,
- -0.022308349609375,
- 0.055572509765625,
- 0.0275726318359375,
- -0.00732421875,
- 0.0082550048828125,
- 0.00958251953125,
- 0.0293121337890625,
- -0.04913330078125,
- -0.0175628662109375,
- -0.026031494140625,
- 0.038177490234375,
- -0.02874755859375,
- 0.0267333984375,
- 0.039459228515625,
- 0.0010366439819335938,
- -0.044891357421875,
- -0.03155517578125,
- -0.0221099853515625,
- 0.01129913330078125,
- 0.0158843994140625,
- -0.0218505859375,
- -0.01026153564453125,
- -0.01088714599609375,
- 0.004848480224609375,
- 0.0258331298828125,
- -0.036163330078125,
- -0.0540771484375,
- -0.01039886474609375,
- -0.005092620849609375,
- 0.022613525390625,
- 0.016265869140625,
- 0.005146026611328125,
- -0.0233001708984375,
- -0.0264892578125,
- -0.0196380615234375,
- 0.0182342529296875,
- 0.01580810546875,
- 0.0380859375,
- -0.03173828125,
- -0.07086181640625,
- 0.005401611328125,
- 0.033599853515625,
- 0.03662109375,
- 0.0037250518798828125,
- -0.000682830810546875,
- -0.0186767578125,
- 0.00199127197265625,
- -0.01690673828125,
- -0.062744140625,
- -0.0308990478515625,
- 0.0280609130859375,
- 0.006683349609375,
- 0.01276397705078125,
- -0.036590576171875,
- -0.037811279296875,
- -0.0361328125,
- -0.044219970703125,
- 0.01099395751953125,
- 0.058349609375,
- -0.007762908935546875,
- 0.01105499267578125,
- -0.0218505859375,
- -0.00801849365234375,
- 0.048583984375,
- 0.03253173828125,
- -0.0104522705078125,
- -0.0128326416015625,
- -0.01580810546875,
- -0.01010894775390625,
- -0.021820068359375,
- 0.023345947265625,
- -0.0243988037109375,
- -0.030914306640625,
- -0.0231475830078125,
- -0.036102294921875,
- -0.0063629150390625,
- -0.01702880859375,
- 0.038665771484375,
- 0.019561767578125,
- -0.01555633544921875,
- -0.0355224609375,
- 0.0122528076171875,
- 0.01308441162109375,
- -0.0006513595581054688,
- 0.03662109375,
- 0.0173187255859375,
- 0.064697265625,
- 0.0180206298828125,
- -0.01116180419921875,
- -0.001995086669921875,
- 0.0214385986328125,
- 0.032928466796875,
- -0.010589599609375,
- 0.070068359375,
- 0.0122833251953125,
- 0.04412841796875,
- 0.005336761474609375,
- 0.02899169921875,
- 0.0093231201171875,
- -0.01134490966796875,
- 0.004177093505859375,
- -0.0204315185546875,
- 0.0008978843688964844,
- -0.001094818115234375,
- 0.033599853515625,
- 0.005126953125,
- -0.04046630859375,
- 0.002315521240234375,
- -0.00643157958984375,
- 0.01268768310546875,
- -0.0125579833984375,
- 0.00930023193359375,
- -0.01485443115234375,
- -0.00028634071350097656,
- 0.031707763671875,
- -0.0039825439453125,
- -0.0290985107421875,
- 0.039581298828125,
- 0.06512451171875,
- 0.0552978515625,
- 0.0239105224609375,
- 0.064697265625,
- 0.0186767578125,
- 0.0177154541015625,
- 0.028961181640625,
- 0.0188446044921875,
- -0.04510498046875,
- -0.017669677734375,
- -0.01947021484375,
- 0.0307464599609375,
- -0.04827880859375,
- -0.02532958984375,
- -0.05511474609375,
- -0.006175994873046875,
- 0.01454925537109375,
- -0.0290374755859375,
- 0.003948211669921875,
- -0.0018672943115234375,
- -0.0579833984375,
- -0.08843994140625,
- 0.0214996337890625,
- -0.037506103515625,
- -0.0213623046875,
- -0.01666259765625,
- -0.005634307861328125,
- -0.005496978759765625,
- 0.02117919921875,
- 0.032623291015625,
- -0.0428466796875,
- -0.085205078125,
- -0.036407470703125,
- -0.046051025390625,
- -0.016510009765625,
- 0.036224365234375,
- 0.00017917156219482422,
- -0.0274658203125,
- 0.0237274169921875,
- 0.0677490234375,
- 0.093994140625,
- 0.022369384765625,
- -0.004436492919921875,
- -0.0004718303680419922,
- 0.0178680419921875,
- 0.045623779296875,
- -0.0229644775390625,
- -0.046844482421875,
- -0.03643798828125,
- 0.1600341796875,
- 0.023162841796875,
- 0.008331298828125,
- -0.0249786376953125,
- -0.0038013458251953125,
- 0.01255035400390625,
- 0.01297760009765625,
- -0.0081634521484375,
- -0.0399169921875,
- 0.006084442138671875,
- -0.0150299072265625,
- -0.05023193359375,
- 0.04168701171875,
- 0.0014791488647460938,
- -0.010467529296875,
- -0.004199981689453125,
- -0.0806884765625,
- 0.0022830963134765625,
- -0.0311279296875,
- 0.01071929931640625,
- 0.016143798828125,
- 0.0089874267578125,
- -0.087890625,
- -0.004486083984375,
- -0.01036834716796875,
- -0.004886627197265625,
- -0.01467132568359375,
- -0.00363922119140625,
- 0.026519775390625,
- 0.0445556640625,
- 0.0185546875,
- 0.0007457733154296875,
- 0.009796142578125,
- -0.0010776519775390625,
- 0.016357421875,
- -0.058319091796875,
- 0.00782012939453125,
- -0.003757476806640625,
- -0.01227569580078125,
- -0.01241302490234375,
- -0.0039215087890625,
- 0.034423828125,
- 0.036865234375,
- 0.0215606689453125,
- -0.06689453125,
- -0.006587982177734375,
- 0.0299835205078125,
- -0.0039520263671875,
- -0.0006346702575683594,
- -0.01290130615234375,
- 0.00946044921875,
- 0.0285491943359375,
- -0.03204345703125,
- -0.0191497802734375,
- 0.0167694091796875,
- 0.0238494873046875,
- 0.006191253662109375,
- -0.036224365234375,
- -0.0182037353515625,
- -0.02923583984375,
- 0.0022335052490234375,
- -0.0041961669921875,
- 0.054534912109375,
- 0.0071868896484375,
- 0.0517578125,
- 0.035369873046875,
- -0.006195068359375,
- -0.03582763671875,
- -0.010833740234375,
- -0.035919189453125,
- 0.001667022705078125,
- 0.00930023193359375,
- 0.0168914794921875,
- -0.041412353515625,
- -0.0061798095703125,
- -0.003147125244140625,
- -0.050537109375,
- 0.01239013671875,
- 0.00014650821685791016,
- -0.0330810546875,
- -0.0214996337890625,
- 0.01165771484375,
- 0.0321044921875,
- -0.034423828125,
- 0.00970458984375,
- 0.008941650390625,
- 0.0160980224609375,
- 0.01200103759765625,
- 0.019622802734375,
- 0.040985107421875,
- -0.0217742919921875,
- 0.0440673828125,
- 0.031951904296875,
- 0.004909515380859375,
- 0.00018727779388427734,
- -0.032196044921875,
- -0.059295654296875,
- -0.054168701171875,
- 0.01306915283203125,
- 0.0238494873046875,
- 0.0302581787109375,
- 0.00746917724609375,
- 0.0179290771484375,
- 0.031524658203125,
- -0.012969970703125,
- 0.04742431640625,
- 0.0069580078125,
- -0.0088653564453125,
- -0.007640838623046875,
- 0.048919677734375,
- 0.00565338134765625,
- -0.036865234375,
- -0.0452880859375,
- 0.01001739501953125,
- -0.0335693359375,
- -0.0574951171875,
- -0.017852783203125,
- -0.007343292236328125,
- 0.0579833984375,
- -0.02130126953125,
- 0.055938720703125,
- -0.0173492431640625,
- 0.01336669921875,
- -0.019195556640625,
- -0.004730224609375,
- 0.0283966064453125,
- -0.007221221923828125,
- 0.02532958984375,
- 0.0150299072265625,
- -0.0295867919921875,
- 0.032745361328125,
- -0.0049896240234375,
- 0.06939697265625,
- 0.04901123046875,
- 0.0166015625,
- 0.06787109375,
- 0.00771331787109375,
- 0.041107177734375,
- -0.028411865234375,
- -0.00662994384765625,
- 0.03570556640625,
- 0.007213592529296875,
- 0.0276947021484375,
- 0.034149169921875,
- -0.010223388671875,
- 0.017974853515625,
- 0.006336212158203125,
- -0.031585693359375,
- -0.05426025390625,
- -0.00830078125,
- -0.01013946533203125,
- 0.004467010498046875,
- -0.01169586181640625,
- -0.025604248046875,
- 0.02734375,
- -0.01471710205078125,
- -0.0093231201171875,
- -0.0049591064453125,
- 0.0195159912109375,
- 0.0016946792602539062,
- 0.01061248779296875,
- 0.06597900390625,
- -0.05584716796875,
- -0.0188446044921875,
- 0.038970947265625,
- 0.0400390625,
- -0.026458740234375,
- -0.0181732177734375,
- -0.059600830078125,
- 0.0113677978515625,
- -0.0229949951171875,
- 0.047454833984375,
- -0.0033855438232421875,
- 0.004650115966796875,
- -0.03076171875,
- -0.0016345977783203125,
- 0.0177154541015625,
- -0.011871337890625,
- 0.0061798095703125,
- 0.0013113021850585938,
- 0.0119171142578125,
- 0.02667236328125,
- -0.0010986328125,
- 0.0095062255859375,
- -0.01227569580078125,
- 0.0249786376953125,
- 0.0113677978515625,
- -0.01021575927734375,
- -0.048004150390625,
- -0.006534576416015625,
- 0.037750244140625,
- 0.0609130859375,
- -0.01378631591796875,
- -0.0037384033203125,
- 0.031280517578125,
- -0.051727294921875,
- 0.0218505859375,
- 0.044525146484375,
- 0.02972412109375,
- -0.01287841796875,
- 0.07183837890625,
- -0.00287628173828125,
- 0.005462646484375,
- 0.03265380859375,
- 0.0194091796875,
- -0.007274627685546875,
- 0.0236968994140625,
- 0.042449951171875,
- 0.005931854248046875,
- 0.0288543701171875,
- -0.0244903564453125,
- 0.0293426513671875,
- 0.01593017578125,
- -0.00814056396484375,
- 0.02740478515625,
- 0.002605438232421875,
- -0.017242431640625,
- 0.00356292724609375,
- 0.0167083740234375,
- -0.0024738311767578125,
- -0.02349853515625,
- 0.005077362060546875,
- -0.05303955078125,
- 0.00830841064453125,
- -0.01322174072265625,
- -0.0355224609375,
- 0.033233642578125,
- -0.0235748291015625,
- -0.02386474609375,
- -0.03424072265625,
- -0.0069122314453125,
- -0.00978851318359375,
- -0.020660400390625,
- -0.005340576171875,
- 0.02703857421875,
- -0.007781982421875,
- 0.01129150390625,
- -0.01224517822265625,
- 0.024322509765625,
- -0.0633544921875,
- 0.02606201171875,
- -0.0307159423828125,
- -0.017181396484375,
- 0.0142364501953125,
- -0.031982421875,
- -0.0017604827880859375,
- -0.0264892578125,
- 0.0162811279296875,
- -0.00954437255859375,
- 0.033172607421875,
- 0.00337982177734375,
- 0.0667724609375,
- -0.0268402099609375,
- -0.0006451606750488281,
- 0.0296478271484375,
- -0.005767822265625,
- -0.041259765625,
- -0.050079345703125,
- -0.019866943359375,
- 0.042999267578125,
- 0.049713134765625,
- 0.053009033203125,
- -0.0631103515625,
- -0.00958251953125,
- -0.03448486328125,
- 0.036895751953125,
- 0.01239013671875,
- -0.04119873046875,
- 0.02484130859375,
- 0.014556884765625,
- -0.0014200210571289062,
- 0.003826141357421875,
- -0.0183868408203125,
- 0.0026302337646484375,
- 0.008453369140625,
- 0.03204345703125,
- -0.01617431640625,
- -0.0006113052368164062,
- 0.0439453125,
- 0.00417327880859375,
- 0.03741455078125,
- 0.0175933837890625,
- -0.079345703125,
- 0.043701171875,
- -0.03289794921875,
- -0.013397216796875,
- -0.0169677734375,
- -0.031158447265625,
- -0.046600341796875,
- 0.01511383056640625,
- -0.0310211181640625,
- 0.0293426513671875,
- -0.0199127197265625,
- -0.0005970001220703125,
- 0.01444244384765625,
- -0.03448486328125,
- 0.002105712890625,
- -0.0015773773193359375,
- -0.01195526123046875,
- 0.025970458984375,
- 0.0189056396484375,
- 0.0142364501953125,
- 0.055267333984375,
- 0.007259368896484375,
- 0.05340576171875,
- -0.0202789306640625,
- -0.006404876708984375,
- -0.03582763671875,
- 0.039337158203125,
- 0.0090179443359375,
- -0.0545654296875,
- 0.04937744140625,
- 0.048004150390625,
- -0.0238494873046875,
- 0.0243377685546875,
- 0.028961181640625,
- 0.027496337890625,
- -0.049774169921875,
- -0.02215576171875,
- -0.01526641845703125,
- 0.005756378173828125,
- -0.068603515625,
- -0.0038280487060546875,
- -0.005756378173828125,
- 0.08148193359375,
- -0.04742431640625,
- 0.0207061767578125,
- -0.0479736328125,
- 0.02374267578125,
- -0.021575927734375,
- 0.064208984375,
- 0.043853759765625,
- 0.040924072265625,
- 0.01512908935546875,
- -0.0198974609375,
- ...]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.011639527976512909,
+ 0.03718038275837898,
+ 0.04311547055840492,
+ 0.02063680626451969,
+ 0.07240589708089828,
+ 0.07042297720909119,
+ 0.0722837969660759,
+ 0.0378093384206295,
+ -0.008180405013263226,
+ -0.04879167675971985,
+ 0.03116217814385891,
+ -0.06400202214717865,
+ 0.046021148562431335,
+ -0.007063554134219885,
+ 0.022139178588986397,
+ 0.0818285197019577,
+ 0.09043239802122116,
+ 0.062112849205732346,
+ -0.053189489990472794,
+ -0.052397601306438446,
+ -0.0065028793178498745,
+ 0.02124064415693283,
+ 0.07372233271598816,
+ -0.04451997950673103,
+ 0.0008839594083838165,
+ 0.008147072978317738,
+ 0.024836406111717224,
+ 0.07420461624860764,
+ 0.09315934777259827,
+ -0.012337173335254192,
+ 0.02154213935136795,
+ -0.05823332443833351,
+ 0.013287056237459183,
+ 0.03655413165688515,
+ 0.08775939047336578,
+ 0.037879034876823425,
+ -0.012672808021306992,
+ 0.026031101122498512,
+ -0.011200224049389362,
+ 0.03390206769108772,
+ 0.012480386532843113,
+ 0.0007153262849897146,
+ 0.036123938858509064,
+ 0.03519579395651817,
+ 0.047758299857378006,
+ -0.08590920269489288,
+ -0.04159936308860779,
+ -0.003877071663737297,
+ -0.007894373498857021,
+ 0.048365525901317596,
+ -0.06638959050178528,
+ -0.032844867557287216,
+ -0.06834123283624649,
+ -0.04104126617312431,
+ -0.028998278081417084,
+ -0.03925301134586334,
+ -0.032819122076034546,
+ -0.030211985111236572,
+ 0.02564634382724762,
+ -0.07260775566101074,
+ 0.02827909030020237,
+ -0.036977075040340424,
+ 0.007452061399817467,
+ 0.027809590101242065,
+ 0.05267297104001045,
+ -0.07021653652191162,
+ -0.014117561280727386,
+ 0.06044849753379822,
+ -0.04571892321109772,
+ 0.08376257121562958,
+ -0.04840059578418732,
+ 0.029129421338438988,
+ -0.09749414771795273,
+ 0.000840750930365175,
+ -0.1273718923330307,
+ 0.004639281891286373,
+ -0.00298058008775115,
+ -0.09776831418275833,
+ 0.11727699637413025,
+ -0.04606999084353447,
+ 0.003772728843614459,
+ -0.09066886454820633,
+ -0.017231985926628113,
+ 0.015924569219350815,
+ 0.05297653749585152,
+ -0.0007727170013822615,
+ 0.07499522715806961,
+ -0.041528407484292984,
+ -0.0814230814576149,
+ 0.014081133529543877,
+ -0.0240975022315979,
+ -0.04162980616092682,
+ 0.00716903293505311,
+ 0.0013181520625948906,
+ 0.012083918787539005,
+ 0.031722135841846466,
+ -0.0793284997344017,
+ -0.06150233745574951,
+ 0.04770230874419212,
+ 0.12866610288619995,
+ 0.026449069380760193,
+ 0.0762377679347992,
+ 0.04883785545825958,
+ -0.019133100286126137,
+ -0.14779499173164368,
+ -0.102051742374897,
+ -0.024965208023786545,
+ -0.017843855544924736,
+ -0.012672643177211285,
+ -0.037501152604818344,
+ -0.039078135043382645,
+ 0.00882380735129118,
+ -0.008173207752406597,
+ 0.0051508317701518536,
+ 0.044090498238801956,
+ -0.0769847184419632,
+ 0.03186015412211418,
+ -0.04060757905244827,
+ -0.0226266048848629,
+ -0.03339717164635658,
+ 0.011200472712516785,
+ 0.085564523935318,
+ -0.0837293490767479,
+ 0.02627517096698284,
+ -0.013925299979746342,
+ -0.07439687103033066,
+ 0.10562660545110703,
+ -2.4493996193274784e-33,
+ 0.0031094704754650593,
+ -0.047185227274894714,
+ 0.01799844391644001,
+ 0.04524950683116913,
+ 0.04918197914958,
+ 0.039841923862695694,
+ -0.044148094952106476,
+ 0.10661552101373672,
+ -0.11884736269712448,
+ 0.04877129942178726,
+ -0.02893945388495922,
+ -0.08021640032529831,
+ 0.04146934673190117,
+ 0.07287456095218658,
+ -0.01529389526695013,
+ -0.004749467596411705,
+ -0.03762802854180336,
+ 0.0033071800135076046,
+ 0.00937844067811966,
+ 0.038330044597387314,
+ -0.0219061728566885,
+ 0.041894685477018356,
+ -0.03569726645946503,
+ -0.03526904806494713,
+ -0.08044841140508652,
+ -0.04604843258857727,
+ 0.051873579621315,
+ -0.04847503826022148,
+ -0.04698622599244118,
+ 0.006474812515079975,
+ -0.0704488456249237,
+ -0.07238122820854187,
+ -0.01255940180271864,
+ -0.005925860721617937,
+ 0.06142212450504303,
+ 0.011619224213063717,
+ 0.06381605565547943,
+ 0.030987877398729324,
+ 0.001669619814492762,
+ 0.007098140195012093,
+ 0.05251732096076012,
+ -0.018041789531707764,
+ 0.09164673835039139,
+ 0.0024327959399670362,
+ -0.027754290029406548,
+ 0.0033376712817698717,
+ 0.05222579836845398,
+ 0.019585059955716133,
+ 0.024918364360928535,
+ -0.011664268560707569,
+ 0.017139572650194168,
+ 0.027144303545355797,
+ -0.021466337144374847,
+ -0.05664077773690224,
+ 0.12554022669792175,
+ 0.003554984461516142,
+ -0.06615206599235535,
+ 0.07275242358446121,
+ 0.07055477797985077,
+ 0.006175174377858639,
+ -0.006075164768844843,
+ 0.021315935999155045,
+ 0.01410683710128069,
+ 0.0329328253865242,
+ 0.0382511280477047,
+ 0.022879602387547493,
+ -0.028423108160495758,
+ -0.08140161633491516,
+ 0.0870395377278328,
+ 0.0505465492606163,
+ -0.03160814195871353,
+ 0.0065881903283298016,
+ -0.10739683359861374,
+ -0.01242506317794323,
+ -0.09637781232595444,
+ 0.019851822406053543,
+ -0.04090028256177902,
+ 0.009808083064854145,
+ -0.006711379624903202,
+ 0.043482959270477295,
+ -0.006808578036725521,
+ -0.12525717914104462,
+ -0.02061653882265091,
+ -0.015587188303470612,
+ -0.005075118504464626,
+ -0.06577302515506744,
+ 0.032940931618213654,
+ -0.12829968333244324,
+ 0.05006210133433342,
+ 0.012256840243935585,
+ -0.02283720299601555,
+ -0.026797786355018616,
+ -0.021386586129665375,
+ -0.021436093375086784,
+ 0.08388675004243851,
+ 5.211621359077177e-35,
+ 0.0005258721648715436,
+ 0.046621229499578476,
+ 0.006997690536081791,
+ 0.013881109654903412,
+ 0.040527183562517166,
+ 0.01623893529176712,
+ -0.04276292398571968,
+ 0.006987962406128645,
+ -0.012187881395220757,
+ 0.06422524899244308,
+ -0.05008508265018463,
+ -0.041584353893995285,
+ 0.09634178131818771,
+ -0.08871810138225555,
+ 0.00872135628014803,
+ 0.07772611826658249,
+ 0.011686037294566631,
+ 0.02889171801507473,
+ -0.040531404316425323,
+ 0.06143515557050705,
+ -0.037673596292734146,
+ 0.04913065955042839,
+ 0.025919627398252487,
+ 0.07578086853027344,
+ 0.047935307025909424,
+ 0.0919497087597847,
+ 0.054394032806158066,
+ -0.04059455171227455,
+ -0.0671158954501152,
+ -0.06804458051919937,
+ -0.02733440138399601,
+ -0.10623344033956528,
+ -0.030151473358273506,
+ 0.03647211194038391,
+ -0.06721152365207672,
+ 0.031662244349718094,
+ 0.13135188817977905,
+ -0.018756119534373283,
+ -0.04304072633385658,
+ -0.0013509135460481048,
+ 0.08837597072124481,
+ 0.014184346422553062,
+ -0.08203218877315521,
+ 0.04725467413663864,
+ 0.00427491869777441,
+ -0.01842138171195984,
+ -0.11865165829658508,
+ -0.0676911398768425,
+ 0.08061803877353668,
+ 0.025813885033130646,
+ -0.13013888895511627,
+ 0.018252849578857422,
+ -0.10066743940114975,
+ -0.013041422702372074,
+ 0.009973641484975815,
+ -0.07359949499368668,
+ -0.002750976476818323,
+ -0.05379823222756386,
+ 0.029658259823918343,
+ -0.022493738681077957,
+ -0.04210195317864418,
+ 0.023892607539892197,
+ -0.019984591752290726,
+ -0.08516755700111389,
+ 0.12846815586090088,
+ -0.1019839495420456,
+ -0.030387867242097855,
+ 0.0486404187977314,
+ -0.0792829617857933,
+ -0.03330032899975777,
+ -0.01742643676698208,
+ 0.011735490523278713,
+ -0.017735393717885017,
+ 0.006592880934476852,
+ -0.027418501675128937,
+ -0.022646907716989517,
+ 0.051702581346035004,
+ 0.0038727924693375826,
+ -0.025406453758478165,
+ -0.10005642473697662,
+ 0.06624273955821991,
+ -0.04884424805641174,
+ 0.028326215222477913,
+ -0.03656398504972458,
+ 0.021011028438806534,
+ 0.038866762071847916,
+ 0.016526609659194946,
+ -0.04571989178657532,
+ -0.028324227780103683,
+ 0.052568189799785614,
+ -0.01536584459245205,
+ 0.00510788056999445,
+ 0.016185052692890167,
+ 0.05604090914130211,
+ 0.05189011991024017,
+ -1.5948948828281573e-08,
+ -0.022652175277471542,
+ 0.015237188898026943,
+ 0.04294353723526001,
+ 0.012781250290572643,
+ -0.049484968185424805,
+ -0.02242325432598591,
+ 0.00895726028829813,
+ -0.05432410165667534,
+ -0.032178182154893875,
+ -0.04800733923912048,
+ 0.0511842705309391,
+ -0.03152543306350708,
+ -0.023740721866488457,
+ 0.0015811433549970388,
+ -0.006890567950904369,
+ 0.05231360346078873,
+ -0.059246860444545746,
+ 0.006429159082472324,
+ 0.019715072587132454,
+ 0.0300996545702219,
+ 0.030963828787207603,
+ 0.085995152592659,
+ -0.006611308548599482,
+ 0.0017660981975495815,
+ -0.04612205550074577,
+ 0.015180149115622044,
+ 0.011716002598404884,
+ 0.007977939210832119,
+ 0.03837024047970772,
+ 0.02290923520922661,
+ 0.027564091607928276,
+ 0.09625943750143051,
+ -0.023623675107955933,
+ -0.03365515172481537,
+ -0.017337143421173096,
+ -0.04669130966067314,
+ 0.03919530287384987,
+ -0.09497537463903427,
+ 0.009154191240668297,
+ -0.06500634551048279,
+ -0.002274857135489583,
+ 0.030338486656546593,
+ -0.059148985892534256,
+ -0.032823238521814346,
+ 0.09640981256961823,
+ -0.0010113314492627978,
+ 0.02114374376833439,
+ -0.04600390046834946,
+ 0.018581993877887726,
+ 0.016355210915207863,
+ -0.026192156597971916,
+ -0.07646306604146957,
+ 0.023274291306734085,
+ -0.02331104502081871,
+ 0.0356781966984272,
+ 0.04583622142672539,
+ 0.031159117817878723,
+ 0.012169982306659222,
+ -0.026043405756354332,
+ 0.00952734611928463,
+ 0.025545505806803703,
+ 0.0908745601773262,
+ 0.013599500060081482,
+ -0.06861294060945511]
 </pre></div>
 </div>
 </div>
@@ -1528,7 +1064,7 @@ Search
 <p>For Qdrant to initialize the structure of the index correctly, we need to provide the dimentionality of the embedding we will be using as well as teh distance metric.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection_name</span> <span class="o">=</span> <span class="s2">&quot;1505&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection_name</span> <span class="o">=</span> <span class="s2">&quot;2005&quot;</span>
 
 <span class="n">qd_client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
     <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">,</span>
@@ -1572,72 +1108,72 @@ Search
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2032c410-99b3-4163-83e2-676a60e2c23c&#39;,
- &#39;ab7e1e6b-8641-447c-8a6b-81412a60b62a&#39;,
- &#39;c0522e25-3ac4-4e03-8118-87002c6d5d3b&#39;,
- &#39;3e0e8303-d763-4d2a-bb79-1df40b004b53&#39;,
- &#39;83b7105a-f903-47e9-8102-417c0a4086e2&#39;,
- &#39;fa346f5e-5f96-4846-85e8-30195a48984d&#39;,
- &#39;c9bce4cd-a789-46f4-94f4-dee67c5c8f51&#39;,
- &#39;2e00441d-36ed-4a28-8a1d-9fe77ffd081f&#39;,
- &#39;b3dc5a78-b7ec-4f13-8d88-dc855b446f1b&#39;,
- &#39;044c7db0-38b3-4113-b2a3-bf802c27e448&#39;,
- &#39;bbece7a7-b622-4db3-b2e2-56d557225379&#39;,
- &#39;5d10cd5b-00e8-45bc-b33c-d5665dd81ecc&#39;,
- &#39;269d4146-1ece-433f-84da-e065137e6813&#39;,
- &#39;1e61d0bb-97c1-41f9-950e-a4844bcba337&#39;,
- &#39;c7eefc1d-c296-4db0-b18b-9a905c1373e3&#39;,
- &#39;714bddd1-a313-44dd-ac6a-6eb89e794cd3&#39;,
- &#39;e3d7142d-a78f-4213-8800-640c291ee799&#39;,
- &#39;a23e9c23-fb06-4123-9d2f-b963d935ea7f&#39;,
- &#39;863bd9ad-65f4-42cb-8d39-424f623c744b&#39;,
- &#39;1d632eeb-ecb2-4794-b588-539b50c6947e&#39;,
- &#39;db5554f7-18a8-49bc-a052-0d5a718176d4&#39;,
- &#39;06c10ade-ce8f-45e5-ae98-eadb207b77ec&#39;,
- &#39;30d944b1-7b30-4c08-9234-e2716049047a&#39;,
- &#39;29db095e-4c03-4cd2-a9b1-78addc0da21e&#39;,
- &#39;d82ef95a-20de-45fc-9a7a-60a0fb0dd7ae&#39;,
- &#39;a79ef0e7-5290-4ed1-b279-24631ed5389c&#39;,
- &#39;0071b83c-b829-42a5-afee-61a4eb6f7c00&#39;,
- &#39;12c0e756-a1f6-44c6-bfed-7cc88acdbe17&#39;,
- &#39;c41466b7-0d87-4424-bca1-883df076cdf4&#39;,
- &#39;8c7869e4-3de0-433e-a81c-bd2120caae90&#39;,
- &#39;f4393a61-d7fe-4bcc-9847-3fcef287feb4&#39;,
- &#39;99782261-911b-48a7-abf7-c44aec203dc0&#39;,
- &#39;abaf799b-4964-43d7-bed4-2fbd37d1e473&#39;,
- &#39;b1507637-6a97-418a-bc4a-60b4cb4e29db&#39;,
- &#39;45b5c62f-2649-4f57-951c-06dece86af2c&#39;,
- &#39;b5f85104-6624-4d1b-9517-425fdd4f72ca&#39;,
- &#39;4210b091-ed08-4220-9e42-5194163dbc99&#39;,
- &#39;d6351ab3-5049-4f65-9d26-0d288d7a249a&#39;,
- &#39;60353b1a-5b53-4a49-b0f7-b7478f54824d&#39;,
- &#39;3c2386b4-d71a-47e2-9e43-8ddfda43c24a&#39;,
- &#39;081b5a7e-1efa-471c-b1f1-dd05da31c573&#39;,
- &#39;3d9ef8b8-4376-4694-88bf-b51f0daa8b50&#39;,
- &#39;c5443c07-1fa1-4038-93b6-2fe4ba26440a&#39;,
- &#39;032216e5-fe96-4004-b973-33494972abe9&#39;,
- &#39;10d8feea-0fd8-4be7-a57e-1aae8ab29d61&#39;,
- &#39;a0229a81-59c5-46fc-853c-1f1f1daf2026&#39;,
- &#39;777189d3-3946-4564-9a5c-4a9572dc98da&#39;,
- &#39;38a0fdc8-f782-4a4b-802d-0ba13e85fb87&#39;,
- &#39;6bc5f959-0f07-47e0-a1d4-ea5a3f1ed8db&#39;,
- &#39;4d13c075-318e-4d94-8c31-47441ea68560&#39;,
- &#39;0de9b240-3453-4515-8616-5b95663a69f6&#39;,
- &#39;123bb7ae-5493-4c71-bf17-977a5aa7d06e&#39;,
- &#39;78895ca9-be3d-42f5-911f-16d38e054dad&#39;,
- &#39;6ad56b1f-b617-4206-9421-101cf7f47fa9&#39;,
- &#39;ad8fd90b-cc6f-4218-9778-05718255bdaa&#39;,
- &#39;7adc826d-0679-42a2-bc92-9e420825fbfa&#39;,
- &#39;5a726ca6-4849-4449-945f-61d949928872&#39;,
- &#39;2807dcc1-75d5-4573-b4f2-4cb4f1f65dc0&#39;,
- &#39;d93cec74-6552-4036-922e-11e02b29c5fd&#39;,
- &#39;608e98e5-db53-4af3-a75c-f71765904304&#39;,
- &#39;90f2e696-b6aa-4aef-94e6-e571499be00a&#39;,
- &#39;fdf2dde1-f2f3-46f7-a5e1-fd53d4658539&#39;,
- &#39;04b62c0b-9d8a-4275-9437-9170657115eb&#39;,
- &#39;a531b7e9-1d4e-4c0c-8eb4-3fcc1f1ef2b1&#39;,
- &#39;626403e0-9ee4-4bf8-85c3-159951c181a1&#39;,
- &#39;629eff22-bcc5-46f3-b787-ec424ac54999&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dc3efad1-1fbe-47f0-84ae-572108e29e7d&#39;,
+ &#39;4da1cb73-104b-40a9-957f-d2f34c3b92bb&#39;,
+ &#39;a701dd64-ab8f-43be-9989-9202a707569e&#39;,
+ &#39;d2ccaff0-9bcf-4bfb-ad1f-2b514c36f24a&#39;,
+ &#39;5e4330b9-b528-43ed-8aaf-f473a1197d41&#39;,
+ &#39;319595a2-8b94-46b6-af2f-f7270dc75797&#39;,
+ &#39;edb696e6-0896-4c9e-bb8b-917ee2fb9384&#39;,
+ &#39;1919b71b-ece2-4afa-bffd-b5c2acb5b990&#39;,
+ &#39;16f6dd91-f7c0-45b3-90ab-5ea80304cbbb&#39;,
+ &#39;cca9b313-f03f-4958-95ea-e4901c8791ef&#39;,
+ &#39;69a8ba48-f929-41aa-903c-30506d4830ae&#39;,
+ &#39;40d1d663-dbc7-4a50-ba41-c8f7d95dee3f&#39;,
+ &#39;16a583de-efbf-4cce-9004-adcc6c01c2e1&#39;,
+ &#39;58833b28-6d22-4bff-9ce4-204a0574179d&#39;,
+ &#39;04c75b55-48fe-4d5a-b3db-0d95805f9eec&#39;,
+ &#39;3251fe14-6aa1-4f6b-a503-8d19097bae55&#39;,
+ &#39;9c32a890-31c7-44cb-b83c-a8d9ed58627d&#39;,
+ &#39;f9710b49-414b-42c8-b600-0c8ac710c730&#39;,
+ &#39;5edddf55-11e9-4ca3-aded-9509fdf8c366&#39;,
+ &#39;f88ed2b8-62fa-42cc-a60a-5453ef1b12e3&#39;,
+ &#39;eaea295b-7f5b-4d35-a3e0-87b8804b3014&#39;,
+ &#39;c6d12b7a-0659-404b-a960-698f802806b2&#39;,
+ &#39;d6cfd473-6636-4ded-aaae-b077e7adfe53&#39;,
+ &#39;2b7af95c-30d6-4554-bcf0-1ac2ad26f109&#39;,
+ &#39;37dda168-fa33-4102-a8f6-da25786542f7&#39;,
+ &#39;2c590d2f-bf19-4462-a400-e5b9d8ff5ff6&#39;,
+ &#39;01c90ac4-3541-4630-bb9d-c82dc3022751&#39;,
+ &#39;f0891052-0d8d-4c73-8a07-2134d7f1117a&#39;,
+ &#39;b70709b1-6a91-4bef-ba4b-a030888511aa&#39;,
+ &#39;c1c23ab4-a5b6-4a92-a178-dd7b95fa9233&#39;,
+ &#39;6035c5f3-5c0c-4b7d-81df-ab380b549617&#39;,
+ &#39;c0f77e55-308e-4637-a924-53ca6a9288a9&#39;,
+ &#39;0ff27ae8-cffc-4aba-ba54-fcd320ab7786&#39;,
+ &#39;bb8a886c-8165-4089-8cdc-3a48a45c5686&#39;,
+ &#39;c052ee88-15c8-480b-b9a7-a3e971531e23&#39;,
+ &#39;f1ec66e1-bab3-4735-9636-e69bc64b0c3e&#39;,
+ &#39;9b828ea9-a300-48da-b408-76ce2b440e56&#39;,
+ &#39;875d1724-816c-4571-a454-1480fdc6129d&#39;,
+ &#39;2dd649b8-f5e7-4a4d-ac83-f905250a9fb8&#39;,
+ &#39;dd347332-4eb2-44c2-ad53-d5d15b88757f&#39;,
+ &#39;a1845151-affa-4aaa-b49c-dd665d47cf83&#39;,
+ &#39;6cf565cb-b42a-4963-b224-a5eb5ae2f451&#39;,
+ &#39;d7dd7d8c-4c84-495b-bf87-998875b3384a&#39;,
+ &#39;c612e383-7b44-4d10-9d9b-a57cf06a1a47&#39;,
+ &#39;7214d973-f923-4cfd-b2a4-c7212967c9e7&#39;,
+ &#39;3c0eed46-e94a-43cf-a27d-a19b11adb900&#39;,
+ &#39;8880f1ad-6eba-410e-914e-17c17c2d9536&#39;,
+ &#39;9e4387bc-c6a0-4293-87c1-69b85cb2c32c&#39;,
+ &#39;e15d69b5-d34a-4265-8e21-a2f8faea079d&#39;,
+ &#39;1e57614b-40d1-41a9-9c2e-927593e25366&#39;,
+ &#39;6f45ca4e-fef8-4b6e-ba51-30f2b4549c43&#39;,
+ &#39;fa863a7c-c98b-4b90-844e-e547ba1c52cc&#39;,
+ &#39;aec6a1fb-03db-4a60-9dd7-36a221f0ca94&#39;,
+ &#39;1062b819-2e5f-4241-8bea-3fc947da23ee&#39;,
+ &#39;8649431e-6e74-4a80-9367-02d417033f56&#39;,
+ &#39;a5f49879-42f5-460a-85b8-ef3ea3ee5526&#39;,
+ &#39;83ce75f5-31c8-456e-96ac-6ff988a754dd&#39;,
+ &#39;31ec3f72-9108-4009-b346-15bce16e8b6c&#39;,
+ &#39;02d9f436-d38c-4eef-a172-ac1268510a82&#39;,
+ &#39;2ed2dd03-37f7-4cf5-b48c-87ea0974c4c6&#39;,
+ &#39;512a67b3-eb71-41b5-b175-cf2a48ef7fac&#39;,
+ &#39;d163946f-0f4f-4ea7-8321-dac9f1772c7f&#39;,
+ &#39;76d3750d-f292-42a6-bfcd-1bd457252669&#39;,
+ &#39;ae00b2a1-f477-41c4-9daa-3d9b20c57eed&#39;,
+ &#39;8c97e4a1-4134-4a75-92b6-d073738183d4&#39;,
+ &#39;be75d5f2-4b0b-41d5-8175-62a590fbde48&#39;]
 </pre></div>
 </div>
 </div>
@@ -1645,9 +1181,11 @@ Search
 <h2 id="rag">2. Simple RAG 💉</h2>
 <p>The basic RAG workflow is pretty straightforward: we just retrieve <em>k</em> most relevant documents and them insert them into the prompt as a part of the context.</p>
 <p>For that, we will combine the skills we have obtained so far to build a LangGraph agent that receives the input, checks if the user wants to quit, then do the retrieval and generate a context-aware response if not. We will build on the basic version of our first chatbot; to add the RAG functionality, we need to add a retrieval node and modify the generation prompt to inject the retrieved documents.</p>
+<p>First, we need to initialize our LLM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.tools.retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_retriever_tool</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span> <span class="n">MessagesPlaceholder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.tools.retriever</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_retriever_tool</span>
 </pre></div>
 </div>
 </div>
@@ -1693,17 +1231,6 @@ Search
 <p>Also, we will create a new simpler state because we won’t be using the <code class="docutils literal notranslate"><span class="pre">n_turns</span></code> and <code class="docutils literal notranslate"><span class="pre">language</span></code> properties.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SimpleRAGState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="c1"># `messages` is a list of messages of any kind. The `add_messages` function</span>
-    <span class="c1"># in the annotation defines how this state key should be updated</span>
-    <span class="c1"># (in this case, it appends messages to the list, rather than overwriting them)</span>
-    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">BasicRAGChatbot</span><span class="p">(</span><span class="n">Chatbot</span><span class="p">):</span>
 
     <span class="n">_graph_path</span> <span class="o">=</span> <span class="s2">&quot;./graph_basic_rag.png&quot;</span>
@@ -1720,7 +1247,7 @@ Search
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># graph builder</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SimpleRAGState</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SimpleState</span><span class="p">)</span>
         <span class="c1"># add the nodes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_node</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_node</span><span class="p">)</span>
@@ -1734,7 +1261,7 @@ Search
         <span class="c1"># compile the graph</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_input_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_input_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="n">user_query</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your message: &quot;</span><span class="p">)</span>
         <span class="n">human_message</span> <span class="o">=</span> <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_query</span><span class="p">)</span>
         <span class="c1"># add the input to the messages</span>
@@ -1742,7 +1269,7 @@ Search
             <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">human_message</span>   <span class="c1"># this will append the input to the messages</span>
         <span class="p">}</span>
     
-    <span class="k">def</span><span class="w"> </span><span class="nf">_retrieve_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_retrieve_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="c1"># retrieve the context</span>
         <span class="n">user_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># use the last message as the query</span>
         <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever_tool</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">user_query</span><span class="p">})</span>
@@ -1751,7 +1278,7 @@ Search
             <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">context</span>
         <span class="p">}</span>
     
-    <span class="k">def</span><span class="w"> </span><span class="nf">_respond_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_respond_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="c1"># the workflow is designed so that the context is always the last message</span>
         <span class="c1"># and the user query is the second to last message;</span>
         <span class="c1"># finally, we will be combining the context and the user query</span>
@@ -1787,6 +1314,14 @@ Search
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1802,12 +1337,12 @@ what sessions do I have about virtual assistants?
 
 ================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
 
-12.05.25, 17:28Topics Overview - LLM-based Assistants
-Page 8 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
-Week 8: Having Some Rest10.06.Ausfalltermin
-12.06.Ausfalltermin
-Week 917.06. Pitch: RAG Chatbot
-On material of session 06.05 and session 13.05
+Adaptive RAG, LangGraph
+Multimodality, LangChain
+Week 520.05. Lecture: Virtual Assistants Pt. 3: Multi-agent EnvironmentThis lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday /business operations in a multi-agent environment. We’ll look at how agents communicate with eachother, how their communication can be guided (both with and without involvement of a human), andthis all is used in real applications.
+Key points:
+Multi-agent environment
+Human in the loop
 
 Prompt Templates, LangChain
 Few-shot prompting, LangChain
@@ -1830,35 +1365,38 @@ Evaluation
 Core Reading:
  Aligning Large Language Models with Human: A Survey (pages 1-14), Huawei Noah’s Ark Lab
 
-On material of session 20.05
-In the second pitch, the contractors will present their solution to automated handling of customerrequests. The solution will have to introduce a multi-agent environment to take off working load froman imagined support team. The solution will have to read and categorize tickets, generate replies and(in case of need) notify the human that their interference is required. Specific requirements will bereleased on 27.05.
-Reading: see session 20.05 and session 22.05
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 8 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+Week 8: Having Some Rest10.06.Ausfalltermin
+12.06.Ausfalltermin
+Week 917.06. Pitch: RAG Chatbot
+On material of session 06.05 and session 13.05
 
-Adaptive RAG, LangGraph
-Multimodality, LangChain
-Week 520.05. Lecture: Virtual Assistants Pt. 3: Multi-agent EnvironmentThis lectures concludes the Virtual Assistants cycle and directs its attention to automating everyday /business operations in a multi-agent environment. We’ll look at how agents communicate with eachother, how their communication can be guided (both with and without involvement of a human), andthis all is used in real applications.
-Key points:
-Multi-agent environment
-Human in the loop
+Built with LangGraph, LangGraph (website page)
+Plan-Then-Execute: An Empirical Study of User Trust and Team Performance When Using LLMAgents As A Daily Assistant, Delft University of Technology &amp; The University of Queensland
+22.05. Lab: Multi-agent Environment
+On material of session 20.05
 
 
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 
 You have three sessions about Virtual Assistants:
 
-1. Week 3: 06.05. Lecture: Virtual Assistants Pt. 1: Chatbots
-2. Week 4: 13.05. Lecture: Virtual Assistants Pt. 2: RAG
-3. Week 5: 20.05. Lecture: Virtual Assistants Pt. 3: Multi-agent Environment
+1. Week 3: Lecture: Virtual Assistants Pt. 1: Chatbots (06.05)
+2. Week 4: Lecture: Virtual Assistants Pt. 2: RAG (13.05)
+3. Week 5: Lecture: Virtual Assistants Pt. 3: Multi-agent Environment (20.05)
 
-These sessions cover topics such as building chatbots, expanding chatbot functionality, and automating everyday/business operations in a multi-agent environment.
+Additionally, you have a pitch session on RAG Chatbot in Week 9 (17.06) and a lab session on Multi-agent Environment (22.05) that build upon the material of these lectures.
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+what are their dates?
 
 
 ================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
 
-what are they dates?
-
-
-================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+Disclaimer: the reading entries are no proper citations; the bibtex references as well as detailed infosabout the authors, publish date etc. can be found under the entry links.
 
 12.05.25, 17:28Topics Overview - LLM-based Assistants
 Page 8 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
@@ -1867,57 +1405,41 @@ Week 8: Having Some Rest10.06.Ausfalltermin
 Week 917.06. Pitch: RAG Chatbot
 On material of session 06.05 and session 13.05
 
-On material of session 03.06
-The contractors will present their agent that will have to generate full (minimalistic) websites by aprompt. For each website, the agent will have to generate its own style and a simple menu with workingnavigation as well as the contents. Specific requirements will be released on 24.06.
-Reading: see session 03.06 and session 05.06
+12.05.25, 17:28Topics Overview - LLM-based Assistants
+Page 1 of 12https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/topic_overview.html
+To p i c s  O v e r v i e wThe schedule is preliminary and subject to changes!
+The reading for each lecture is given as references to the sources the respective lectures base on. Youare not obliged to read anything. However, you are strongly encouraged to read references marked bypin emojis
 
-On material of session 20.05
-In the second pitch, the contractors will present their solution to automated handling of customerrequests. The solution will have to introduce a multi-agent environment to take off working load froman imagined support team. The solution will have to read and categorize tickets, generate replies and(in case of need) notify the human that their interference is required. Specific requirements will bereleased on 27.05.
-Reading: see session 20.05 and session 22.05
+On material of session 01.07
+The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find theliterature etc. for a given scientific problem. It will then have to introduce its results in form of a TODOor a guide for the researcher to start off of. Specific requirements will be released on 01.07.
+Reading: see session 01.07 and session 03.07
+24.07. Debate: Role of AI in Recent Years + Wrap-up
+On material of session 17.07
 
 On material of session 06.05 and session 13.05
 The first pitch will be dedicated to a custom RAG chatbot that the contractors (the presentingstudents, see the infos about Pitches) will have prepared to present. The RAG chatbot will have to beable to retrieve specific information from the given documents (not from the general knowledge!) anduse it in its responses. Specific requirements will be released on 22.05.
 Reading: see session 06.05, session 08.05, session 13.05, and session 15.05
 19.06.Ausfalltermin
 
-Debates
-Pitches
-LLM Inference Guide
-22.04. LLMs as a Form ofIntelligence vs LLMs asStatistical Machines
-24.04. LLM &amp; Agent Basics
-29.04. Intro to LangChain 
-!
-&quot;
-06.05. Virtual Assistants Pt. 1:Chatbots
-08.05. Basic LLM-basedChatbot 
-#
-Under development
-Under development
-Search
-
 
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 
-The dates mentioned in the text are:
+Based on the provided context, the dates mentioned are:
 
-1. 12.05.25
-2. 10.06 (Ausfalltermin)
-3. 12.06 (Ausfalltermin)
-4. 17.06 (Pitch: RAG Chatbot)
-5. 24.06 (release of specific requirements for generating websites)
-6. 22.05 (release of specific requirements for RAG chatbot)
-7. 27.05 (release of specific requirements for automated handling of customer requests)
-8. 19.06 (Ausfalltermin)
-9. 22.04 (Debate: LLMs as a Form of Intelligence vs LLMs as Statistical Machines)
-10. 24.04 (Debate: LLM &amp; Agent Basics)
-11. 29.04 (Intro to LangChain)
-12. 06.05 (Lecture: Virtual Assistants Pt. 1: Chatbots)
-13. 08.05 (Lecture: Basic LLM-based Chatbot)
-14. 03.06 (session on generating websites)
-15. 05.06 (session on generating websites)
-16. 20.05 (session on multi-agent environment)
-17. 22.05 (session on automated handling of customer requests)
-18. 13.05 (Lecture: Virtual Assistants Pt. 2: RAG)
+1. 06.05 (session on Virtual Assistants Pt. 1: Chatbots)
+2. 13.05 (session on Virtual Assistants Pt. 2: RAG)
+3. 17.06 (Pitch: RAG Chatbot)
+4. 01.07 (session with specific requirements for the last pitch)
+5. 03.07 (session related to the last pitch)
+6. 17.07 (session related to the debate on the Role of AI in Recent Years)
+7. 22.05 (release of specific requirements for the RAG chatbot)
+8. 24.07 (Debate: Role of AI in Recent Years + Wrap-up)
+9. 10.06 (Ausfalltermin)
+10. 12.06 (Ausfalltermin)
+11. 19.06 (Ausfalltermin) 
+12. 12.05.25 (Topics Overview - LLM-based Assistants) 
+13. 08.05 (session related to the RAG chatbot)
+14. 15.05 (session related to the RAG chatbot)
 
 
 ================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
@@ -1959,7 +1481,7 @@ quit
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># graph builder</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SimpleRAGState</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SimpleState</span><span class="p">)</span>
         <span class="c1"># add the nodes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_node</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_graph_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;reformulate_query&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reformulate_query_node</span><span class="p">)</span>
@@ -1975,7 +1497,7 @@ quit
         <span class="c1"># compile the graph</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_reformulate_query_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleRAGState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reformulate_query_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">SimpleState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reformulate_query_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
         <span class="n">generated_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="c1"># since we use the generated query instead of the user query,</span>
@@ -2161,7 +1683,7 @@ quit
 <p>We will also need to transform the state to accumulate the contexts gathered so far.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AdvancedRAGState</span><span class="p">(</span><span class="n">SimpleRAGState</span><span class="p">):</span> <span class="c1"># &quot;messages&quot; is already defined in SimpleRAGState</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AdvancedRAGState</span><span class="p">(</span><span class="n">SimpleState</span><span class="p">):</span> <span class="c1"># &quot;messages&quot; is already defined in SimpleRAGState</span>
     <span class="n">contexts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]]</span>    <span class="c1"># this is the list of retrieved documents, one list per retrieval</span>
 </pre></div>
 </div>
