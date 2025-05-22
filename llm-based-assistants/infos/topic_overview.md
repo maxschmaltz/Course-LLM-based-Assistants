@@ -204,7 +204,7 @@ This lectures concludes the Virtual Assistants cycle and directs its attention t
 
 **Key points**:
 * Multi-agent environment
-* Human in the loop
+* Agents communication
 * Examples of pipelines for business operations
 
 **Core Reading**:
