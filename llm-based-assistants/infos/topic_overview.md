@@ -65,6 +65,7 @@ In this lecture, we'll recap some basics about LLMs and LLM-based agents to make
 * [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761), `Meta AI`
 * [Granite-Function Calling Model: Introducing Function Calling Abilities via Multi-task Learning of Granular Tasks](https://arxiv.org/abs/2407.00121), `IBM Research`
 * 🍿 [Berkeley Function-Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html), `UC Berkeley` (leaderboard)
+* [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/pdf/2210.03629), `Princeton University & Google Research`
 * [A Survey on Multimodal Large Language Models](https://arxiv.org/abs/2306.13549), `University of Science and Technology of China & Tencent YouTu Lab`
 
 _____________________________________
