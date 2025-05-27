@@ -233,6 +233,7 @@ _____________________________________
 This lab will introduce a short walkthrough to creation of a multi-agent environment for automated meeting scheduling and preparation. We will see how the coordinator agent will communicate with two auxiliary agents to check time availability and prepare an agenda for the meeting.
 
 **Reading**:
+* ✍️ [Agent development with LangGraph](https://langchain-ai.github.io/langgraph/agents/overview/), `LangGraph`
 * ✍️ [Multi-agent network](https://langchain-ai.github.io/langgraph/tutorials/multi_agent/multi-agent-collaboration/), `LangGraph`
 * ✍️ [Human-in-the-loop](https://langchain-ai.github.io/langgraph/concepts/human_in_the_loop/), `LangGraph`
 * [Plan-and-Execute](https://langchain-ai.github.io/langgraph/tutorials/plan-and-execute/plan-and-execute/), `LangGraph`
