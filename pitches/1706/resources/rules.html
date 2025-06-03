@@ -1,0 +1,636 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>Competition Rules - LLM-based Assistants</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">LLM-based Assistants</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">LLM-based Assistants</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Infos and Stuff</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/topic_overview.html">Topics Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/formats/debates.html">Debates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/formats/pitches.html">Pitches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/llm_inference_guide/README.html">LLM Inference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 1: Intro</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block1_intro/2204.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block1_intro/2404.html">24.04. LLM &amp; Agent Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block1_intro/2904/2904.html">29.04. Intro to LangChain 🦜🔗</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/0605.html">06.05. Virtual Assistants Pt. 1: Chatbots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/0805/0805.html">08.05. Basic LLM-based Chatbot 🤖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/1305.html">13.05. Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/1505/1505.html">15.05. RAG Chatbot Pt. 1 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/2005/2005.html">20.05. RAG Chatbot Pt. 2 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/2705/2705.html">27.05. Multi-agent Environment 👾🤖👾</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/2205.html">22.05. Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 2: Applications in Science</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt2_science/under_development.html">Under development</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 3: Wrap-up</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block3_wrapup/under_development.html">Under development</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="competition-rules">
+<h1>Competition Rules<a class="headerlink" href="#competition-rules" title="Link to this heading">¶</a></h1>
+<p>The Competition named below is a skills-based competition to promote and further the field of data science. You must register via the Competition Website to enter. To enter the Competition, you must agree to these Official Competition Rules, which incorporate by reference the provisions and content of the Competition Website and any Specific Competition Rules herein (collectively, the “Rules”). Please read these Rules carefully before entry to ensure you understand and agree. You further agree that Submission in the Competition constitutes agreement to these Rules. You may not submit to the Competition and are not eligible to receive the prizes associated with this Competition unless you agree to these Rules. These Rules form a binding legal agreement between you and the Competition Sponsor with respect to the Competition. Your competition Submissions must conform to the requirements stated on the Competition Website. Your Submissions will be scored based on the evaluation metric described on the Competition Website. Subject to compliance with the Competition Rules, Prizes, if any, will be awarded to Participants with the best scores, based on the merits of the data science models submitted. See below for the complete Competition Rules. For Competitions designated as hackathons by the Competition Sponsor (“Hackathons”), your Submissions will be judged by the Competition Sponsor based on the evaluation rubric set forth on the Competition Website (“Evaluation Rubric”). The Prizes, if any, will be awarded to Participants with the highest ranking(s) as determined by the Competition Sponsor based on such rubric.</p>
+<p>You cannot sign up to Kaggle from multiple accounts and therefore you cannot enter or submit from multiple accounts.</p>
+<section id="competition-specific-terms">
+<h2>1. COMPETITION-SPECIFIC TERMS<a class="headerlink" href="#competition-specific-terms" title="Link to this heading">¶</a></h2>
+<section id="competition-title">
+<h3>1. COMPETITION TITLE<a class="headerlink" href="#competition-title" title="Link to this heading">¶</a></h3>
+<p>OpenAI to Z Challenge</p>
+</section>
+<section id="competition-sponsor">
+<h3>2. COMPETITION SPONSOR<a class="headerlink" href="#competition-sponsor" title="Link to this heading">¶</a></h3>
+<p>OpenAI OpCo, LLC. and its affiliates</p>
+</section>
+<section id="competition-sponsor-address">
+<h3>3. COMPETITION SPONSOR ADDRESS<a class="headerlink" href="#competition-sponsor-address" title="Link to this heading">¶</a></h3>
+<p>1455 Third Street, San Francisco, CA 94158</p>
+</section>
+<section id="competition-website">
+<h3>4. COMPETITION WEBSITE<a class="headerlink" href="#competition-website" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://www.kaggle.com/competitions/openai-to-z-challenge">https://www.kaggle.com/competitions/openai-to-z-challenge</a></p>
+</section>
+<section id="total-prizes-available-200-000-cash-205-000-credits-non-monetary-prizes">
+<h3>5. TOTAL PRIZES AVAILABLE: <span class="math notranslate nohighlight">\(200,000 cash + \)</span>205,000 credits + Non-monetary prizes<a class="headerlink" href="#total-prizes-available-200-000-cash-205-000-credits-non-monetary-prizes" title="Link to this heading">¶</a></h3>
+<p>Main Quest: <span class="math notranslate nohighlight">\(200,000 + \)</span>200,000 in OpenAI credits</p>
+<p>First Prize: <span class="math notranslate nohighlight">\(250,000 50/50 mix of cash and Open AI Credits
+Second Prize: \)</span>100,000 50/50 mix of cash and Open AI Credits
+Third Prize: $50,000 50/50 mix of cash and Open AI Credits
+Fourth Prize: Kudos
+Fifth Prize: Kudos
+Side Quests: Non-monetary</p>
+<p>Early Sharing Prize: 5x $1000 in OpenAI Credits</p>
+</section>
+<section id="winner-license-type">
+<h3>6. WINNER LICENSE TYPE<a class="headerlink" href="#winner-license-type" title="Link to this heading">¶</a></h3>
+<p>CC0</p>
+</section>
+<section id="data-access-and-use">
+<h3>7. DATA ACCESS AND USE<a class="headerlink" href="#data-access-and-use" title="Link to this heading">¶</a></h3>
+<p>Most datasets provided are in the Public Domain, with some exceptions, including, but not limited to: Google Earth Engine is free for non-commercial use, some datasets in the European Space Agency are CC-BY-SA 3.0 IGO, some datasets in Open Topography LiDAR are CC-BY-SA 4.0, AWS CLI is under Apache License 2.0, and The Archeo Blog is free for educational purposes (as per United States Copyright law). The datasets referenced here or referenced in any materials provided by Competition Sponsor are publicly available on the web, and may have different licenses. The Competition Sponsor does not own the copyright in any such datasets. The Competition Sponsor makes no representations or warranties regarding the license status of each image or dataset and you should verify the license and usage restrictions for each image and/or dataset yourself.</p>
+</section>
+</section>
+<section id="competition-specific-rules">
+<h2>2. COMPETITION-SPECIFIC RULES<a class="headerlink" href="#competition-specific-rules" title="Link to this heading">¶</a></h2>
+<p>In addition to the provisions of the General Competition Rules below, you understand and agree to these Competition-Specific Rules required by the Competition Sponsor:</p>
+<section id="team-limits">
+<h3>1. TEAM LIMITS<a class="headerlink" href="#team-limits" title="Link to this heading">¶</a></h3>
+<p>a. The maximum Team size is five (5).
+b. Team mergers are allowed and can be performed by the Team leader. In order to merge, the combined Team must have a total Submission count less than or equal to the maximum allowed as of the Team Merger Deadline. The maximum allowed is the number of Submissions per day multiplied by the number of days the competition has been running. For Hackathons, each team is allowed one (1) Submission; any Submissions submitted by Participants before merging into a Team will be unsubmitted.</p>
+</section>
+<section id="submission-limits">
+<h3>2. SUBMISSION LIMITS<a class="headerlink" href="#submission-limits" title="Link to this heading">¶</a></h3>
+<p>a. Intentionally Left Blank
+b. Intentionally Left Blank
+c. For Hackathons, each Team may submit one (1) Submission only.</p>
+</section>
+<section id="competition-timeline">
+<h3>3. COMPETITION TIMELINE<a class="headerlink" href="#competition-timeline" title="Link to this heading">¶</a></h3>
+<p>a. Competition Timeline dates (including Entry Deadline, Final Submission Deadline, Start Date, and Team Merger Deadline, as applicable) are reflected on the competition’s Overview &gt; Timeline page.</p>
+</section>
+<section id="competition-data">
+<h3>4. COMPETITION DATA<a class="headerlink" href="#competition-data" title="Link to this heading">¶</a></h3>
+<p>a. Data Access and Use.</p>
+<p>None. Competition Data will not be provided by Competition Sponsor for this Competition.
+b. Data Security.</p>
+<p>You agree to use reasonable and suitable measures to prevent persons who have not formally agreed to these Rules from gaining access to the Competition Data. You agree not to transmit, duplicate, publish, redistribute or otherwise provide or make available the Competition Data to any party not participating in the Competition. You agree to notify Kaggle immediately upon learning of any possible unauthorized transmission of or unauthorized access to the Competition Data and agree to work with Kaggle to rectify any unauthorized transmission or access.</p>
+</section>
+<section id="winner-license">
+<h3>5. WINNER LICENSE<a class="headerlink" href="#winner-license" title="Link to this heading">¶</a></h3>
+<p>a. Under Section 2.8 (Winners Obligations) of the General Rules below, you hereby grant and will grant the Competition Sponsor the following license(s) with respect to your Submission if you are a Competition winner:</p>
+<p>Open Source: You hereby license and will license your winning Submission and the source code used to generate the Submission under CC0, an Open Source Initiative-approved license (see <a class="reference external" href="http://www.opensource.org">www.opensource.org</a>) that in no event limits commercial use of such code or model containing or depending on such code.</p>
+<p>For generally commercially available software that you used to generate your Submission that is not owned by you, but that can be procured by the Competition Sponsor without undue expense, you do not need to grant the license in the preceding Section for that software.</p>
+<p>In the event that input data or pretrained models with an incompatible license are used to generate your winning solution, you do not need to grant an open source license in the preceding Section for that data and/or model(s).</p>
+<p>b. You may be required by the Sponsor to provide a detailed description of how the winning Submission was generated, to the Competition Sponsor’s specifications, as outlined in Section 2.8, Winner’s Obligations. This may include a detailed description of methodology, where one must be able to reproduce the approach by reading the description, and includes a detailed explanation of the architecture, preprocessing, loss function, training details, hyper-parameters, etc. The description should also include a link to a code repository with complete and detailed instructions so that the results obtained can be reproduced.</p>
+</section>
+<section id="external-data-and-tools">
+<h3>6. EXTERNAL DATA AND TOOLS<a class="headerlink" href="#external-data-and-tools" title="Link to this heading">¶</a></h3>
+<p>a. You may use data other than the Competition Data (“External Data”) to develop and test your Submissions. However, you will ensure the External Data is either publicly available and equally accessible to use by all Participants of the Competition for purposes of the competition at no cost to the other Participants, or satisfies the Reasonableness criteria as outlined in Section 2.6.b below. The ability to use External Data under this Section does not limit your other obligations under these Competition Rules, including but not limited to Section 2.8 (Winners Obligations).</p>
+<p>b. The use of external data and models is acceptable unless specifically prohibited by the Host. Because of the potential costs or restrictions (e.g., “geo restrictions”) associated with obtaining rights to use external data or certain software and associated tools, their use must be “reasonably accessible to all” and of “minimal cost”. Also, regardless of the cost challenges as they might affect all Participants during the course of the competition, the costs of potentially procuring a license for software used to generate a Submission, must also be considered. The Host will employ an assessment of whether or not the following criteria can exclude the use of the particular LLM, data set(s), or tool(s):</p>
+<p>Are Participants being excluded from a competition because of the “excessive” costs for access to certain LLMs, external data, or tools that might be used by other Participants. The Host will assess the excessive cost concern by applying a “Reasonableness” standard (the “Reasonableness Standard”). The Reasonableness Standard will be determined and applied by the Host in light of things like cost thresholds and accessibility.</p>
+<p>By way of example only, a small subscription charge to use additional elements of a large language model such as Gemini Advanced are acceptable if meeting the Reasonableness Standard of Sec. 8.2. Purchasing a license to use a proprietary dataset that exceeds the cost of a prize in the competition would not be considered reasonable.</p>
+<p>c. Automated Machine Learning Tools (“AMLT”)</p>
+<p>Individual Participants and Teams may use automated machine learning tool(s) (“AMLT”) (e.g., Google toML, H2O Driverless AI, etc.) to create a Submission, provided that the Participant or Team ensures that they have an appropriate license to the AMLT such that they are able to comply with the Competition Rules.</p>
+</section>
+<section id="eligibility">
+<h3>7. ELIGIBILITY<a class="headerlink" href="#eligibility" title="Link to this heading">¶</a></h3>
+<p>a. Unless otherwise stated in the Competition-Specific Rules above or prohibited by internal policies of the Competition Entities, employees, interns, contractors, officers and directors of Competition Entities may enter and participate in the Competition, but are not eligible to win any Prizes. In addition, judges and advertising agencies of the Competition Entities are not eligible to win any Prizes, as well as immediate family (spouse, parents, siblings, and children) and household members of the Competition Sponsor. “Competition Entities” means the Competition Sponsor, Kaggle Inc., and their respective parent companies, subsidiaries and affiliates. If you are such a Participant from a Competition Entity, you are subject to all applicable internal policies of your employer with respect to your participation.</p>
+</section>
+<section id="winners-obligations">
+<h3>8. WINNER’S OBLIGATIONS<a class="headerlink" href="#winners-obligations" title="Link to this heading">¶</a></h3>
+<p>a. As a condition to being awarded a Prize, a Prize winner must fulfill the following obligations:</p>
+<p>Deliver to the Competition Sponsor the final model’s software code as used to generate the winning Submission and associated documentation. The delivered software code should follow these documentation guidelines, must be capable of generating the winning Submission, and contain a description of resources required to build and/or run the executable code successfully. For avoidance of doubt, delivered software code should include training code, inference code, and a description of the required computational environment. For Hackathons, the Submission deliverables will be as described on the Competition Website, which may be information or materials that are not software code.
+a. To the extent that the final model’s software code includes generally commercially available software that is not owned by you, but that can be procured by the Competition Sponsor without undue expense, then instead of delivering the code for that software to the Competition Sponsor, you must identify that software, method for procuring it, and any parameters or other information necessary to replicate the winning Submission; Individual Participants and Teams who create a Submission using an AMLT may win a Prize. However, for clarity, the potential winner’s Submission must still meet the requirements of these Rules, including but not limited to Section 2.5 (Winners License), Section 2.8 (Winners Obligations), and Section 3.14 (Warranty, Indemnity, and Release).”</p>
+<p>b. Individual Participants and Teams who create a Submission using an AMLT may win a Prize. However, for clarity, the potential winner’s Submission must still meet the requirements of these Rules,</p>
+<p>Grant to the Competition Sponsor the license to the winning Submission stated in the Competition Specific Rules above, and represent that you have the unrestricted right to grant that license;</p>
+<p>Sign and return all Prize acceptance documents as may be required by Competition Sponsor or Kaggle, including without limitation: (a) eligibility certifications; (b) licenses, releases and other agreements required under the Rules; and (c) U.S. tax forms (such as IRS Form W-9 if U.S. resident, IRS Form W-8BEN if foreign resident, or future equivalents).</p>
+</section>
+<section id="governing-law">
+<h3>9. GOVERNING LAW<a class="headerlink" href="#governing-law" title="Link to this heading">¶</a></h3>
+<p>a. Unless otherwise provided in the Competition Specific Rules above, all claims arising out of or relating to these Rules will be governed by California law, excluding its conflict of laws rules, and will be litigated exclusively in the Federal or State courts of Santa Clara County, California, USA. The parties consent to personal jurisdiction in those courts. If any provision of these Rules is held to be invalid or unenforceable, all remaining provisions of the Rules will remain in full force and effect.</p>
+</section>
+<section id="submission-license">
+<h3>10. SUBMISSION LICENSE<a class="headerlink" href="#submission-license" title="Link to this heading">¶</a></h3>
+<p>a. Notwithstanding anything to the contrary, You and your Team acknowledge competition Submissions are made under the CC0 license, which allows others to freely build upon, enhance and reuse the works for any purposes without restriction under copyright or database law.</p>
+</section>
+</section>
+<section id="general-competition-rules-binding-agreement">
+<h2>3. GENERAL COMPETITION RULES - BINDING AGREEMENT<a class="headerlink" href="#general-competition-rules-binding-agreement" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>1. ELIGIBILITY<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>a. To be eligible to enter the Competition, you must be:</p>
+<p>a registered account holder at <a class="reference external" href="http://Kaggle.com">Kaggle.com</a>;
+the older of 18 years old or the age of majority in your jurisdiction of residence (unless otherwise agreed to by Competition Sponsor and appropriate parental/guardian consents have been obtained by Competition Sponsor);
+not a resident of Crimea, so-called Donetsk People’s Republic (DNR) or Luhansk People’s Republic (LNR), Cuba, Iran, Syria, or North Korea;
+not a resident of any other country or territory not listed here; and
+not a person or representative of an entity under U.S. export controls or sanctions (see: <a class="reference external" href="https://www.treasury.gov/resourcecenter/sanctions/Programs/Pages/Programs.aspx">https://www.treasury.gov/resourcecenter/sanctions/Programs/Pages/Programs.aspx</a>).
+b. Competitions are open to residents of the United States and worldwide, except that if you are a resident of Crimea, so-called Donetsk People’s Republic (DNR) or Luhansk People’s Republic (LNR), Cuba, Iran, Syria, North Korea, or any other country or territory not listed here, or are subject to U.S. export controls or sanctions, you may not enter the Competition. Other local rules and regulations may apply to you, so please check your local laws to ensure that you are eligible to participate in skills-based competitions. The Competition Host reserves the right to forego or award alternative Prizes where needed to comply with local laws. If a winner is located in a country where prizes cannot be awarded, then they are not eligible to receive a prize.</p>
+<p>c. If you are entering as a representative of a company, educational institution or other legal entity, or on behalf of your employer, these rules are binding on you, individually, and the entity you represent or where you are an employee. If you are acting within the scope of your employment, or as an agent of another party, you warrant that such party or your employer has full knowledge of your actions and has consented thereto, including your potential receipt of a Prize. You further warrant that your actions do not violate your employer’s or entity’s policies and procedures.</p>
+<p>d. The Competition Sponsor reserves the right to verify eligibility and to adjudicate on any dispute at any time. If you provide any false information relating to the Competition concerning your identity, residency, mailing address, telephone number, email address, ownership of right, or information required for entering the Competition, you may be immediately disqualified from the Competition.</p>
+</section>
+<section id="sponsor-and-hosting-platform">
+<h3>2. SPONSOR AND HOSTING PLATFORM<a class="headerlink" href="#sponsor-and-hosting-platform" title="Link to this heading">¶</a></h3>
+<p>a. The Competition is sponsored by Competition Sponsor named above. The Competition is hosted on behalf of Competition Sponsor by Kaggle Inc. (“Kaggle”). Kaggle is an independent contractor of Competition Sponsor, and is not a party to this or any agreement between you and Competition Sponsor. You understand that Kaggle has no responsibility with respect to selecting the potential Competition winner(s) or awarding any Prizes. Kaggle will perform certain administrative functions relating to hosting the Competition, and you agree to abide by the provisions relating to Kaggle under these Rules, and with respect to such functions, Kaggle (and not Competition Sponsor) will be responsible for any breach of its obligations, and you agree not to pursue any claims against Competition Sponsor with respect to such breach. As a <a class="reference external" href="http://Kaggle.com">Kaggle.com</a> account holder and user of the Kaggle competition platform, remember you have accepted and are subject to the Kaggle Terms of Service at <a class="reference external" href="http://www.kaggle.com/terms">www.kaggle.com/terms</a> in addition to these Rules.</p>
+</section>
+<section id="competition-period">
+<h3>3. COMPETITION PERIOD<a class="headerlink" href="#competition-period" title="Link to this heading">¶</a></h3>
+<p>a. For the purposes of Prizes, the Competition will run from the Start Date and time to the Final Submission Deadline (such duration the “Competition Period”). The Competition Timeline is subject to change, and Competition Sponsor may introduce additional hurdle deadlines during the Competition Period. Any updated or additional deadlines will be publicized on the Competition Website. It is your responsibility to check the Competition Website regularly to stay informed of any deadline changes. YOU ARE RESPONSIBLE FOR DETERMINING THE CORRESPONDING TIME ZONE IN YOUR LOCATION.</p>
+</section>
+<section id="competition-entry">
+<h3>4. COMPETITION ENTRY<a class="headerlink" href="#competition-entry" title="Link to this heading">¶</a></h3>
+<p>a. NO PURCHASE NECESSARY TO ENTER OR WIN. To enter the Competition, you must register on the Competition Website prior to the Entry Deadline, and follow the instructions for developing and entering your Submission through the Competition Website. Your Submissions must be made in the manner and format, and in compliance with all other requirements, stated on the Competition Website (the “Requirements”). Submissions must be received before any Submission deadlines stated on the Competition Website. Submissions not received by the stated deadlines will not be eligible to receive a Prize.
+b. Except as expressly allowed in Hackathons as set forth on the Competition Website, submissions may not use or incorporate information from hand labeling or human prediction of the validation dataset or test data records.
+c. If the Competition is a multi-stage competition with temporally separate training and/or test data, one or more valid Submissions may be required during each Competition stage in the manner described on the Competition Website in order for the Submissions to be Prize eligible.
+d. Submissions are void if they are in whole or part illegible, incomplete, damaged, altered, counterfeit, obtained through fraud, or late. Competition Sponsor reserves the right to disqualify any entrant who does not follow these Rules, including making a Submission that does not meet the Requirements.</p>
+</section>
+<section id="individuals-and-teams">
+<h3>5. INDIVIDUALS AND TEAMS<a class="headerlink" href="#individuals-and-teams" title="Link to this heading">¶</a></h3>
+<p>a. Individual Account. You may make Submissions only under one, unique <a class="reference external" href="http://Kaggle.com">Kaggle.com</a> account. You will be disqualified if you make Submissions through more than one Kaggle account, or attempt to falsify an account to act as your proxy. You may submit up to the maximum number of Submissions per day as specified on the Competition Website.
+b. Teams. If permitted under the Competition Website guidelines, multiple individuals may collaborate as a Team; however, you may join or form only one Team. Each Team member must be a single individual with a separate Kaggle account. You must register individually for the Competition before joining a Team. You must confirm your Team membership to make it official by responding to the Team notification message sent to your Kaggle account. Team membership may not exceed the Maximum Team Size stated on the Competition Website.
+c. Team Merger. Teams (or individual Participants) may request to merge via the Competition Website. Team mergers may be allowed provided that: (i) the combined Team does not exceed the Maximum Team Size; (ii) the number of Submissions made by the merging Teams does not exceed the number of Submissions permissible for one Team at the date of the merger request; (iii) the merger is completed before the earlier of: any merger deadline or the Competition deadline; and (iv) the proposed combined Team otherwise meets all the requirements of these Rules.
+d. Private Sharing. No private sharing outside of Teams. Privately sharing code or data outside of Teams is not permitted. It’s okay to share code if made available to all Participants on the forums.</p>
+</section>
+<section id="submission-code-requirements">
+<h3>6. SUBMISSION CODE REQUIREMENTS<a class="headerlink" href="#submission-code-requirements" title="Link to this heading">¶</a></h3>
+<p>a. Private Code Sharing. Unless otherwise specifically permitted under the Competition Website or Competition Specific Rules above, during the Competition Period, you are not allowed to privately share source or executable code developed in connection with or based upon the Competition Data or other source or executable code relevant to the Competition (“Competition Code”). This prohibition includes sharing Competition Code between separate Teams, unless a Team merger occurs. Any such sharing of Competition Code is a breach of these Competition Rules and may result in disqualification.
+b. Public Code Sharing. You are permitted to publicly share Competition Code, provided that such public sharing does not violate the intellectual property rights of any third party. If you do choose to share Competition Code or other such code, you are required to share it on <a class="reference external" href="http://Kaggle.com">Kaggle.com</a> on the discussion forum or notebooks associated specifically with the Competition for the benefit of all competitors. By so sharing, you are deemed to have licensed the shared code under an Open Source Initiative-approved license (see <a class="reference external" href="http://www.opensource.org">www.opensource.org</a>) that in no event limits commercial use of such Competition Code or model containing or depending on such Competition Code.
+c. Use of Open Source. Unless otherwise stated in the Specific Competition Rules above, if open source code is used in the model to generate the Submission, then you must only use open source code licensed under an Open Source Initiative-approved license (see <a class="reference external" href="http://www.opensource.org">www.opensource.org</a>) that in no event limits commercial use of such code or model containing or depending on such code.</p>
+</section>
+<section id="determining-winners">
+<h3>7. DETERMINING WINNERS<a class="headerlink" href="#determining-winners" title="Link to this heading">¶</a></h3>
+<p>a. Each Submission will be scored and/or ranked by the evaluation metric, or Evaluation Rubric (in the case of Hackathon Competitions),stated on the Competition Website. During the Competition Period, the current ranking will be visible on the Competition Website’s Public Leaderboard. The potential winner(s) are determined solely by the leaderboard ranking on the Private Leaderboard, subject to compliance with these Rules. The Public Leaderboard will be based on the public test set and the Private Leaderboard will be based on the private test set. There will be no leaderboards for Hackathon Competitions.
+b. In the event of a tie, the Submission that was entered first to the Competition will be the winner. In the event a potential winner is disqualified for any reason, the Submission that received the next highest score rank will be chosen as the potential winner. For Hackathon Competitions, each of the top Submissions will get a unique ranking and there will be no tiebreakers.</p>
+</section>
+<section id="notification-of-winners-disqualification">
+<h3>8. NOTIFICATION OF WINNERS &amp; DISQUALIFICATION<a class="headerlink" href="#notification-of-winners-disqualification" title="Link to this heading">¶</a></h3>
+<p>a. The potential winner(s) will be notified by email.
+b. If a potential winner (i) does not respond to the notification attempt within one (1) week from the first notification attempt or (ii) notifies Kaggle within one week after the Final Submission Deadline that the potential winner does not want to be nominated as a winner or does not want to receive a Prize, then, in each case (i) and (ii) such potential winner will not receive any Prize, and an alternate potential winner will be selected from among all eligible entries received based on the Competition’s judging criteria.
+c. In case (i) and (ii) above Kaggle may disqualify the Participant. However, in case (ii) above, if requested by Kaggle, such potential winner may provide code and documentation to verify the Participant’s compliance with these Rules. If the potential winner provides code and documentation to the satisfaction of Kaggle, the Participant will not be disqualified pursuant to this paragraph.
+d. Competition Sponsor reserves the right to disqualify any Participant from the Competition if the Competition Sponsor reasonably believes that the Participant has attempted to undermine the legitimate operation of the Competition by cheating, deception, or other unfair playing practices or abuses, threatens or harasses any other Participants, Competition Sponsor or Kaggle.
+e. A disqualified Participant may be removed from the Competition leaderboard, at Kaggle’s sole discretion. If a Participant is removed from the Competition Leaderboard, additional winning features associated with the Kaggle competition platform, for example Kaggle points or medals, may also not be awarded.
+f. The final leaderboard list will be publicly displayed at <a class="reference external" href="http://Kaggle.com">Kaggle.com</a>. Determinations of Competition Sponsor are final and binding.</p>
+</section>
+<section id="prizes">
+<h3>9. PRIZES<a class="headerlink" href="#prizes" title="Link to this heading">¶</a></h3>
+<p>a. Prize(s) are as described on the Competition Website and are only available for winning during the time period described on the Competition Website. The odds of winning any Prize depends on the number of eligible Submissions received during the Competition Period and the skill of the Participants.
+b. All Prizes are subject to Competition Sponsor’s review and verification of the Participant’s eligibility and compliance with these Rules, and the compliance of the winning Submissions with the Submissions Requirements. In the event that the Submission demonstrates non-compliance with these Competition Rules, Competition Sponsor may at its discretion take either of the following actions: (i) disqualify the Submission(s); or (ii) require the potential winner to remediate within one week after notice all issues identified in the Submission(s) (including, without limitation, the resolution of license conflicts, the fulfillment of all obligations required by software licenses, and the removal of any software that violates the software restrictions).
+c. A potential winner may decline to be nominated as a Competition winner in accordance with Section 3.8.
+d. Potential winners must return all required Prize acceptance documents within two (2) weeks following notification of such required documents, or such potential winner will be deemed to have forfeited the prize and another potential winner will be selected. Prize(s) will be awarded within approximately thirty (30) days after receipt by Competition Sponsor or Kaggle of the required Prize acceptance documents. Transfer or assignment of a Prize is not allowed.
+e. You are not eligible to receive any Prize if you do not meet the Eligibility requirements in Section 2.7 and Section 3.1 above.
+f. If a Team wins a monetary Prize, the Prize money will be allocated in even shares between the eligible Team members, unless the Team unanimously opts for a different Prize split and notifies Kaggle before Prizes are issued.</p>
+</section>
+<section id="taxes">
+<h3>10. TAXES<a class="headerlink" href="#taxes" title="Link to this heading">¶</a></h3>
+<p>a. ALL TAXES IMPOSED ON PRIZES ARE THE SOLE RESPONSIBILITY OF THE WINNERS. Payments to potential winners are subject to the express requirement that they submit all documentation requested by Competition Sponsor or Kaggle for compliance with applicable state, federal, local and foreign (including provincial) tax reporting and withholding requirements. Prizes will be net of any taxes that Competition Sponsor is required by law to withhold. If a potential winner fails to provide any required documentation or comply with applicable laws, the Prize may be forfeited and Competition Sponsor may select an alternative potential winner. Any winners who are U.S. residents will receive an IRS Form-1099 in the amount of their Prize.</p>
+</section>
+<section id="general-conditions">
+<h3>11. GENERAL CONDITIONS<a class="headerlink" href="#general-conditions" title="Link to this heading">¶</a></h3>
+<p>a. All federal, state, provincial and local laws and regulations apply.</p>
+</section>
+<section id="publicity">
+<h3>12. PUBLICITY<a class="headerlink" href="#publicity" title="Link to this heading">¶</a></h3>
+<p>a. You agree that Competition Sponsor, Kaggle and its affiliates may use your name and likeness for advertising and promotional purposes without additional compensation, unless prohibited by law.</p>
+</section>
+<section id="privacy">
+<h3>13. PRIVACY<a class="headerlink" href="#privacy" title="Link to this heading">¶</a></h3>
+<p>a. You acknowledge and agree that Competition Sponsor and Kaggle may collect, store, share and otherwise use personally identifiable information provided by you during the Kaggle account registration process and the Competition, including but not limited to, name, mailing address, phone number, and email address (“Personal Information”). Kaggle acts as an independent controller with regard to its collection, storage, sharing, and other use of this Personal Information, and will use this Personal Information in accordance with its Privacy Policy &lt;<a class="reference external" href="http://www.kaggle.com/privacy">www.kaggle.com/privacy</a>&gt;, including for administering the Competition. As a <a class="reference external" href="http://Kaggle.com">Kaggle.com</a> account holder, you have the right to request access to, review, rectification, portability or deletion of any personal data held by Kaggle about you by logging into your account and/or contacting Kaggle Support at &lt;<a class="reference external" href="http://www.kaggle.com/contact">www.kaggle.com/contact</a>&gt;.
+b. As part of Competition Sponsor performing this contract between you and the Competition Sponsor, Kaggle will transfer your Personal Information to Competition Sponsor, which acts as an independent controller with regard to this Personal Information. As a controller of such Personal Information, Competition Sponsor agrees to comply with all U.S. and foreign data protection obligations with regard to your Personal Information. Kaggle will transfer your Personal Information to Competition Sponsor in the country specified in the Competition Sponsor Address listed above, which may be a country outside the country of your residence. Such country may not have privacy laws and regulations similar to those of the country of your residence.
+c. Submissions may not contain security vulnerabilities or practices contrary to industry best practices (such as hardcoded credentials or plaintext passwords) or personally identifiable information (except what is reasonably required for registration).
+d. Submissions must comply with all applicable Competition Sponsor product policies, including the Terms of Use, Business Terms, Privacy Policy, and any other written guidelines provided by the Competition Sponsor.</p>
+</section>
+<section id="warranty-indemnity-and-release">
+<h3>14. WARRANTY, INDEMNITY AND RELEASE<a class="headerlink" href="#warranty-indemnity-and-release" title="Link to this heading">¶</a></h3>
+<p>a. You warrant that your Submission is your own original work and, as such, you are the sole and exclusive owner and rights holder of the Submission, and you have the right to make the Submission and grant all required licenses or rights. You agree not to make any Submission that: (i) infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; or (ii) otherwise violates any applicable U.S. or foreign state or federal law.
+b. To the maximum extent permitted by law, you indemnify and agree to keep indemnified Competition Entities at all times from and against any liability, claims, demands, losses, damages, costs and expenses resulting from any of your acts, defaults or omissions and/or a breach of any warranty set forth herein. To the maximum extent permitted by law, you agree to defend, indemnify and hold harmless the Competition Entities from and against any and all claims, actions, suits or proceedings, as well as any and all losses, liabilities, damages, costs and expenses (including reasonable attorneys fees) arising out of or accruing from: (a) your Submission or other material uploaded or otherwise provided by you that infringes any third party proprietary rights, intellectual property rights, industrial property rights, personal or moral rights or any other rights, including without limitation, copyright, trademark, patent, trade secret, privacy, publicity or confidentiality obligations, or defames any person; (b) any misrepresentation made by you in connection with the Competition; (c) any non-compliance by you with these Rules or any applicable U.S. or foreign state or federal law; (d) claims brought by persons or entities other than the parties to these Rules arising from or related to your involvement with the Competition; and (e) your acceptance, possession, misuse or use of any Prize, or your participation in the Competition and any Competition-related activity.
+c. You hereby release Competition Entities from any liability associated with: (a) any malfunction or other problem with the Competition Website; (b) any error in the collection, processing, or retention of any Submission; or (c) any typographical or other error in the printing, offering or announcement of any Prize or winners.</p>
+</section>
+<section id="internet">
+<h3>15. INTERNET<a class="headerlink" href="#internet" title="Link to this heading">¶</a></h3>
+<p>a. Competition Entities are not responsible for any malfunction of the Competition Website or any late, lost, damaged, misdirected, incomplete, illegible, undeliverable, or destroyed Submissions or entry materials due to system errors, failed, incomplete or garbled computer or other telecommunication transmission malfunctions, hardware or software failures of any kind, lost or unavailable network connections, typographical or system/human errors and failures, technical malfunction(s) of any telephone network or lines, cable connections, satellite transmissions, servers or providers, or computer equipment, traffic congestion on the Internet or at the Competition Website, or any combination thereof, which may limit a Participant’s ability to participate.</p>
+</section>
+<section id="right-to-cancel-modify-or-disqualify">
+<h3>16. RIGHT TO CANCEL, MODIFY OR DISQUALIFY<a class="headerlink" href="#right-to-cancel-modify-or-disqualify" title="Link to this heading">¶</a></h3>
+<p>a. If for any reason the Competition is not capable of running as planned, including infection by computer virus, bugs, tampering, unauthorized intervention, fraud, technical failures, or any other causes which corrupt or affect the administration, security, fairness, integrity, or proper conduct of the Competition, Competition Sponsor reserves the right to cancel, terminate, modify or suspend the Competition. Competition Sponsor further reserves the right to disqualify any Participant who tampers with the submission process or any other part of the Competition or Competition Website. Any attempt by a Participant to deliberately damage any website, including the Competition Website, or undermine the legitimate operation of the Competition is a violation of criminal and civil laws. Should such an attempt be made, Competition Sponsor and Kaggle each reserves the right to seek damages from any such Participant to the fullest extent of the applicable law.</p>
+</section>
+<section id="not-an-offer-or-contract-of-employment">
+<h3>17. NOT AN OFFER OR CONTRACT OF EMPLOYMENT<a class="headerlink" href="#not-an-offer-or-contract-of-employment" title="Link to this heading">¶</a></h3>
+<p>a. Under no circumstances will the entry of a Submission, the awarding of a Prize, or anything in these Rules be construed as an offer or contract of employment with Competition Sponsor or any of the Competition Entities. You acknowledge that you have submitted your Submission voluntarily and not in confidence or in trust. You acknowledge that no confidential, fiduciary, agency, employment or other similar relationship is created between you and Competition Sponsor or any of the Competition Entities by your acceptance of these Rules or your entry of your Submission.</p>
+</section>
+<section id="definitions">
+<h3>18. DEFINITIONS<a class="headerlink" href="#definitions" title="Link to this heading">¶</a></h3>
+<p>a. “Competition Data” are the data or datasets available from the Competition Website for the purpose of use in the Competition, including any prototype or executable code provided on the Competition Website. The Competition Data will contain private and public test sets. Which data belongs to which set will not be made available to Participants.
+b. An “Entry” is when a Participant has joined, signed up, or accepted the rules of a competition. Entry is required to make a Submission to a competition.
+c. A “Final Submission” is the Submission selected by the user, or automatically selected by Kaggle in the event not selected by the user, that is/are used for final placement on the competition leaderboard.
+d. A “Participant” or “Participant User” is an individual who participates in a competition by entering the competition and making a Submission.
+e. The “Private Leaderboard” is a ranked display of Participants’ Submission scores against the private test set. The Private Leaderboard determines the final standing in the competition.
+f. The “Public Leaderboard” is a ranked display of Participants’ Submission scores against a representative sample of the test data. This leaderboard is visible throughout the competition.
+g. A “Sponsor” is responsible for hosting the competition, which includes but is not limited to providing the data for the competition, determining winners, and enforcing competition rules.
+h. A “Submission” is anything provided by the Participant to the Sponsor to be evaluated for competition purposes and determine leaderboard position. A Submission may be made as a model, notebook, prediction file, or other format as determined by the Sponsor.
+i. A “Team” is one or more Participants participating together in a Kaggle competition, by officially merging together as a Team within the competition platform.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pitches/1706/resources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Maksim Shmalts
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+</a>
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues/new" aria-label="Issues"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+  <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.1-6.995a.905.905 0 0 1 1.8 0l-.35 4.5a.55.55 0 0 1-1.1 0l-.35-4.5z"/>
+</svg>
+</a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Competition Rules</a><ul>
+<li><a class="reference internal" href="#competition-specific-terms">1. COMPETITION-SPECIFIC TERMS</a><ul>
+<li><a class="reference internal" href="#competition-title">1. COMPETITION TITLE</a></li>
+<li><a class="reference internal" href="#competition-sponsor">2. COMPETITION SPONSOR</a></li>
+<li><a class="reference internal" href="#competition-sponsor-address">3. COMPETITION SPONSOR ADDRESS</a></li>
+<li><a class="reference internal" href="#competition-website">4. COMPETITION WEBSITE</a></li>
+<li><a class="reference internal" href="#total-prizes-available-200-000-cash-205-000-credits-non-monetary-prizes">5. TOTAL PRIZES AVAILABLE: <span class="math notranslate nohighlight">\(200,000 cash + \)</span>205,000 credits + Non-monetary prizes</a></li>
+<li><a class="reference internal" href="#winner-license-type">6. WINNER LICENSE TYPE</a></li>
+<li><a class="reference internal" href="#data-access-and-use">7. DATA ACCESS AND USE</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#competition-specific-rules">2. COMPETITION-SPECIFIC RULES</a><ul>
+<li><a class="reference internal" href="#team-limits">1. TEAM LIMITS</a></li>
+<li><a class="reference internal" href="#submission-limits">2. SUBMISSION LIMITS</a></li>
+<li><a class="reference internal" href="#competition-timeline">3. COMPETITION TIMELINE</a></li>
+<li><a class="reference internal" href="#competition-data">4. COMPETITION DATA</a></li>
+<li><a class="reference internal" href="#winner-license">5. WINNER LICENSE</a></li>
+<li><a class="reference internal" href="#external-data-and-tools">6. EXTERNAL DATA AND TOOLS</a></li>
+<li><a class="reference internal" href="#eligibility">7. ELIGIBILITY</a></li>
+<li><a class="reference internal" href="#winners-obligations">8. WINNER’S OBLIGATIONS</a></li>
+<li><a class="reference internal" href="#governing-law">9. GOVERNING LAW</a></li>
+<li><a class="reference internal" href="#submission-license">10. SUBMISSION LICENSE</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#general-competition-rules-binding-agreement">3. GENERAL COMPETITION RULES - BINDING AGREEMENT</a><ul>
+<li><a class="reference internal" href="#id1">1. ELIGIBILITY</a></li>
+<li><a class="reference internal" href="#sponsor-and-hosting-platform">2. SPONSOR AND HOSTING PLATFORM</a></li>
+<li><a class="reference internal" href="#competition-period">3. COMPETITION PERIOD</a></li>
+<li><a class="reference internal" href="#competition-entry">4. COMPETITION ENTRY</a></li>
+<li><a class="reference internal" href="#individuals-and-teams">5. INDIVIDUALS AND TEAMS</a></li>
+<li><a class="reference internal" href="#submission-code-requirements">6. SUBMISSION CODE REQUIREMENTS</a></li>
+<li><a class="reference internal" href="#determining-winners">7. DETERMINING WINNERS</a></li>
+<li><a class="reference internal" href="#notification-of-winners-disqualification">8. NOTIFICATION OF WINNERS &amp; DISQUALIFICATION</a></li>
+<li><a class="reference internal" href="#prizes">9. PRIZES</a></li>
+<li><a class="reference internal" href="#taxes">10. TAXES</a></li>
+<li><a class="reference internal" href="#general-conditions">11. GENERAL CONDITIONS</a></li>
+<li><a class="reference internal" href="#publicity">12. PUBLICITY</a></li>
+<li><a class="reference internal" href="#privacy">13. PRIVACY</a></li>
+<li><a class="reference internal" href="#warranty-indemnity-and-release">14. WARRANTY, INDEMNITY AND RELEASE</a></li>
+<li><a class="reference internal" href="#internet">15. INTERNET</a></li>
+<li><a class="reference internal" href="#right-to-cancel-modify-or-disqualify">16. RIGHT TO CANCEL, MODIFY OR DISQUALIFY</a></li>
+<li><a class="reference internal" href="#not-an-offer-or-contract-of-employment">17. NOT AN OFFER OR CONTRACT OF EMPLOYMENT</a></li>
+<li><a class="reference internal" href="#definitions">18. DEFINITIONS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

@@ -262,8 +262,8 @@ This lecture gives an overview on how LLMs are used to generate reliable code an
 * Further considerations: reliability, sustainability etc.
 
 **Core Reading**:
-* [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign`
-* 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research`
+* [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977) (sections 4), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign` 🔴
+* 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research` 🔴
 * [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459) (pages 1-11), `University of Oslo`
 
 
@@ -273,8 +273,8 @@ This lecture gives an overview on how LLMs are used to generate reliable code an
 * [A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis](https://arxiv.org/abs/2307.12856), `Google DeepMind & The University of Tokyo`
 * [Code Repair with LLMs gives an Exploration-Exploitation Tradeoff](https://arxiv.org/abs/2405.17503), `Cornell, Shanghai Jiao Tong University & University of Toronto`
 * [ChatUniTest: A Framework for LLM-Based Test Generation](https://arxiv.org/abs/2305.04764), `Zhejiang University & Hangzhou City University`
-* [TestART: Improving LLM-based Unit Testing via Co-evolution of Automated Generation and Repair Iteration](https://arxiv.org/abs/2408.03095), `Nanjing University & Huawei Cloud Computing Technologies`
 * [The ART of LLM Refinement: Ask, Refine, and Trust](https://arxiv.org/abs/2311.07961), `ETH Zurich & Meta AI`
+* [TestART: Improving LLM-based Unit Testing via Co-evolution of Automated Generation and Repair Iteration](https://arxiv.org/abs/2408.03095), `Nanjing University & Huawei Cloud Computing Technologies`
 * [Automated Unit Test Improvement using Large Language Models at Meta](https://arxiv.org/abs/2402.09171), `Meta`
 * [Design and evaluation of AI copilots -- case studies of retail copilot templates](https://arxiv.org/abs/2407.09512), `Microsoft`
 * 🍿 [Your AI Companion](https://blogs.microsoft.com/blog/2025/04/04/your-ai-companion/), `Microsoft` (blog post)
