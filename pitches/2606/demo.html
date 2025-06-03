@@ -274,14 +274,14 @@
         <article role="main" id="furo-main-content">
           <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rag_chatbot.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_pipeline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">multi_agent.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">SupportLaMA</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">init_pipeline</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">SupportLaMA</span><span class="p">(</span>
     <span class="o">...</span> <span class="c1"># your parameters here</span>
 <span class="p">)</span>
 </pre></div>
@@ -290,90 +290,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1: straightforward query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What is the difference between supervised and unsupervised learning?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2: straightforward query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;How do I fine-tune a GPT model on a custom dataset?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3: simple query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What is the final submission deadline for the OpenAI to Z Challenge?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4: simple query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Are team entries allowed in the OpenAI to Z Challenge?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5: simple query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;How is the leaderboard score calculated for the OpenAI to Z Challenge?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 6: complex query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What constraints are there on using external datasets, and how might that affect a submission using proprietary data?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 7: complex query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Describe the scoring criteria and how creativity and technical quality interact in the evaluation process.&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 8: complex query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;If I build a chatbot that performs A-Z tasks but use open-source models, how would this affect eligibility and evaluation?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 9: unanswerable query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What was the internal motivation behind choosing the A-Z format for OpenAI to Z challenge?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 10: unanswerable query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;How many total submissions did the OpenAI to Z Challenge receive in its first week?&quot;</span>
-<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># now test</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
