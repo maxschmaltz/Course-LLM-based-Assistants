@@ -291,6 +291,7 @@ This lecture gives an overview on how LLMs are used to generate reliable code an
 * [Learn to Code Sustainably: An Empirical Study on LLM-based Green Code Generation](https://arxiv.org/abs/2403.03344), `TWT GmbH Science & Innovation et al.`
 
 <a name="0506"></a>
+
 #### 05.06 _Lab_: LLM-powered Website
 > On material of [session 03.06](#0306)
 

@@ -1,0 +1,771 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>FitTrack Pro - Frequently Asked Questions - LLM-based Assistants</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">LLM-based Assistants</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">LLM-based Assistants</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Infos and Stuff</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/topic_overview.html">Topics Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/formats/debates.html">Debates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/formats/pitches.html">Pitches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/llm_inference_guide/README.html">LLM Inference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 1: Intro</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block1_intro/2204.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block1_intro/2404.html">24.04. LLM &amp; Agent Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block1_intro/2904/2904.html">29.04. Intro to LangChain 🦜🔗</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/0605.html">06.05. Virtual Assistants Pt. 1: Chatbots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/0805/0805.html">08.05. Basic LLM-based Chatbot 🤖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/1305.html">13.05. Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/1505/1505.html">15.05. RAG Chatbot Pt. 1 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/2005/2005.html">20.05. RAG Chatbot Pt. 2 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/2705/2705.html">27.05. Multi-agent Environment 👾🤖👾</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/2205.html">22.05. Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt1_business/0306.html">03.06. LLMs in Software Development</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 2: Applications in Science</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block2_core_topics/pt2_science/under_development.html">Under development</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 3: Wrap-up</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/block3_wrapup/under_development.html">Under development</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Pitches</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../2406/README.html">24.06. <em>Pitch</em>: RAG Chatbot</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="fittrack-pro-frequently-asked-questions">
+<h1>FitTrack Pro - Frequently Asked Questions<a class="headerlink" href="#fittrack-pro-frequently-asked-questions" title="Link to this heading">¶</a></h1>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h2>
+<section id="what-is-fittrack-pro">
+<h3>What is FitTrack Pro?<a class="headerlink" href="#what-is-fittrack-pro" title="Link to this heading">¶</a></h3>
+<p>FitTrack Pro is a comprehensive fitness tracking mobile app that helps you monitor your workouts, track your progress, set fitness goals, and maintain a healthy lifestyle. The app combines exercise tracking, nutrition logging, sleep monitoring, and social features to provide a complete wellness experience.</p>
+</section>
+<section id="is-fittrack-pro-free-to-use">
+<h3>Is FitTrack Pro free to use?<a class="headerlink" href="#is-fittrack-pro-free-to-use" title="Link to this heading">¶</a></h3>
+<p>FitTrack Pro offers a free basic version with essential tracking features. Our Premium subscription unlocks advanced analytics, personalized workout plans, detailed nutrition insights, and additional customization options. Premium is available for <span class="math notranslate nohighlight">\(9.99/month or \)</span>79.99/year.</p>
+</section>
+<section id="which-devices-are-compatible-with-fittrack-pro">
+<h3>Which devices are compatible with FitTrack Pro?<a class="headerlink" href="#which-devices-are-compatible-with-fittrack-pro" title="Link to this heading">¶</a></h3>
+<p>FitTrack Pro is available for:</p>
+<ul class="simple">
+<li><p>iOS devices running iOS 14.0 or later</p></li>
+<li><p>Android devices running Android 8.0 (API level 26) or later</p></li>
+<li><p>Compatible with Apple Watch, Wear OS, and Fitbit devices</p></li>
+<li><p>Syncs with Apple Health and Google Fit</p></li>
+</ul>
+</section>
+<section id="how-do-i-create-an-account">
+<h3>How do I create an account?<a class="headerlink" href="#how-do-i-create-an-account" title="Link to this heading">¶</a></h3>
+<p>Download the app from the App Store or Google Play Store, then:</p>
+<ol class="arabic simple">
+<li><p>Tap “Sign Up” on the welcome screen</p></li>
+<li><p>Enter your email address and create a password</p></li>
+<li><p>Complete your profile with basic information (age, height, weight, fitness goals)</p></li>
+<li><p>Verify your email address</p></li>
+<li><p>Start tracking your fitness journey</p></li>
+</ol>
+</section>
+</section>
+<section id="account-profile-management">
+<h2>Account &amp; Profile Management<a class="headerlink" href="#account-profile-management" title="Link to this heading">¶</a></h2>
+<section id="how-do-i-update-my-profile-information">
+<h3>How do I update my profile information?<a class="headerlink" href="#how-do-i-update-my-profile-information" title="Link to this heading">¶</a></h3>
+<p>Go to Settings &gt; Profile &gt; Edit Profile. You can update your personal information, fitness goals, activity level, and preferences. Changes to weight and height will affect calorie calculations going forward.</p>
+</section>
+<section id="can-i-change-my-username">
+<h3>Can I change my username?<a class="headerlink" href="#can-i-change-my-username" title="Link to this heading">¶</a></h3>
+<p>Yes, you can change your username once every 30 days. Go to Settings &gt; Profile &gt; Username and enter your new preferred username.</p>
+</section>
+<section id="how-do-i-reset-my-password">
+<h3>How do I reset my password?<a class="headerlink" href="#how-do-i-reset-my-password" title="Link to this heading">¶</a></h3>
+<p>On the login screen, tap “Forgot Password” and enter your email address. You’ll receive a password reset link within a few minutes. If you don’t see it, check your spam folder.</p>
+</section>
+<section id="can-i-delete-my-account">
+<h3>Can I delete my account?<a class="headerlink" href="#can-i-delete-my-account" title="Link to this heading">¶</a></h3>
+<p>Yes, you can permanently delete your account by going to Settings &gt; Account &gt; Delete Account. This action cannot be undone and will remove all your data from our servers.</p>
+</section>
+</section>
+<section id="workout-tracking">
+<h2>Workout Tracking<a class="headerlink" href="#workout-tracking" title="Link to this heading">¶</a></h2>
+<section id="how-do-i-start-a-workout">
+<h3>How do I start a workout?<a class="headerlink" href="#how-do-i-start-a-workout" title="Link to this heading">¶</a></h3>
+<p>Tap the “Start Workout” button on the home screen, select your workout type (running, cycling, strength training, etc.), and tap “Begin.” The app will start tracking your activity using GPS and sensors.</p>
+</section>
+<section id="what-types-of-workouts-can-i-track">
+<h3>What types of workouts can I track?<a class="headerlink" href="#what-types-of-workouts-can-i-track" title="Link to this heading">¶</a></h3>
+<p>FitTrack Pro supports over 100 workout types including:</p>
+<ul class="simple">
+<li><p>Cardio exercises (running, cycling, swimming, walking)</p></li>
+<li><p>Strength training and weightlifting</p></li>
+<li><p>Yoga and Pilates</p></li>
+<li><p>Sports activities (basketball, tennis, soccer)</p></li>
+<li><p>High-intensity interval training (HIIT)</p></li>
+<li><p>Custom workout creation</p></li>
+</ul>
+</section>
+<section id="how-accurate-is-the-gps-tracking">
+<h3>How accurate is the GPS tracking?<a class="headerlink" href="#how-accurate-is-the-gps-tracking" title="Link to this heading">¶</a></h3>
+<p>Our GPS tracking uses your device’s built-in GPS sensors and is accurate within 3-5 meters under normal conditions. Accuracy may be affected by tall buildings, dense forests, or poor weather conditions.</p>
+</section>
+<section id="can-i-track-workouts-without-my-phone">
+<h3>Can I track workouts without my phone?<a class="headerlink" href="#can-i-track-workouts-without-my-phone" title="Link to this heading">¶</a></h3>
+<p>Yes, if you have a compatible smartwatch (Apple Watch or Wear OS), you can track workouts independently and sync the data to your phone later.</p>
+</section>
+<section id="how-do-i-log-strength-training-exercises">
+<h3>How do I log strength training exercises?<a class="headerlink" href="#how-do-i-log-strength-training-exercises" title="Link to this heading">¶</a></h3>
+<p>During a strength training workout:</p>
+<ol class="arabic simple">
+<li><p>Select the exercise from our database of 500+ exercises</p></li>
+<li><p>Enter the weight, reps, and sets</p></li>
+<li><p>The app will automatically calculate rest periods</p></li>
+<li><p>Add notes if needed</p></li>
+<li><p>Move to the next exercise</p></li>
+</ol>
+</section>
+</section>
+<section id="nutrition-diet">
+<h2>Nutrition &amp; Diet<a class="headerlink" href="#nutrition-diet" title="Link to this heading">¶</a></h2>
+<section id="how-do-i-log-my-meals">
+<h3>How do I log my meals?<a class="headerlink" href="#how-do-i-log-my-meals" title="Link to this heading">¶</a></h3>
+<p>Tap “Nutrition” on the main menu, then “Add Meal.” You can:</p>
+<ul class="simple">
+<li><p>Scan barcodes of packaged foods</p></li>
+<li><p>Search our database of over 2 million foods</p></li>
+<li><p>Use the photo recognition feature to identify foods</p></li>
+<li><p>Create custom recipes</p></li>
+<li><p>Log water intake</p></li>
+</ul>
+</section>
+<section id="is-the-nutrition-database-accurate">
+<h3>Is the nutrition database accurate?<a class="headerlink" href="#is-the-nutrition-database-accurate" title="Link to this heading">¶</a></h3>
+<p>Our nutrition database is sourced from verified databases including USDA and international food databases. We regularly update nutritional information to ensure accuracy.</p>
+</section>
+<section id="can-i-set-custom-nutrition-goals">
+<h3>Can I set custom nutrition goals?<a class="headerlink" href="#can-i-set-custom-nutrition-goals" title="Link to this heading">¶</a></h3>
+<p>Premium users can set custom macronutrient goals (protein, carbs, fats) and micronutrient targets. Free users have access to basic calorie goals based on their profile.</p>
+</section>
+<section id="how-do-i-track-water-intake">
+<h3>How do I track water intake?<a class="headerlink" href="#how-do-i-track-water-intake" title="Link to this heading">¶</a></h3>
+<p>Use the water tracking widget on the home screen or go to Nutrition &gt; Water. You can log different container sizes and set reminders to drink water throughout the day.</p>
+</section>
+</section>
+<section id="sleep-recovery">
+<h2>Sleep &amp; Recovery<a class="headerlink" href="#sleep-recovery" title="Link to this heading">¶</a></h2>
+<section id="how-does-sleep-tracking-work">
+<h3>How does sleep tracking work?<a class="headerlink" href="#how-does-sleep-tracking-work" title="Link to this heading">¶</a></h3>
+<p>Place your phone on your nightstand or wear a compatible smartwatch. The app uses motion sensors and microphone data to track sleep phases, duration, and quality. All audio data is processed locally and not stored.</p>
+</section>
+<section id="can-i-track-naps">
+<h3>Can I track naps?<a class="headerlink" href="#can-i-track-naps" title="Link to this heading">¶</a></h3>
+<p>Yes, you can manually log naps by going to Sleep &gt; Add Nap and entering the duration and time.</p>
+</section>
+<section id="what-is-the-recovery-score">
+<h3>What is the Recovery Score?<a class="headerlink" href="#what-is-the-recovery-score" title="Link to this heading">¶</a></h3>
+<p>The Recovery Score is calculated based on your sleep quality, resting heart rate, heart rate variability (if available), and recent workout intensity. It helps you understand when to push harder or rest.</p>
+</section>
+</section>
+<section id="goals-challenges">
+<h2>Goals &amp; Challenges<a class="headerlink" href="#goals-challenges" title="Link to this heading">¶</a></h2>
+<section id="how-do-i-set-fitness-goals">
+<h3>How do I set fitness goals?<a class="headerlink" href="#how-do-i-set-fitness-goals" title="Link to this heading">¶</a></h3>
+<p>Go to Goals &gt; Set New Goal and choose from:</p>
+<ul class="simple">
+<li><p>Weight loss/gain targets</p></li>
+<li><p>Weekly exercise minutes</p></li>
+<li><p>Steps per day</p></li>
+<li><p>Distance goals</p></li>
+<li><p>Strength training objectives</p></li>
+<li><p>Custom goals</p></li>
+</ul>
+</section>
+<section id="what-are-challenges">
+<h3>What are Challenges?<a class="headerlink" href="#what-are-challenges" title="Link to this heading">¶</a></h3>
+<p>Challenges are time-limited fitness objectives you can join, such as “Walk 10,000 steps for 30 days” or “Complete 100 workouts this year.” Some challenges offer rewards and badges.</p>
+</section>
+<section id="can-i-compete-with-friends">
+<h3>Can I compete with friends?<a class="headerlink" href="#can-i-compete-with-friends" title="Link to this heading">¶</a></h3>
+<p>Yes, you can add friends and participate in weekly challenges, compare statistics, and motivate each other through the social features.</p>
+</section>
+</section>
+<section id="data-privacy">
+<h2>Data &amp; Privacy<a class="headerlink" href="#data-privacy" title="Link to this heading">¶</a></h2>
+<section id="how-is-my-data-stored-and-protected">
+<h3>How is my data stored and protected?<a class="headerlink" href="#how-is-my-data-stored-and-protected" title="Link to this heading">¶</a></h3>
+<p>Your data is encrypted and stored securely on our servers. We use industry-standard security measures and comply with GDPR and CCPA regulations. You can export or delete your data at any time.</p>
+</section>
+<section id="can-i-export-my-data">
+<h3>Can I export my data?<a class="headerlink" href="#can-i-export-my-data" title="Link to this heading">¶</a></h3>
+<p>Yes, go to Settings &gt; Data Export to download your complete fitness data in CSV format. This includes workouts, nutrition logs, sleep data, and progress photos.</p>
+</section>
+<section id="do-you-share-my-data-with-third-parties">
+<h3>Do you share my data with third parties?<a class="headerlink" href="#do-you-share-my-data-with-third-parties" title="Link to this heading">¶</a></h3>
+<p>We do not sell your personal data. We may share anonymized, aggregated data for research purposes with your consent. Read our Privacy Policy for complete details.</p>
+</section>
+<section id="how-do-i-sync-data-between-devices">
+<h3>How do I sync data between devices?<a class="headerlink" href="#how-do-i-sync-data-between-devices" title="Link to this heading">¶</a></h3>
+<p>Data automatically syncs when you’re connected to the internet. If you switch devices, log in with your account credentials to access all your historical data.</p>
+</section>
+</section>
+<section id="integration-connectivity">
+<h2>Integration &amp; Connectivity<a class="headerlink" href="#integration-connectivity" title="Link to this heading">¶</a></h2>
+<section id="which-fitness-devices-are-compatible">
+<h3>Which fitness devices are compatible?<a class="headerlink" href="#which-fitness-devices-are-compatible" title="Link to this heading">¶</a></h3>
+<p>FitTrack Pro integrates with:</p>
+<ul class="simple">
+<li><p>Apple Watch and Apple Health</p></li>
+<li><p>Fitbit devices</p></li>
+<li><p>Garmin watches</p></li>
+<li><p>Polar heart rate monitors</p></li>
+<li><p>Wear OS devices</p></li>
+<li><p>Google Fit</p></li>
+<li><p>Strava</p></li>
+<li><p>MyFitnessPal</p></li>
+</ul>
+</section>
+<section id="how-do-i-connect-my-fitness-tracker">
+<h3>How do I connect my fitness tracker?<a class="headerlink" href="#how-do-i-connect-my-fitness-tracker" title="Link to this heading">¶</a></h3>
+<p>Go to Settings &gt; Connected Apps &gt; Add Device, select your device brand, and follow the authorization steps. Most connections are established within 30 seconds.</p>
+</section>
+<section id="can-i-disconnect-a-device">
+<h3>Can I disconnect a device?<a class="headerlink" href="#can-i-disconnect-a-device" title="Link to this heading">¶</a></h3>
+<p>Yes, go to Settings &gt; Connected Apps, find the device you want to disconnect, and tap “Remove.” This will stop future data syncing but won’t delete historical data.</p>
+</section>
+</section>
+<section id="premium-features">
+<h2>Premium Features<a class="headerlink" href="#premium-features" title="Link to this heading">¶</a></h2>
+<section id="what-s-included-in-premium">
+<h3>What’s included in Premium?<a class="headerlink" href="#what-s-included-in-premium" title="Link to this heading">¶</a></h3>
+<p>Premium subscription includes:</p>
+<ul class="simple">
+<li><p>Advanced analytics and insights</p></li>
+<li><p>Personalized workout plans</p></li>
+<li><p>Detailed nutrition analysis</p></li>
+<li><p>Unlimited data export</p></li>
+<li><p>Priority customer support</p></li>
+<li><p>Ad-free experience</p></li>
+<li><p>Advanced sleep analysis</p></li>
+<li><p>Custom goal setting</p></li>
+</ul>
+</section>
+<section id="how-do-i-upgrade-to-premium">
+<h3>How do I upgrade to Premium?<a class="headerlink" href="#how-do-i-upgrade-to-premium" title="Link to this heading">¶</a></h3>
+<p>Tap Settings &gt; Subscription &gt; Upgrade to Premium. You can choose monthly or annual billing and will have access to all premium features immediately.</p>
+</section>
+<section id="can-i-cancel-my-premium-subscription">
+<h3>Can I cancel my Premium subscription?<a class="headerlink" href="#can-i-cancel-my-premium-subscription" title="Link to this heading">¶</a></h3>
+<p>Yes, you can cancel anytime through your device’s subscription settings (App Store or Google Play). You’ll retain Premium features until the end of your current billing period.</p>
+</section>
+<section id="is-there-a-free-trial">
+<h3>Is there a free trial?<a class="headerlink" href="#is-there-a-free-trial" title="Link to this heading">¶</a></h3>
+<p>New users get a 7-day free trial of Premium features. You can cancel before the trial ends without being charged.</p>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
+<section id="the-app-isn-t-tracking-my-workout-accurately-what-should-i-do">
+<h3>The app isn’t tracking my workout accurately. What should I do?<a class="headerlink" href="#the-app-isn-t-tracking-my-workout-accurately-what-should-i-do" title="Link to this heading">¶</a></h3>
+<p>Try these steps:</p>
+<ol class="arabic simple">
+<li><p>Ensure location services are enabled</p></li>
+<li><p>Check that the app has permission to access motion sensors</p></li>
+<li><p>Restart the app and your device</p></li>
+<li><p>Update to the latest version</p></li>
+<li><p>Recalibrate your device’s sensors in Settings</p></li>
+</ol>
+</section>
+<section id="why-isn-t-my-data-syncing">
+<h3>Why isn’t my data syncing?<a class="headerlink" href="#why-isn-t-my-data-syncing" title="Link to this heading">¶</a></h3>
+<p>Check your internet connection and ensure you’re logged into your account. Try manually syncing by pulling down on the home screen. If problems persist, contact support.</p>
+</section>
+<section id="the-app-keeps-crashing-how-do-i-fix-this">
+<h3>The app keeps crashing. How do I fix this?<a class="headerlink" href="#the-app-keeps-crashing-how-do-i-fix-this" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Force close and restart the app</p></li>
+<li><p>Restart your device</p></li>
+<li><p>Update the app to the latest version</p></li>
+<li><p>Free up storage space on your device</p></li>
+<li><p>Reinstall the app if necessary</p></li>
+</ol>
+</section>
+<section id="my-battery-drains-quickly-when-using-the-app-is-this-normal">
+<h3>My battery drains quickly when using the app. Is this normal?<a class="headerlink" href="#my-battery-drains-quickly-when-using-the-app-is-this-normal" title="Link to this heading">¶</a></h3>
+<p>GPS tracking and constant sensor monitoring can increase battery usage. To optimize battery life:</p>
+<ul class="simple">
+<li><p>Use power-saving mode for longer workouts</p></li>
+<li><p>Disable unnecessary features like music integration</p></li>
+<li><p>Lower screen brightness during workouts</p></li>
+<li><p>Close other apps running in the background</p></li>
+</ul>
+</section>
+</section>
+<section id="support-contact">
+<h2>Support &amp; Contact<a class="headerlink" href="#support-contact" title="Link to this heading">¶</a></h2>
+<section id="how-do-i-contact-customer-support">
+<h3>How do I contact customer support?<a class="headerlink" href="#how-do-i-contact-customer-support" title="Link to this heading">¶</a></h3>
+<p>You can reach our support team through:</p>
+<ul class="simple">
+<li><p>In-app support chat (Settings &gt; Help &amp; Support)</p></li>
+<li><p>Email: <a class="reference external" href="mailto:support&#37;&#52;&#48;fittrackpro&#46;com">support<span>&#64;</span>fittrackpro<span>&#46;</span>com</a></p></li>
+<li><p>Help center at <a class="reference external" href="http://help.fittrackpro.com">help.fittrackpro.com</a></p></li>
+<li><p>Premium users get priority support with faster response times</p></li>
+</ul>
+</section>
+<section id="what-are-your-support-hours">
+<h3>What are your support hours?<a class="headerlink" href="#what-are-your-support-hours" title="Link to this heading">¶</a></h3>
+<p>Our support team is available Monday through Friday, 9 AM to 6 PM EST. Premium users have access to weekend support as well.</p>
+</section>
+<section id="how-do-i-report-a-bug">
+<h3>How do I report a bug?<a class="headerlink" href="#how-do-i-report-a-bug" title="Link to this heading">¶</a></h3>
+<p>Use the “Report Bug” feature in Settings &gt; Help &amp; Support. Include details about your device, app version, and steps to reproduce the issue.</p>
+</section>
+<section id="can-i-suggest-new-features">
+<h3>Can I suggest new features?<a class="headerlink" href="#can-i-suggest-new-features" title="Link to this heading">¶</a></h3>
+<p>Absolutely! We love hearing from our users. Submit feature requests through Settings &gt; Help &amp; Support &gt; Feature Request or join our community forum at <a class="reference external" href="http://community.fittrackpro.com">community.fittrackpro.com</a>.</p>
+</section>
+<section id="where-can-i-find-the-latest-app-updates">
+<h3>Where can I find the latest app updates?<a class="headerlink" href="#where-can-i-find-the-latest-app-updates" title="Link to this heading">¶</a></h3>
+<p>Check your device’s app store for updates, or enable automatic updates. We also announce major updates on our social media channels and through in-app notifications.</p>
+</section>
+</section>
+<section id="legal-terms">
+<h2>Legal &amp; Terms<a class="headerlink" href="#legal-terms" title="Link to this heading">¶</a></h2>
+<section id="where-can-i-read-your-privacy-policy">
+<h3>Where can I read your Privacy Policy?<a class="headerlink" href="#where-can-i-read-your-privacy-policy" title="Link to this heading">¶</a></h3>
+<p>Our complete Privacy Policy is available at <a class="reference external" href="http://fittrackpro.com/privacy">fittrackpro.com/privacy</a> and can also be accessed through Settings &gt; Legal &gt; Privacy Policy.</p>
+</section>
+<section id="what-are-your-terms-of-service">
+<h3>What are your Terms of Service?<a class="headerlink" href="#what-are-your-terms-of-service" title="Link to this heading">¶</a></h3>
+<p>Our Terms of Service are available at <a class="reference external" href="http://fittrackpro.com/terms">fittrackpro.com/terms</a> and through Settings &gt; Legal &gt; Terms of Service.</p>
+</section>
+<section id="how-do-i-report-inappropriate-content">
+<h3>How do I report inappropriate content?<a class="headerlink" href="#how-do-i-report-inappropriate-content" title="Link to this heading">¶</a></h3>
+<p>If you encounter inappropriate content in community features, tap the report button next to the content or contact our moderation team at <a class="reference external" href="mailto:moderation&#37;&#52;&#48;fittrackpro&#46;com">moderation<span>&#64;</span>fittrackpro<span>&#46;</span>com</a>.</p>
+<hr class="docutils" />
+<p><em>Last updated: June 2025</em>
+<em>For additional questions not covered here, please contact our support team.</em></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./pitches/2606/resources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Maksim Shmalts
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+</a>
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues/new" aria-label="Issues"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+  <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.1-6.995a.905.905 0 0 1 1.8 0l-.35 4.5a.55.55 0 0 1-1.1 0l-.35-4.5z"/>
+</svg>
+</a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">FitTrack Pro - Frequently Asked Questions</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li><a class="reference internal" href="#what-is-fittrack-pro">What is FitTrack Pro?</a></li>
+<li><a class="reference internal" href="#is-fittrack-pro-free-to-use">Is FitTrack Pro free to use?</a></li>
+<li><a class="reference internal" href="#which-devices-are-compatible-with-fittrack-pro">Which devices are compatible with FitTrack Pro?</a></li>
+<li><a class="reference internal" href="#how-do-i-create-an-account">How do I create an account?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#account-profile-management">Account &amp; Profile Management</a><ul>
+<li><a class="reference internal" href="#how-do-i-update-my-profile-information">How do I update my profile information?</a></li>
+<li><a class="reference internal" href="#can-i-change-my-username">Can I change my username?</a></li>
+<li><a class="reference internal" href="#how-do-i-reset-my-password">How do I reset my password?</a></li>
+<li><a class="reference internal" href="#can-i-delete-my-account">Can I delete my account?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#workout-tracking">Workout Tracking</a><ul>
+<li><a class="reference internal" href="#how-do-i-start-a-workout">How do I start a workout?</a></li>
+<li><a class="reference internal" href="#what-types-of-workouts-can-i-track">What types of workouts can I track?</a></li>
+<li><a class="reference internal" href="#how-accurate-is-the-gps-tracking">How accurate is the GPS tracking?</a></li>
+<li><a class="reference internal" href="#can-i-track-workouts-without-my-phone">Can I track workouts without my phone?</a></li>
+<li><a class="reference internal" href="#how-do-i-log-strength-training-exercises">How do I log strength training exercises?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nutrition-diet">Nutrition &amp; Diet</a><ul>
+<li><a class="reference internal" href="#how-do-i-log-my-meals">How do I log my meals?</a></li>
+<li><a class="reference internal" href="#is-the-nutrition-database-accurate">Is the nutrition database accurate?</a></li>
+<li><a class="reference internal" href="#can-i-set-custom-nutrition-goals">Can I set custom nutrition goals?</a></li>
+<li><a class="reference internal" href="#how-do-i-track-water-intake">How do I track water intake?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sleep-recovery">Sleep &amp; Recovery</a><ul>
+<li><a class="reference internal" href="#how-does-sleep-tracking-work">How does sleep tracking work?</a></li>
+<li><a class="reference internal" href="#can-i-track-naps">Can I track naps?</a></li>
+<li><a class="reference internal" href="#what-is-the-recovery-score">What is the Recovery Score?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goals-challenges">Goals &amp; Challenges</a><ul>
+<li><a class="reference internal" href="#how-do-i-set-fitness-goals">How do I set fitness goals?</a></li>
+<li><a class="reference internal" href="#what-are-challenges">What are Challenges?</a></li>
+<li><a class="reference internal" href="#can-i-compete-with-friends">Can I compete with friends?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-privacy">Data &amp; Privacy</a><ul>
+<li><a class="reference internal" href="#how-is-my-data-stored-and-protected">How is my data stored and protected?</a></li>
+<li><a class="reference internal" href="#can-i-export-my-data">Can I export my data?</a></li>
+<li><a class="reference internal" href="#do-you-share-my-data-with-third-parties">Do you share my data with third parties?</a></li>
+<li><a class="reference internal" href="#how-do-i-sync-data-between-devices">How do I sync data between devices?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#integration-connectivity">Integration &amp; Connectivity</a><ul>
+<li><a class="reference internal" href="#which-fitness-devices-are-compatible">Which fitness devices are compatible?</a></li>
+<li><a class="reference internal" href="#how-do-i-connect-my-fitness-tracker">How do I connect my fitness tracker?</a></li>
+<li><a class="reference internal" href="#can-i-disconnect-a-device">Can I disconnect a device?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#premium-features">Premium Features</a><ul>
+<li><a class="reference internal" href="#what-s-included-in-premium">What’s included in Premium?</a></li>
+<li><a class="reference internal" href="#how-do-i-upgrade-to-premium">How do I upgrade to Premium?</a></li>
+<li><a class="reference internal" href="#can-i-cancel-my-premium-subscription">Can I cancel my Premium subscription?</a></li>
+<li><a class="reference internal" href="#is-there-a-free-trial">Is there a free trial?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#the-app-isn-t-tracking-my-workout-accurately-what-should-i-do">The app isn’t tracking my workout accurately. What should I do?</a></li>
+<li><a class="reference internal" href="#why-isn-t-my-data-syncing">Why isn’t my data syncing?</a></li>
+<li><a class="reference internal" href="#the-app-keeps-crashing-how-do-i-fix-this">The app keeps crashing. How do I fix this?</a></li>
+<li><a class="reference internal" href="#my-battery-drains-quickly-when-using-the-app-is-this-normal">My battery drains quickly when using the app. Is this normal?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#support-contact">Support &amp; Contact</a><ul>
+<li><a class="reference internal" href="#how-do-i-contact-customer-support">How do I contact customer support?</a></li>
+<li><a class="reference internal" href="#what-are-your-support-hours">What are your support hours?</a></li>
+<li><a class="reference internal" href="#how-do-i-report-a-bug">How do I report a bug?</a></li>
+<li><a class="reference internal" href="#can-i-suggest-new-features">Can I suggest new features?</a></li>
+<li><a class="reference internal" href="#where-can-i-find-the-latest-app-updates">Where can I find the latest app updates?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legal-terms">Legal &amp; Terms</a><ul>
+<li><a class="reference internal" href="#where-can-i-read-your-privacy-policy">Where can I read your Privacy Policy?</a></li>
+<li><a class="reference internal" href="#what-are-your-terms-of-service">What are your Terms of Service?</a></li>
+<li><a class="reference internal" href="#how-do-i-report-inappropriate-content">How do I report inappropriate content?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
