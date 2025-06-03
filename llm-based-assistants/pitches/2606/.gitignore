@@ -1,0 +1,55 @@
+# Python virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# VS Code settings
+.vscode/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment variables
+.env
+.env.*
+
+# macOS system files
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyd
+*.pyo
+
+# pip cache
+pip-wheel-metadata/
+pip-log.txt
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# mypy
+.mypy_cache/
+
+# pytest
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+
+# Other cache
+.cache/

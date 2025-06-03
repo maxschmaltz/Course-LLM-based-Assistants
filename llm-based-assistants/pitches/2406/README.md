@@ -16,7 +16,7 @@ The project folder has the following structure:
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any tools for data preprocessing, any LLM, any embedding model, and any orchestration framework you like.
 * You are free in your implementation as long as it follows the architectural constrains (implements a version of Adaptive-RAG). 
-* You don't have to strictly follow the boilerplate, it is just a quick-start suggestion; if you think it fits your solution better, feel free to remove/edit the suggested functions as well as add your. The only limitation you have here is that the solution should be written as Python scripts (not a notebook!), and it should be called from `demo.ipynb`.
+* You don't have to strictly follow the boilerplate, it is just a quick start suggestion; if you think it fits your solution better, feel free to remove/edit the suggested functions as well as add your. The only limitation you have here is that the solution should be written as Python scripts (not a notebook!), and it should be called from `demo.ipynb`.
 
 You don't have to find a perfect solution, imagine you are building an initial baseline; this activity is more about detecting the limitations and vulnerabilities of your own work and suggesting the ways to improve. Most importantly, you have to be able to explain your design choices and justify them for this particular use case. 
 
