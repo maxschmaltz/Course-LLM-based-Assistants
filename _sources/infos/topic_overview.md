@@ -264,8 +264,7 @@ This lecture gives an overview on how LLMs are used to generate reliable code an
 **Core Reading**:
 * [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977) (sections 4), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign` 🔴
 * 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research` 🔴
-* [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459) (pages 1-11), `University of Oslo`
-
+* [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459) (pages 1-11), `University of Oslo` 🟠
 
 **Additional Reading**:
 * [Planning with Large Language Models for Code Generation](https://arxiv.org/abs/2303.05510), `MIT-IBM Watson AI Lab et al.`
@@ -317,31 +316,7 @@ _____________________________________
 ### Week 9
 
 <a name="1706"></a>
-#### 17.06. _Pitch_: RAG Chatbot
-> On material of [session 06.05](#0605) and [session 13.05](#1305)
-
-The first pitch will be dedicated to a custom RAG chatbot that the _contractors_ (the presenting students, see the [infos about Pitches](./Formats/Pitches.md)) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses. Specific requirements will be released on 22.05.
-
-**Reading**: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), [session 15.05](#1505), and [session 20.05](#2005)
-
-#### 19.06.
-_Ausfalltermin_
-
-_____________________________________
-
-
-### Week 10
-
-<a name="2406"></a>
-#### 24.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
-> On material of [session 22.05](#2205)
-
-In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imagined support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 29.05.
-
-**Reading**: see [session 22.05](#2205) and [session 27.05](#2705)
-
-<a name="2606"></a>
-#### 26.06. _Lecture_: Other Business Applications: Game Design, Financial Analysis etc.
+#### 17.06. _Lecture_: Other Business Applications: Game Design, Financial Analysis etc.
 
 This lecture will serve a small break and will briefly go over other business scenarios that the LLMs are used in. 
 
@@ -365,6 +340,30 @@ This lecture will serve a small break and will briefly go over other business sc
 * [LLM4EDA: Emerging Progress in Large Language Models for Electronic Design Automation](https://arxiv.org/abs/2401.12224), `Shanghai Jiao Tong University et al.`
 * [Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models](https://arxiv.org/abs/2402.14207), `Stanford`
 * [Large Language Models Can Solve Real-World Planning Rigorously with Formal Verification Tools](https://arxiv.org/abs/2404.11891), `MIT, Harvard University & MIT-IBM Watson AI Lab`
+
+#### 19.06.
+_Ausfalltermin_
+
+_____________________________________
+
+
+### Week 10
+
+<a name="2406"></a>
+#### 24.06. _Pitch_: RAG Chatbot
+> On material of [session 06.05](#0605) and [session 13.05](#1305)
+
+The first pitch will be dedicated to a custom RAG chatbot that the _contractors_ (the presenting students, see the [infos about Pitches](./Formats/Pitches.md)) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses.
+
+**Reading**: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), [session 15.05](#1505), and [session 20.05](#2005)
+
+<a name="2606"></a>
+#### 26.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
+> On material of [session 22.05](#2205)
+
+In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imaginary support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 05.06.
+
+**Reading**: see [session 22.05](#2205) and [session 27.05](#2705)
 
 _____________________________________________________________________________
 

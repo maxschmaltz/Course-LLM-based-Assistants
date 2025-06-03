@@ -1,4 +1,4 @@
-# 17.06. _Pitch_: RAG Chatbot
+# 24.06. _Pitch_: RAG Chatbot
 
 In this pitch, the contractor has to present their implementation of a RAG Chatbot for internal data of an imaginary company. The pipeline will run an Adaptive-RAG architecture and will implement an LLM-based reranking of the retrieved documents. For simplicity, the chatbot won't have any memory and will answer each query independently.
 
@@ -101,4 +101,4 @@ The `rag_chatbot/main.py` provides you the function `init_pipeline()` to easily 
 
 1. Prepare slides that would present your solution to the "company board" (your fellow students). The slides should highlight the design decisions step by step (data preprocessing, chatbot pipeline etc.), explain the choices of the tools, LLMs etc., so basically justify why you implemented the system the way you did. It should then inspect the outputs of the system (the 10 questions from the demo notebook as well as yours if applicable) in detail and provide a qualitative analysis of those. Finally, it should discuss the current limitations and possible workarounds.
 2. With these slides, you will hold a presentation (30-40 min). After that, you have to be ready to answer the questions from the board.
-3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is June 17, 2pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.
+3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is June 24, 12pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.
