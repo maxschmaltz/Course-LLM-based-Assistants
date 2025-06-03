@@ -6,12 +6,12 @@ In this pitch, the contractor has to present their implementation of a RAG Chatb
 ## Task
 
 The project folder has the following structure:
-1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1706/resources) contains the files that simulate an internal database of an imaginary company. Your system will retrieve specific information from these documents. The resources are one PDF and one MD containing the description and the rules of a [currently ongoing hackathon](https://www.kaggle.com/competitions/openai-to-z-challenge/overview), respectively. The hackathon started a few weeks ago so LLMs do not have information about it.
-2. The [`rag_chatbot` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1706/rag_chatbot) folder will store the implementation of your system.
-    * [`data_manipulation.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1706/rag_chatbot/data_manipulation.py) will contain the functionality related to data preprocessing and storage: loading, chunking, indexing.
-    * [`agent.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1706/rag_chatbot/agent.py) will implement the Adaptive-RAG pipeline.
-    * [`main.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1706/rag_chatbot/main.py) will assemble and initialize the whole thing together; it will construct the index from `data_manipulation.py`, give it to the agent from `agent.py`, and initialize the system to be able to be queried.
-3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1706/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized RAG chatbot from `rag_chatbot/main.py` and query it with a few examples.
+1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/resources) contains the files that simulate an internal database of an imaginary company. Your system will retrieve specific information from these documents. The resources are one PDF and one MD containing the description and the rules of a [currently ongoing hackathon](https://www.kaggle.com/competitions/openai-to-z-challenge/overview), respectively. The hackathon started a few weeks ago so LLMs do not have information about it.
+2. The [`rag_chatbot` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot) folder will store the implementation of your system.
+    * [`data_manipulation.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot/data_manipulation.py) will contain the functionality related to data preprocessing and storage: loading, chunking, indexing.
+    * [`agent.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot/agent.py) will implement the Adaptive-RAG pipeline.
+    * [`main.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot/main.py) will assemble and initialize the whole thing together; it will construct the index from `data_manipulation.py`, give it to the agent from `agent.py`, and initialize the system to be able to be queried.
+3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized RAG chatbot from `rag_chatbot/main.py` and query it with a few examples.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any tools for data preprocessing, any LLM, any embedding model, and any orchestration framework you like.
@@ -25,7 +25,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 ### Setup
 
-1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1706).
+1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406).
 2. Go through the [usual setup routine](https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html) to setup your environment for the project. Put the resulting `requirements.txt` file with the dependencies in the project folder.
 
 ### Data Preprocessing in `rag_chatbot/data_manipulation.py`
