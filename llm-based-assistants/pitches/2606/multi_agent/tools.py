@@ -12,11 +12,7 @@ from typing import List
 from multi_agent.prompts import (
     TICKET_SYSTEM_PROMPT,
     GENERATE_NEW_TICKET_PROMPT,
-    _update_ticket_prompt,
-
-
-
-    _update_ticket_prompt_suka
+    _update_ticket_prompt
 )
 
 dotenv.load_dotenv()    # that loads the .env file variables into os.environ
@@ -84,19 +80,6 @@ def update_ticket(ticket: dict) -> Ticket:
     return Ticket(**ticket)  # unpack the dictionary to create a Ticket object
 
 
-
-def return_ticket_suka(ticket: Ticket) -> Ticket:
-    ticket_messages = []
-    for message in ticket.messages:
-        message_cls = HumanMessage if message.is_user else AIMessage
-        ticket_messages.append(message_cls(content=message.content))
-    prompt = _update_ticket_prompt_suka.invoke({"messages": ticket_messages})
-    update = llm.invoke(prompt)
-    return update
-
-
-
-
 def read_last_ticket() -> Ticket:
 
     """
@@ -139,7 +122,6 @@ def send_reply_to_ticket(ticket: Ticket, message: AIMessage, close: bool) -> Non
     tickets[ticket.id] = ticket.model_dump()
     with open("./tickets.json", "w") as f:
         json.dump(tickets, f, indent=4)
-
 
 
 def rag(query: str) -> List[Document]:

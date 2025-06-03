@@ -106,16 +106,10 @@ class SupportLaMA:
 
         pass
 
-    def run(self, query: str) -> AIMessage:
+    def run(self) -> None:
 
         """
         Run the agent with the given query.
-        
-        Args:
-            query (str): The question to answer
-            
-        Returns:
-            AIMessage: The LLM response to the question
         """
 
         pass

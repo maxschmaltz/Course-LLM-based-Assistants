@@ -41,19 +41,3 @@ _update_ticket_prompt = ChatPromptTemplate.from_messages(
         MessagesPlaceholder(variable_name="messages")
     ]
 )
-
-
-
-UPDATE_TICKET_SUKA_PROMPT = """\
-You are now given a message history for an existing support ticket. \
-Please generate a new message FROM SUPPORT TEAM as a reply to the last user question to update the ticket with respect to the message history.
-Personalize it as a good support manager (use the user name etc.)
-"""
-
-_update_ticket_prompt_suka = ChatPromptTemplate.from_messages(
-        [
-            ("system", TICKET_SYSTEM_PROMPT),
-            ("human", UPDATE_TICKET_SUKA_PROMPT),
-            MessagesPlaceholder(variable_name="messages")
-        ]
-    )
