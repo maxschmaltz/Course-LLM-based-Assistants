@@ -28,6 +28,7 @@ parts:
     - file: sessions/block2_core_topics/pt1_business/2005/2005.ipynb
     - file: sessions/block2_core_topics/pt1_business/2705/2705.ipynb
     - file: sessions/block2_core_topics/pt1_business/2205.md
+    - file: sessions/block2_core_topics/pt1_business/0306.md
 
   - caption: "Block 2: Core Topics | Part 2: Applications in Science"
     chapters:

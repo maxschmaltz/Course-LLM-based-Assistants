@@ -218,6 +218,7 @@ This lectures concludes the Virtual Assistants cycle and directs its attention t
 * [AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155), `Microsoft Research et al.`
 * 🍿 [How real-world businesses are transforming with AI — with more than 140 new stories](https://blogs.microsoft.com/blog/2025/03/10/https-blogs-microsoft-com-blog-2024-11-12-how-real-world-businesses-are-transforming-with-ai/), `Microsoft` (blog post)
 * 🍿 [Built with LangGraph](https://www.langchain.com/built-with-langgraph), `LangGraph` (website page)
+* 🍿 [Your AI Companion](https://blogs.microsoft.com/blog/2025/04/04/your-ai-companion/), `Microsoft` (blog post)
 * [Plan-Then-Execute: An Empirical Study of User Trust and Team Performance When Using LLM Agents As A Daily Assistant](https://arxiv.org/abs/2502.01390), `Delft University of Technology & The University of Queensland`
 
 
@@ -255,38 +256,39 @@ _____________________________________
 This lecture gives an overview on how LLMs are used to generate reliable code and how generated code is tested and improved to deal with the errors.
 
 **Key points**:
-* Code generation & refining
+* Code generation & Refinement
 * Automated testing
-* Copilots & LLM-supported deployment
+* End-to-end Software Development
+* Copilots
 * Generated code evaluation
 * Further considerations: reliability, sustainability etc.
 
 **Core Reading**:
-* [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977) (sections 4), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign` 🔴
+* [Large Language Model-Based Agents for Software Engineering: A Survey](https://arxiv.org/abs/2409.02977) (section 4), `Fudan University, Nanyang Technological University & University of Illinois at Urbana-Champaign` 🔴
 * 📌 [CodeRL: Mastering Code Generation through Pretrained Models and Deep Reinforcement Learning](https://arxiv.org/abs/2207.01780) (pages 1-20), `Salesforce Research` 🔴
 * [LLMs in Web Development: Evaluating LLM-Generated PHP Code Unveiling Vulnerabilities and Limitations](https://arxiv.org/abs/2404.14459) (pages 1-11), `University of Oslo` 🟠
 
 **Additional Reading**:
-* [Planning with Large Language Models for Code Generation](https://arxiv.org/abs/2303.05510), `MIT-IBM Watson AI Lab et al.`
-* [Human-In-the-Loop Software Development Agents](https://arxiv.org/abs/2411.12924), `Monash University, The University of Melbourne & Atlassian`
-* [A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis](https://arxiv.org/abs/2307.12856), `Google DeepMind & The University of Tokyo`
-* [Code Repair with LLMs gives an Exploration-Exploitation Tradeoff](https://arxiv.org/abs/2405.17503), `Cornell, Shanghai Jiao Tong University & University of Toronto`
-* [ChatUniTest: A Framework for LLM-Based Test Generation](https://arxiv.org/abs/2305.04764), `Zhejiang University & Hangzhou City University`
 * [The ART of LLM Refinement: Ask, Refine, and Trust](https://arxiv.org/abs/2311.07961), `ETH Zurich & Meta AI`
+* [Code Repair with LLMs gives an Exploration-Exploitation Tradeoff](https://arxiv.org/abs/2405.17503), `Cornell, Shanghai Jiao Tong University & University of Toronto`
+* [Planning with Large Language Models for Code Generation](https://arxiv.org/abs/2303.05510), `MIT-IBM Watson AI Lab et al.`
+* [A Real-World WebAgent with Planning, Long Context Understanding, and Program Synthesis](https://arxiv.org/abs/2307.12856), `Google DeepMind & The University of Tokyo`
+* [Human-In-the-Loop Software Development Agents](https://arxiv.org/abs/2411.12924), `Monash University, The University of Melbourne & Atlassian`
+* [ChatUniTest: A Framework for LLM-Based Test Generation](https://arxiv.org/abs/2305.04764), `Zhejiang University & Hangzhou City University`
 * [TestART: Improving LLM-based Unit Testing via Co-evolution of Automated Generation and Repair Iteration](https://arxiv.org/abs/2408.03095), `Nanjing University & Huawei Cloud Computing Technologies`
 * [Automated Unit Test Improvement using Large Language Models at Meta](https://arxiv.org/abs/2402.09171), `Meta`
 * [Design and evaluation of AI copilots -- case studies of retail copilot templates](https://arxiv.org/abs/2407.09512), `Microsoft`
-* 🍿 [Your AI Companion](https://blogs.microsoft.com/blog/2025/04/04/your-ai-companion/), `Microsoft` (blog post)
+* 🍿 [Introducing Codex](https://openai.com/index/introducing-codex/), `OpenAI` (blog post)
 * 🍿 [GitHub Copilot](https://github.com/features/copilot), `GitHub` (product page)
 * 🍿 [Research: quantifying GitHub Copilot’s impact on developer productivity and happiness](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/), `GitHub` (blog post)
 * 🍿 [Cursor: The AI Code Editor](https://www.cursor.com), `Cursor` (product page)
 * [An LLM-based Agent for Reliable Docker Environment Configuration](https://arxiv.org/abs/2502.13681), `Harbin Institute of Technology & ByteDance`
-* [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374), `OpenAI
+* [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374), `OpenAI`
 * 🍿 [Code Generation on HumanEval](https://paperswithcode.com/sota/code-generation-on-humaneval), `OpenAI` (leaderboard)
 * [CodeJudge: Evaluating Code Generation with Large Language Models](https://arxiv.org/abs/2410.02184), `Huazhong University of Science and Technology & Purdue University`
 * [Can ChatGPT replace StackOverflow? A Study on Robustness and Reliability of Large Language Model Code Generation](https://arxiv.org/abs/2308.10335), `UC San Diego`
-* [Learn to Code Sustainably: An Empirical Study on LLM-based Green Code Generation](https://arxiv.org/abs/2403.03344), `TWT GmbH Science & Innovation et al.`
 * [Enhancing Large Language Models for Secure Code Generation: A Dataset-driven Study on Vulnerability Mitigation](https://arxiv.org/abs/2310.16263), `South China University of Technology & University of Innsbruck`
+* [Learn to Code Sustainably: An Empirical Study on LLM-based Green Code Generation](https://arxiv.org/abs/2403.03344), `TWT GmbH Science & Innovation et al.`
 
 <a name="0506"></a>
 #### 05.06 _Lab_: LLM-powered Website
