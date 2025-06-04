@@ -289,7 +289,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>Then as always, we will initialize our LLM first. This time, we will be using <a class="reference external" href="https://build.nvidia.com/ibm/granite-3_3-8b-instruct?snippet_tab=LangChain">granite-3.3-8b-instruct</a> from IBM as this model was trained especially extensively for tool calling.</p>
+<p>Then as always, we will initialize our LLM first. This time, we will be using <a class="reference external" href="https://build.nvidia.com/meta/llama-3_1-405b-instruct">llama-3.1-405b-instruct</a> because ir handles multiple tools better (remember that a newer mode doesn’t necessarily means better model, at least for some tasks).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_nvidia_ai_endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatNVIDIA</span>
@@ -317,15 +317,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose any model, catalogue is available under https://build.nvidia.com/models</span>
-<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;ibm/granite-3.3-8b-instruct&quot;</span>
-<span class="c1"># MODEL_NAME = &quot;llama-3.1-nemotron-ultra-253b-v1&quot;</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.1-405b-instruct&quot;</span>
 
 <span class="c1"># this rate limiter will ensure we do not exceed the rate limit</span>
 <span class="c1"># of 40 RPM given by NVIDIA</span>
 <span class="n">rate_limiter</span> <span class="o">=</span> <span class="n">InMemoryRateLimiter</span><span class="p">(</span>
-    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">30</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 30 requests per minute to be sure</span>
+    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">20</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 20 requests per minute to be sure</span>
     <span class="n">check_every_n_seconds</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># wake up every 100 ms to check whether allowed to make a request,</span>
-    <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># controls the maximum burst size</span>
+    <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">1</span>  <span class="c1"># controls the maximum burst size</span>
 <span class="p">)</span>
 
 <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatNVIDIA</span><span class="p">(</span>
@@ -334,12 +333,6 @@
     <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>   <span class="c1"># ensure reproducibility,</span>
     <span class="n">rate_limiter</span><span class="o">=</span><span class="n">rate_limiter</span>  <span class="c1"># bind the rate limiter</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/maksimshmalts/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.12/site-packages/langchain_nvidia_ai_endpoints/_common.py:217: UserWarning: Found ibm/granite-3.3-8b-instruct in available_models, but type is unknown and inference may fail.
-  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -405,6 +398,7 @@
 <span class="s2">Answer user questions using the provided tools. </span><span class="se">\</span>
 <span class="s2">Always plan ahead first, then execute the plan step by step. </span><span class="se">\</span>
 <span class="s2">If you face a complex task, break it down into smaller steps. </span><span class="se">\</span>
+<span class="s2">You may use only one tool per action. </span><span class="se">\</span>
 <span class="s2">Return only the results with no additional text.</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
@@ -413,12 +407,6 @@
     <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
     <span class="n">prompt</span><span class="o">=</span><span class="n">_basic_agent_prompt</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/maksimshmalts/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.12/site-packages/langchain_nvidia_ai_endpoints/chat_models.py:592: UserWarning: Model &#39;ibm/granite-3.3-8b-instruct&#39; is not known to support tools. Your tool binding may fail at inference time.
-  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -492,54 +480,51 @@ I need to calculate (523 + 32) * 28 and get the length of the resulting number s
 
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 Tool Calls:
-  add_numbers (chatcmpl-tool-f83dbe03076343c99a6dcd4cdf59ff90)
- Call ID: chatcmpl-tool-f83dbe03076343c99a6dcd4cdf59ff90
+  add_numbers (chatcmpl-tool-79717782d33c483ea2a0484f3511da4b)
+ Call ID: chatcmpl-tool-79717782d33c483ea2a0484f3511da4b
   Args:
     a: 523
     b: 32
-  add_numbers (chatcmpl-tool-af41c05274b24da6b7de11f4d9eb5c1d)
- Call ID: chatcmpl-tool-af41c05274b24da6b7de11f4d9eb5c1d
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: add_numbers
+
+555.0
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Tool Calls:
+  multiply_numbers (chatcmpl-tool-ed46f917137f4af09c2ab00079b22b88)
+ Call ID: chatcmpl-tool-ed46f917137f4af09c2ab00079b22b88
   Args:
     a: 555
-    b: 0
-  multiply_numbers (chatcmpl-tool-a262f3791c8c4a308a815611d9cfd22d)
- Call ID: chatcmpl-tool-a262f3791c8c4a308a815611d9cfd22d
-  Args:
-    a: 28
-    b: 0
-  get_word_length (chatcmpl-tool-36f3e37fdc8d41a0bdad93c4be10f7d3)
- Call ID: chatcmpl-tool-36f3e37fdc8d41a0bdad93c4be10f7d3
-  Args:
-    word: five hundred fifty-five
-
-
-=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
-Name: add_numbers
-
-555.0
-
-
-=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
-Name: add_numbers
-
-555.0
+    b: 28
 
 
 =================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
 Name: multiply_numbers
 
-0.0
+15540.0
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Tool Calls:
+  get_word_length (chatcmpl-tool-ec58f78d2db1460a85c3148db3f00c68)
+ Call ID: chatcmpl-tool-ec58f78d2db1460a85c3148db3f00c68
+  Args:
+    word: fifteenthousandfivehundredforty
 
 
 =================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
 Name: get_word_length
 
-23
+31
 
 
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 
-The result of (523 + 32) * 28 is 555. The length of the word &quot;five hundred fifty-five&quot; is 23.
+The length of the word is 31.
 </pre></div>
 </div>
 </div>
@@ -558,16 +543,13 @@ What is the 5th largest country?
 
 
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+
+I can&#39;t answer that question with the tools I have available.
 </pre></div>
 </div>
 </div>
 </div>
-<p>As you can see, the default <code class="docutils literal notranslate"><span class="pre">create_react_agent</span></code> implementation is not optimal for a small model we have. It has 2 main issues:</p>
-<ol class="arabic simple">
-<li><p>It does not really think step by step and tries to solve the problem at once, causing mistakes</p></li>
-<li><p>It always tries to call a tool</p></li>
-</ol>
-<p>To address this issue, we will insert a so-called <code class="docutils literal notranslate"><span class="pre">pre_model_hook</span></code>: a function that is called before the LLM. This function is a usual LangGraph node that is just incorporated in the default implementation.</p>
+<p>As you can see, the default <code class="docutils literal notranslate"><span class="pre">create_react_agent</span></code> implementation is not optimal as it always tries to call a tool. To address this issue, we will insert a so-called <code class="docutils literal notranslate"><span class="pre">pre_model_hook</span></code>: a function that is called before the LLM. This function is a usual LangGraph node that is just incorporated in the default implementation.</p>
 <p>In our case, we will make the LLM first plan the next action explicitly and then generate itself a command for the next action.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -634,8 +616,13 @@ What is the 5th largest country?
     <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
     <span class="n">pre_model_hook</span><span class="o">=</span><span class="n">pre_hook</span>
 <span class="p">)</span>
-
-<span class="n">draw_graph</span><span class="p">(</span><span class="n">basic_plus_agent</span><span class="p">,</span> <span class="s2">&quot;basic_plus_agent.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_graph</span><span class="p">(</span><span class="n">basic_plus_agent</span><span class="p">,</span> <span class="s2">&quot;basic_plus_agent.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -657,21 +644,16 @@ I need to calculate (523 + 32) * 28 and get the length of the resulting number s
 
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 
-Call the add_numbers tool with arguments 523 and 32, then call the multiply_numbers tool with arguments from the previous call and 28. After obtaining the result, call the get_word_length tool with the spelled out version of the result.
+Call the add_numbers tool with arguments 523 and 32.
 
 
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 Tool Calls:
-  add_numbers (chatcmpl-tool-a67a31ae5504436680757a206903d673)
- Call ID: chatcmpl-tool-a67a31ae5504436680757a206903d673
+  add_numbers (chatcmpl-tool-b2196232c0ab48cd8cee0758dd2b6476)
+ Call ID: chatcmpl-tool-b2196232c0ab48cd8cee0758dd2b6476
   Args:
     a: 523
     b: 32
-  multiply_numbers (chatcmpl-tool-2b5362e9961d4fcc9adf0d243e5d5cb1)
- Call ID: chatcmpl-tool-2b5362e9961d4fcc9adf0d243e5d5cb1
-  Args:
-    a: 28
-    b: 555
 
 
 =================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
@@ -680,39 +662,156 @@ Name: add_numbers
 555.0
 
 
-=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
-Name: multiply_numbers
-
-15540.0
-
-
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 
-Call the get_word_length tool with the spelled out version of 15540.
+Call the multiply_numbers tool with arguments 555 and 28.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">Exception</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">run_agent</span><span class="p">(</span><span class="n">basic_plus_agent</span><span class="p">,</span> <span class="s2">&quot;I need to calculate (523 + 32) * 28 and get the length of the resulting number spelled out.&quot;</span><span class="p">)</span>
 
+<span class="nn">Cell In[9], line 7,</span> in <span class="ni">run_agent</span><span class="nt">(agent, query, recursion_limit)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">input</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">)]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="p">}</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">shown_messages</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">agent</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="nb">input</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;recursion_limit&quot;</span><span class="p">:</span> <span class="n">recursion_limit</span><span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;values&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
 
-==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
-Tool Calls:
-  get_word_length (chatcmpl-tool-62fc378f0256428a964d7f7034caa812)
- Call ID: chatcmpl-tool-62fc378f0256428a964d7f7034caa812
-  Args:
-    word: fifteen thousand five hundred forty
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langgraph/pregel/__init__.py:2436,</span> in <span class="ni">Pregel.stream</span><span class="nt">(self, input, config, stream_mode, output_keys, interrupt_before, interrupt_after, checkpoint_during, debug, subgraphs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2434</span>         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">loop</span><span class="o">.</span><span class="n">match_cached_writes</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">2435</span>             <span class="n">loop</span><span class="o">.</span><span class="n">output_writes</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">writes</span><span class="p">,</span> <span class="n">cached</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2436</span>         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">runner</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2437</span>             <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">loop</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">writes</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">2438</span>             <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">step_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2439</span>             <span class="n">get_waiter</span><span class="o">=</span><span class="n">get_waiter</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2440</span>             <span class="n">schedule_task</span><span class="o">=</span><span class="n">loop</span><span class="o">.</span><span class="n">accept_push</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2441</span>         <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2442</span>             <span class="c1"># emit output</span>
+<span class="g g-Whitespace">   </span><span class="mi">2443</span>             <span class="k">yield from</span> <span class="n">output</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2444</span> <span class="c1"># emit output</span>
 
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langgraph/prebuilt/chat_agent_executor.py:505,</span> in <span class="ni">create_react_agent.&lt;locals&gt;.call_model</span><span class="nt">(state, config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span> <span class="k">def</span><span class="w"> </span><span class="nf">call_model</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">StateSchema</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">RunnableConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StateSchema</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">504</span>     <span class="n">state</span> <span class="o">=</span> <span class="n">_get_model_input_state</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">505</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">AIMessage</span><span class="p">,</span> <span class="n">model_runnable</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">506</span>     <span class="c1"># add agent name to the AIMessage</span>
+<span class="g g-Whitespace">    </span><span class="mi">507</span>     <span class="n">response</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
-Name: get_word_length
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/runnables/base.py:3047,</span> in <span class="ni">RunnableSequence.invoke</span><span class="nt">(self, input, config, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3045</span>                 <span class="n">input_</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">step</span><span class="o">.</span><span class="n">invoke</span><span class="p">,</span> <span class="n">input_</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3046</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3047</span>                 <span class="n">input_</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">step</span><span class="o">.</span><span class="n">invoke</span><span class="p">,</span> <span class="n">input_</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3048</span> <span class="c1"># finish the root run</span>
+<span class="g g-Whitespace">   </span><span class="mi">3049</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-35
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/runnables/base.py:5430,</span> in <span class="ni">RunnableBindingBase.invoke</span><span class="nt">(self, input, config, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5423</span> <span class="nd">@override</span>
+<span class="g g-Whitespace">   </span><span class="mi">5424</span> <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5425</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">5428</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">5429</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Output</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">5430</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bound</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5431</span>         <span class="nb">input</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5432</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_merge_configs</span><span class="p">(</span><span class="n">config</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">5433</span>         <span class="o">**</span><span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">},</span>
+<span class="g g-Whitespace">   </span><span class="mi">5434</span>     <span class="p">)</span>
 
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:372,</span> in <span class="ni">BaseChatModel.invoke</span><span class="nt">(self, input, config, stop, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span> <span class="nd">@override</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span> <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">367</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseMessage</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="n">config</span> <span class="o">=</span> <span class="n">ensure_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>     <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>         <span class="s2">&quot;ChatGeneration&quot;</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">372</span>         <span class="bp">self</span><span class="o">.</span><span class="n">generate_prompt</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span>             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_convert_input</span><span class="p">(</span><span class="nb">input</span><span class="p">)],</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span>             <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>             <span class="n">callbacks</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;callbacks&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>             <span class="n">tags</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>             <span class="n">metadata</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>             <span class="n">run_name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;run_name&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span>             <span class="n">run_id</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;run_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span>             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>         <span class="p">)</span><span class="o">.</span><span class="n">generations</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span>     <span class="p">)</span><span class="o">.</span><span class="n">message</span>
 
-==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:957,</span> in <span class="ni">BaseChatModel.generate_prompt</span><span class="nt">(self, prompts, stop, callbacks, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="nd">@override</span>
+<span class="g g-Whitespace">    </span><span class="mi">949</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_prompt</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">950</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">954</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">955</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LLMResult</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">956</span>     <span class="n">prompt_messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">to_messages</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prompts</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">957</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompt_messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-The length of the spelled out version of the result is 35.
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:776,</span> in <span class="ni">BaseChatModel.generate</span><span class="nt">(self, messages, stop, callbacks, tags, metadata, run_name, run_id, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">773</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">input_messages</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">774</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">775</span>         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">776</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_with_cache</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span>                 <span class="n">m</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>                 <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span>                 <span class="n">run_manager</span><span class="o">=</span><span class="n">run_managers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">run_managers</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>         <span class="k">if</span> <span class="n">run_managers</span><span class="p">:</span>
 
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:1022,</span> in <span class="ni">BaseChatModel._generate_with_cache</span><span class="nt">(self, messages, stop, run_manager, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1020</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">generate_from_stream</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">chunks</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1021</span> <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;run_manager&quot;</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1022</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span>         <span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">run_manager</span><span class="o">=</span><span class="n">run_manager</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1025</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1026</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/chat_models.py:383,</span> in <span class="ni">ChatNVIDIA._generate</span><span class="nt">(self, messages, stop, run_manager, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">extra_headers</span> <span class="o">=</span> <span class="n">_process_for_vlm</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_payload</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">383</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">get_req</span><span class="p">(</span><span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">extra_headers</span><span class="o">=</span><span class="n">extra_headers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="n">responses</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">postprocess</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_callback_out</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">run_manager</span><span class="p">)</span>
 
-The result of (523 + 32) * 28 is 15540, and the length of this number when spelled out is 35 characters.
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/_common.py:478,</span> in <span class="ni">_NVIDIAClient.get_req</span><span class="nt">(self, payload, extra_headers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_req</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span>     <span class="n">payload</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="n">extra_headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Post to the API.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">478</span>     <span class="n">response</span><span class="p">,</span> <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span>         <span class="bp">self</span><span class="o">.</span><span class="n">infer_url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">extra_headers</span><span class="o">=</span><span class="n">extra_headers</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/_common.py:374,</span> in <span class="ni">_NVIDIAClient._post</span><span class="nt">(self, invoke_url, payload, extra_headers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span> <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_session_fn</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_response</span> <span class="o">=</span> <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">372</span>     <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__add_authorization</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_inputs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">374</span> <span class="bp">self</span><span class="o">.</span><span class="n">_try_raise</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span> <span class="k">return</span> <span class="n">response</span><span class="p">,</span> <span class="n">session</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/_common.py:467,</span> in <span class="ni">_NVIDIAClient._try_raise</span><span class="nt">(self, response)</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span>     <span class="n">body</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please check or regenerate your API key.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span> <span class="c1"># todo: raise as an HTTPError</span>
+<span class="ne">--&gt; </span><span class="mi">467</span> <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">body</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+
+<span class="ne">Exception</span>: [429] Too Many Requests
+<span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Too Many Requests&#39;</span><span class="p">}</span>
+<span class="n">During</span> <span class="n">task</span> <span class="k">with</span> <span class="n">name</span> <span class="s1">&#39;agent&#39;</span> <span class="ow">and</span> <span class="nb">id</span> <span class="s1">&#39;dd6b75af-6f86-ac98-9738-f2fb654f3960&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -727,14 +826,133 @@ The result of (523 + 32) * 28 is 15540, and the length of this number when spell
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
 
 When is the apocalypse happening?
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">Exception</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">run_agent</span><span class="p">(</span><span class="n">basic_plus_agent</span><span class="p">,</span> <span class="s2">&quot;When is the apocalypse happening?&quot;</span><span class="p">)</span>
 
+<span class="nn">Cell In[9], line 7,</span> in <span class="ni">run_agent</span><span class="nt">(agent, query, recursion_limit)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">input</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">)]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="p">}</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">shown_messages</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">agent</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="nb">input</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;recursion_limit&quot;</span><span class="p">:</span> <span class="n">recursion_limit</span><span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;values&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
 
-==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langgraph/pregel/__init__.py:2436,</span> in <span class="ni">Pregel.stream</span><span class="nt">(self, input, config, stream_mode, output_keys, interrupt_before, interrupt_after, checkpoint_during, debug, subgraphs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2434</span>         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">loop</span><span class="o">.</span><span class="n">match_cached_writes</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">2435</span>             <span class="n">loop</span><span class="o">.</span><span class="n">output_writes</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">writes</span><span class="p">,</span> <span class="n">cached</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2436</span>         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">runner</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2437</span>             <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">loop</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">writes</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">2438</span>             <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">step_timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2439</span>             <span class="n">get_waiter</span><span class="o">=</span><span class="n">get_waiter</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2440</span>             <span class="n">schedule_task</span><span class="o">=</span><span class="n">loop</span><span class="o">.</span><span class="n">accept_push</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2441</span>         <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2442</span>             <span class="c1"># emit output</span>
+<span class="g g-Whitespace">   </span><span class="mi">2443</span>             <span class="k">yield from</span> <span class="n">output</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2444</span> <span class="c1"># emit output</span>
 
-Return the answer &quot;I&#39;m sorry, I can&#39;t predict the future. I don&#39;t have the capability to determine the occurrence of the apocalypse.&quot;
+<span class="nn">Cell In[13], line 3,</span> in <span class="ni">pre_hook</span><span class="nt">(state)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">pre_hook</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">pre_hook_prompt</span> <span class="o">=</span> <span class="n">_pre_hook_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">next_action</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">pre_hook_prompt</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">next_action</span><span class="p">}</span>
 
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:372,</span> in <span class="ni">BaseChatModel.invoke</span><span class="nt">(self, input, config, stop, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span> <span class="nd">@override</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span> <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">367</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseMessage</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="n">config</span> <span class="o">=</span> <span class="n">ensure_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>     <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>         <span class="s2">&quot;ChatGeneration&quot;</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">372</span>         <span class="bp">self</span><span class="o">.</span><span class="n">generate_prompt</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span>             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_convert_input</span><span class="p">(</span><span class="nb">input</span><span class="p">)],</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span>             <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>             <span class="n">callbacks</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;callbacks&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>             <span class="n">tags</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>             <span class="n">metadata</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>             <span class="n">run_name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;run_name&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span>             <span class="n">run_id</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;run_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">380</span>             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>         <span class="p">)</span><span class="o">.</span><span class="n">generations</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span>     <span class="p">)</span><span class="o">.</span><span class="n">message</span>
 
-==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:957,</span> in <span class="ni">BaseChatModel.generate_prompt</span><span class="nt">(self, prompts, stop, callbacks, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="nd">@override</span>
+<span class="g g-Whitespace">    </span><span class="mi">949</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_prompt</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">950</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">954</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">955</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LLMResult</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">956</span>     <span class="n">prompt_messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">to_messages</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">prompts</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">957</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompt_messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:776,</span> in <span class="ni">BaseChatModel.generate</span><span class="nt">(self, messages, stop, callbacks, tags, metadata, run_name, run_id, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">773</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">input_messages</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">774</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">775</span>         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">776</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_with_cache</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span>                 <span class="n">m</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>                 <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span>                 <span class="n">run_manager</span><span class="o">=</span><span class="n">run_managers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">run_managers</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>         <span class="k">if</span> <span class="n">run_managers</span><span class="p">:</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py:1022,</span> in <span class="ni">BaseChatModel._generate_with_cache</span><span class="nt">(self, messages, stop, run_manager, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1020</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">generate_from_stream</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">chunks</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1021</span> <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;run_manager&quot;</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1022</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span>         <span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">run_manager</span><span class="o">=</span><span class="n">run_manager</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1025</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1026</span>     <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/chat_models.py:383,</span> in <span class="ni">ChatNVIDIA._generate</span><span class="nt">(self, messages, stop, run_manager, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">extra_headers</span> <span class="o">=</span> <span class="n">_process_for_vlm</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_payload</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">383</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">get_req</span><span class="p">(</span><span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">extra_headers</span><span class="o">=</span><span class="n">extra_headers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="n">responses</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">postprocess</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_callback_out</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">run_manager</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/_common.py:478,</span> in <span class="ni">_NVIDIAClient.get_req</span><span class="nt">(self, payload, extra_headers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_req</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span>     <span class="n">payload</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="n">extra_headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Post to the API.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">478</span>     <span class="n">response</span><span class="p">,</span> <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span>         <span class="bp">self</span><span class="o">.</span><span class="n">infer_url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">extra_headers</span><span class="o">=</span><span class="n">extra_headers</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/_common.py:374,</span> in <span class="ni">_NVIDIAClient._post</span><span class="nt">(self, invoke_url, payload, extra_headers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span> <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_session_fn</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_response</span> <span class="o">=</span> <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">372</span>     <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__add_authorization</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_inputs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">374</span> <span class="bp">self</span><span class="o">.</span><span class="n">_try_raise</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span> <span class="k">return</span> <span class="n">response</span><span class="p">,</span> <span class="n">session</span>
+
+<span class="nn">File ~/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.13/site-packages/langchain_nvidia_ai_endpoints/_common.py:467,</span> in <span class="ni">_NVIDIAClient._try_raise</span><span class="nt">(self, response)</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span>     <span class="n">body</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please check or regenerate your API key.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span> <span class="c1"># todo: raise as an HTTPError</span>
+<span class="ne">--&gt; </span><span class="mi">467</span> <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">body</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+
+<span class="ne">Exception</span>: [429] Too Many Requests
+<span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Too Many Requests&#39;</span><span class="p">}</span>
+<span class="n">During</span> <span class="n">task</span> <span class="k">with</span> <span class="n">name</span> <span class="s1">&#39;pre_model_hook&#39;</span> <span class="ow">and</span> <span class="nb">id</span> <span class="s1">&#39;f4e138e6-cd37-c244-80db-7f420ce033de&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -860,12 +1078,6 @@ Return the answer &quot;I&#39;m sorry, I can&#39;t predict the future. I don&#39
     <span class="n">prompt</span><span class="o">=</span><span class="n">_scheduler_agent_prompt</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scheduler_agent&quot;</span>  <span class="c1"># add names for the coordinator</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/maksimshmalts/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.12/site-packages/langchain_nvidia_ai_endpoints/chat_models.py:592: UserWarning: Model &#39;ibm/granite-3.3-8b-instruct&#39; is not known to support tools. Your tool binding may fail at inference time.
-  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -1010,8 +1222,7 @@ Return the answer &quot;I&#39;m sorry, I can&#39;t predict the future. I don&#39
 <span class="s2">to the agent so it knows what to do. </span><span class="se">\</span>
 <span class="s2">Do not stop until the task is completed.</span>
 
-<span class="s2">Assign work to ONE agent at a step, do not call the agents in parallel. </span><span class="se">\</span>
-<span class="s2">Repeat steps (SINGLE TOOL CALLS) until the task is completed. </span><span class="se">\</span>
+<span class="s2">Assign work to one agent at a step, do not call the agents in parallel. </span><span class="se">\</span>
 <span class="s2">Do not do any work yourself.</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
@@ -1034,12 +1245,6 @@ Return the answer &quot;I&#39;m sorry, I can&#39;t predict the future. I don&#39
 <span class="p">)</span>
 
 <span class="n">lama</span> <span class="o">=</span> <span class="n">coordinator</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/maksimshmalts/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt1_business/2705/.venv/lib/python3.12/site-packages/langchain_nvidia_ai_endpoints/chat_models.py:592: UserWarning: Model &#39;ibm/granite-3.3-8b-instruct&#39; is not known to support tools. Your tool binding may fail at inference time.
-  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -1187,7 +1392,19 @@ The meeting is scheduled for 15:00-16:00, as this is the common available time s
 </div>
 </div>
 <h2 id="human">3. Human in The Loop 👾🤖🧐👾</h2>
-<p>Will be updated soon.</p>
+<p>Since the <code class="docutils literal notranslate"><span class="pre">create_supervisor</span></code> method gives us only a template of …</p>
+<p>TODO:</p>
+<ul class="simple">
+<li><p>create coordinator from scratch</p></li>
+<li><p>add a human node manually</p></li>
+<li><p>rerun the failed runs (too many requests):</p>
+<ul>
+<li><p>basic plus with tools</p></li>
+<li><p>basic plus without tools</p></li>
+<li><p>lama</p></li>
+</ul>
+</li>
+</ul>
 </section>
 </section>
 </section>
