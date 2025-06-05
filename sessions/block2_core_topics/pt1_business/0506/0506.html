@@ -334,89 +334,32 @@
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;Code Snippet Playground&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        p {
-            margin-bottom: 40px;
-            font-style: italic;
-            color: #555;
-        }
-        textarea {
-            width: 300px;
-            height: 150px;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: none;
-        }
-        button {
-            margin: 5px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #submitBtn {
-            background-color: #4CAF50;
-            color: white;
-        }
-        #clearBtn {
-            background-color: #f44336;
-            color: white;
-        }
-        #message {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
-    &lt;/style&gt;
+    &lt;title&gt;Code Snippet Handler&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;Code Snippet Playground&lt;/h1&gt;
-    &lt;p&gt;JavaScript, oh wondrous art,&lt;br&gt;
-    In browsers, you play your part.&lt;br&gt;
-    With logic and loops, you weave,&lt;br&gt;
-    A tapestry of code, we believe.&lt;/p&gt;
-    &lt;textarea id=&quot;codeInput&quot; placeholder=&quot;Enter your code snippet here...&quot;&gt;&lt;/textarea&gt;
-    &lt;div&gt;
-        &lt;button id=&quot;submitBtn&quot;&gt;Submit Code&lt;/button&gt;
-        &lt;button id=&quot;clearBtn&quot;&gt;Clear Form&lt;/button&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;header&gt;
+            &lt;h1&gt;Code Snippet Handler&lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;section class=&quot;poem-section&quot;&gt;
+            &lt;p class=&quot;poem&quot;&gt;
+                In the realm of scripts, JavaScript reigns,&lt;br&gt;
+                With logic and loops, it never wanes.&lt;br&gt;
+                Dynamic and swift, it brings life to the page,&lt;br&gt;
+                A language of power, in the digital age.
+            &lt;/p&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;form-section&quot;&gt;
+            &lt;textarea id=&quot;codeInput&quot; class=&quot;code-input&quot; placeholder=&quot;Enter your code snippet here...&quot;&gt;&lt;/textarea&gt;
+            &lt;div class=&quot;button-group&quot;&gt;
+                &lt;button id=&quot;submitCode&quot; class=&quot;button&quot;&gt;Submit Code&lt;/button&gt;
+                &lt;button id=&quot;clearForm&quot; class=&quot;button&quot;&gt;Clear Form&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div id=&quot;resultMessage&quot; class=&quot;result-message&quot;&gt;&lt;/div&gt;
+        &lt;/section&gt;
     &lt;/div&gt;
-    &lt;div id=&quot;message&quot;&gt;&lt;/div&gt;
-    &lt;script&gt;
-        const submitBtn = document.getElementById(&#39;submitBtn&#39;);
-        const clearBtn = document.getElementById(&#39;clearBtn&#39;);
-        const codeInput = document.getElementById(&#39;codeInput&#39;);
-        const message = document.getElementById(&#39;message&#39;);
-
-        submitBtn.addEventListener(&#39;click&#39;, () =&gt; {
-            message.textContent = &#39;Processing...&#39;;
-            setTimeout(() =&gt; {
-                const success = Math.random() &lt; 0.5;
-                message.textContent = success ? &#39;Success&#39; : &#39;Something went wrong&#39;;
-            }, 3000);
-        });
-
-        clearBtn.addEventListener(&#39;click&#39;, () =&gt; {
-            codeInput.value = &#39;&#39;;
-            message.textContent = &#39;&#39;;
-        });
-    &lt;/script&gt;
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 ========= CSS_AGENT to css_agent =========
@@ -424,86 +367,341 @@
 
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
     background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 h1 {
-    margin-bottom: 20px;
+    font-size: 2em;
+    margin: 0;
+    color: #444;
 }
 
-p {
-    margin-bottom: 40px;
-    font-style: italic;
-    color: #555;
+.poem-section {
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-textarea {
-    width: 300px;
+.poem {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #666;
+}
+
+.form-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.code-input {
+    width: 100%;
     height: 150px;
-    margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    resize: none;
+    font-size: 1em;
+    margin-bottom: 20px;
+    resize: vertical;
 }
 
-button {
-    margin: 5px;
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
     padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007BFF;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-#submitBtn {
-    background-color: #4CAF50;
-    color: white;
+.button:hover {
+    background-color: #0056b3;
 }
 
-#clearBtn {
-    background-color: #f44336;
-    color: white;
-}
-
-#message {
+.result-message {
     margin-top: 20px;
-    font-size: 18px;
-    color: #333;
+    font-size: 1.1em;
+    text-align: center;
+    color: #007BFF;
 }
 ========= JS_AGENT to js_agent =========
 
 
-document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
-    const submitBtn = document.getElementById(&#39;submitBtn&#39;);
-    const clearBtn = document.getElementById(&#39;clearBtn&#39;);
-    const message = document.getElementById(&#39;message&#39;);
-    const textarea = document.querySelector(&#39;textarea&#39;);
+const submitButton = document.getElementById(&#39;submitCode&#39;);
+const clearButton = document.getElementById(&#39;clearForm&#39;);
+const codeInput = document.getElementById(&#39;codeInput&#39;);
+const resultMessage = document.getElementById(&#39;resultMessage&#39;);
 
-    submitBtn.addEventListener(&#39;click&#39;, function() {
-        message.textContent = &#39;Processing...&#39;;
-        setTimeout(() =&gt; {
-            const isSuccess = Math.random() &lt; 0.5;
-            message.textContent = isSuccess ? &#39;Success&#39; : &#39;Something went wrong&#39;;
-        }, 3000);
-    });
-
-    clearBtn.addEventListener(&#39;click&#39;, function() {
-        textarea.value = &#39;&#39;;
-        message.textContent = &#39;&#39;;
-    });
+submitButton.addEventListener(&#39;click&#39;, () =&gt; {
+    resultMessage.textContent = &#39;Processing...&#39;;
+    setTimeout(() =&gt; {
+        const isSuccess = Math.random() &lt; 0.5;
+        resultMessage.textContent = isSuccess ? &#39;Success&#39; : &#39;Something went wrong&#39;;
+    }, 3000);
 });
-========= STATIC_CHECKER to html_agent =========
+
+clearButton.addEventListener(&#39;click&#39;, () =&gt; {
+    codeInput.value = &#39;&#39;;
+    resultMessage.textContent = &#39;&#39;;
+});
+========= STATIC_CHECKER to __end__ =========
 
 
-The HTML code is missing, and the CSS code is mixed up with the HTML. Please provide the correct HTML code that includes the structure of the webpage with the poem and buttons. Also, ensure the CSS is separated into its own file to maintain the styling as per the specification.
-========= HTML_AGENT to all =========
+Website created. Exiting.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">website_description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">The site features two buttons: one for submitting code snippets and another for clearing the input form. </span><span class="se">\</span>
+<span class="s2">When the user clicks the &quot;Submit Code&quot; button, the animation of processing appears for 3 seconds and then it shows either &quot;success&quot;, or &quot;something went wrong&quot;, </span><span class="se">\</span>
+<span class="s2">with equal probability of each. The &quot;Clear Form&quot; button resets the input fields.</span>
+<span class="s2">This site will be presented at a competition so it should look as professional and polished as possible. It should be just AWESOME</span>
+<span class="s2">Also name the website somehow and add a poem about JS above the buttons.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">webagent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">website_description</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========= HTML_AGENT to all =========
+
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Code Snippet Submission&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Code Snippet Submission Portal&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;section class=&quot;poem-section&quot;&gt;
+            &lt;h2&gt;Ode to JavaScript&lt;/h2&gt;
+            &lt;p&gt;
+                In the realm of the web, you reign supreme,&lt;br&gt;
+                With logic and loops, you fulfill the dream.&lt;br&gt;
+                Dynamic and swift, you bring life to the page,&lt;br&gt;
+                JavaScript, oh JavaScript, you&#39;re the sage.
+            &lt;/p&gt;
+        &lt;/section&gt;
+        &lt;section class=&quot;form-section&quot;&gt;
+            &lt;form id=&quot;codeForm&quot;&gt;
+                &lt;div class=&quot;form-group&quot;&gt;
+                    &lt;label for=&quot;codeInput&quot;&gt;Enter your code snippet:&lt;/label&gt;
+                    &lt;textarea id=&quot;codeInput&quot; class=&quot;code-input&quot; rows=&quot;10&quot; cols=&quot;50&quot;&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;button-group&quot;&gt;
+                    &lt;button type=&quot;button&quot; id=&quot;submitCode&quot; class=&quot;submit-button&quot;&gt;Submit Code&lt;/button&gt;
+                    &lt;button type=&quot;button&quot; id=&quot;clearForm&quot; class=&quot;clear-button&quot;&gt;Clear Form&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div id=&quot;resultMessage&quot; class=&quot;result-message&quot;&gt;&lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+========= CSS_AGENT to css_agent =========
+
+
+body {
+    font-family: &#39;Arial&#39;, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.poem-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.poem-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.poem-section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.form-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.code-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: &#39;Courier New&#39;, Courier, monospace;
+    font-size: 1em;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+.submit-button:hover {
+    background-color: #357ab8;
+}
+
+.clear-button {
+    background-color: #e94e77;
+    color: #fff;
+}
+
+.clear-button:hover {
+    background-color: #c43d5d;
+}
+
+.result-message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-align: center;
+    min-height: 30px;
+}
+
+@keyframes processing {
+    0% { content: &#39;Processing&#39;; }
+    33% { content: &#39;Processing.&#39;; }
+    66% { content: &#39;Processing..&#39;; }
+    100% { content: &#39;Processing...&#39;; }
+}
+
+.processing::before {
+    content: &#39;Processing&#39;;
+    animation: processing 1s infinite;
+}
+========= JS_AGENT to js_agent =========
+
+
+const submitButton = document.getElementById(&#39;submitCode&#39;);
+const clearButton = document.getElementById(&#39;clearForm&#39;);
+const codeInput = document.getElementById(&#39;codeInput&#39;);
+const resultMessage = document.getElementById(&#39;resultMessage&#39;);
+
+submitButton.addEventListener(&#39;click&#39;, () =&gt; {
+    resultMessage.textContent = &#39;Processing...&#39;;
+    setTimeout(() =&gt; {
+        const isSuccess = Math.random() &lt; 0.5;
+        resultMessage.textContent = isSuccess ? &#39;Success&#39; : &#39;Something went wrong&#39;;
+    }, 3000);
+});
+
+clearButton.addEventListener(&#39;click&#39;, () =&gt; {
+    codeInput.value = &#39;&#39;;
+    resultMessage.textContent = &#39;&#39;;
+});
+========= STATIC_CHECKER to __end__ =========
+
+
+Website created. Exiting.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">website_description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">A collaborative online platform for real-time scientific research and data analysis. The website allows multiple users to:</span>
+<span class="s2">- Upload, visualize, and annotate large datasets (including CSV, Excel, images, and time series data).</span>
+<span class="s2">- Create and edit interactive Jupyter-like notebooks with live code execution in Python, R, and Julia.</span>
+<span class="s2">- Schedule and run long-running computations on cloud resources, with real-time progress tracking and notifications.</span>
+<span class="s2">- Integrate with external APIs (e.g., PubMed, arXiv, GitHub) to fetch and reference scientific literature and code.</span>
+<span class="s2">- Use built-in AI assistants for code generation, data cleaning, and statistical analysis.</span>
+<span class="s2">- Collaborate via live chat, video calls, and shared whiteboards.</span>
+<span class="s2">- Manage project versions, branching, and merge requests with a visual interface.</span>
+<span class="s2">- Enforce granular access controls and audit logs for all actions.</span>
+<span class="s2">The UI should be highly responsive, support dark/light themes, and provide accessibility features for all users.</span>
+<span class="s2">Name the website and add a short inspirational quote about science on the homepage.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">webagent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">website_description</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========= HTML_AGENT to all =========
 
 
 &lt;!DOCTYPE html&gt;
@@ -511,113 +709,232 @@ The HTML code is missing, and the CSS code is mixed up with the HTML. Please pro
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;Code Snippet Playground&lt;/title&gt;
+    &lt;title&gt;ResearchHub - Empowering Scientific Discovery&lt;/title&gt;
     &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
     &lt;script src=&quot;script.js&quot; defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div class=&quot;container&quot;&gt;
-        &lt;h1&gt;Code Snippet Playground&lt;/h1&gt;
-        &lt;p class=&quot;poem&quot;&gt;JavaScript, oh wondrous art,&lt;br&gt;
-        In browsers, you play your part.&lt;br&gt;
-        With logic and loops, you weave,&lt;br&gt;
-        A tapestry of code, we believe.&lt;/p&gt;
-        &lt;textarea id=&quot;codeInput&quot; class=&quot;code-input&quot; placeholder=&quot;Enter your code snippet here...&quot;&gt;&lt;/textarea&gt;
-        &lt;div class=&quot;button-container&quot;&gt;
-            &lt;button id=&quot;submitBtn&quot; class=&quot;button&quot;&gt;Submit Code&lt;/button&gt;
-            &lt;button id=&quot;clearBtn&quot; class=&quot;button&quot;&gt;Clear Form&lt;/button&gt;
-        &lt;/div&gt;
-        &lt;div id=&quot;message&quot; class=&quot;message&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
+    &lt;header id=&quot;main-header&quot;&gt;
+        &lt;h1&gt;ResearchHub&lt;/h1&gt;
+        &lt;p class=&quot;inspirational-quote&quot;&gt;&quot;Science knows no country, because knowledge belongs to humanity, and is the torch which illuminates the world.&quot; - Louis Pasteur&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;nav id=&quot;main-nav&quot;&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;#upload&quot;&gt;Upload Data&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#notebooks&quot;&gt;Interactive Notebooks&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#computations&quot;&gt;Cloud Computations&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#integrations&quot;&gt;API Integrations&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#ai-assistants&quot;&gt;AI Assistants&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#collaboration&quot;&gt;Collaboration Tools&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#version-control&quot;&gt;Version Control&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#access-control&quot;&gt;Access Control&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    
+    &lt;main id=&quot;content&quot;&gt;
+        &lt;section id=&quot;upload&quot;&gt;
+            &lt;h2&gt;Upload, Visualize, and Annotate Data&lt;/h2&gt;
+            &lt;p&gt;Upload large datasets including CSV, Excel, images, and time series data. Visualize and annotate your data in real-time.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id=&quot;notebooks&quot;&gt;
+            &lt;h2&gt;Create and Edit Interactive Notebooks&lt;/h2&gt;
+            &lt;p&gt;Work with Jupyter-like notebooks that support live code execution in Python, R, and Julia.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id=&quot;computations&quot;&gt;
+            &lt;h2&gt;Schedule and Run Cloud Computations&lt;/h2&gt;
+            &lt;p&gt;Run long computations on cloud resources with real-time progress tracking and notifications.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id=&quot;integrations&quot;&gt;
+            &lt;h2&gt;Integrate with External APIs&lt;/h2&gt;
+            &lt;p&gt;Fetch and reference scientific literature and code from PubMed, arXiv, GitHub, and more.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id=&quot;ai-assistants&quot;&gt;
+            &lt;h2&gt;AI Assistants for Enhanced Productivity&lt;/h2&gt;
+            &lt;p&gt;Utilize built-in AI assistants for code generation, data cleaning, and statistical analysis.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id=&quot;collaboration&quot;&gt;
+            &lt;h2&gt;Collaborate in Real-Time&lt;/h2&gt;
+            &lt;p&gt;Engage with team members via live chat, video calls, and shared whiteboards.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id=&quot;version-control&quot;&gt;
+            &lt;h2&gt;Manage Project Versions&lt;/h2&gt;
+            &lt;p&gt;Use a visual interface for project versioning, branching, and merge requests.&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section id=&quot;access-control&quot;&gt;
+            &lt;h2&gt;Granular Access Controls and Audit Logs&lt;/h2&gt;
+            &lt;p&gt;Enforce detailed access controls and maintain audit logs for all actions.&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    
+    &lt;footer id=&quot;main-footer&quot;&gt;
+        &lt;p&gt;&amp;copy; 2023 ResearchHub. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-========= STATIC_CHECKER to css_agent =========
-
-
-Please provide a CSS file named `styles.css` that includes styles for the following:
-- A minimalistic and flat design for the buttons, using subtle colors.
-- Adequate white space around elements to maintain simplicity.
-- Styling for the container and text elements to ensure a clean layout.
 ========= CSS_AGENT to css_agent =========
 
 
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #ecf0f1;
+    --accent-color: #3498db;
+    --text-color: #333;
+    --background-color: #fff;
+    --dark-background-color: #1a1a1a;
+    --dark-text-color: #ecf0f1;
+    --font-family: &#39;Arial&#39;, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     margin: 0;
-    background-color: #f9f9f9;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.container {
-    text-align: center;
+header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
 }
 
-.poem {
-    margin-bottom: 40px;
+.inspirational-quote {
     font-style: italic;
-    color: #555;
+    margin-top: 10px;
 }
 
-.code-input {
-    width: 100%;
-    max-width: 400px;
-    height: 150px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: none;
-    font-size: 14px;
+nav {
+    background-color: var(--accent-color);
+    padding: 10px 0;
 }
 
-.button-container {
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
-    gap: 10px;
 }
 
-.button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+nav ul li {
+    margin: 0 15px;
 }
 
-#submitBtn {
-    background-color: #4CAF50;
-    color: white;
+nav ul li a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-#clearBtn {
-    background-color: #f44336;
-    color: white;
+nav ul li a:hover {
+    color: var(--primary-color);
 }
 
-.button:hover {
-    opacity: 0.8;
+main {
+    padding: 20px;
 }
 
-.message {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #333;
+section {
+    margin-bottom: 40px;
 }
+
+section h2 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+section p {
+    line-height: 1.6;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 10px 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--dark-background-color);
+        color: var(--dark-text-color);
+    }
+
+    header, footer {
+        background-color: var(--dark-background-color);
+    }
+
+    nav ul li a {
+        color: var(--dark-text-color);
+    }
+
+    nav ul li a:hover {
+        color: var(--accent-color);
+    }
+}
+========= JS_AGENT to js_agent =========
+
+
+document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+    const themeToggle = document.createElement(&#39;button&#39;);
+    themeToggle.textContent = &#39;Toggle Theme&#39;;
+    themeToggle.style.position = &#39;fixed&#39;;
+    themeToggle.style.bottom = &#39;10px&#39;;
+    themeToggle.style.right = &#39;10px&#39;;
+    document.body.appendChild(themeToggle);
+
+    themeToggle.addEventListener(&#39;click&#39;, function() {
+        document.body.classList.toggle(&#39;dark-theme&#39;);
+    });
+
+    const sections = document.querySelectorAll(&#39;section&#39;);
+    const navLinks = document.querySelectorAll(&#39;#main-nav a&#39;);
+
+    window.addEventListener(&#39;scroll&#39;, function() {
+        let current = &#39;&#39;;
+        sections.forEach(section =&gt; {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset &gt;= sectionTop - 60) {
+                current = section.getAttribute(&#39;id&#39;);
+            }
+        });
+
+        navLinks.forEach(link =&gt; {
+            link.classList.remove(&#39;active&#39;);
+            if (link.getAttribute(&#39;href&#39;).includes(current)) {
+                link.classList.add(&#39;active&#39;);
+            }
+        });
+    });
+
+    const chatButton = document.createElement(&#39;button&#39;);
+    chatButton.textContent = &#39;Open Chat&#39;;
+    chatButton.style.position = &#39;fixed&#39;;
+    chatButton.style.bottom = &#39;50px&#39;;
+    chatButton.style.right = &#39;10px&#39;;
+    document.body.appendChild(chatButton);
+
+    chatButton.addEventListener(&#39;click&#39;, function() {
+        alert(&#39;Chat feature coming soon!&#39;);
+    });
+});
 ========= STATIC_CHECKER to __end__ =========
 
 
