@@ -299,8 +299,8 @@ In this lab, we'll have the LLM make a website for us: it will both generate the
 
 **Reading**:
 * see [session 27.05](#2705)
-* ✍️ [HTML: Creating the content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content), ``MDN``
-* ✍️ [Getting started with CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started), ``MDN``
+* ✍️ [HTML: Creating the content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content), `MDN`
+* ✍️ [Getting started with CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started), `MDN`
 
 _____________________________________
 
