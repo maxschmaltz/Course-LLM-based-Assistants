@@ -3,7 +3,7 @@ from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_openai import ChatOpenAI
 from langchain_core.rate_limiters import InMemoryRateLimiter
 from langchain_community.tools.file_management.write import WriteFileTool
-from langchain_core.messages import HumanMessage, AIMessage
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langgraph.graph import StateGraph, END
 from langchain_core.runnables.graph import MermaidDrawMethod
 from typing import TypedDict, List
@@ -37,7 +37,7 @@ class WebsiteState(TypedDict):
     html: str   # generated HTML code
     css: str    # generated CSS code
     js: str # generated JS code
-    messages: List[dict]  # {is_user: bool, target: str, content: str}
+    messages: List[dict]  # {author: str, target: str, content: str}
     refinements: int    # the number of refinements made so far
 
 
@@ -74,10 +74,10 @@ class WebLaMA:
         self._feedback_llm = self.llm.with_structured_output(Feedback)
         self.max_refinements = max_refinements
         self._system_messages = {
-            self._html_agent_name: HTML_SYSTEM_PROMPT,
-            self._css_agent_name: CSS_SYSTEM_PROMPT,
-            self._js_agent_name: JS_SYSTEM_PROMPT,
-            self._static_checker_name: STATIC_CHECKER_SYSTEM_PROMPT
+            self._html_agent_name: SystemMessage(HTML_SYSTEM_PROMPT),
+            self._css_agent_name: SystemMessage(CSS_SYSTEM_PROMPT),
+            self._js_agent_name: SystemMessage(JS_SYSTEM_PROMPT),
+            self._static_checker_name: SystemMessage(STATIC_CHECKER_SYSTEM_PROMPT)
         }
         self._code_mapping = {
             self._html_agent_name: "html",
@@ -140,7 +140,7 @@ class WebLaMA:
     def _generate_html(self, state: WebsiteState) -> str:
         """Generate HTML code based on the user description."""
         prompt = GENERATE_HTML_PROMPT.format(description=state["description"])
-        response = self.llm.invoke([HumanMessage(prompt)])
+        response = self.llm.invoke([self._system_messages[self._html_agent_name], HumanMessage(prompt)])
         new_message = {
             "author": self._html_agent_name,
             "target": self._all_name,    # let all see its generations
@@ -157,14 +157,14 @@ class WebLaMA:
             description=state["description"],
             html_code=state["html"]
         )
-        response = self.llm.invoke([HumanMessage(prompt)])
+        response = self.llm.invoke([self._system_messages[self._css_agent_name], HumanMessage(prompt)])
         new_message = {
             "author": self._css_agent_name,
             "target": self._css_agent_name,    # let it see its own generations
             "content": response.content
         }
         return {
-            "html": response.content,
+            "css": response.content,
             "messages": state["messages"] + [new_message]
         }
     
@@ -174,7 +174,7 @@ class WebLaMA:
             description=state["description"],
             html_code=state["html"]
         )
-        response = self.llm.invoke([HumanMessage(prompt)])
+        response = self.llm.invoke([self._system_messages[self._js_agent_name], HumanMessage(prompt)])
         new_message = {
             "author": self._js_agent_name,
             "target": self._js_agent_name,    # let it see its own generations

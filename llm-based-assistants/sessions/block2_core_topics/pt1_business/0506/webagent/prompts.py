@@ -135,7 +135,7 @@ Come up with a name for the website based on the specification, \
 and save the HTML code into the folder with this website name in a file named `index.html`, \
 and the CSS and JS codes into the same folder but into files that the HTML code expects \
 (there are links in the HTML code). If the code is correct and meets the requirements, \
-you should NECESSARILY return tool calls to the write the files.
+you should NECESSARILY return tool calls to write the files.
 
 2. Otherwise, if the code is not correct or does not meet the requirements, \
 you should determine what is wrong with which code, \
