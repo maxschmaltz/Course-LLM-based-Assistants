@@ -63,9 +63,9 @@ class WebLaMA:
         #     temperature=0,   # ensure reproducibility,
         #     rate_limiter=rate_limiter  # bind the rate limiter
         # )
-        self.llm = ChatOpenAI(
-            model="gpt-4o",
-            temperature=0   # ensure reproducibility
+        self.llm = ChatOpenAI(  # at the time of the lab, NVIDIA had some issues with the API (timeouts)
+            model="gpt-4o", # so I had to switch to OpenAI for a life demo; uncomment the above line to use NVIDIA
+            temperature=0   # (don't forget to comment out the ChatOpenAI line)
         )
         self.write_tool = WriteFileTool(root_dir="./")
         # you can't use both a tool and a structured output
