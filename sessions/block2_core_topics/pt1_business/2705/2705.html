@@ -422,7 +422,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_graph</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_graph</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">:</span> <span class="kc">None</span><span class="p">):</span>
     <span class="c1"># draw the graph</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">graph_image</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">get_graph</span><span class="p">()</span><span class="o">.</span><span class="n">draw_mermaid_png</span><span class="p">(</span>
@@ -565,7 +565,7 @@ I can&#39;t answer that question with the tools I have available.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tools_description</span> <span class="o">=</span> <span class="n">render_text_description</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
 
-<span class="n">_pre_hook_instruction</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">_plan_next_instruction</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">You are an agent who has access to the following tools:</span>
 
 
@@ -591,9 +591,9 @@ I can&#39;t answer that question with the tools I have available.
 <span class="s2">&quot;&quot;&quot;</span>
 
 
-<span class="n">_pre_hook_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+<span class="n">_plan_next_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="n">_pre_hook_instruction</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="n">_plan_next_instruction</span><span class="p">),</span>
         <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;messages&quot;</span><span class="p">)</span>
     <span class="p">]</span>
 <span class="p">)</span>
@@ -603,9 +603,9 @@ I can&#39;t answer that question with the tools I have available.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pre_hook</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-    <span class="n">pre_hook_prompt</span> <span class="o">=</span> <span class="n">_pre_hook_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
-    <span class="n">next_action</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">pre_hook_prompt</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plan_next</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">plan_next_prompt</span> <span class="o">=</span> <span class="n">_plan_next_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">next_action</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">plan_next_prompt</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">next_action</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -616,7 +616,7 @@ I can&#39;t answer that question with the tools I have available.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_plus_agent</span> <span class="o">=</span> <span class="n">create_react_agent</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
-    <span class="n">pre_model_hook</span><span class="o">=</span><span class="n">pre_hook</span>
+    <span class="n">pre_model_hook</span><span class="o">=</span><span class="n">plan_next</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -904,7 +904,7 @@ I&#39;m not aware of any information that suggests the apocalypse is happening o
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIMessage</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIMessage</span><span class="p">,</span> <span class="n">HumanMessage</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Command</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.prebuilt</span><span class="w"> </span><span class="kn">import</span> <span class="n">InjectedState</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Send</span>
@@ -1267,12 +1267,441 @@ Agenda:
 </div>
 </div>
 <h2 id="human">3. Human in The Loop 👾🤖🧐👾</h2>
-<p>Since the <code class="docutils literal notranslate"><span class="pre">create_supervisor</span></code> method gives us only a template of …</p>
-<p>TODO:</p>
-<ul class="simple">
-<li><p>create coordinator from scratch</p></li>
-<li><p>add a human node manually</p></li>
-</ul>
+<p>Next thing we want to learn to do is adding human input <strong>within</strong> our pipeline. In multi-agent environments, involving a human can help handle ambiguous situations, resolve issues AI for some reason can’t, or just approve/reject AI suggestion. By combining the strengths of both humans and AI agents, we can achieve more reliable and robust solutions.</p>
+<p>In our pipeline, when the time slot is found and an agenda is prepared, we will ask for a human approval before finalizing the task. For that, we will just need to insert a special node for receiving human input (more below).</p>
+<p>Actually, under the hood the <code class="docutils literal notranslate"><span class="pre">create_supervisor</span></code> function creates yet another ReACT agent, but instead of usual tools, it has the agent executors (well technically, he has tools to call them):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># simplified but conceptually correct</span>
+<span class="n">coordinator</span> <span class="o">=</span> <span class="n">create_react_agent</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">assign_to_scheduler_agent_with_description</span><span class="p">,</span>
+        <span class="n">assign_to_creative_agent_with_description</span>
+    <span class="p">],</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">_lama_prompt</span><span class="p">,</span>    <span class="c1"># reuse the prompt</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;coordinator&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, you remember that we added a so-called <code class="docutils literal notranslate"><span class="pre">pre_mode_hook</span></code> to our <a class="reference internal" href="#agents"><span class="xref myst">basic agent</span></a> (also a ReACT agent) to handle the absence of explicit planning. It added a custom node before the agent was invoked. Now we’ll do the opposite and add a <code class="docutils literal notranslate"><span class="pre">post_model_hook</span></code> to our coordinator which will be called after the agent generation. It will check if the coordinator decided to exit and will redirect the system to the human input node before exiting.</p>
+<p>How will we know if the coordinator decided to exit? It’s actually really easy: a default ReACT agent can either call tools, or exit with a ready response. So if the latest message (that is the one from the coordinator) does not contain tool calls, it means that the coordinator has decided to exit and its response is contained in the usual <code class="docutils literal notranslate"><span class="pre">.content</span></code> property. It is this response that we will be redirecting to the human for approval.</p>
+<p>Creating a human-in-the loop functionality is fairly easy with LangGraph: you just need to stop the workflow with a special <code class="docutils literal notranslate"><span class="pre">interrupt()</span></code> function and then return a familiar to us <code class="docutils literal notranslate"><span class="pre">Command</span></code> to continue it from the point we point to. In our case, we will redirect the workflow back to the coordinator for it to decide which changes should be made based on the human feedback, or execute the corresponding tools in case the generation is still running.</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">interrupt()</span></code> function is executed, it actually stops the pipeline until the human input is given and it works such that the whole node where this function was called is re-executed; that is why it is highly recommended to have a separate node that handles human input in order to not regenerate anything that has already been done. In our case, we follow this principle just fine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">interrupt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.checkpoint.memory</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemorySaver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">maybe_ask_human</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">last_message</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>   <span class="c1"># just resume the graph execution</span>
+    <span class="n">ai_message</span> <span class="o">=</span> <span class="n">last_message</span><span class="o">.</span><span class="n">content</span>
+    <span class="c1"># when interrupting the graph, we can also show some text</span>
+    <span class="c1"># to the user; it the user prints &quot;ok&quot;, it means that the user</span>
+    <span class="c1"># approves the suggestion; this is a fairly simple way to</span>
+    <span class="c1"># detect whether the user approves the suggestion or not,</span>
+    <span class="c1"># we adopt it here for simplicity; we might have as well</span>
+    <span class="c1"># used an LLM or a smaller LM-classifier</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">interrupt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Here&#39;s my suggestion:</span><span class="se">\n\n</span><span class="si">{</span><span class="n">ai_message</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Waiting for approval. Print &#39;ok&#39; if it works for you.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;ok&quot;</span><span class="p">:</span>
+    <span class="c1"># stop if the suggestion works</span>
+        <span class="k">return</span> <span class="n">Command</span><span class="p">(</span>
+            <span class="n">goto</span><span class="o">=</span><span class="n">END</span><span class="p">,</span>
+            <span class="n">update</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">response</span><span class="p">)}</span>  <span class="c1"># this will update the state</span>
+        <span class="p">)</span>
+    <span class="c1"># redirect back to the coordinator with the human response otherwise</span>
+    <span class="k">return</span> <span class="n">Command</span><span class="p">(</span>
+        <span class="n">goto</span><span class="o">=</span><span class="s2">&quot;coordinator&quot;</span><span class="p">,</span>
+        <span class="n">update</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">response</span><span class="p">)},</span>  <span class="c1"># this will update the state</span>
+        <span class="n">graph</span><span class="o">=</span><span class="n">Command</span><span class="o">.</span><span class="n">PARENT</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">interrupt()</span></code> stops the pipeline, LangGraph needs to remember where it left off to resume from there. To enable this, we use the <code class="docutils literal notranslate"><span class="pre">InMemorySaver</span></code> – the same tool for checkpointing between the sessions we used in the <a class="reference internal" href="../0805/0805.html#checkpointing"><span class="std std-ref">lab about basic chatbots</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_lama_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are the head of a team of agents, and your task is to set up meetings </span><span class="se">\</span>
+<span class="s2">and prepare agendas for them. You have two agents at your disposal:</span>
+<span class="s2">- **Scheduler Agent**: Responsible for checking participant availability and finding common time slots. </span><span class="se">\</span>
+<span class="s2">If it will return you several available slots, pick one yourself.</span>
+<span class="s2">- **Creative Agent**: Responsible for preparing meeting agendas based on the current project status.</span>
+<span class="s2">Your task is to delegate tasks to these agents based on the user requests. </span><span class="se">\</span>
+<span class="s2">When delegating the task, necessarily provide a detailed task description </span><span class="se">\</span>
+<span class="s2">to the agent so it knows what to do. Do not stop until the task is completed.</span>
+
+<span class="s2">Assign work to one agent at a step, do not call the agents in parallel. </span><span class="se">\</span>
+<span class="s2">Do not do any work yourself.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">coordinator_h</span> <span class="o">=</span> <span class="n">create_supervisor</span><span class="p">(</span>
+    <span class="n">agents</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">scheduler_agent</span><span class="p">,</span>
+        <span class="n">creative_agent</span>
+    <span class="p">],</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">assign_to_scheduler_agent_with_description</span><span class="p">,</span>
+        <span class="n">assign_to_creative_agent_with_description</span>
+    <span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">_lama_prompt</span><span class="p">,</span>
+    <span class="n">supervisor_name</span><span class="o">=</span><span class="s2">&quot;coordinator&quot;</span><span class="p">,</span>
+    <span class="n">output_mode</span><span class="o">=</span><span class="s2">&quot;full_history&quot;</span><span class="p">,</span>  <span class="c1"># keep the full history of the conversation</span>
+    <span class="n">add_handoff_messages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># add messages about task handoff to the conversation</span>
+    <span class="n">add_handoff_back_messages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># add messages about task handoff back to the coordinator</span>
+    <span class="n">parallel_tool_calls</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">post_model_hook</span><span class="o">=</span><span class="n">maybe_ask_human</span>  <span class="c1"># ask the human for confirmation</span>
+<span class="p">)</span>
+
+<span class="n">lama_h</span> <span class="o">=</span> <span class="n">coordinator_h</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">checkpointer</span><span class="o">=</span><span class="n">InMemorySaver</span><span class="p">())</span>    <span class="c1"># checkpointer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you are streaming graph execution and it gets interrupted, it returns a special event with an <code class="docutils literal notranslate"><span class="pre">&quot;__interrupt__&quot;</span></code> key that contains the content we passed to the <code class="docutils literal notranslate"><span class="pre">interrupt()</span></code> function.</p>
+<p>To the best of my knowledge, the only way to detect an interruption automatically is to directly check for this key. In the wrapper function below, we check if there is an interrupt and prompt the user to answer the question if there is. The value under this key will contain a tuple with a single (in our case) <code class="docutils literal notranslate"><span class="pre">Interrupt</span></code> object with our text under the <code class="docutils literal notranslate"><span class="pre">.value</span></code> property.</p>
+<p>After we received an answer from the human, we resume our workflow with a <code class="docutils literal notranslate"><span class="pre">Command</span></code>. It will throw us back to the node where the <code class="docutils literal notranslate"><span class="pre">interrupt()</span></code> function was called, and from there we will retrieve the answer and pass it back to the coordinator with yet another <code class="docutils literal notranslate"><span class="pre">Command</span></code>.</p>
+<p>Here is the tricky part: since the interruption actually stops the pipeline, we should <strong>run it anew</strong> – and that is why we need the checkpointer because it would have otherwise started from the very beginning. So to keep the pipeline even with the interruption running without our intervention, we wrap the launching into a loop; it will initially be run with the first request form the user, and then whenever an interruption is encountered, we will update the input to whatever the user has answered and the loop will rerun this pipeline with this new updated input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wrapper for pretty print</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_agent_with_checkpoint</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">recursion_limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="c1"># initial input</span>
+    <span class="n">pipeline_input</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">)]</span>
+    <span class="p">}</span>
+    <span class="n">shown_messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span> <span class="c1"># this is needed to handle user interruptions</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">agent</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span>
+            <span class="n">pipeline_input</span><span class="p">,</span>
+            <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;configurable&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;thread_id&quot;</span><span class="p">:</span> <span class="s2">&quot;9&quot;</span>
+                <span class="p">},</span>  
+                <span class="s2">&quot;recursion_limit&quot;</span><span class="p">:</span> <span class="n">recursion_limit</span>
+            <span class="p">},</span>
+            <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;values&quot;</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;__interrupt__&quot;</span> <span class="ow">in</span> <span class="n">event</span><span class="p">:</span>
+                <span class="n">question</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;__interrupt__&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># retrieve the question</span>
+                <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>    <span class="c1"># get the answer from the user</span>
+                <span class="n">pipeline_input</span> <span class="o">=</span> <span class="n">Command</span><span class="p">(</span><span class="n">resume</span><span class="o">=</span><span class="n">answer</span><span class="p">)</span> <span class="c1"># update the input with the answer</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================================== Interruption ==================================&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;messages&quot;</span> <span class="ow">in</span> <span class="n">event</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">HumanMessage</span><span class="p">)</span> <span class="ow">and</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span> <span class="o">==</span> <span class="s2">&quot;ok&quot;</span><span class="p">:</span>
+                    <span class="k">return</span>  <span class="c1"># interrupt the execution if the user approves the suggestion</span>
+                <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="n">shown_messages</span><span class="p">:</span>
+                        <span class="n">shown_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                        <span class="n">message</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_agent_with_checkpoint</span><span class="p">(</span><span class="n">lama_h</span><span class="p">,</span> <span class="s2">&quot;Schedule a meeting for Jake and Mike to discuss the project status and prepare an agenda for it.&quot;</span><span class="p">,</span> <span class="n">recursion_limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+Schedule a meeting for Jake and Mike to discuss the project status and prepare an agenda for it.
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: coordinator
+Tool Calls:
+  transfer_to_scheduler_agent (chatcmpl-tool-2476e724b2a44b1689e776d855eb7c21)
+ Call ID: chatcmpl-tool-2476e724b2a44b1689e776d855eb7c21
+  Args:
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: transfer_to_scheduler_agent
+
+Successfully transferred to scheduler_agent
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+Tool Calls:
+  check_calendar_availability (chatcmpl-tool-dc42de8798be42d09d6144b29d1caddc)
+ Call ID: chatcmpl-tool-dc42de8798be42d09d6144b29d1caddc
+  Args:
+    name: Jake
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: check_calendar_availability
+
+[&quot;10:30-11:30&quot;, &quot;15:30-16:30&quot;]
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+Tool Calls:
+  check_calendar_availability (chatcmpl-tool-bbef9ca57c394ddb902c58a819a31e01)
+ Call ID: chatcmpl-tool-bbef9ca57c394ddb902c58a819a31e01
+  Args:
+    name: Mike
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: check_calendar_availability
+
+[&quot;10:00-11:00&quot;, &quot;12:30-13:30&quot;, &quot;14:30-15:30&quot;, &quot;15:30-16:30&quot;]
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+
+The meeting will be scheduled for 15:30-16:30. The agenda will include:
+
+1. Introduction and project overview
+2. Review of current project status
+3. Discussion of any challenges or issues
+4. Review of upcoming milestones and deadlines
+5. Action items and next steps
+
+Please let me know if you need any further assistance.
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+
+Transferring back to coordinator
+Tool Calls:
+  transfer_back_to_coordinator (a7bf902f-69a9-482d-8512-fcfe8f4abaeb)
+ Call ID: a7bf902f-69a9-482d-8512-fcfe8f4abaeb
+  Args:
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: transfer_back_to_coordinator
+
+Successfully transferred back to coordinator
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: coordinator
+Tool Calls:
+  transfer_to_creative_agent (chatcmpl-tool-83625debd62640f4a355517660a9551c)
+ Call ID: chatcmpl-tool-83625debd62640f4a355517660a9551c
+  Args:
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: transfer_to_creative_agent
+
+Successfully transferred to creative_agent
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: creative_agent
+Tool Calls:
+  retrieve_project_information (chatcmpl-tool-973f3c5a71cc41898120c921ff682847)
+ Call ID: chatcmpl-tool-973f3c5a71cc41898120c921ff682847
+  Args:
+    query: project status
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: retrieve_project_information
+
+
+Current Project: Mobile App Redesign (Q2 2024)
+
+Status: In Progress (Week 6 of 12)
+
+Recent Milestones:
+- User research completed (Week 3)
+- Wireframes approved by stakeholders (Week 5)
+- Initial design mockups completed (Week 6)
+
+Upcoming Milestones:
+- Prototype development (Week 8-10)
+- User testing sessions (Week 11)
+- Final design handoff (Week 12)
+
+Current Blockers:
+- Waiting for brand guidelines update from marketing team
+- Need approval on accessibility requirements
+
+Budget Status: 70% utilized, on track
+Timeline Status: Slightly behind schedule due to extended user research phase
+
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: creative_agent
+
+The meeting will be scheduled for 15:30-16:30. The agenda will include:
+
+1. Introduction and project overview
+2. Review of current project status
+3. Discussion of any challenges or issues
+4. Review of upcoming milestones and deadlines
+5. Action items and next steps
+
+Please let me know if you need any further assistance.
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: creative_agent
+
+Transferring back to coordinator
+Tool Calls:
+  transfer_back_to_coordinator (e22d05f9-60e8-44fe-91a7-bf7f2ded3e18)
+ Call ID: e22d05f9-60e8-44fe-91a7-bf7f2ded3e18
+  Args:
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: transfer_back_to_coordinator
+
+Successfully transferred back to coordinator
+
+
+================================== Interruption ==================================
+Here&#39;s my suggestion:
+
+The meeting between Jake and Mike has been scheduled for 15:30-16:30 to discuss the project status. The agenda has been prepared and includes:
+
+1. Introduction and project overview
+2. Review of current project status
+3. Discussion of any challenges or issues
+4. Review of upcoming milestones and deadlines
+5. Action items and next steps
+
+Please let me know if you need any further assistance.
+
+Waiting for approval. Print &#39;ok&#39; if it works for you.
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+nah this time won&#39;t work, give me something next week
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: coordinator
+Tool Calls:
+  transfer_to_scheduler_agent (chatcmpl-tool-3db8020148be4d93a1b2c69e5ab59b3e)
+ Call ID: chatcmpl-tool-3db8020148be4d93a1b2c69e5ab59b3e
+  Args:
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: transfer_to_scheduler_agent
+
+Successfully transferred to scheduler_agent
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+Tool Calls:
+  check_calendar_availability (chatcmpl-tool-13941e156619494897eb30332ccc7934)
+ Call ID: chatcmpl-tool-13941e156619494897eb30332ccc7934
+  Args:
+    name: Jake
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: check_calendar_availability
+
+[&quot;12:00-13:00&quot;, &quot;15:30-16:30&quot;]
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+Tool Calls:
+  check_calendar_availability (chatcmpl-tool-d42095697b9449b38886712d2dd214a1)
+ Call ID: chatcmpl-tool-d42095697b9449b38886712d2dd214a1
+  Args:
+    name: Mike
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: check_calendar_availability
+
+[&quot;10:30-11:30&quot;, &quot;12:30-13:30&quot;, &quot;14:00-15:00&quot;, &quot;14:30-15:30&quot;, &quot;16:00-17:00&quot;]
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+
+The meeting will be scheduled for 12:30-13:30. The agenda will include:
+
+1. Introduction and project overview
+2. Review of current project status
+3. Discussion of any challenges or issues
+4. Review of upcoming milestones and deadlines
+5. Action items and next steps
+
+Please let me know if you need any further assistance.
+
+
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: scheduler_agent
+
+Transferring back to coordinator
+Tool Calls:
+  transfer_back_to_coordinator (6461dae9-a6b5-44e9-b544-fe3d288b3f95)
+ Call ID: 6461dae9-a6b5-44e9-b544-fe3d288b3f95
+  Args:
+
+
+=================================<span class=" -Color -Color-Bold"> Tool Message </span>=================================
+Name: transfer_back_to_coordinator
+
+Successfully transferred back to coordinator
+
+
+================================== Interruption ==================================
+Here&#39;s my suggestion:
+
+The meeting will be scheduled for 12:30-13:30. The agenda will include:
+
+1. Introduction and project overview
+2. Review of current project status
+3. Discussion of any challenges or issues
+4. Review of upcoming milestones and deadlines
+5. Action items and next steps
+
+Please let me know if you need any further assistance.
+
+Waiting for approval. Print &#39;ok&#39; if it works for you.
+==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
+Name: coordinator
+
+The meeting will be scheduled for 12:30-13:30. The agenda will include:
+
+1. Introduction and project overview
+2. Review of current project status
+3. Discussion of any challenges or issues
+4. Review of upcoming milestones and deadlines
+5. Action items and next steps
+
+Please let me know if you need any further assistance.
+
+
+================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
+
+ok
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
