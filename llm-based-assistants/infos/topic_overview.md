@@ -330,12 +330,11 @@ This lecture will serve a small break and will briefly go over other business sc
 
 **Additional Reading**:
 * [Player-Driven Emergence in LLM-Driven Game Narrative](https://arxiv.org/abs/2404.17027), `Microsoft Research`
-* [Generating Converging Narratives for Games with Large Language Models](https://aclanthology.org/2024.games-1.6/), `U.S. Army Research Laboratory`
-* [Game Agent Driven by Free-Form Text Command: Using LLM-based Code Generation and Behavior Branch](https://arxiv.org/abs/2402.07442), `University of Tokyo`
+* [StoryVerse: Towards Co-authoring Dynamic Plot with LLM-based Character Simulation via Narrative Planning](https://arxiv.org/abs/2405.13042), `Autodesk Research` 🟠
+* [Game Agent Driven by Free-Form Text Command: Using LLM-based Code Generation and Behavior Branch](https://arxiv.org/abs/2402.07442), `University of Tokyo` 🟡
+* [Generating Converging Narratives for Games with Large Language Models](https://aclanthology.org/2024.games-1.6/), `U.S. Army Research Laboratory` 🟠
 * 🍿 [AI Dungeon Games](https://play.aidungeon.com), `AI Dungeon` (game catalogue)
 * 🍿 [AI Town](https://www.convex.dev/ai-town), `Andreessen Horowitz & Convex` (game)
-* 🍿 [Introducing NPC-Playground, a 3D playground to interact with LLM-powered NPCs](https://huggingface.co/blog/npc-gigax-cubzh?utm_source=chatgpt.com), `HuggingFace` (blog post)
-* 🍿 [Blip](https://github.com/bliporg/blip), `bliporg` (GitHub repo)
 * 🍿 [gigax](https://github.com/GigaxGames/gigax), `GigaxGames` (GitHub repo)
 * [Large Language Models in Finance: A Survey](https://arxiv.org/abs/2311.10723), `Columbia & New York University`
 * [FinLlama: Financial Sentiment Classification for Algorithmic Trading Applications](https://arxiv.org/abs/2403.12285), `Imperial College London & MIT`

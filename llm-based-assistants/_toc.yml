@@ -30,6 +30,7 @@ parts:
     - file: sessions/block2_core_topics/pt1_business/2205.md
     - file: sessions/block2_core_topics/pt1_business/0306.md
     - file: sessions/block2_core_topics/pt1_business/0506/0506.ipynb
+    - file: sessions/block2_core_topics/pt1_business/1706.md
 
   - caption: "Block 2: Core Topics | Part 2: Applications in Science"
     chapters:
