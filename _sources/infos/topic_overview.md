@@ -385,9 +385,9 @@ The first lecture dedicated to scientific applications shows how LLMs are used t
 * Predicting possible results
 
 **Core Reading**:
-* 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326) (pages 1-9), `University of Chicago & Toyota Technological Institute at Chicago`
-* 📌 [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733) (pages 1-6), `TUM`
-* [Emergent autonomous scientific research capabilities of large language models](https://arxiv.org/abs/2304.05332), `Carnegie Mellon University`
+* 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326) (pages 1-9), `University of Chicago & Toyota Technological Institute at Chicago` 🟠
+* [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733), `TUM` 🟡
+* 📌 [Emergent autonomous scientific research capabilities of large language models](https://arxiv.org/abs/2304.05332) (pages 1-12), `Carnegie Mellon University` 🔴
 
 **Additional Reading**:
 * [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia`
