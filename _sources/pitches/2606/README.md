@@ -33,7 +33,7 @@ The project folder has the following structure:
     * [`tools.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/multi_agent/tools.py) will contain the tools for your agents. As mentioned, the tools for the _ticket manager_ are given to you, and you will have to make only a simple RAG tool.
     * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/multi_agent/prompts.py) will contain the prompts for your system. There is now a prompt for generation of incoming ticket messages (will simulate the real messages).
     * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/multi_agent/agents.py) will implement the multi-agent system.
-3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system `multi_agent/agents.py` and run it a few times.
+3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from `multi_agent/agents.py` and run it a few times.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any LLM and any orchestration framework you like.
@@ -68,7 +68,7 @@ Complete the `SupportLaMA` class as follows:
 1. **Initialization (`__init__()`)**
 * Initialize your LLM.
 * Initialize the agents.
-* Replace the placeholder for the keyword arguments (`**kwargs`) with specific parameters that you need to initialize the agent (or none, if none is needed), and adjust the `init_rag_agent()` arguments accordingly.
+* Replace the placeholder for the keyword arguments (`**kwargs`) with specific parameters that you need to initialize the agent (or none, if none is needed).
 
 2. **Invoke the _Ticket Manager_ (`ticket_manager_node()`)**  
 * If called with a new ticket message, use the `read_last_ticket` tool to get the latest ticket and summarize the conversation to form a query for the classifier.  

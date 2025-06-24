@@ -363,7 +363,7 @@ The first pitch will be dedicated to a custom RAG chatbot that the _contractors_
 #### 26.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
 > On material of [session 22.05](#2205)
 
-In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imaginary support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. Specific requirements will be released on 05.06.
+In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imaginary support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required.
 
 **Reading**: see [session 22.05](#2205) and [session 27.05](#2705)
 
@@ -439,10 +439,10 @@ _____________________________________________________________________________
 ### Week 13
 
 <a name="1507"></a>
-#### 15.07. _Pitch_: Agent for Web Development
+#### 15.07. _Pitch_: Agent for Web Resumes
 > On material of [session 03.06](#0306)
 
-The _contractors_ will present their agent that will have to generate full (minimalistic) websites by a prompt. For each website, the agent will have to generate its own style and a simple menu with working navigation as well as the contents. Specific requirements will be released on 26.06.
+The _contractors_ will present their agent that will have to make up a character biography by the input prompt and generate a minimalistic HTML resume for them by a prompt. For each resume, the agent will also have to generate its own style.
 
 **Reading**: see [session 03.06](#0306) and [session 05.06](#0506)
 
