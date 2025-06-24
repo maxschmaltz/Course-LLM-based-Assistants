@@ -44,3 +44,4 @@ parts:
     chapters:
     - file: pitches/2406/README.md
     - file: pitches/2606/README.md
+    - file: pitches/1507/README.md
