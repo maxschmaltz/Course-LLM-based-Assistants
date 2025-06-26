@@ -1,4 +1,4 @@
-# 17.07. _Pitch_: Handling Customer Requests in a Multi-agent Environment
+# 15.07. _Pitch_: Handling Customer Requests in a Multi-agent Environment
 
 In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imaginary support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. I had Claude generate me infos about any mobile app, and it came up with a mobile fitness tracking app called _FitTrack Pro_ so the thematic of the tickets will be revolving about that.
 
