@@ -349,23 +349,13 @@ _Ausfalltermin_
 _____________________________________
 
 
-### Week 10
+### Week 10: Unplanned Pause
 
-<a name="2406"></a>
-#### 24.06. _Pitch_: RAG Chatbot
-> On material of [session 06.05](#0605) and [session 13.05](#1305)
+#### 24.06.
+_Ausfalltermin_
 
-The first pitch will be dedicated to a custom RAG chatbot that the _contractors_ (the presenting students, see the [infos about Pitches](./Formats/Pitches.md)) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses.
-
-**Reading**: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), [session 15.05](#1505), and [session 20.05](#2005)
-
-<a name="2606"></a>
-#### 26.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
-> On material of [session 22.05](#2205)
-
-In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imaginary support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required.
-
-**Reading**: see [session 22.05](#2205) and [session 27.05](#2705)
+#### 26.06.
+_Ausfalltermin_
 
 _____________________________________________________________________________
 
@@ -375,7 +365,7 @@ _____________________________________________________________________________
 ### Week 11
 
 <a name="0107"></a>
-#### 01.07. _Lecture_: LLMs in Research Pt. 1: Experiment Planning & Hypothesis Generation
+#### 01.07. _Lecture_: LLMs for Experiment Planning & Hypothesis Generation
 
 The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.
 
@@ -409,45 +399,7 @@ _____________________________________
 ### Week 12
 
 <a name="0807"></a>
-#### 08.07: _Lecture_: LLMs in Research Pt. 2: TODO
-
-<a name="1007"></a>
-#### 10.07. _Lecture_: Other Applications in Science: Drug Discovery, Math etc. & Scientific Reliability
-
-The final core topic will mention other scientific applications of LLMs that were not covered in the previous lectures and address the question of reliability of the results obtained with LLMs.
-
-**Key points**:
-* Drug discovery, math & other applications
-* Scientific confidence & reliability
-
-**Core Reading**:
-* 📌 [Can LLMs replace Neil deGrasse Tyson? Evaluating the Reliability of LLMs as Science Communicators](https://arxiv.org/abs/2409.14037) (pages 1-9), `Indian Institute of Technology`
-
-**Additional Reading**:
-* [A Comprehensive Survey of Scientific Large Language Models and Their Applications in Scientific Discovery](https://arxiv.org/abs/2406.10833), `University of Illinois at Urbana-Champaign et al.`
-* [Large Language Models in Drug Discovery and Development: From Disease Mechanisms to Clinical Trials](https://arxiv.org/abs/2409.04481), `Department of Data Science and AI, Monash University et al.`
-* [LLM-SR: Scientific Equation Discovery via Programming with Large Language Models](https://arxiv.org/abs/2404.18400), `Virginia Tech et al.`
-* 🍿 [Awesome Scientific Language Models](https://github.com/yuzhimanhua/Awesome-Scientific-Language-Models), `yuzhimanhua` (GitHub repo)
-* [CURIE: Evaluating LLMs On Multitask Scientific Long Context Understanding and Reasoning](https://arxiv.org/abs/2503.13517), `Google et al.`
-* [Multiple Choice Questions: Reasoning Makes Large Language Models (LLMs) More Self-Confident Even When They Are Wrong](https://arxiv.org/abs/2501.09775), `Nanjing University of Aeronautics and Astronautics et al.`
-
-_____________________________________________________________________________
-
-## Block 3: Wrap-up
-
-
-### Week 13
-
-<a name="1507"></a>
-#### 15.07. _Pitch_: Agent for Web Resumes
-> On material of [session 03.06](#0306)
-
-The _contractors_ will present their agent that will have to make up a character biography by the input prompt and generate a minimalistic HTML resume for them by a prompt. For each resume, the agent will also have to generate its own style.
-
-**Reading**: see [session 03.06](#0306) and [session 05.06](#0506)
-
-<a name="1707"></a>
-#### 17.07. _Lecture_: Role of AI in Recent Years
+#### 08.07. _Lecture_: Role of AI in Recent Years
 
 The last lecture of the course will turn to societal considerations regarding LLMs and AI in general and will investigate its role and influence on the humanity nowadays.
 
@@ -470,6 +422,39 @@ The last lecture of the course will turn to societal considerations regarding LL
 * [Legal and ethical implications of AI-based crowd analysis: the AI Act and beyond](https://link.springer.com/article/10.1007/s43681-024-00644-x), `Vrije Universiteit`
 * [A Survey of Sustainability in Large Language Models: Applications, Economics, and Challenges](https://arxiv.org/abs/2412.04782v1), `Cleveland State University et al.`
 
+
+## Block 3: Wrap-up
+
+
+<a name="1007"></a>
+#### 10.07. _Pitch_: RAG Chatbot
+> On material of [session 06.05](#0605) and [session 13.05](#1305)
+
+The first pitch will be dedicated to a custom RAG chatbot that the _contractors_ (the presenting students, see the [infos about Pitches](./Formats/Pitches.md)) will have prepared to present. The RAG chatbot will have to be able to retrieve specific information from the given documents (not from the general knowledge!) and use it in its responses.
+
+**Reading**: see [session 06.05](#0605), [session 08.05](#0805), [session 13.05](#1305), [session 15.05](#1505), and [session 20.05](#2005)
+
+_____________________________________________________________________________
+
+
+### Week 13
+
+<a name="1507"></a>
+#### 15.07. _Pitch_: Handling Customer Requests in a Multi-agent Environment
+> On material of [session 22.05](#2205)
+
+In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imaginary support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required.
+
+**Reading**: see [session 22.05](#2205) and [session 27.05](#2705)
+
+<a name="1707"></a>
+#### 17.07. _Pitch_: Agent for Web Resumes
+> On material of [session 03.06](#0306)
+
+The _contractors_ will present their agent that will have to make up a character biography by the input prompt and generate a minimalistic HTML resume for them by a prompt. For each resume, the agent will also have to generate its own style.
+
+**Reading**: see [session 03.06](#0306) and [session 05.06](#0506)
+
 _____________________________________
 
 
@@ -481,11 +466,11 @@ _____________________________________
 
 The last pitch will introduce an agent that will have to plan the research, generate hypotheses, find the literature etc. for a given scientific problem. It will then have to introduce its results in form of a TODO or a guide for the researcher to start off of. Specific requirements will be released on 03.07.
 
-**Reading**: see [session 01.07](#0107), [session 08.07](#0807), and [session 03.07](#0307)
+**Reading**: see [session 01.07](#0107) and [session 03.07](#0307)
 
 <a name="2407"></a>
-#### 24.07. _Debate_: Role of AI in Recent Years + Wrap-up
-> On material of [session 17.07](#1707)
+#### 24.07. _Debate_: Role of AI in Recent Years
+> On material of [session 17.07](#0807)
 
 The course will be concluded by the final debates, after which a short Q&A session will be held.
 
@@ -493,4 +478,4 @@ Debate topics:
 * LLM Behavior: Evidence of Awareness or Illusion of Understanding?
 * Should We Limit the Usage of AI?
 
-**Reading**: see [session 17.07](#1707)
+**Reading**: see [session 17.07](#0807)

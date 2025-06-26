@@ -1,4 +1,4 @@
-# 26.06. _Pitch_: Handling Customer Requests in a Multi-agent Environment
+# 17.07. _Pitch_: Handling Customer Requests in a Multi-agent Environment
 
 In the second pitch, the _contractors_ will present their solution to automated handling of customer requests. The solution will have to introduce a multi-agent environment to take off working load from an imaginary support team. The solution will have to read and categorize tickets, generate replies and (in case of need) notify the human that their interference is required. I had Claude generate me infos about any mobile app, and it came up with a mobile fitness tracking app called _FitTrack Pro_ so the thematic of the tickets will be revolving about that.
 
@@ -28,12 +28,12 @@ As always, you don't have to strictly follow this scheme, it is just a quick sta
 ## Task
 
 The project folder has the following structure:
-1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/resources) contains the single file: FAQs about the _FitTrack Pro_ app generated with Claude. You will use it to make the RAG tools for the _support expert_.
-2. The [`multi_agent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/multi_agent) folder will store the implementation of your system.
-    * [`tools.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/multi_agent/tools.py) will contain the tools for your agents. As mentioned, the tools for the _ticket manager_ are given to you, and you will have to make only a simple RAG tool.
-    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/multi_agent/prompts.py) will contain the prompts for your system. There is now a prompt for generation of incoming ticket messages (will simulate the real messages).
-    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/multi_agent/agents.py) will implement the multi-agent system.
-3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from `multi_agent/agents.py` and run it a few times.
+1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/resources) contains the single file: FAQs about the _FitTrack Pro_ app generated with Claude. You will use it to make the RAG tools for the _support expert_.
+2. The [`multi_agent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent) folder will store the implementation of your system.
+    * [`tools.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent/tools.py) will contain the tools for your agents. As mentioned, the tools for the _ticket manager_ are given to you, and you will have to make only a simple RAG tool.
+    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent/prompts.py) will contain the prompts for your system. There is now a prompt for generation of incoming ticket messages (will simulate the real messages).
+    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent/agents.py) will implement the multi-agent system.
+3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from `multi_agent/agents.py` and run it a few times.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any LLM and any orchestration framework you like.
@@ -47,7 +47,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 ### Setup
 
-1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2606).
+1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507).
 2. Go through the [usual setup routine](https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html) to setup your environment for the project. Put the resulting `requirements.txt` file with the dependencies in the project folder.
 
 ### RAG Tool in `multi_agent/tools.py`
@@ -107,4 +107,4 @@ Define the parameter values you need for instantiating the `SupportLaMA` class f
 
 1. Prepare slides that would present your solution to the "company board" (your fellow students). The slides should highlight the design decisions step by step (agent initialization, multi-agent pipeline etc.), explain the choices of the LLMs etc., so basically justify why you implemented the system the way you did. It should then inspect the outputs of the system in detail and provide a qualitative analysis of those. Finally, it should discuss the current limitations and possible workarounds.
 2. With these slides, you will hold a presentation (30-40 min). After that, you have to be ready to answer the questions from the board.
-3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is June 26, 12pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.
+3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is July 15, 12pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.
