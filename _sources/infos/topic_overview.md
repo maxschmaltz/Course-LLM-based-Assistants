@@ -365,14 +365,13 @@ _____________________________________________________________________________
 ### Week 11
 
 <a name="0107"></a>
-#### 01.07. _Lecture_: LLMs for Experiment Planning & Hypothesis Generation
+#### 01.07. _Lecture_: LLMs for Hypothesis Generation & Literature Review
 
 The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.
 
 **Key points**:
-* Experiment planning
 * Hypothesis generation
-* Predicting possible results
+* Literature Review
 
 **Core Reading**:
 * 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326) (pages 1-9), `University of Chicago & Toyota Technological Institute at Chicago` 🟠
@@ -380,9 +379,9 @@ The first lecture dedicated to scientific applications shows how LLMs are used t
 * 📌 [Emergent autonomous scientific research capabilities of large language models](https://arxiv.org/abs/2304.05332) (pages 1-12), `Carnegie Mellon University` 🔴
 
 **Additional Reading**:
-* [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia`
-* [Paper Copilot: A Self-Evolving and Efficient LLM System for Personalized Academic Assistance](https://arxiv.org/abs/2409.04593), `University of Illinois at Urbana-Champaign, Carnegie Mellon University & Carleton College`
-* [SciLitLLM: How to Adapt LLMs for Scientific Literature Understanding](https://arxiv.org/abs/2408.15545), `University of Science and Technology of China & DP Technology`
+* [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia` 🟡
+* [Paper Copilot: A Self-Evolving and Efficient LLM System for Personalized Academic Assistance](https://arxiv.org/abs/2409.04593), `University of Illinois at Urbana-Champaign, Carnegie Mellon University & Carleton College` 🟡
+* [SciLitLLM: How to Adapt LLMs for Scientific Literature Understanding](https://arxiv.org/abs/2408.15545), `University of Science and Technology of China & DP Technology` 🟠
 * [Mapping the Increasing Use of LLMs in Scientific Papers](https://arxiv.org/abs/2404.01268), `Stanford`
 
 <a name="0307"></a>
