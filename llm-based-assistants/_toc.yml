@@ -38,10 +38,6 @@ parts:
 
   - caption: "Block 3: Wrap-up"
     chapters:
-    - file: sessions/block3_wrapup/under_development.md
-
-  - caption: "Pitches"
-    chapters:
-    - file: pitches/2406/README.md
-    - file: pitches/2606/README.md
-    - file: pitches/1507/README.md
+    - file: sessions/block3_wrapup/1007/README.md
+    - file: sessions/block3_wrapup/1507/README.md
+    - file: sessions/block3_wrapup/1707/README.md

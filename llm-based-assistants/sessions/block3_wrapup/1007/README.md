@@ -1,4 +1,4 @@
-# 24.06. _Pitch_: RAG Chatbot
+# 10.07. _Pitch_: RAG Chatbot
 
 In this pitch, the contractor has to present their implementation of a RAG Chatbot for internal data of an imaginary company. The pipeline will run an Adaptive-RAG architecture and will implement an LLM-based reranking of the retrieved documents. For simplicity, the chatbot won't have any memory and will answer each query independently.
 
@@ -6,12 +6,12 @@ In this pitch, the contractor has to present their implementation of a RAG Chatb
 ## Task
 
 The project folder has the following structure:
-1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/resources) contains the files that simulate an internal database of an imaginary company. Your system will retrieve specific information from these documents. The resources are one PDF and one MD containing the description and the rules of a [currently ongoing hackathon](https://www.kaggle.com/competitions/openai-to-z-challenge/overview), respectively. The hackathon started a few weeks ago so LLMs do not have information about it.
-2. The [`rag_chatbot` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot) folder will store the implementation of your system.
-    * [`data_manipulation.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot/data_manipulation.py) will contain the functionality related to data preprocessing and storage: loading, chunking, indexing.
-    * [`agent.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot/agent.py) will implement the Adaptive-RAG pipeline.
-    * [`main.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/rag_chatbot/main.py) will assemble and initialize the whole thing together; it will construct the index from `data_manipulation.py`, give it to the agent from `agent.py`, and initialize the system to be able to be queried.
-3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized RAG chatbot from `rag_chatbot/main.py` and query it with a few examples.
+1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1007/resources) contains the files that simulate an internal database of an imaginary company. Your system will retrieve specific information from these documents. The resources are one PDF and one MD containing the description and the rules of a [currently ongoing hackathon](https://www.kaggle.com/competitions/openai-to-z-challenge/overview), respectively. The hackathon started a few weeks ago so LLMs do not have information about it.
+2. The [`rag_chatbot` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1007/rag_chatbot) folder will store the implementation of your system.
+    * [`data_manipulation.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1007/rag_chatbot/data_manipulation.py) will contain the functionality related to data preprocessing and storage: loading, chunking, indexing.
+    * [`agent.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1007/rag_chatbot/agent.py) will implement the Adaptive-RAG pipeline.
+    * [`main.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1007/rag_chatbot/main.py) will assemble and initialize the whole thing together; it will construct the index from `data_manipulation.py`, give it to the agent from `agent.py`, and initialize the system to be able to be queried.
+3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1007/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized RAG chatbot from `rag_chatbot/main.py` and query it with a few examples.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any tools for data preprocessing, any LLM, any embedding model, and any orchestration framework you like.
@@ -25,7 +25,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 ### Setup
 
-1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2406).
+1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1007).
 2. Go through the [usual setup routine](https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html) to setup your environment for the project. Put the resulting `requirements.txt` file with the dependencies in the project folder.
 
 ### Data Preprocessing in `rag_chatbot/data_manipulation.py`
@@ -101,4 +101,4 @@ The `rag_chatbot/main.py` provides you the function `init_pipeline()` to easily 
 
 1. Prepare slides that would present your solution to the "company board" (your fellow students). The slides should highlight the design decisions step by step (data preprocessing, chatbot pipeline etc.), explain the choices of the tools, LLMs etc., so basically justify why you implemented the system the way you did. It should then inspect the outputs of the system (the 10 questions from the demo notebook as well as yours if applicable) in detail and provide a qualitative analysis of those. Finally, it should discuss the current limitations and possible workarounds.
 2. With these slides, you will hold a presentation (30-40 min). After that, you have to be ready to answer the questions from the board.
-3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is June 24, 12pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.
+3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is July 10, 12pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.

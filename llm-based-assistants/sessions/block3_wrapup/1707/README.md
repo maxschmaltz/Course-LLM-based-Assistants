@@ -1,4 +1,4 @@
-# 15.07. _Pitch_: Agent for Web Resumes
+# 17.07. _Pitch_: Agent for Web Resumes
 
 In the third pitch, the _contractors_ will present their solution to generating HTML resumes. The agent will receive an initial prompt with a (partial) description of some character, will then creatively fulfill the gaps in their biography and generate and validate an HTML one-page resume for them.
 
@@ -16,10 +16,10 @@ As before, you don't have to strictly follow this scheme, it is just a quick sta
 ## Task
 
 The project folder has the following structure:
-1. The [`webagent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/webagent) folder will store the implementation of your system.
-    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/webagent/prompts.py) will contain the prompts for your system.
-    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/webagent/agents.py) will implement the agent (or the multi-agent system, if you want to).
-2. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized pipeline from `webagent/agents.py` and run it a few times.
+1. The [`webagent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/webagent) folder will store the implementation of your system.
+    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/webagent/prompts.py) will contain the prompts for your system.
+    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/webagent/agents.py) will implement the agent (or the multi-agent system, if you want to).
+2. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized pipeline from `webagent/agents.py` and run it a few times.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any LLM and any orchestration framework you like.
@@ -33,7 +33,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 ### Setup
 
-1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507).
+1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707).
 2. Go through the [usual setup routine](https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html) to setup your environment for the project. Put the resulting `requirements.txt` file with the dependencies in the project folder.
 
 ### Prompts in `webagent/prompts.py`
@@ -89,4 +89,4 @@ Define the parameter values you need for instantiating the `ResumeGenerator` cla
 
 1. Prepare slides that would present your solution to the "company board" (your fellow students). The slides should highlight the design decisions step by step (agent initialization, the pipeline etc.), explain the choices of the LLMs etc., so basically justify why you implemented the system the way you did. It should then inspect the outputs of the system in detail and provide a qualitative analysis of those. Finally, it should discuss the current limitations and possible workarounds.
 2. With these slides, you will hold a presentation (30-40 min). After that, you have to be ready to answer the questions from the board.
-3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is July 15, 12pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.
+3. Put the complete code and the slides to a GitHub repository. It may be private if you want, then you will have to send an invitation for the username `maxschmaltz`. The submission succeeds via email, and the deadline is July 17, 12pm. Note: if you will put the files to the repo manually, don't forget to exclude environment variables, dependencies etc.
