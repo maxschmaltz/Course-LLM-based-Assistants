@@ -349,7 +349,7 @@ _Ausfalltermin_
 _____________________________________
 
 
-### Week 10
+### Week 10: Unplanned Pause
 
 <a name="2406"></a>
 #### 24.06. _Pitch_: RAG Chatbot
