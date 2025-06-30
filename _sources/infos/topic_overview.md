@@ -365,7 +365,7 @@ _____________________________________________________________________________
 ### Week 11
 
 <a name="0107"></a>
-#### 01.07. _Lecture_: LLMs for Hypothesis Generation & Literature Review
+#### 01.07. _Lecture_: LLMs for Research
 
 The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.
 
