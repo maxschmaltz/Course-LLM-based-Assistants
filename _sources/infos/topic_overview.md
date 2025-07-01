@@ -370,8 +370,9 @@ _____________________________________________________________________________
 The first lecture dedicated to scientific applications shows how LLMs are used to plan experiments and generate hypothesis to accelerate research.
 
 **Key points**:
+* Literature review
 * Hypothesis generation
-* Literature Review
+* End-to-end solutions
 
 **Core Reading**:
 * 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326) (pages 1-9), `University of Chicago & Toyota Technological Institute at Chicago` 🟠
