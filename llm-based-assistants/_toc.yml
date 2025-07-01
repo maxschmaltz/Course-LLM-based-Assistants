@@ -34,7 +34,7 @@ parts:
 
   - caption: "Block 2: Core Topics | Part 2: Applications in Science"
     chapters:
-    - file: sessions/block2_core_topics/pt2_science/under_development.md
+    - file: sessions/block2_core_topics/pt2_science/0107.md
 
   - caption: "Block 3: Wrap-up"
     chapters:

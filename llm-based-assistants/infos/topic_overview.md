@@ -375,14 +375,17 @@ The first lecture dedicated to scientific applications shows how LLMs are used t
 
 **Core Reading**:
 * 📌 [Hypothesis Generation with Large Language Models](https://arxiv.org/abs/2404.04326) (pages 1-9), `University of Chicago & Toyota Technological Institute at Chicago` 🟠
-* [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733), `TUM` 🟡
 * 📌 [Emergent autonomous scientific research capabilities of large language models](https://arxiv.org/abs/2304.05332) (pages 1-12), `Carnegie Mellon University` 🔴
 
 **Additional Reading**:
-* [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia` 🟡
-* [Paper Copilot: A Self-Evolving and Efficient LLM System for Personalized Academic Assistance](https://arxiv.org/abs/2409.04593), `University of Illinois at Urbana-Champaign, Carnegie Mellon University & Carleton College` 🟡
+* [LLM4SR: A Survey on Large Language Models for Scientific Research](https://arxiv.org/abs/2501.04306), `University of Texas at Dallas & Nanyang Technological University`
 * [SciLitLLM: How to Adapt LLMs for Scientific Literature Understanding](https://arxiv.org/abs/2408.15545), `University of Science and Technology of China & DP Technology` 🟠
+* [Paper Copilot: A Self-Evolving and Efficient LLM System for Personalized Academic Assistance](https://arxiv.org/abs/2409.04593), `University of Illinois at Urbana-Champaign, Carnegie Mellon University & Carleton College` 🟡
+* [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia` 🟡
 * [Mapping the Increasing Use of LLMs in Scientific Papers](https://arxiv.org/abs/2404.01268), `Stanford`
+* [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733), `TUM` 🟡
+* [Operating Robotic Laboratories with Large Language Models and Teachable Agents](https://openreview.net/forum?id=iA9UN1dEgJ), `Argonne National Laboratory`
+* [The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery](https://arxiv.org/abs/2408.06292), `Sakana AI et al.`
 
 <a name="0307"></a>
 #### 03.07: _Lab_: Experiment Planning & Hypothesis Generation
