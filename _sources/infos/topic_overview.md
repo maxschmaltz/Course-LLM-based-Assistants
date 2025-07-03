@@ -389,7 +389,7 @@ The first lecture dedicated to scientific applications shows how LLMs are used t
 * [The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery](https://arxiv.org/abs/2408.06292), `Sakana AI et al.`
 
 <a name="0307"></a>
-#### 03.07: _Lab_: Experiment Planning & Hypothesis Generation
+#### 03.07: _Lab_: LLM-Based Hypothesis Generation
 > On material of [session 01.07](#0107)
 
 In this lab, we'll practice in facilitating researcher's work with LLMs on the example of a toy scientific research.
