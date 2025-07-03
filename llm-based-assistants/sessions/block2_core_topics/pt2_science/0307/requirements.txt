@@ -1,3 +1,5 @@
+langchain_nvidia_ai_endpoints
+python-dotenv
 numpy
 pandas
 matplotlib
