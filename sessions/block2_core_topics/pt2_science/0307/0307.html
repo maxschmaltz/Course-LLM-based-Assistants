@@ -1,0 +1,1764 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" /><link rel="next" title="10.07. Pitch: RAG Chatbot" href="../../../block3_wrapup/1007/README.html" /><link rel="prev" title="01.07. LLMs for Research" href="../0107.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>03.07. LLM-Based Hypothesis Generation💡 - LLM-based Assistants</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../index.html"><div class="brand">LLM-based Assistants</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">LLM-based Assistants</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Infos and Stuff</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../infos/topic_overview.html">Topics Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../infos/formats/debates.html">Debates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../infos/formats/pitches.html">Pitches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../infos/llm_inference_guide/README.html">LLM Inference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 1: Intro</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../block1_intro/2204.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../block1_intro/2404.html">24.04. LLM &amp; Agent Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../block1_intro/2904/2904.html">29.04. Intro to LangChain 🦜🔗</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/0605.html">06.05. Virtual Assistants Pt. 1: Chatbots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/0805/0805.html">08.05. Basic LLM-based Chatbot 🤖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/1305.html">13.05. Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/1505/1505.html">15.05. RAG Chatbot Pt. 1 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/2005/2005.html">20.05. RAG Chatbot Pt. 2 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/2705/2705.html">27.05. Multi-agent Environment 👾🤖👾</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/2205.html">22.05. Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/0306.html">03.06. LLMs in Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/0506/0506.html">05.06. LLM-powered Website 💻</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pt1_business/1706.html">17.06. Other Business Applications: Game Design, Financial Analysis etc.</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 2: Applications in Science</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0107.html">01.07. LLMs for Research</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">03.07. LLM-Based Hypothesis Generation💡</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 3: Wrap-up</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../block3_wrapup/1007/README.html">10.07. <em>Pitch</em>: RAG Chatbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../block3_wrapup/1507/README.html">15.07. <em>Pitch</em>: Handling Customer Requests in a Multi-agent Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../block3_wrapup/1707/README.html">17.07. <em>Pitch</em>: Agent for Web Resumes</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="llm-based-hypothesis-generation">
+<h1>03.07. LLM-Based Hypothesis Generation💡<a class="headerlink" href="#llm-based-hypothesis-generation" title="Link to this heading">¶</a></h1>
+<p>📍 <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block2_core_topics/pt2_science/0307">Download notebook and session files</a></p>
+<p>In today’s lab session, we’ll implement and explore different LLM-based approaches for scientific hypothesis generation. Building on the concepts from our <a class="reference internal" href="../0107.html"><span class="std std-doc">lecture</span></a>, we’ll work with synthetical social science data to generate, refine, and qualitatively evaluate hypotheses about dependency of educational outcomes from socioeconomic factors.</p>
+<p>Our plan for today:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#data"><span class="xref myst">Data Preparation</span></a></p></li>
+<li><p><a class="reference internal" href="#straightforward"><span class="xref myst">Strategy 1: Straightforward Application</span></a></p></li>
+<li><p><a class="reference internal" href="#lit"><span class="xref myst">Strategy 2: Literature-Conditioned Generation</span></a></p></li>
+<li><p><a class="reference internal" href="#xdom"><span class="xref myst">Strategy 3: Cross-Domain Analogy Generation</span></a></p></li>
+<li><p><a class="reference internal" href="#contra"><span class="xref myst">Strategy 4: Contradiction-Based Generation</span></a></p></li>
+<li><p><a class="reference internal" href="#iter"><span class="xref myst">Iterative Refinement (Mini-HypoGeniC)</span></a></p></li>
+</ul>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<p>To start with the tutorial, complete the steps <a class="reference internal" href="#../../../infos/llm_inference_guide/README.md#prerequisites"><span class="xref myst">Prerequisites</span></a>, <a class="reference internal" href="#../../../infos/llm_inference_guide/README.md#environment-setup"><span class="xref myst">Environment Setup</span></a>, and <a class="reference internal" href="#../../../infos/llm_inference_guide/README.md#getting-api-key"><span class="xref myst">Getting API Key</span></a> from the <a class="reference internal" href="../../../../infos/llm_inference_guide/README.html"><span class="std std-doc">LLM Inference Guide</span></a>.</p>
+<p>Today, we have more packages so we’ll use the requirements file to install the dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_nvidia_ai_endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatNVIDIA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.rate_limiters</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryRateLimiter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read system variables</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dotenv</span>
+
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>    <span class="c1"># that loads the .env file variables into os.environ</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose any model, catalogue is available under https://build.nvidia.com/models</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;qwen/qwq-32b&quot;</span>
+
+<span class="c1"># this rate limiter will ensure we do not exceed the rate limit</span>
+<span class="c1"># of 40 RPM given by NVIDIA</span>
+<span class="n">rate_limiter</span> <span class="o">=</span> <span class="n">InMemoryRateLimiter</span><span class="p">(</span>
+    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">30</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 30 requests per minute to be sure</span>
+    <span class="n">check_every_n_seconds</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># wake up every 100 ms to check whether allowed to make a request,</span>
+    <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># controls the maximum burst size</span>
+<span class="p">)</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatNVIDIA</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">MODEL_NAME</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NVIDIA_API_KEY&quot;</span><span class="p">),</span> 
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>   <span class="c1"># warm up this time</span>
+    <span class="n">rate_limiter</span><span class="o">=</span><span class="n">rate_limiter</span>  <span class="c1"># bind the rate limiter</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/maksimshmalts/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt2_science/0307/.venv/lib/python3.12/site-packages/langchain_nvidia_ai_endpoints/_common.py:217: UserWarning: Found qwen/qwq-32b in available_models, but type is unknown and inference may fail.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we will be generating hypotheses here, we’ll define a structured output for them here to unify their format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Hypothesis</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">statement</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Complete hypothesis statement in natural language&quot;</span><span class="p">)</span>
+    <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The specific condition where the hypothesis applies&quot;</span><span class="p">)</span>
+    <span class="n">outcome</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The expected outcome or dependent variable&quot;</span><span class="p">)</span>
+    <span class="n">mechanism</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Proposed underlying mechanism or explanation&quot;</span><span class="p">)</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Confidence level from 0-10&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Hypotheses</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">hypotheses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Hypothesis</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of generated hypotheses&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hypothesis</span><span class="o">.</span><span class="n">statement</span><span class="si">}</span><span class="s2"> (Confidence: </span><span class="si">{</span><span class="n">hypothesis</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="k">for</span> <span class="n">hypothesis</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hypotheses</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">confidence</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">])</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hypotheses</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">Hypotheses</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/maksimshmalts/Documents/Course-LLM-based-Assistants/llm-based-assistants/sessions/block2_core_topics/pt2_science/0307/.venv/lib/python3.12/site-packages/langchain_nvidia_ai_endpoints/chat_models.py:816: UserWarning: Model &#39;qwen/qwq-32b&#39; is not known to support structured output. Your output may fail at inference time.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="data">1. Data Generation 📕</h2>
+<p>To save the time and storage, we will use a toy <em>synthetic</em> dataset that will include various socioeconomic and demographic factors and educational outcome data.</p>
+<p>At first, we will just generate some random data from suitable distributions, and then soe synthetic correlations will be added to those.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># for reproducibility</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># number of students</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># int from 1 to 1000</span>
+    <span class="s2">&quot;student_id&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="c1"># normal distribution with a mean of 72 and a SD of 15;</span>
+    <span class="c1"># this will mostly cluster around 72 but allow for some variation</span>
+    <span class="c1"># at both sides</span>
+    <span class="s2">&quot;math_score&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span>
+    <span class="c1"># normal distribution with a mean of 78 and a SD of 12;</span>
+    <span class="c1"># this will mostly cluster around 78 but allow for some variation</span>
+    <span class="c1"># at both sides</span>
+    <span class="s2">&quot;reading_score&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span>
+    <span class="c1"># one of the three categories with probs 0.4, 0.4, 0.2, respectively</span>
+    <span class="s2">&quot;parent_education&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;high_school&quot;</span><span class="p">,</span> <span class="s2">&quot;bachelor&quot;</span><span class="p">,</span> <span class="s2">&quot;master&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]),</span>
+    <span class="c1"># one of the three categories with probs 0.35, 0.5, 0.15, respectively</span>
+    <span class="s2">&quot;family_income&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;low&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">]),</span>
+    <span class="c1"># gamma distr is right-skewed which is suitable for study hours; </span>
+    <span class="c1"># it is non-negative and has a tail on the right;</span>
+    <span class="c1"># so this distribution will mostly cluster low but allow high values</span>
+    <span class="s2">&quot;study_hours&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span>
+    <span class="c1"># one of the two categories with probs 0.8, 0.2, respectively</span>
+    <span class="s2">&quot;school_type&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;public&quot;</span><span class="p">,</span> <span class="s2">&quot;private&quot;</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]),</span>
+    <span class="c1"># normal distribution with a mean of 25 and a SD of 5;</span>
+    <span class="c1"># this will mostly cluster around 72 but allow for slight variation</span>
+    <span class="c1"># at both sides</span>
+    <span class="s2">&quot;class_size&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span>
+    <span class="c1"># conceptual (not mathematical!) opposite of the Gamma distribution:</span>
+    <span class="c1"># left-skewed, non-negative, and has a tail on the left,</span>
+    <span class="c1"># will mostly cluster high but allow low values</span>
+    <span class="s2">&quot;attendance_rate&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>math_score</th>
+      <th>reading_score</th>
+      <th>parent_education</th>
+      <th>family_income</th>
+      <th>study_hours</th>
+      <th>school_type</th>
+      <th>class_size</th>
+      <th>attendance_rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>84.901425</td>
+      <td>109.983886</td>
+      <td>bachelor</td>
+      <td>low</td>
+      <td>4.326753</td>
+      <td>public</td>
+      <td>29.015774</td>
+      <td>48.721447</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>65.852071</td>
+      <td>98.115842</td>
+      <td>high_school</td>
+      <td>middle</td>
+      <td>3.218203</td>
+      <td>public</td>
+      <td>17.622943</td>
+      <td>71.534313</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>89.430656</td>
+      <td>76.490759</td>
+      <td>high_school</td>
+      <td>middle</td>
+      <td>8.450355</td>
+      <td>private</td>
+      <td>30.112564</td>
+      <td>79.582200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>115.690896</td>
+      <td>58.826581</td>
+      <td>high_school</td>
+      <td>low</td>
+      <td>0.491749</td>
+      <td>private</td>
+      <td>18.681155</td>
+      <td>87.997108</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>62.975399</td>
+      <td>92.455583</td>
+      <td>master</td>
+      <td>middle</td>
+      <td>0.874255</td>
+      <td>public</td>
+      <td>18.147205</td>
+      <td>69.268819</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add some realistic correlations</span>
+
+<span class="c1"># higher parent education correlates with income and scores</span>
+<span class="n">bach_ind</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;parent_education&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bachelor&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bach_ind</span><span class="p">,</span> <span class="s2">&quot;family_income&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;low&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">],</span> <span class="n">bach_ind</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bach_ind</span><span class="p">,</span> <span class="s2">&quot;math_score&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bach_ind</span><span class="p">,</span> <span class="s2">&quot;reading_score&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">master_ind</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;parent_education&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;master&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">master_ind</span><span class="p">,</span> <span class="s2">&quot;family_income&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;middle&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">],</span> <span class="n">master_ind</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">master_ind</span><span class="p">,</span> <span class="s2">&quot;math_score&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">master_ind</span><span class="p">,</span> <span class="s2">&quot;reading_score&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># private schools tend to have smaller classes and higher scores</span>
+<span class="n">priv_ind</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;private&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">priv_ind</span><span class="p">,</span> <span class="s2">&quot;class_size&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">0.7</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">priv_ind</span><span class="p">,</span> <span class="s2">&quot;math_score&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">priv_ind</span><span class="p">,</span> <span class="s2">&quot;reading_score&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># # less study hours and less attendance correlate with lower scores</span>
+<span class="n">priv_ind</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;attendance_rate&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">priv_ind</span><span class="p">,</span> <span class="s2">&quot;math_score&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">priv_ind</span><span class="p">,</span> <span class="s2">&quot;reading_score&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now add some contradictions to see if the LLM can handle them</span>
+
+<span class="c1"># higher parent education in low-income families correlates with lower scores</span>
+<span class="c1"># (due to stress/pressure/unrealistic expectations)</span>
+<span class="n">low_income_bach_ind</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;family_income&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;low&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;parent_education&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bachelor&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">low_income_bach_ind</span><span class="p">,</span> <span class="s2">&quot;math_score&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">low_income_bach_ind</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">low_income_bach_ind</span><span class="p">,</span> <span class="s2">&quot;reading_score&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">low_income_bach_ind</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># some private school students with high study hours show surprisingly low performance</span>
+<span class="c1"># (potentially due to over-pressure or ineffective study methods)</span>
+<span class="n">private_high_study_ind</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;private&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">private_high_study_ind</span><span class="p">,</span> <span class="s2">&quot;math_score&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">private_high_study_ind</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">private_high_study_ind</span><span class="p">,</span> <span class="s2">&quot;reading_score&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">private_high_study_ind</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adjust the scores and class sizes to be within realistic bounds</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;math_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;math_score&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;reading_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;reading_score&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;class_size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;class_size&quot;</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>math_score</th>
+      <th>reading_score</th>
+      <th>parent_education</th>
+      <th>family_income</th>
+      <th>study_hours</th>
+      <th>school_type</th>
+      <th>class_size</th>
+      <th>attendance_rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>83.982222</td>
+      <td>100.000000</td>
+      <td>bachelor</td>
+      <td>high</td>
+      <td>4.326753</td>
+      <td>public</td>
+      <td>29</td>
+      <td>48.721447</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>65.852071</td>
+      <td>98.115842</td>
+      <td>high_school</td>
+      <td>middle</td>
+      <td>3.218203</td>
+      <td>public</td>
+      <td>17</td>
+      <td>71.534313</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>83.825992</td>
+      <td>74.378672</td>
+      <td>high_school</td>
+      <td>middle</td>
+      <td>8.000000</td>
+      <td>private</td>
+      <td>21</td>
+      <td>79.582200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>100.000000</td>
+      <td>59.251830</td>
+      <td>high_school</td>
+      <td>low</td>
+      <td>0.491749</td>
+      <td>private</td>
+      <td>13</td>
+      <td>87.997108</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>69.846704</td>
+      <td>96.304558</td>
+      <td>master</td>
+      <td>high</td>
+      <td>0.874255</td>
+      <td>public</td>
+      <td>18</td>
+      <td>69.268819</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic statistics</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>math_score</th>
+      <th>reading_score</th>
+      <th>study_hours</th>
+      <th>class_size</th>
+      <th>attendance_rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1000.000000</td>
+      <td>1000.000000</td>
+      <td>1000.000000</td>
+      <td>1000.000000</td>
+      <td>1000.000000</td>
+      <td>1000.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>500.500000</td>
+      <td>69.703835</td>
+      <td>76.093220</td>
+      <td>2.445535</td>
+      <td>22.947000</td>
+      <td>79.606501</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>288.819436</td>
+      <td>25.003453</td>
+      <td>21.178761</td>
+      <td>1.639654</td>
+      <td>5.696371</td>
+      <td>11.997461</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.037872</td>
+      <td>10.000000</td>
+      <td>29.697055</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>250.750000</td>
+      <td>51.990136</td>
+      <td>61.531379</td>
+      <td>1.226246</td>
+      <td>19.000000</td>
+      <td>72.272145</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>500.500000</td>
+      <td>72.795777</td>
+      <td>78.980705</td>
+      <td>2.086426</td>
+      <td>23.000000</td>
+      <td>81.720291</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>750.250000</td>
+      <td>91.800173</td>
+      <td>95.922022</td>
+      <td>3.338343</td>
+      <td>27.000000</td>
+      <td>88.972897</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1000.000000</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>8.000000</td>
+      <td>39.000000</td>
+      <td>99.376582</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># some visualizations</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># math scores by parent education</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;parent_education&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;math_score&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Math Scores by Parent Education&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># reading scores by family income</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;family_income&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;reading_score&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Reading Scores by Family Income&quot;</span><span class="p">)</span>
+
+<span class="c1"># study hours vs math score</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;math_score&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Study Hours per Week&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Math Score&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Study Hours vs Math Performance&quot;</span><span class="p">)</span>
+
+<span class="c1"># school type comparison</span>
+<span class="n">school_comparison</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;school_type&quot;</span><span class="p">)[[</span><span class="s2">&quot;math_score&quot;</span><span class="p">,</span> <span class="s2">&quot;reading_score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">school_comparison</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Average Scores by School Type&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/a8cf2b4a55eb1fc482b271ab6c98ac5cf26205c2c7ea39495da0b7f99e89dd75.png" src="../../../../_images/a8cf2b4a55eb1fc482b271ab6c98ac5cf26205c2c7ea39495da0b7f99e89dd75.png" />
+</div>
+</div>
+<h2 id="straightforward">2. Straightforward Generation 💥</h2>
+<p>This approach directly asks the LLM to analyze data patterns and generate hypotheses without additional context. The model examines the raw data sample and identifies potential relationships based on observed correlations. This represents the most basic form of hypothesis generation, relying solely on the LLM’s ability to detect patterns in numerical and categorical data and serves as a baseline to compare against more sophisticated prompting techniques.</p>
+<p>Since we generate hypotheses in a straightforward manner, we need nothing much as just a prompt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.notebook</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">straightforward_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are a research scientist analyzing educational data. Below is a sample of student performance data with various demographic and behavioral variables:</span>
+
+<span class="s2">==================</span>
+<span class="si">{data_sample}</span>
+<span class="s2">==================</span>
+
+<span class="s2">Based on this data, propose hypotheses that could explain patterns in student academic performance (math_score and reading_score). </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe all observed correlations and contradictions. Suggest 3-5 hypotheses. </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe potential causal relationships between the factors in the data and the academic performance scores: </span><span class="se">\</span>
+<span class="s2">&quot;If X, then the scores are generally higher/lower because Y.&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_straightforward</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">sample_size</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">]):</span>
+    <span class="n">data_sample</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># sample without index for better readability</span>
+    <span class="c1"># generate hypotheses</span>
+    <span class="n">hypotheses</span> <span class="o">=</span> <span class="n">s_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">straightforward_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_sample</span><span class="o">=</span><span class="n">data_sample</span><span class="p">))</span>
+    <span class="c1"># store the results</span>
+    <span class="n">results_straightforward</span><span class="p">[</span><span class="n">sample_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">hypotheses</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "150e07bf5afd4fd392e337f307f974c5", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_hypotheses</span><span class="p">(</span><span class="n">hypotheses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">hyp</span> <span class="ow">in</span> <span class="n">hypotheses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample Size: </span><span class="si">{</span><span class="n">sample_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">hyp</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_hypotheses</span><span class="p">(</span><span class="n">results_straightforward</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample Size: 25
+If students have higher attendance rates (e.g., above 90%), then their math and reading scores are generally higher because consistent attendance ensures they receive all instructional content and participate in classroom activities. (Confidence: 0.8)
+If students come from families with higher parental education (e.g., bachelor&#39;s degree or higher), then their math and reading scores are generally higher because parental education level is associated with greater access to educational resources and higher expectations for academic success. (Confidence: 0.7)
+If students attend schools with smaller class sizes (e.g., under 20 students), then their math and reading scores are generally higher because smaller classes allow for more individualized instruction and better teacher-student interaction. (Confidence: 0.6)
+If students attend private schools, their reading scores are higher than public school peers, but math scores show no significant difference, possibly due to curriculum focus or resource allocation differences between school types. (Confidence: 0.6)
+If students study more hours per week (e.g., over 5 hours), their math scores improve but reading scores remain stable, suggesting math requires more deliberate practice while reading skills might be more context-dependent or less impacted by study time. (Confidence: 0.5)
+
+==================================================
+
+Sample Size: 100
+Hypothesis 1: Students with parents who have a higher level of education (e.g., bachelor&#39;s degree or master&#39;s) tend to have higher math and reading scores compared to those with parents who only completed high school. This is because parental education level correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending private schools have higher math scores but lower reading scores than public school students. This discrepancy may arise from private schools focusing more on math curricula while neglecting reading comprehension, or differing teaching methodologies between the two school types. (Confidence: 0.7)
+Hypothesis 4: Students from families with higher income levels (marked as &#39;high&#39;) show higher math scores but inconsistent reading scores compared to lower income groups. This might indicate that families invest more in math-focused tutoring or enrichment programs, while reading skills are maintained through general socioeconomic advantages. (Confidence: 0.65)
+Hypothesis 3: Students in schools with smaller class sizes (below 20 students) tend to have higher reading scores but lower math scores compared to larger classes. The smaller environment might enhance reading through individual attention, while math performance could be affected by less peer interaction that aids problem-solving in larger groups. (Confidence: 0.6)
+Hypothesis 5: Students with higher study hours per week have higher math scores but lower reading scores. This could suggest that students prioritize math study time at the expense of reading practice, or that reading skills are more dependent on habitual reading outside structured study sessions. (Confidence: 0.6)
+
+==================================================
+
+Sample Size: 250
+If students have parents with higher education levels (parent_education = master), then their math and reading scores are generally higher because parental education correlates with greater academic support and resources at home. (Confidence: 0.8)
+If students attend schools with smaller class sizes (class_size &lt; 20), then their math scores are generally higher because smaller classes allow for more individualized instruction and teacher attention. (Confidence: 0.7)
+If students have lower attendance rates (attendance_rate &lt; 70%), then their reading scores are generally lower because consistent attendance is critical for maintaining comprehension in language-based subjects. (Confidence: 0.7)
+If schools have higher income families (family_income = high), then math scores are higher due to access to supplementary educational resources and enrichment activities outside school. (Confidence: 0.65)
+If students have higher study hours (study_hours &gt; 5), then their math and reading scores are generally higher due to increased time spent on academic preparation and practice. (Confidence: 0.6)
+
+==================================================
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="lit">3. Literature-Conditioned Generation 📗</h2>
+<p>Here we provide the LLM with relevant research abstracts alongside the data to guide hypothesis generation – basically, RAG on scientific material. This approach mimics how human researchers build upon existing knowledge when forming new hypotheses. The model can identify gaps in current literature, propose extensions to existing findings, or suggest novel research directions that complement established results.</p>
+<p>Here, there is a single component to be added: namely, the literature fragments. Since RAG is not the focus of this lab, we will simulate extracted abstracts in a hard-code manner.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mock_literature</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Socioeconomic Status and Academic Achievement: A Meta-Analysis&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="s2">&quot;This meta-analysis of 142 studies (N = 582,696) examined the relationship between socioeconomic status (SES) and academic achievement. Results showed a moderate positive correlation (r = .31) between family income and standardized test scores. Parent education level was the strongest predictor of student achievement, with master&#39;s degree holders&#39; children scoring 12-15 points higher on average than high school graduates&#39; children. The effect was stronger for mathematics than reading comprehension.&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Private vs. Public Schools: Achievement Gaps and Class Size Effects&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="s2">&quot;Analysis of 50,000 students across 500 schools revealed that private school students outperformed public school students by 8-12 points on standardized tests. However, when controlling for family income and parent education, the gap reduced to 3-5 points. Class size showed a negative correlation with achievement (r = -.23), with optimal class sizes between 15-20 students. The effect was more pronounced in mathematics than in language arts.&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;The Role of Study Habits and Attendance in Academic Success&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="s2">&quot;Longitudinal study of 1,200 high school students found that study hours per week correlated positively with GPA (r = .28). Students with less than 2 hours of weekly study time showed significantly lower performance across all subjects. Attendance rate was strongly correlated with achievement (r = .45), with students below 80</span><span class="si">% a</span><span class="s2">ttendance showing marked declines in both mathematics and reading scores. The effects were cumulative and more pronounced over time.&quot;</span>
+    <span class="p">},</span>
+    <span class="c1"># irrelevant literature</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Urban-Rural Educational Disparities: Resource Access and Achievement&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="s2">&quot;Comparative study of 10,000 students across urban, suburban, and rural districts found significant achievement gaps. Urban students had greater access to tutoring services (average 2.1 hours/week vs. 0.8 for rural students) and scored 6-8 points higher on standardized tests. However, rural students from highly educated families sometimes showed unexpected underperformance, suggesting resource constraints despite parental education. Suburban students consistently performed highest across all measures.&quot;</span>
+    <span class="p">},</span>
+    <span class="c1"># literature about the contradictions: the expectation is, a new hypothesis will be generated with that</span>
+    <span class="p">{</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;The Paradox of Low-Income, Highly Educated Families: When Parental Education Fails to Predict Achievement&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="s2">&quot;This study of 15,000 students examined the relationship between parental education and academic achievement across different income levels. While the general trend shows positive correlations between parent education and student performance, we identified a concerning paradox: children from low-income families with master&#39;s educated parents showed significantly lower achievement than expected (effect size d = -0.42 for math, -0.35 for reading). Qualitative interviews revealed that financial stress combined with high parental expectations created performance anxiety and family tension. These families often lacked the financial resources to match their educational aspirations, leading to frustration and academic pressure that negatively impacted student outcomes. The findings suggest that parental education alone is insufficient when not accompanied by adequate economic resources.&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;The Diminishing Returns of Academic Pressure: Over-Studying in Elite Educational Settings&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="s2">&quot;Analysis of 8,500 private school students revealed an unexpected inverse relationship between excessive study time and academic performance. Students who reported more than 4 hours of daily study time showed decreased achievement compared to peers with moderate study schedules (2-3 hours), with a notable 6-8 point decline in standardized test scores. The phenomenon was particularly pronounced in competitive private school environments where academic pressure was highest. Longitudinal data indicated that over-studying led to burnout, decreased motivation, and paradoxically, less effective learning strategies. The study suggests an optimal study duration beyond which additional time becomes counterproductive, challenging the common assumption that more study time always leads to better outcomes. These findings highlight the importance of balanced academic approaches rather than intensive study regimens.&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">literature_text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;Title: </span><span class="si">{</span><span class="n">paper</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">Abstract: </span><span class="si">{</span><span class="n">paper</span><span class="p">[</span><span class="s1">&#39;abstract&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">mock_literature</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">literature_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Title: Socioeconomic Status and Academic Achievement: A Meta-Analysis
+Abstract: This meta-analysis of 142 studies (N = 582,696) examined the relationship between socioeconomic status (SES) and academic achievement. Results showed a moderate positive correlation (r = .31) between family income and standardized test scores. Parent education level was the strongest predictor of student achievement, with master&#39;s degree holders&#39; children scoring 12-15 points higher on average than high school graduates&#39; children. The effect was stronger for mathematics than reading comprehension.
+
+Title: Private vs. Public Schools: Achievement Gaps and Class Size Effects
+Abstract: Analysis of 50,000 students across 500 schools revealed that private school students outperformed public school students by 8-12 points on standardized tests. However, when controlling for family income and parent education, the gap reduced to 3-5 points. Class size showed a negative correlation with achievement (r = -.23), with optimal class sizes between 15-20 students. The effect was more pronounced in mathematics than in language arts.
+
+Title: The Role of Study Habits and Attendance in Academic Success
+Abstract: Longitudinal study of 1,200 high school students found that study hours per week correlated positively with GPA (r = .28). Students with less than 2 hours of weekly study time showed significantly lower performance across all subjects. Attendance rate was strongly correlated with achievement (r = .45), with students below 80% attendance showing marked declines in both mathematics and reading scores. The effects were cumulative and more pronounced over time.
+
+Title: Urban-Rural Educational Disparities: Resource Access and Achievement
+Abstract: Comparative study of 10,000 students across urban, suburban, and rural districts found significant achievement gaps. Urban students had greater access to tutoring services (average 2.1 hours/week vs. 0.8 for rural students) and scored 6-8 points higher on standardized tests. However, rural students from highly educated families sometimes showed unexpected underperformance, suggesting resource constraints despite parental education. Suburban students consistently performed highest across all measures.
+
+Title: The Paradox of Low-Income, Highly Educated Families: When Parental Education Fails to Predict Achievement
+Abstract: This study of 15,000 students examined the relationship between parental education and academic achievement across different income levels. While the general trend shows positive correlations between parent education and student performance, we identified a concerning paradox: children from low-income families with master&#39;s educated parents showed significantly lower achievement than expected (effect size d = -0.42 for math, -0.35 for reading). Qualitative interviews revealed that financial stress combined with high parental expectations created performance anxiety and family tension. These families often lacked the financial resources to match their educational aspirations, leading to frustration and academic pressure that negatively impacted student outcomes. The findings suggest that parental education alone is insufficient when not accompanied by adequate economic resources.
+
+Title: The Diminishing Returns of Academic Pressure: Over-Studying in Elite Educational Settings
+Abstract: Analysis of 8,500 private school students revealed an unexpected inverse relationship between excessive study time and academic performance. Students who reported more than 4 hours of daily study time showed decreased achievement compared to peers with moderate study schedules (2-3 hours), with a notable 6-8 point decline in standardized test scores. The phenomenon was particularly pronounced in competitive private school environments where academic pressure was highest. Longitudinal data indicated that over-studying led to burnout, decreased motivation, and paradoxically, less effective learning strategies. The study suggests an optimal study duration beyond which additional time becomes counterproductive, challenging the common assumption that more study time always leads to better outcomes. These findings highlight the importance of balanced academic approaches rather than intensive study regimens.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">literature_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are a research scientist analyzing educational data. Below is a sample of student performance data with various demographic and behavioral variables:</span>
+
+<span class="s2">==================</span>
+<span class="si">{data_sample}</span>
+<span class="s2">==================</span>
+
+<span class="s2">Based on this data, propose hypotheses that could explain patterns in student academic performance (math_score and reading_score). </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe all observed correlations and contradictions. Suggest 3-5 hypotheses. </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe potential causal relationships between the factors in the data and the academic performance scores: </span><span class="se">\</span>
+<span class="s2">&quot;If X, then the scores are generally higher/lower because Y.&quot;</span>
+
+
+<span class="s2">For that, you will be provided with relevant literature abstracts that may help you in hypothesis generation:</span>
+
+<span class="s2">==================</span>
+<span class="si">{literature_text}</span>
+<span class="s2">==================</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_literature</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">sample_size</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">]):</span>
+    <span class="n">data_sample</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># sample without index for better readability</span>
+    <span class="c1"># generate hypotheses</span>
+    <span class="n">hypotheses</span> <span class="o">=</span> <span class="n">s_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">literature_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_sample</span><span class="o">=</span><span class="n">data_sample</span><span class="p">,</span> <span class="n">literature_text</span><span class="o">=</span><span class="n">literature_text</span><span class="p">))</span>
+    <span class="c1"># store the results</span>
+    <span class="n">results_literature</span><span class="p">[</span><span class="n">sample_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">hypotheses</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "68d621a14690433eaf1a90cebb87b05b", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_hypotheses</span><span class="p">(</span><span class="n">results_literature</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample Size: 25
+If students have attendance rates below 80%, then their math and reading scores are significantly lower because consistent school attendance is critical for maintaining learning continuity and participation in instructional activities. (Confidence: 0.9)
+If students attend private schools with smaller class sizes (15-20 students), then their math and reading scores are generally higher because private schools often have more resources to maintain optimal class sizes, which allows for more individualized instruction. (Confidence: 0.85)
+If students&#39; parents have higher education levels (bachelor/master), then their math scores are significantly higher than those with less-educated parents because parental educational attainment strongly correlates with math-specific academic support and expectations. (Confidence: 0.85)
+If students come from low-income families with highly educated parents (master&#39;s degree), then their math and reading scores are lower than expected because financial stress and unmet educational aspirations create anxiety and resource limitations that hinder academic performance. (Confidence: 0.8)
+If students have study hours exceeding 4 hours daily, then their math and reading scores are lower due to burnout and ineffective learning strategies caused by excessive academic pressure. (Confidence: 0.75)
+
+==================================================
+
+Sample Size: 100
+Hypothesis 1: Students with higher parental education (e.g., master&#39;s degree) will have higher math and reading scores than those with parents who only completed high school, because parental education level is the strongest predictor of academic success as shown in the meta-analysis. However, this advantage may be diminished for low-income families due to resource constraints and stress, as seen in the paradox study. (Confidence: 0.9)
+Hypothesis 2: Students in private schools will show higher math scores compared to public school peers, but this gap narrows when considering family income and parent education. The optimal class size (15-20 students) is associated with better performance, particularly in math, as smaller classes allow more individualized instruction. (Confidence: 0.85)
+Hypothesis 3: Students with attendance rates above 80% will have significantly better scores in both subjects due to consistent classroom exposure. However, excessive study hours (&gt;4 hours/week) in private schools may lead to lower scores because of burnout, contradicting the assumption that more study time always improves performance. (Confidence: 0.8)
+Hypothesis 4: Family income has a moderate positive correlation with scores, especially in math. However, low-income students with highly educated parents may underperform due to resource limitations and stress, creating an unexpected gap despite parental educational attainment. (Confidence: 0.8)
+Hypothesis 5: Urban students may have higher scores due to better resource access, but suburban students consistently outperform all groups. Rural students with highly educated parents paradoxically underperform, suggesting that geographic factors interact with family resources in complex ways. (Confidence: 0.75)
+
+==================================================
+
+Sample Size: 250
+Hypothesis 1: Students from families with higher income and parents with advanced degrees (e.g., master&#39;s) will have higher math scores compared to reading scores due to the stronger correlation between socioeconomic factors and math performance, as observed in the meta-analysis. (Confidence: 0.9)
+Hypothesis 2: Private schools with smaller class sizes (≤20 students) will show higher academic performance than public schools, but this advantage diminishes when controlling for income and parent education. However, some private schools with very small classes (≤15) might have even better results due to individualized attention. (Confidence: 0.85)
+Hypothesis 3: Students with attendance rates below 80% will have significantly lower scores in both math and reading, especially in reading, due to cumulative learning loss from missed instruction. This effect is more pronounced in students with already lower study hours. (Confidence: 0.8)
+Hypothesis 4: Low-income students with highly educated parents (master&#39;s) will underperform relative to their socioeconomic peers due to the paradox of pressure: financial stress combined with high expectations creates anxiety that undermines academic performance. (Confidence: 0.8)
+Hypothesis 5: Students in private schools studying more than 4 hours daily will have lower math scores than those with moderate study hours (2-3 hours) due to over-studying burnout and decreased learning efficiency in high-pressure environments. (Confidence: 0.75)
+
+==================================================
+</pre></div>
+</div>
+</div>
+</div>
+<section id="interesting-findings">
+<h3>Interesting findings:<a class="headerlink" href="#interesting-findings" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The confidence is consistently better</p></li>
+<li><p>The contradictions are now (partially) found: <code class="docutils literal notranslate"><span class="pre">Hypothesis</span> <span class="pre">5:</span> <span class="pre">Students</span> <span class="pre">in</span> <span class="pre">private</span> <span class="pre">schools</span> <span class="pre">studying</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">4</span> <span class="pre">hours</span> <span class="pre">daily</span> <span class="pre">will</span> <span class="pre">have</span> <span class="pre">lower</span> <span class="pre">math</span> <span class="pre">scores</span> <span class="pre">than</span> <span class="pre">those</span> <span class="pre">with</span> <span class="pre">moderate</span> <span class="pre">study</span> <span class="pre">hours</span> <span class="pre">(2-3</span> <span class="pre">hours)</span> <span class="pre">due</span> <span class="pre">to</span> <span class="pre">over-studying</span> <span class="pre">burnout</span> <span class="pre">and</span> <span class="pre">decreased</span> <span class="pre">learning</span> <span class="pre">efficiency</span> <span class="pre">in</span> <span class="pre">high-pressure</span> <span class="pre">environments.</span> <span class="pre">(Confidence:</span> <span class="pre">0.75)</span></code> (250)</p></li>
+<li><p>Some new findings related to the contradictions now override some previous statements: <code class="docutils literal notranslate"><span class="pre">If</span> <span class="pre">students</span> <span class="pre">have</span> <span class="pre">higher</span> <span class="pre">study</span> <span class="pre">hours</span> <span class="pre">(study_hours</span> <span class="pre">&gt;</span> <span class="pre">5),</span> <span class="pre">then</span> <span class="pre">their</span> <span class="pre">math</span> <span class="pre">and</span> <span class="pre">reading</span> <span class="pre">scores</span> <span class="pre">are</span> <span class="pre">generally</span> <span class="pre">higher</span> <span class="pre">due</span> <span class="pre">to</span> <span class="pre">increased</span> <span class="pre">time</span> <span class="pre">spent</span> <span class="pre">on</span> <span class="pre">academic</span> <span class="pre">preparation</span> <span class="pre">and</span> <span class="pre">practice.</span> <span class="pre">(Confidence:</span> <span class="pre">0.6)</span></code> from straightforward generation (250) vs <code class="docutils literal notranslate"><span class="pre">If</span> <span class="pre">students</span> <span class="pre">have</span> <span class="pre">study</span> <span class="pre">hours</span> <span class="pre">exceeding</span> <span class="pre">4</span> <span class="pre">hours</span> <span class="pre">daily,</span> <span class="pre">then</span> <span class="pre">their</span> <span class="pre">math</span> <span class="pre">and</span> <span class="pre">reading</span> <span class="pre">scores</span> <span class="pre">are</span> <span class="pre">lower</span> <span class="pre">due</span> <span class="pre">to</span> <span class="pre">burnout</span> <span class="pre">and</span> <span class="pre">ineffective</span> <span class="pre">learning</span> <span class="pre">strategies</span> <span class="pre">caused</span> <span class="pre">by</span> <span class="pre">excessive</span> <span class="pre">academic</span> <span class="pre">pressure.</span> <span class="pre">(Confidence:</span> <span class="pre">0.75)</span></code> with literature (25)</p></li>
+<li><p>…?</p></li>
+</ul>
+<h2 id="xdom">4. Cross-Domain Analogy Generation 🧬⚛️</h2>
+<p>This technique encourages the LLM to draw insights from other fields like economics, psychology, and biology to generate novel hypotheses about educational achievement. By thinking analogically, the model can apply successful patterns or principles from one domain to another, potentially uncovering innovative explanations. For example, the model might try to explain the effect through biological competition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are a research scientist analyzing educational data. Below is a sample of student performance data with various demographic and behavioral variables:</span>
+
+<span class="s2">==================</span>
+<span class="si">{data_sample}</span>
+<span class="s2">==================</span>
+
+<span class="s2">Based on this data, propose hypotheses that could explain patterns in student academic performance (math_score and reading_score). </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe all observed correlations and contradictions. Suggest 3-5 hypotheses. </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe potential causal relationships between the factors in the data and the academic performance scores: </span><span class="se">\</span>
+<span class="s2">&quot;If X, then the scores are generally higher/lower because Y.&quot;</span>
+
+<span class="s2">Consider patterns and principles from other domains that might apply to educational achievement.</span>
+<span class="s2">For example, you can think about analogous patterns from these domains:</span>
+<span class="s2">- Economics (market dynamics, resource allocation, investment returns)</span>
+<span class="s2">- Biology (ecosystem dynamics, resource competition, adaptation)</span>
+<span class="s2">- Business (performance optimization, resource management, team dynamics)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_x</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">sample_size</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">]):</span>
+    <span class="n">data_sample</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># sample without index for better readability</span>
+    <span class="c1"># generate hypotheses</span>
+    <span class="n">hypotheses</span> <span class="o">=</span> <span class="n">s_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">x_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_sample</span><span class="o">=</span><span class="n">data_sample</span><span class="p">))</span>
+    <span class="c1"># store the results</span>
+    <span class="n">results_x</span><span class="p">[</span><span class="n">sample_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">hypotheses</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "22a91fb3e1804f5b85a84d773b38b030", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_hypotheses</span><span class="p">(</span><span class="n">results_x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample Size: 25
+Hypothesis 1: Students with higher parental education (e.g., bachelor&#39;s/master&#39;s degree) tend to have higher math and reading scores because parental education level correlates with greater access to educational resources and higher expectations, similar to how economic capital investment leads to better returns in market dynamics. (Confidence: 0.8)
+Hypothesis 4: Students with consistent attendance (attendance_rate above 85%) show higher math scores due to less disruption in learning continuity, akin to ecosystem stability where consistent resource availability leads to better adaptation outcomes. (Confidence: 0.75)
+Hypothesis 2: Students in private schools with smaller class sizes (e.g., under 20 students) perform better academically due to increased individualized attention, analogous to how smaller team sizes in business improve productivity through reduced competition for resources. (Confidence: 0.7)
+Hypothesis 3: Higher family income levels correlate with better reading scores but not math scores because families with higher income may prioritize language-rich environments (books, cultural exposure) over math-focused resources, similar to how market investments might be allocated unevenly based on perceived value. (Confidence: 0.65)
+Hypothesis 5: Students studying more hours (study_hours above 2 hours) have lower math scores but higher reading scores because excessive study time may lead to burnout in quantitative subjects, while reading comprehension benefits from sustained practice, similar to overtraining in sports versus skill mastery through repetition. (Confidence: 0.6)
+
+==================================================
+
+Sample Size: 100
+Hypothesis 1: Students in schools with smaller class sizes (class_size) tend to have higher math and reading scores because of increased individualized attention and teaching resources per student, similar to how smaller teams in business can optimize resource allocation for better outcomes. (Confidence: 0.8)
+Hypothesis 2: Higher family_income levels correlate with higher academic scores due to access to supplementary educational resources and stable environments, analogous to economic investment in human capital yielding returns. (Confidence: 0.7)
+Hypothesis 3: Students with parents who have higher education (parent_education) perform better academically because of enriched learning environments and higher educational expectations, mirroring the concept of cultural capital in sociology. (Confidence: 0.65)
+Hypothesis 4: Students attending private schools (school_type) may have lower scores in some cases due to selection bias (e.g., higher study_hours but lower scores), suggesting that factors like pressure or resource allocation inefficiencies could counteract advantages. (Confidence: 0.6)
+Hypothesis 5: Excessive study_hours (above 5 hours) might lead to diminishing returns or burnout, resulting in lower scores, similar to over-investment in a single resource without balancing other factors in business. (Confidence: 0.6)
+
+==================================================
+
+Sample Size: 250
+Hypothesis 4: Attendance rates (attendance_rate &gt; 90%) strongly correlate with higher scores regardless of other factors, reflecting a foundational principle in system reliability—consistent participation ensures knowledge accumulation, akin to compound interest in economics where regular contributions lead to exponential growth. (Confidence: 0.9)
+Hypothesis 1: Students in schools with smaller class sizes (class_size &lt; 20) and higher parental education levels (parent_education = bachelor/master) tend to have higher math and reading scores because of increased individual attention and higher socioeconomic resources, analogous to economies of scale in education where concentrated resources improve outcomes. (Confidence: 0.8)
+Hypothesis 2: Students attending private schools (school_type = private) with moderate study hours (study_hours between 1-2) outperform public school peers because of optimized study time allocation, similar to business models where balanced resource utilization maximizes productivity, while excessive study hours (&gt;3) in public schools may lead to burnout or diminishing returns. (Confidence: 0.7)
+Hypothesis 3: Students from high-income families (family_income = high) in schools with larger class sizes (&gt;25) show lower performance due to resource dilution, similar to ecological crowding, where abundant resources can&#39;t compensate for increased competition. Conversely, middle-income students in larger classes might benefit from peer diversity effects. (Confidence: 0.6)
+Hypothesis 5: Students with very low study hours (study_hours &lt; 0.5) but high attendance and parental education achieve paradoxically high scores due to efficient study habits or high innate ability, similar to biological adaptation where limited resources are used optimally. This contradicts the assumption that more study time always equals better performance. (Confidence: 0.5)
+
+==================================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Interesting findings:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The confidence scores and the pattern to overlook contradictions remains the same</p></li>
+<li><p>The same effects as with straightforward generation are discovered, but they are now sometimes justified through analogies from other disciplines: <code class="docutils literal notranslate"><span class="pre">Hypothesis</span> <span class="pre">4:</span> <span class="pre">Attendance</span> <span class="pre">rates</span> <span class="pre">(attendance_rate</span> <span class="pre">&gt;</span> <span class="pre">90%)</span> <span class="pre">strongly</span> <span class="pre">correlate</span> <span class="pre">with</span> <span class="pre">higher</span> <span class="pre">scores</span> <span class="pre">regardless</span> <span class="pre">of</span> <span class="pre">other</span> <span class="pre">factors,</span> <span class="pre">reflecting</span> <span class="pre">a</span> <span class="pre">foundational</span> <span class="pre">principle</span> <span class="pre">in</span> <span class="pre">system</span> <span class="pre">reliability—consistent</span> <span class="pre">participation</span> <span class="pre">ensures</span> <span class="pre">knowledge</span> <span class="pre">accumulation,</span> <span class="pre">akin</span> <span class="pre">to</span> <span class="pre">compound</span> <span class="pre">interest</span> <span class="pre">in</span> <span class="pre">economics</span> <span class="pre">where</span> <span class="pre">regular</span> <span class="pre">contributions</span> <span class="pre">lead</span> <span class="pre">to</span> <span class="pre">exponential</span> <span class="pre">growth.</span> <span class="pre">(Confidence:</span> <span class="pre">0.9)</span></code> (250)</p></li>
+<li><p>…?</p></li>
+</ul>
+<h2 id="contra">5. Contradiction-Based Generation ⁉️</h2>
+<p>This approach presents the LLM with contradictory or unexpected patterns in the data that challenge conventional assumptions. The model must then generate hypotheses that explain these anomalies, often revealing hidden mediating variables or contextual factors. This technique is particularly valuable for uncovering complex relationships that simple correlation analysis might miss.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create samples that highlight contradictions</span>
+<span class="n">low_income_bacherlors</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;family_income&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;low&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;parent_education&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bachelor&quot;</span><span class="p">)]</span>
+<span class="n">low_income_high_school</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;family_income&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;low&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;parent_education&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;high_school&quot;</span><span class="p">)]</span>
+<span class="n">private_high_study</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;private&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="n">private_moderate_study</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;school_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;private&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;study_hours&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contradictory_data</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Low-income students with bachelors&#39;s educated parents:</span>
+<span class="s2">---------------</span>
+<span class="si">{</span><span class="n">low_income_bacherlors</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span>
+
+
+<span class="s2">Low-income students with high school educated parents (for comparison):</span>
+<span class="s2">---------------</span>
+<span class="si">{</span><span class="n">low_income_high_school</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span>
+
+
+<span class="s2">========================</span>
+
+
+<span class="s2">Private school students with high study hours (&gt;4 hours):</span>
+<span class="s2">---------------</span>
+<span class="si">{</span><span class="n">private_high_study</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span>
+
+<span class="s2">Private school students with moderate study hours (2-3 hours, for comparison):</span>
+<span class="s2">---------------</span>
+<span class="si">{</span><span class="n">private_moderate_study</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contra_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are a research scientist analyzing educational data. </span><span class="se">\</span>
+<span class="s2">You&#39;ve found some contradictory patterns that challenge common assumptions about educational achievement.</span>
+
+<span class="s2">CONTRADICTORY PATTERNS IN THE DATA:</span>
+<span class="si">{contradictory_data}</span>
+
+<span class="s2">These patterns seem to contradict typical expectations:</span>
+<span class="s2">- Low-income students with highly educated parents sometimes perform worse than those with less educated parents</span>
+<span class="s2">- Private school students who study more hours sometimes perform worse than those who study moderate amounts</span>
+<span class="s2">- Some expected correlations don&#39;t hold in certain subgroups</span>
+
+<span class="s2">Propose 3-5 hypotheses that could explain these contradictory findings. </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe potential causal relationships between the factors in the data and the academic performance scores: </span><span class="se">\</span>
+<span class="s2">&quot;If X, then the scores are generally higher/lower because Y.&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_contra</span> <span class="o">=</span> <span class="n">s_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">contra_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">contradictory_data</span><span class="o">=</span><span class="n">contradictory_data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results_contra</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moderate study hours in private schools allow balanced development. If study hours are optimized for focus and retention (2-3 hours), then scores could be higher due to effective time management. (Confidence: 0.8)
+Low-income students with bachelor&#39;s-educated parents may experience higher expectations and pressure, leading to stress and lower performance in some cases. If parental pressure exceeds a student&#39;s coping capacity, then math/reading scores could be lower because of anxiety-induced underperformance. (Confidence: 0.7)
+Private schools with high study hours might prioritize rote learning over critical thinking, causing diminished engagement. If excessive study hours focus on memorization without comprehension, then scores might drop due to lack of deep understanding. (Confidence: 0.65)
+Highly educated parents in low-income households may have less time to assist due to work demands. If parental education level correlates with parental availability, then lower parental involvement could reduce academic support leading to lower scores. (Confidence: 0.6)
+Private schools with high study hours might have stricter attendance policies that inadvertently penalize students. If excessive study hours lead to absenteeism or burnout, then lower attendance could cause score declines. (Confidence: 0.55)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Interesting findings:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The model does explain the observed effects the way we did: <code class="docutils literal notranslate"><span class="pre">Low-income</span> <span class="pre">students</span> <span class="pre">with</span> <span class="pre">bachelor's-educated</span> <span class="pre">parents</span> <span class="pre">may</span> <span class="pre">experience</span> <span class="pre">higher</span> <span class="pre">expectations</span> <span class="pre">and</span> <span class="pre">pressure,</span> <span class="pre">leading</span> <span class="pre">to</span> <span class="pre">stress</span> <span class="pre">and</span> <span class="pre">lower</span> <span class="pre">performance</span> <span class="pre">in</span> <span class="pre">some</span> <span class="pre">cases.</span> <span class="pre">If</span> <span class="pre">parental</span> <span class="pre">pressure</span> <span class="pre">exceeds</span> <span class="pre">a</span> <span class="pre">student's</span> <span class="pre">coping</span> <span class="pre">capacity,</span> <span class="pre">then</span> <span class="pre">math/reading</span> <span class="pre">scores</span> <span class="pre">could</span> <span class="pre">be</span> <span class="pre">lower</span> <span class="pre">because</span> <span class="pre">of</span> <span class="pre">anxiety-induced</span> <span class="pre">underperformance.</span> <span class="pre">(Confidence:</span> <span class="pre">0.7)</span></code></p></li>
+<li><p>With that, some hypotheses are quite unexpected: <code class="docutils literal notranslate"><span class="pre">Private</span> <span class="pre">schools</span> <span class="pre">with</span> <span class="pre">high</span> <span class="pre">study</span> <span class="pre">hours</span> <span class="pre">might</span> <span class="pre">have</span> <span class="pre">stricter</span> <span class="pre">attendance</span> <span class="pre">policies</span> <span class="pre">that</span> <span class="pre">inadvertently</span> <span class="pre">penalize</span> <span class="pre">students.</span> <span class="pre">If</span> <span class="pre">excessive</span> <span class="pre">study</span> <span class="pre">hours</span> <span class="pre">lead</span> <span class="pre">to</span> <span class="pre">absenteeism</span> <span class="pre">or</span> <span class="pre">burnout,</span> <span class="pre">then</span> <span class="pre">lower</span> <span class="pre">attendance</span> <span class="pre">could</span> <span class="pre">cause</span> <span class="pre">score</span> <span class="pre">declines.</span> <span class="pre">(Confidence:</span> <span class="pre">0.55)</span></code></p></li>
+<li><p>…?</p></li>
+</ul>
+<h2 id="iter">6. Iterative Refinement aka Mini-HypoGeniC 🔄</h2>
+<p>This method starts with a small data sample and progressively expands it while refining hypotheses across multiple iterations. Each iteration allows the model to test its previous hypotheses against new data and adjust or propose new ones accordingly.</p>
+<p>At first, we will formulate the initial set of hypotheses with a smaller sample of data, then we will be refining the hypotheses while giving new portions of data. As the reward, we just will use the confidence the LLM generates itself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template_iter</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are a research scientist in iteration </span><span class="si">{iteration}</span><span class="s2"> of hypothesis generation. </span><span class="se">\</span>
+<span class="s2">You have already generated some hypotheses based on previous data samples:</span>
+
+<span class="s2">=========================</span>
+<span class="si">{previous_hypotheses}</span>
+<span class="s2">=========================</span>
+
+
+<span class="s2">Your task now is to refine these hypotheses based on a new data sample if needed,</span>
+<span class="s2">or propose new hypotheses if the previous ones do not hold. </span><span class="se">\</span>
+
+<span class="s2">Data sample for this iteration:</span>
+<span class="s2">=========================</span>
+<span class="si">{data_sample}</span>
+<span class="s2">=========================</span>
+
+
+<span class="s2">The hypotheses should describe all observed correlations and contradictions not covered by the previous hypotheses. </span><span class="se">\</span>
+<span class="s2">The hypotheses should describe potential causal relationships between the factors in the data and the academic performance scores: </span><span class="se">\</span>
+<span class="s2">&quot;If X, then the scores are generally higher/lower because Y.&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">iterative_hypothesis_refinement</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">initial_sample_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">portion_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_hypotheses</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+
+    <span class="n">results_iter</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">deleted_iter</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># to avoid intersection when sampling, we&#39;ll shuffle the DataFrame</span>
+    <span class="c1"># beforehand and then iterate over it</span>
+    <span class="n">df_shuffled</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># initial hypotheses will be generated in the straightforward way</span>
+    <span class="n">initial_sample</span> <span class="o">=</span> <span class="n">df_shuffled</span><span class="p">[:</span><span class="n">initial_sample_size</span><span class="p">]</span>
+    <span class="n">initial_hypotheses</span> <span class="o">=</span> <span class="n">s_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+        <span class="n">straightforward_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_sample</span><span class="o">=</span><span class="n">initial_sample</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">results_iter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">initial_hypotheses</span><span class="o">.</span><span class="n">hypotheses</span>
+
+    <span class="c1"># iterate to refine hypotheses</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">iterations</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+    
+        <span class="n">new_sample_start</span> <span class="o">=</span> <span class="n">initial_sample_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">portion_size</span>
+        <span class="n">new_sample_end</span> <span class="o">=</span> <span class="n">new_sample_start</span> <span class="o">+</span> <span class="n">portion_size</span>
+        <span class="n">new_sample</span> <span class="o">=</span> <span class="n">df_shuffled</span><span class="p">[</span><span class="n">new_sample_start</span><span class="p">:</span><span class="n">new_sample_end</span><span class="p">]</span>
+        <span class="n">new_hypotheses</span> <span class="o">=</span> <span class="n">s_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+            <span class="n">template_iter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">iteration</span><span class="o">=</span><span class="n">i</span><span class="p">,</span>
+                <span class="n">previous_hypotheses</span><span class="o">=</span><span class="n">results_iter</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">data_sample</span><span class="o">=</span><span class="n">new_sample</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_iter</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">new_hypotheses</span><span class="o">.</span><span class="n">hypotheses</span>
+        <span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">confidence</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">max_hypotheses</span><span class="p">:</span>
+            <span class="n">to_delete</span> <span class="o">=</span> <span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">max_hypotheses</span><span class="p">:]</span>
+            <span class="n">deleted_iter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_delete</span>
+            <span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">max_hypotheses</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">results_iter</span><span class="p">,</span> <span class="n">deleted_iter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_iter</span><span class="p">,</span> <span class="n">deleted_iter</span> <span class="o">=</span> <span class="n">iterative_hypothesis_refinement</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f9c74b96a14d46dc894addefec946f6d", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results_iter</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hypothesis</span><span class="o">.</span><span class="n">statement</span><span class="si">}</span><span class="s2"> (Confidence: </span><span class="si">{</span><span class="n">hypothesis</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">for</span> <span class="n">hypothesis</span> <span class="ow">in</span> <span class="n">results_iter</span><span class="p">[</span><span class="n">i</span><span class="p">]]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">deleted_iter</span> <span class="ow">and</span> <span class="n">deleted_iter</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deleted hypotheses in this iteration:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hypothesis</span><span class="o">.</span><span class="n">statement</span><span class="si">}</span><span class="s2"> (Confidence: </span><span class="si">{</span><span class="n">hypothesis</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">for</span> <span class="n">hypothesis</span> <span class="ow">in</span> <span class="n">deleted_iter</span><span class="p">[</span><span class="n">i</span><span class="p">]]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 0:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 3: Higher family income levels correlate with higher academic scores due to the ability to afford tutoring, better learning materials, and possibly higher-quality schools. However, this may not hold true for all income brackets, as some low-income students with high parental education or strong study habits might outperform their peers. (Confidence: 0.65)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 5: Private school students may have higher scores than public school students due to lower student-to-teacher ratios, more resources, or selective admissions, but this could be contradicted by instances where public schools with small class sizes outperform private schools. The effect might be more pronounced in certain income or education brackets. (Confidence: 0.6)
+
+==================================================
+
+Iteration 1:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 3: Higher family income levels correlate with higher academic scores due to the ability to afford tutoring, better learning materials, and possibly higher-quality schools. However, this may not hold true for all income brackets, as some low-income students with high parental education or strong study habits might outperform their peers. (Confidence: 0.65)
+Hypothesis 7: High attendance rates (above 90%) do not consistently correlate with higher scores, as some students with low attendance (e.g., student 290 with 51%) have very low scores while others with moderate attendance (e.g., student 559 at 97.8%) have perfect scores. Attendance might matter less than study habits or resource access. (Confidence: 0.65)
+Hypothesis 5: Private school students may have higher scores than public school students due to lower student-to-teacher ratios, more resources, or selective admissions, but this could be contradicted by instances where public schools with small class sizes outperform private schools. The effect might be more pronounced in certain income or education brackets. (Confidence: 0.6)
+Hypothesis 8: Private school students do not uniformly outperform public school students. For instance, student 318 in private school has a lower math score (65.9) compared to some public school peers, suggesting that school type alone isn’t a definitive factor. Other variables like class size or income might moderate this effect. (Confidence: 0.6)
+
+==================================================
+
+Iteration 2:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+Hypothesis 3: Higher family income levels correlate with higher academic scores due to the ability to afford tutoring, better learning materials, and possibly higher-quality schools. However, this may not hold true for all income brackets, as some low-income students with high parental education or strong study habits might outperform their peers. (Confidence: 0.65)
+Hypothesis 7: High attendance rates (above 90%) do not consistently correlate with higher scores, as some students with low attendance (e.g., student 290 with 51%) have very low scores while others with moderate attendance (e.g., student 559 at 97.8%) have perfect scores. Attendance might matter less than study habits or resource access. (Confidence: 0.65)
+Hypothesis 11: High study hours (over 4 hours) may improve scores only in certain subjects. Student 408 studied 0.21 hours yet achieved perfect reading score, while student 713 studied 5.18 hours but scored very low in reading (20.68). This indicates study quality or focus areas matter more than hours spent. (Confidence: 0.65)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 13: High income doesn&#39;t always translate to academic success. Student 359 (high income/master&#39;s parents) scored poorly in reading (41.88), while student 710 (middle income/HS parents) achieved perfect math. Indicates individual effort or subject-specific factors override income advantages. (Confidence: 0.65)
+Hypothesis 5: Private school students may have higher scores than public school students due to lower student-to-teacher ratios, more resources, or selective admissions, but this could be contradicted by instances where public schools with small class sizes outperform private schools. The effect might be more pronounced in certain income or education brackets. (Confidence: 0.6)
+Hypothesis 8: Private school students do not uniformly outperform public school students. For instance, student 318 in private school has a lower math score (65.9) compared to some public school peers, suggesting that school type alone isn’t a definitive factor. Other variables like class size or income might moderate this effect. (Confidence: 0.6)
+Hypothesis 12: Private schools don&#39;t guarantee high scores. Student 745 in private school with 4.77 study hours scored average (55.82 in reading), while public school student 408 with minimal study hours achieved perfect scores. Suggests classroom environment or teaching quality varies. (Confidence: 0.6)
+Hypothesis 15: Attendance below 80% doesn&#39;t always lead to low scores. Student 204 attended 54.29% but scored 100 in math, while student 713 (65.44% attendance) had very low reading. Attendance impact might depend on consistency or engagement quality. (Confidence: 0.6)
+
+--------------------------------------------------
+
+Iteration 3:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+Hypothesis 15: Students in private schools tend to have higher perfect scores in both math and reading compared to public schools, as seen in student 55 and 136 with perfect scores in private schools despite low study hours or parental education levels. This could be due to better resources or teaching quality. (Confidence: 0.7)
+Hypothesis 16: Students with high attendance (e.g., student 674 at 95% attendance) do not necessarily have high scores, contradicting previous assumptions. High attendance might be less critical than study habits or resource access, as seen in student 674&#39;s low math and reading scores despite good attendance. (Confidence: 0.7)
+Hypothesis 19: High parental education combined with high income (students 650 and 961) leads to top scores, reinforcing the resource/access hypothesis, but exceptions like student 350 (bachelor&#39;s, middle income, high study hours but average scores) suggest study efficiency matters. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 3: Higher family income levels correlate with higher academic scores due to the ability to afford tutoring, better learning materials, and possibly higher-quality schools. However, this may not hold true for all income brackets, as some low-income students with high parental education or strong study habits might outperform their peers. (Confidence: 0.65)
+Hypothesis 7: High attendance rates (above 90%) do not consistently correlate with higher scores, as some students with low attendance (e.g., student 290 with 51%) have very low scores while others with moderate attendance (e.g., student 559 at 97.8%) have perfect scores. Attendance might matter less than study habits or resource access. (Confidence: 0.65)
+Hypothesis 11: High study hours (over 4 hours) may improve scores only in certain subjects. Student 408 studied 0.21 hours yet achieved perfect reading score, while student 713 studied 5.18 hours but scored very low in reading (20.68). This indicates study quality or focus areas matter more than hours spent. (Confidence: 0.65)
+Hypothesis 17: Students from high-income families with lower parental education can still achieve high scores (e.g., student 501, high income but high school education, perfect math score). This suggests income alone isn&#39;t the only factor, and other variables like school type or individual effort matter. (Confidence: 0.65)
+Hypothesis 18: Students in smaller class sizes (e.g., student 944 in class size 14) can achieve perfect scores, but larger classes (e.g., student 616 in class size 30) also have perfect scorers. Class size alone may not be a decisive factor without considering teacher quality or student engagement. (Confidence: 0.65)
+
+--------------------------------------------------
+
+Iteration 4:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+Hypothesis 15: Students in private schools tend to have higher perfect scores in both math and reading compared to public schools, as seen in student 55 and 136 with perfect scores in private schools despite low study hours or parental education levels. This could be due to better resources or teaching quality. (Confidence: 0.7)
+Hypothesis 16: Students with high attendance (e.g., student 674 at 95% attendance) do not necessarily have high scores, contradicting previous assumptions. High attendance might be less critical than study habits or resource access, as seen in student 674&#39;s low math and reading scores despite good attendance. (Confidence: 0.7)
+Hypothesis 19: High parental education combined with high income (students 650 and 961) leads to top scores, reinforcing the resource/access hypothesis, but exceptions like student 350 (bachelor&#39;s, middle income, high study hours but average scores) suggest study efficiency matters. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 20: Private school students with moderate study hours (e.g., student 340 studied 1.33 hours) can achieve high scores, suggesting that school resources compensate for lower study time. For instance, student 340 in private school with bachelor&#39;s-educated parents scored high in both subjects despite minimal study hours. (Confidence: 0.7)
+Hypothesis 21: Excessive study hours (e.g., student 706 with 8 hours) do not guarantee high scores, as seen in their moderate math and low reading scores. This supports the idea of diminishing returns or burnout beyond a certain study threshold. (Confidence: 0.7)
+Hypothesis 22: High attendance (e.g., student 505 with 99.38% attendance in private school) does not correlate with high scores if other factors like study hours are low (student 505 scored below average in math and reading with only 1.27 hours study). (Confidence: 0.7)
+Hypothesis 23: Students with master&#39;s-educated parents and high income (e.g., student 659) can still have low scores (53.68 in reading) if study hours are extremely low (0.2 hours), highlighting the necessity of personal study effort despite resource advantages. (Confidence: 0.7)
+Hypothesis 24: Students from low-income families with very high study hours (e.g., student 933 with 5.94 hours) can achieve moderate scores but not top performance, indicating that even with effort, lack of resources limits outcomes. (Confidence: 0.7)
+Hypothesis 25: Perfect scores (student 414) can occur in students with middle parental education and low study hours (0.22 hours) if combined with other factors like small class sizes (29 students) or high attendance (82.95%), suggesting synergistic effects between variables. (Confidence: 0.7)
+
+--------------------------------------------------
+
+Iteration 5:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+Hypothesis 15: Students in private schools tend to have higher perfect scores in both math and reading compared to public schools, as seen in student 55 and 136 with perfect scores in private schools despite low study hours or parental education levels. This could be due to better resources or teaching quality. (Confidence: 0.7)
+Hypothesis 16: Students with high attendance (e.g., student 674 at 95% attendance) do not necessarily have high scores, contradicting previous assumptions. High attendance might be less critical than study habits or resource access, as seen in student 674&#39;s low math and reading scores despite good attendance. (Confidence: 0.7)
+Hypothesis 19: High parental education combined with high income (students 650 and 961) leads to top scores, reinforcing the resource/access hypothesis, but exceptions like student 350 (bachelor&#39;s, middle income, high study hours but average scores) suggest study efficiency matters. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 21: High parental education does not guarantee high math scores. For example, student 576 has bachelor&#39;s-educated parents but a math score of 0, indicating that factors like attendance (88%) or study habits (1.17 hours) might be critical in overcoming academic challenges. (Confidence: 0.7)
+Hypothesis 23: Students with very high attendance (student 70 at 94.85%) can still have low math scores (44.41), implying that mere presence in class isn&#39;t sufficient without effective teaching or engagement. (Confidence: 0.7)
+Hypothesis 22: Private schools with smaller class sizes (e.g., student 361 in a private school with class size 16) can lead to higher math scores even with moderate study hours (2.36 hours), suggesting teaching quality and environment matter more than class size alone. (Confidence: 0.65)
+Hypothesis 25: Perfect math scores (student 249 with high school education parents) can occur with moderate study hours (4 hours) and middle income, indicating that individual talent or strategic study methods compensate for lower parental education. (Confidence: 0.65)
+Hypothesis 24: Excessive study hours (student 861 with 1.89 hours) paired with high school-educated parents and middle income can still yield average scores, suggesting study efficiency or resource gaps may limit outcomes. (Confidence: 0.6)
+
+--------------------------------------------------
+
+Iteration 6:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+Hypothesis 15: Students in private schools tend to have higher perfect scores in both math and reading compared to public schools, as seen in student 55 and 136 with perfect scores in private schools despite low study hours or parental education levels. This could be due to better resources or teaching quality. (Confidence: 0.7)
+Hypothesis 16: Students with high attendance (e.g., student 674 at 95% attendance) do not necessarily have high scores, contradicting previous assumptions. High attendance might be less critical than study habits or resource access, as seen in student 674&#39;s low math and reading scores despite good attendance. (Confidence: 0.7)
+Hypothesis 19: High parental education combined with high income (students 650 and 961) leads to top scores, reinforcing the resource/access hypothesis, but exceptions like student 350 (bachelor&#39;s, middle income, high study hours but average scores) suggest study efficiency matters. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 21: Private school students with lower parental education (e.g., student 708: high school parents, private school, perfect scores) can achieve top scores, suggesting school resources may compensate for lower family education levels. (Confidence: 0.7)
+Hypothesis 22: High study hours (e.g., student 475: 6.7 hours) do not guarantee high math scores (only 100 in math but low reading), indicating study focus or efficiency matters more than hours spent. (Confidence: 0.7)
+Hypothesis 24: Students in smaller classes (e.g., student 282: private school, 12 students) with lower parental education can achieve high math scores (86.99), showing class size benefits even without high parental education. (Confidence: 0.65)
+Hypothesis 25: High attendance (student 791: 94% attendance) does not prevent low reading scores (29.52), reinforcing that attendance alone isn&#39;t sufficient without effective study habits or resource access. (Confidence: 0.65)
+Hypothesis 26: Students with middle parental education and high income (student 968: master&#39;s, middle income, private school) can achieve perfect scores, indicating income and school type interact with education levels. (Confidence: 0.65)
+Hypothesis 27: Low study hours paired with high parental education (student 755: bachelor&#39;s, 0.55 hours) can still yield decent reading scores (89.18), suggesting parental support substitutes for study time. (Confidence: 0.65)
+Hypothesis 23: High parental education combined with low study hours (student 941: high school parents, 1.76 hours) can still yield decent scores, suggesting baseline expectations or prior knowledge contribute. (Confidence: 0.6)
+Hypothesis 28: Private schools with small classes (student 282: private, 12 students) enable high performance even in low-income families, highlighting the role of institutional resources over socioeconomic factors. (Confidence: 0.6)
+
+--------------------------------------------------
+
+Iteration 7:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 21: Private school students with lower study hours (e.g., student 461 at 3 hours) still achieve perfect math scores, suggesting school resources compensate for less study time compared to public school students needing more hours to reach the same level. (Confidence: 0.8)
+Hypothesis 23: Students from high-income families with master&#39;s-educated parents (student 313) can achieve perfect scores even with minimal study hours (1.5 hours), reinforcing the resource/access hypothesis but introducing the possibility of compounded advantages. (Confidence: 0.8)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+Hypothesis 15: Students in private schools tend to have higher perfect scores in both math and reading compared to public schools, as seen in student 55 and 136 with perfect scores in private schools despite low study hours or parental education levels. This could be due to better resources or teaching quality. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 16: Students with high attendance (e.g., student 674 at 95% attendance) do not necessarily have high scores, contradicting previous assumptions. High attendance might be less critical than study habits or resource access, as seen in student 674&#39;s low math and reading scores despite good attendance. (Confidence: 0.7)
+Hypothesis 19: High parental education combined with high income (students 650 and 961) leads to top scores, reinforcing the resource/access hypothesis, but exceptions like student 350 (bachelor&#39;s, middle income, high study hours but average scores) suggest study efficiency matters. (Confidence: 0.7)
+Hypothesis 22: High attendance (student 677 at 91%) paired with low study hours (1 hour) can still lead to perfect reading scores, indicating that factors like innate ability or efficient study methods may override study time and attendance. (Confidence: 0.7)
+Hypothesis 24: High parental education without corresponding income (student 396, bachelor&#39;s but low income) may not translate to higher scores if other resources are lacking, showing income&#39;s independent role beyond education level. (Confidence: 0.7)
+Hypothesis 25: Students in larger classes (e.g., student 686 in class size 25) can still achieve perfect scores, suggesting class size effects might be mitigated by individual factors like talent or parental support. (Confidence: 0.7)
+Hypothesis 26: High study hours without perfect scores (student 326 with 1.5 hours and very low scores) indicate that study time alone is insufficient; quality of study or foundational knowledge gaps might play a critical role. (Confidence: 0.7)
+Hypothesis 27: Students with high income but only high school-educated parents (student 167) can achieve perfect scores, suggesting economic resources alone can compensate for lower parental education levels in academic success. (Confidence: 0.7)
+Hypothesis 30: Students with master&#39;s-educated parents in middle-income families (student 242) achieve high scores without extreme study hours (3.6 hours), indicating that education level and moderate resources together are sufficient for strong performance. (Confidence: 0.7)
+Hypothesis 29: Perfect scores in one subject (e.g., student 677&#39;s reading) can coexist with very low scores in another (math 30), suggesting subject-specific aptitudes or teaching focus differences between schools. (Confidence: 0.65)
+Hypothesis 28: Low attendance (student 320 at 48%) does not universally result in low scores (math 65), indicating other factors like sporadic high-effort study periods or external tutoring might counteract attendance deficits. (Confidence: 0.6)
+
+--------------------------------------------------
+
+Iteration 8:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 21: Private school students with lower study hours (e.g., student 461 at 3 hours) still achieve perfect math scores, suggesting school resources compensate for less study time compared to public school students needing more hours to reach the same level. (Confidence: 0.8)
+Hypothesis 23: Students from high-income families with master&#39;s-educated parents (student 313) can achieve perfect scores even with minimal study hours (1.5 hours), reinforcing the resource/access hypothesis but introducing the possibility of compounded advantages. (Confidence: 0.8)
+Hypothesis 27: Students in private schools with small class sizes (student 11 in private school with class size 13) can achieve perfect scores even with minimal study hours, reinforcing the role of educational environment over study time. (Confidence: 0.75)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 15: Students in private schools tend to have higher perfect scores in both math and reading compared to public schools, as seen in student 55 and 136 with perfect scores in private schools despite low study hours or parental education levels. This could be due to better resources or teaching quality. (Confidence: 0.7)
+Hypothesis 24: Some students with high parental education and high income still perform poorly in math (e.g., student 577 with master&#39;s-educated parents and high income but 33.59 reading score), indicating that other factors like attendance or study habits may override parental advantages. (Confidence: 0.7)
+Hypothesis 25: Private school students with low parental education and low income (student 11) can achieve perfect scores in reading, suggesting that school resources may compensate for socioeconomic disadvantages. (Confidence: 0.7)
+Hypothesis 28: High study hours (student 213 at 5.15 hours) do not guarantee high scores (math 98.62 but reading 57.04), suggesting subject-specific study focus or fatigue effects. (Confidence: 0.7)
+Hypothesis 29: Students from high-income families with high parental education (student 389) can achieve perfect math scores with minimal study time (1.05 hours), aligning with compounded resource advantages but highlighting variability in subject performance. (Confidence: 0.7)
+Hypothesis 26: High attendance rates (e.g., student 447 at 94.14%) do not always correlate with higher scores (student 447 has 65.78 reading), implying that quality of education or study methods matter more than attendance duration. (Confidence: 0.65)
+Hypothesis 30: Perfect math scores (student 398) paired with low reading scores (50.71) in students from low-income families indicate possible subject-specific talents or curriculum focus disparities. (Confidence: 0.65)
+
+--------------------------------------------------
+
+Iteration 9:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 21: Private school students with lower study hours (e.g., student 461 at 3 hours) still achieve perfect math scores, suggesting school resources compensate for less study time compared to public school students needing more hours to reach the same level. (Confidence: 0.8)
+Hypothesis 23: Students from high-income families with master&#39;s-educated parents (student 313) can achieve perfect scores even with minimal study hours (1.5 hours), reinforcing the resource/access hypothesis but introducing the possibility of compounded advantages. (Confidence: 0.8)
+Hypothesis 27: Students in private schools with small class sizes (student 11 in private school with class size 13) can achieve perfect scores even with minimal study hours, reinforcing the role of educational environment over study time. (Confidence: 0.75)
+Hypothesis 34: Students with perfect scores in one subject often have extreme lows in another (e.g., student 481 perfect reading/71 math, student 373 perfect math/37 reading), indicating subject-specific strengths rather than general academic ability. (Confidence: 0.75)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 14: Perfect scores can occur even with low study hours. Student 408 (0.21 hours) and 66 (2.15 hours) achieved perfect scores in reading/math, suggesting innate talent or efficient study methods compensate for time. (Confidence: 0.7)
+Hypothesis 30: High attendance rates (e.g., student 121 with 93.81%) do not guarantee high scores; student 121 has perfect reading but mediocre math (92.81), while student 764 has high attendance (93.97%) but very low reading score (36.35). This suggests attendance alone is insufficient without quality engagement or teaching. (Confidence: 0.7)
+Hypothesis 31: Students with high family income and master&#39;s-educated parents (student 380) can achieve perfect scores with minimal study (1.43 hours), reinforcing the compounded advantages hypothesis but also showing variability since student 373 (high income/master&#39;s) has perfect math but poor reading. (Confidence: 0.7)
+Hypothesis 32: Private schools don&#39;t always outperform public schools. Student 647 in private school with master&#39;s parents scored 0 in math despite small class size (13), suggesting factors like attendance (88.97%) or individual issues may override school type benefits. (Confidence: 0.7)
+Hypothesis 33: High study hours (e.g., student 92 at 7.42 hours) don&#39;t reliably lead to perfect scores; student 92 only achieved 55.41 attendance and had a perfect math score, indicating study time alone isn&#39;t sufficient without consistent attendance. (Confidence: 0.65)
+Hypothesis 35: Students from high-income families with bachelor&#39;s education (student 92) can achieve perfect scores through high study hours (7.42) but may have lower attendance (55.41), suggesting resource access allows compensating for attendance issues. (Confidence: 0.65)
+
+--------------------------------------------------
+
+Iteration 10:
+Hypothesis 1: Students from families with higher parent education levels (e.g., bachelor&#39;s or master&#39;s degrees) tend to have higher math and reading scores compared to those with parents who only have a high school education. This is because higher parental education often correlates with greater access to educational resources and higher expectations for academic success. (Confidence: 0.8)
+Hypothesis 21: Private school students with lower study hours (e.g., student 461 at 3 hours) still achieve perfect math scores, suggesting school resources compensate for less study time compared to public school students needing more hours to reach the same level. (Confidence: 0.8)
+Hypothesis 23: Students from high-income families with master&#39;s-educated parents (student 313) can achieve perfect scores even with minimal study hours (1.5 hours), reinforcing the resource/access hypothesis but introducing the possibility of compounded advantages. (Confidence: 0.8)
+Hypothesis 27: Students in private schools with small class sizes (student 11 in private school with class size 13) can achieve perfect scores even with minimal study hours, reinforcing the role of educational environment over study time. (Confidence: 0.75)
+Hypothesis 34: Students with perfect scores in one subject often have extreme lows in another (e.g., student 481 perfect reading/71 math, student 373 perfect math/37 reading), indicating subject-specific strengths rather than general academic ability. (Confidence: 0.75)
+Hypothesis 37: Students with perfect math scores often have low reading scores (students 503, 583, 736, etc.), but student 604 with high school parents and private school has perfect math but low reading. This reinforces the subject-specific talent hypothesis but shows it occurs across different backgrounds. (Confidence: 0.75)
+Hypothesis 2: Students attending schools with smaller class sizes (e.g., under 20 students) generally perform better academically than those in larger classes. Smaller class sizes allow for more individualized attention, leading to improved learning outcomes. (Confidence: 0.7)
+Hypothesis 4: Students who study more hours per week (above the median study_hours) tend to have higher scores, but there may be a threshold beyond which excessive studying leads to burnout or diminishing returns. For example, students studying over 3 hours might not show significant gains compared to those studying 2 hours. (Confidence: 0.7)
+Hypothesis 6: Students with perfect scores (100) in either math or reading often have other factors like high parental education or high income, but exceptions exist where students with lower parental education or income still achieve perfect scores, suggesting other variables like individual talent or study habits play a role. (Confidence: 0.7)
+Hypothesis 9: Students with very high study hours (over 5 hours, like student 278 at 5.3 hours) may not show significantly better scores than those studying less, suggesting that study quality or methods matter more than quantity. (Confidence: 0.7)
+
+==================================================
+
+Deleted hypotheses in this iteration:
+Hypothesis 10: Students with higher parental education (bachelor&#39;s/master&#39;s) do not always score higher in reading/math. For example, student 359 has master&#39;s-educated parents but low reading score (41.88), and student 994 has perfect reading but low math (62.65). This suggests other factors like study habits or attendance might moderate the parental education effect. (Confidence: 0.7)
+Hypothesis 35: High attendance rates (above 90%) may not guarantee high scores if paired with low parental education or other disadvantages. For instance, student 503 has high attendance (88.22%) but low income and master&#39;s-educated parents yet still has a very low math score (28.04). This suggests attendance alone isn&#39;t sufficient without other supportive factors. (Confidence: 0.7)
+Hypothesis 36: Students in private schools with high study hours (e.g., student 132 at 4.6 hours) can still achieve high scores, contradicting the previous hypothesis about private schools compensating for low study time. This suggests school resources + study hours may have a synergistic effect. (Confidence: 0.7)
+Hypothesis 38: Very low study hours (below 1.5 hours) can still lead to average or above scores (student 531: 0.85h, 82.9 math; student 716: 1.07h, 96.8 math), suggesting some students efficiently use study time or benefit from strong school support. (Confidence: 0.7)
+Hypothesis 39: Students with bachelor&#39;s-educated parents in private schools can have perfect scores (student 83: 100 math) even with moderate study hours, indicating that school choice may amplify parental education effects beyond what public schools offer. (Confidence: 0.7)
+Hypothesis 40: High income alone without high parental education doesn&#39;t guarantee high scores (student 503 has high income but low math score), suggesting that parental education level is a stronger predictor than income when considered independently. (Confidence: 0.7)
+
+--------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sessions/block2_core_topics/pt2_science/0307"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../../block3_wrapup/1007/README.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">10.07. <em>Pitch</em>: RAG Chatbot</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../0107.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">01.07. LLMs for Research</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Maksim Shmalts
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+</a>
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues/new" aria-label="Issues"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+  <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.1-6.995a.905.905 0 0 1 1.8 0l-.35 4.5a.55.55 0 0 1-1.1 0l-.35-4.5z"/>
+</svg>
+</a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">03.07. LLM-Based Hypothesis Generation💡</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li><a class="reference internal" href="#interesting-findings">Interesting findings:</a></li>
+<li><a class="reference internal" href="#id1">Interesting findings:</a></li>
+<li><a class="reference internal" href="#id2">Interesting findings:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    </body>
+</html>
