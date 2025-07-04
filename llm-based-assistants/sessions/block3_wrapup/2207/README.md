@@ -1,4 +1,4 @@
-# 22.07. _Pitch_: Multi-Agent Research Pipeline with Validation
+# 22.07. _Pitch_: LLM-based Research Assistant
 
 In the final pitch, the _contractors_ will present their solution to automated research hypothesis generation and validation. The solution will have to introduce a multi-agent environment to conduct collaborative research tasks with built-in verification and conflict resolution mechanisms. The solution will read and analyze research literature, generate hypotheses, and validate findings through agent collaboration. The research domain is linguistics so we can evaluate the quality of the generations better.
 
