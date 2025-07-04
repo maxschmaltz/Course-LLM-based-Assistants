@@ -1,0 +1,712 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../../../genindex.html" /><link rel="search" title="Search" href="../../../../../search.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>Theoretical Foundations - LLM-based Assistants</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../../index.html"><div class="brand">LLM-based Assistants</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">LLM-based Assistants</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Infos and Stuff</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../infos/topic_overview.html">Topics Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../infos/formats/debates.html">Debates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../infos/formats/pitches.html">Pitches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../infos/llm_inference_guide/README.html">LLM Inference Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 1: Intro</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block1_intro/2204.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block1_intro/2404.html">24.04. LLM &amp; Agent Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block1_intro/2904/2904.html">29.04. Intro to LangChain 🦜🔗</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/0605.html">06.05. Virtual Assistants Pt. 1: Chatbots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/0805/0805.html">08.05. Basic LLM-based Chatbot 🤖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/1305.html">13.05. Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/1505/1505.html">15.05. RAG Chatbot Pt. 1 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/2005/2005.html">20.05. RAG Chatbot Pt. 2 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/2705/2705.html">27.05. Multi-agent Environment 👾🤖👾</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/2205.html">22.05. Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/0306.html">03.06. LLMs in Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/0506/0506.html">05.06. LLM-powered Website 💻</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt1_business/1706.html">17.06. Other Business Applications: Game Design, Financial Analysis etc.</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 2: Applications in Science</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt2_science/0107.html">01.07. LLMs for Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../block2_core_topics/pt2_science/0307/0307.html">03.07. LLM-Based Hypothesis Generation💡</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Block 3: Wrap-up</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1007/README.html">10.07. <em>Pitch</em>: RAG Chatbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../1507/README.html">15.07. <em>Pitch</em>: Handling Customer Requests in a Multi-agent Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../1707/README.html">17.07. <em>Pitch</em>: Agent for Web Resumes</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="theoretical-foundations">
+<h1>Theoretical Foundations<a class="headerlink" href="#theoretical-foundations" title="Link to this heading">¶</a></h1>
+<section id="chomsky-n-1957-syntactic-structures-the-hague-mouton">
+<h2>Chomsky, N. (1957). Syntactic Structures. The Hague: Mouton.<a class="headerlink" href="#chomsky-n-1957-syntactic-structures-the-hague-mouton" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This seminal work introduces the theory of generative grammar, proposing that human language is governed by a finite set of rules that can generate an infinite number of sentences. The book establishes the foundation for transformational grammar and challenges behaviorist approaches to language acquisition. Key concepts include phrase structure rules, transformational rules, and the distinction between competence and performance.</p>
+</section>
+<section id="chomsky-n-1965-aspects-of-the-theory-of-syntax-cambridge-ma-mit-press">
+<h2>Chomsky, N. (1965). Aspects of the Theory of Syntax. Cambridge, MA: MIT Press.<a class="headerlink" href="#chomsky-n-1965-aspects-of-the-theory-of-syntax-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> Building on Syntactic Structures, this work develops the theory of generative grammar further by introducing the concepts of deep structure and surface structure. The book argues for the psychological reality of grammatical rules and proposes that language acquisition is guided by an innate universal grammar. The poverty of stimulus argument is presented as evidence for innate linguistic knowledge.</p>
+</section>
+<section id="saussure-f-de-1916-course-in-general-linguistics-new-york-columbia-university-press">
+<h2>Saussure, F. de (1916). Course in General Linguistics. New York: Columbia University Press.<a class="headerlink" href="#saussure-f-de-1916-course-in-general-linguistics-new-york-columbia-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This foundational text establishes the principles of structural linguistics, introducing the concepts of langue and parole, signifier and signified, and synchronic versus diachronic analysis. Saussure’s work laid the groundwork for modern linguistic theory by treating language as a system of signs with internal structural relationships rather than merely a collection of words.</p>
+</section>
+<section id="lakoff-g-1987-women-fire-and-dangerous-things-what-categories-reveal-about-the-mind-chicago-university-of-chicago-press">
+<h2>Lakoff, G. (1987). Women, Fire, and Dangerous Things: What Categories Reveal About the Mind. Chicago: University of Chicago Press.<a class="headerlink" href="#lakoff-g-1987-women-fire-and-dangerous-things-what-categories-reveal-about-the-mind-chicago-university-of-chicago-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential work introduces cognitive linguistics by challenging classical theories of categorization. Lakoff argues that human categorization is based on prototypes and embodied experience rather than necessary and sufficient conditions. The book demonstrates how linguistic categories reflect cognitive processes and challenges the objectivist view of meaning in generative grammar.</p>
+</section>
+</section>
+<section id="phonology-and-phonetics">
+<h1>Phonology and Phonetics<a class="headerlink" href="#phonology-and-phonetics" title="Link to this heading">¶</a></h1>
+<section id="jakobson-r-1941-child-language-aphasia-and-phonological-universals-the-hague-mouton">
+<h2>Jakobson, R. (1941). Child Language, Aphasia and Phonological Universals. The Hague: Mouton.<a class="headerlink" href="#jakobson-r-1941-child-language-aphasia-and-phonological-universals-the-hague-mouton" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This groundbreaking study examines the relationship between phonological acquisition in children and phonological breakdown in aphasia. Jakobson proposes that phonological universals govern both processes, with the order of acquisition in child language being the reverse of the order of loss in aphasia. The work establishes distinctive features as fundamental units of phonological analysis.</p>
+</section>
+<section id="prince-a-smolensky-p-1993-optimality-theory-constraint-interaction-in-generative-grammar-rutgers-university-center-for-cognitive-science">
+<h2>Prince, A., &amp; Smolensky, P. (1993). Optimality Theory: Constraint Interaction in Generative Grammar. Rutgers University Center for Cognitive Science.<a class="headerlink" href="#prince-a-smolensky-p-1993-optimality-theory-constraint-interaction-in-generative-grammar-rutgers-university-center-for-cognitive-science" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work introduces Optimality Theory as a new framework for understanding phonological processes. The theory proposes that grammatical forms result from the interaction of violable constraints rather than inviolable rules. Constraints are ranked differently across languages, accounting for cross-linguistic variation while maintaining universal principles.</p>
+</section>
+<section id="liberman-a-m-mattingly-i-g-1985-the-motor-theory-of-speech-perception-cognition-21-1-1-36">
+<h2>Liberman, A. M., &amp; Mattingly, I. G. (1985). The motor theory of speech perception. Cognition, 21(1), 1-36.<a class="headerlink" href="#liberman-a-m-mattingly-i-g-1985-the-motor-theory-of-speech-perception-cognition-21-1-1-36" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This paper presents the motor theory of speech perception, arguing that listeners perceive speech sounds by referencing the articulatory gestures used to produce them. The theory addresses the problem of acoustic variability in speech sounds and proposes that speech perception is specialized for linguistic communication rather than general auditory processing.</p>
+</section>
+</section>
+<section id="morphology-and-lexicon">
+<h1>Morphology and Lexicon<a class="headerlink" href="#morphology-and-lexicon" title="Link to this heading">¶</a></h1>
+<section id="aronoff-m-1976-word-formation-in-generative-grammar-cambridge-ma-mit-press">
+<h2>Aronoff, M. (1976). Word Formation in Generative Grammar. Cambridge, MA: MIT Press.<a class="headerlink" href="#aronoff-m-1976-word-formation-in-generative-grammar-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential work applies generative principles to morphology, arguing that word formation rules are part of speakers’ linguistic competence. The book introduces the concept of productivity in morphological processes and demonstrates how morphological rules interact with phonological and syntactic principles. It establishes morphology as a distinct component of grammar.</p>
+</section>
+<section id="bybee-j-l-1985-morphology-a-study-of-the-relation-between-meaning-and-form-amsterdam-john-benjamins">
+<h2>Bybee, J. L. (1985). Morphology: A Study of the Relation Between Meaning and Form. Amsterdam: John Benjamins.<a class="headerlink" href="#bybee-j-l-1985-morphology-a-study-of-the-relation-between-meaning-and-form-amsterdam-john-benjamins" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work challenges traditional approaches to morphology by arguing that morphological patterns emerge from the interaction of form and meaning. Bybee proposes that morphological structures are organized according to semantic and phonological similarity rather than abstract rules. The book introduces usage-based approaches to morphological analysis.</p>
+</section>
+<section id="pinker-s-1999-words-and-rules-the-ingredients-of-language-new-york-basic-books">
+<h2>Pinker, S. (1999). Words and Rules: The Ingredients of Language. New York: Basic Books.<a class="headerlink" href="#pinker-s-1999-words-and-rules-the-ingredients-of-language-new-york-basic-books" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This book examines the dual nature of language processing, arguing that humans use both stored lexical items and productive rules. Pinker presents evidence from regular and irregular morphology, particularly English past tense formation, to support the view that language involves both associative memory and symbolic computation.</p>
+</section>
+</section>
+<section id="syntax-and-grammar">
+<h1>Syntax and Grammar<a class="headerlink" href="#syntax-and-grammar" title="Link to this heading">¶</a></h1>
+<section id="fillmore-c-j-1988-the-mechanisms-of-construction-grammar-berkeley-linguistics-society-14-35-55">
+<h2>Fillmore, C. J. (1988). The mechanisms of “Construction Grammar”. Berkeley Linguistics Society, 14, 35-55.<a class="headerlink" href="#fillmore-c-j-1988-the-mechanisms-of-construction-grammar-berkeley-linguistics-society-14-35-55" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This paper introduces Construction Grammar as an alternative to generative approaches to syntax. Fillmore argues that grammatical constructions are learned form-meaning pairings that cannot be reduced to general rules. The framework emphasizes the role of idioms and semi-productive patterns in grammatical knowledge.</p>
+</section>
+<section id="halliday-m-a-k-1985-an-introduction-to-functional-grammar-london-edward-arnold">
+<h2>Halliday, M. A. K. (1985). An Introduction to Functional Grammar. London: Edward Arnold.<a class="headerlink" href="#halliday-m-a-k-1985-an-introduction-to-functional-grammar-london-edward-arnold" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive work presents systemic functional linguistics as an alternative to formal grammatical theories. Halliday emphasizes the functional basis of grammatical choices and the relationship between language structure and social context. The book demonstrates how grammatical analysis can reveal the social and communicative functions of language.</p>
+</section>
+<section id="bresnan-j-1982-the-mental-representation-of-grammatical-relations-cambridge-ma-mit-press">
+<h2>Bresnan, J. (1982). The Mental Representation of Grammatical Relations. Cambridge, MA: MIT Press.<a class="headerlink" href="#bresnan-j-1982-the-mental-representation-of-grammatical-relations-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work introduces Lexical Functional Grammar as a theory that separates different levels of grammatical representation. Bresnan argues for the psychological reality of grammatical relations and proposes that syntactic and semantic information are represented at distinct but related levels of analysis.</p>
+</section>
+</section>
+<section id="semantics-and-pragmatics">
+<h1>Semantics and Pragmatics<a class="headerlink" href="#semantics-and-pragmatics" title="Link to this heading">¶</a></h1>
+<section id="grice-h-p-1975-logic-and-conversation-in-p-cole-j-morgan-eds-syntax-and-semantics-speech-acts-pp-41-58-new-york-academic-press">
+<h2>Grice, H. P. (1975). Logic and conversation. In P. Cole &amp; J. Morgan (Eds.), Syntax and Semantics: Speech Acts (pp. 41-58). New York: Academic Press.<a class="headerlink" href="#grice-h-p-1975-logic-and-conversation-in-p-cole-j-morgan-eds-syntax-and-semantics-speech-acts-pp-41-58-new-york-academic-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This seminal paper introduces the concept of conversational implicature and the cooperative principle. Grice proposes that communication involves more than literal meaning, with speakers and listeners following maxims of quantity, quality, relation, and manner. The work establishes the foundation for modern pragmatic theory.</p>
+</section>
+<section id="austin-j-l-1962-how-to-do-things-with-words-oxford-oxford-university-press">
+<h2>Austin, J. L. (1962). How to Do Things with Words. Oxford: Oxford University Press.<a class="headerlink" href="#austin-j-l-1962-how-to-do-things-with-words-oxford-oxford-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential work introduces speech act theory, arguing that utterances can perform actions rather than simply describe states of affairs. Austin distinguishes between constative and performative utterances and introduces the concepts of locutionary, illocutionary, and perlocutionary acts. The book revolutionizes the study of language use and meaning.</p>
+</section>
+<section id="searle-j-r-1969-speech-acts-an-essay-in-the-philosophy-of-language-cambridge-cambridge-university-press">
+<h2>Searle, J. R. (1969). Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.<a class="headerlink" href="#searle-j-r-1969-speech-acts-an-essay-in-the-philosophy-of-language-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> Building on Austin’s work, this book develops a comprehensive theory of speech acts. Searle proposes that speech acts are the basic units of linguistic communication and provides a taxonomy of illocutionary acts. The work examines the relationship between meaning and use in linguistic communication.</p>
+</section>
+</section>
+<section id="sociolinguistics">
+<h1>Sociolinguistics<a class="headerlink" href="#sociolinguistics" title="Link to this heading">¶</a></h1>
+<section id="labov-w-1972-sociolinguistic-patterns-philadelphia-university-of-pennsylvania-press">
+<h2>Labov, W. (1972). Sociolinguistic Patterns. Philadelphia: University of Pennsylvania Press.<a class="headerlink" href="#labov-w-1972-sociolinguistic-patterns-philadelphia-university-of-pennsylvania-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This groundbreaking work establishes the field of sociolinguistics by demonstrating systematic variation in language use across social groups. Labov’s studies of African American Vernacular English and sound change in Martha’s Vineyard show that linguistic variation is structured by social factors. The book introduces quantitative methods for studying language variation.</p>
+</section>
+<section id="weinreich-u-labov-w-herzog-m-i-1968-empirical-foundations-for-a-theory-of-language-change-in-w-lehmann-y-malkiel-eds-directions-for-historical-linguistics-pp-95-195-austin-university-of-texas-press">
+<h2>Weinreich, U., Labov, W., &amp; Herzog, M. I. (1968). Empirical foundations for a theory of language change. In W. Lehmann &amp; Y. Malkiel (Eds.), Directions for Historical Linguistics (pp. 95-195). Austin: University of Texas Press.<a class="headerlink" href="#weinreich-u-labov-w-herzog-m-i-1968-empirical-foundations-for-a-theory-of-language-change-in-w-lehmann-y-malkiel-eds-directions-for-historical-linguistics-pp-95-195-austin-university-of-texas-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential paper presents a comprehensive theory of language change that incorporates social factors. The authors argue that language change is systematic and can be studied through synchronic variation. The work establishes the foundation for studying language change in progress and the social embedding of linguistic variation.</p>
+</section>
+<section id="trudgill-p-1974-the-social-differentiation-of-english-in-norwich-cambridge-cambridge-university-press">
+<h2>Trudgill, P. (1974). The Social Differentiation of English in Norwich. Cambridge: Cambridge University Press.<a class="headerlink" href="#trudgill-p-1974-the-social-differentiation-of-english-in-norwich-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This study applies Labovian sociolinguistic methods to British English, demonstrating that social class, gender, and style influence linguistic variation. Trudgill’s analysis of phonological variables in Norwich speech shows how social factors systematically correlate with linguistic choices. The work establishes sociolinguistics as a field relevant to diverse linguistic communities.</p>
+</section>
+</section>
+<section id="psycholinguistics">
+<h1>Psycholinguistics<a class="headerlink" href="#psycholinguistics" title="Link to this heading">¶</a></h1>
+<section id="lenneberg-e-h-1967-biological-foundations-of-language-new-york-wiley">
+<h2>Lenneberg, E. H. (1967). Biological Foundations of Language. New York: Wiley.<a class="headerlink" href="#lenneberg-e-h-1967-biological-foundations-of-language-new-york-wiley" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential work presents the critical period hypothesis for language acquisition, arguing that there is a biologically determined window during which language learning occurs most effectively. Lenneberg draws on evidence from cases of language deprivation and brain lateralization to support the view that language capacity is innate and maturational.</p>
+</section>
+<section id="levelt-w-j-m-1989-speaking-from-intention-to-articulation-cambridge-ma-mit-press">
+<h2>Levelt, W. J. M. (1989). Speaking: From Intention to Articulation. Cambridge, MA: MIT Press.<a class="headerlink" href="#levelt-w-j-m-1989-speaking-from-intention-to-articulation-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive work presents a detailed model of speech production, tracing the process from conceptual intention to articulatory execution. Levelt’s model includes stages of message generation, grammatical encoding, phonological encoding, and articulation. The book synthesizes experimental evidence and theoretical insights about language production.</p>
+</section>
+<section id="tanenhaus-m-k-spivey-knowlton-m-j-eberhard-k-m-sedivy-j-c-1995-integration-of-visual-and-linguistic-information-in-spoken-language-comprehension-science-268-5217-1632-1634">
+<h2>Tanenhaus, M. K., Spivey-Knowlton, M. J., Eberhard, K. M., &amp; Sedivy, J. C. (1995). Integration of visual and linguistic information in spoken language comprehension. Science, 268(5217), 1632-1634.<a class="headerlink" href="#tanenhaus-m-k-spivey-knowlton-m-j-eberhard-k-m-sedivy-j-c-1995-integration-of-visual-and-linguistic-information-in-spoken-language-comprehension-science-268-5217-1632-1634" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This study uses eye-tracking methodology to examine real-time language comprehension, demonstrating that listeners integrate visual and linguistic information rapidly during processing. The research shows that syntactic processing is immediate and context-dependent, challenging serial models of sentence processing.</p>
+</section>
+</section>
+<section id="neurolinguistics">
+<h1>Neurolinguistics<a class="headerlink" href="#neurolinguistics" title="Link to this heading">¶</a></h1>
+<section id="broca-p-1861-remarks-on-the-seat-of-the-faculty-of-articulated-language-following-an-observation-of-aphemia-bulletin-de-la-societe-anatomique-6-330-357">
+<h2>Broca, P. (1861). Remarks on the seat of the faculty of articulated language, following an observation of aphemia. Bulletin de la Société Anatomique, 6, 330-357.<a class="headerlink" href="#broca-p-1861-remarks-on-the-seat-of-the-faculty-of-articulated-language-following-an-observation-of-aphemia-bulletin-de-la-societe-anatomique-6-330-357" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This historic paper describes the case of a patient with severe speech production deficits following brain damage, leading to the identification of Broca’s area. The work establishes the principle of cerebral localization of language function and demonstrates the relationship between brain structure and linguistic ability.</p>
+</section>
+<section id="friederici-a-d-2002-towards-a-neural-basis-of-auditory-sentence-processing-trends-in-cognitive-sciences-6-2-78-84">
+<h2>Friederici, A. D. (2002). Towards a neural basis of auditory sentence processing. Trends in Cognitive Sciences, 6(2), 78-84.<a class="headerlink" href="#friederici-a-d-2002-towards-a-neural-basis-of-auditory-sentence-processing-trends-in-cognitive-sciences-6-2-78-84" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This review examines event-related potential studies of sentence processing, identifying distinct neural signatures for syntactic and semantic processing. Friederici proposes a temporal model of sentence comprehension that distinguishes early syntactic processing from later semantic integration processes.</p>
+</section>
+<section id="hickok-g-poeppel-d-2007-the-cortical-organization-of-speech-processing-nature-reviews-neuroscience-8-5-393-402">
+<h2>Hickok, G., &amp; Poeppel, D. (2007). The cortical organization of speech processing. Nature Reviews Neuroscience, 8(5), 393-402.<a class="headerlink" href="#hickok-g-poeppel-d-2007-the-cortical-organization-of-speech-processing-nature-reviews-neuroscience-8-5-393-402" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential review presents a dual-stream model of speech processing, proposing that dorsal and ventral processing pathways serve different functions in language comprehension. The model integrates neuroimaging and lesion data to explain how the brain processes speech sounds and maps them to meaning.</p>
+</section>
+</section>
+<section id="language-acquisition">
+<h1>Language Acquisition<a class="headerlink" href="#language-acquisition" title="Link to this heading">¶</a></h1>
+<section id="tomasello-m-2003-constructing-a-language-a-usage-based-theory-of-language-acquisition-cambridge-ma-harvard-university-press">
+<h2>Tomasello, M. (2003). Constructing a Language: A Usage-Based Theory of Language Acquisition. Cambridge, MA: Harvard University Press.<a class="headerlink" href="#tomasello-m-2003-constructing-a-language-a-usage-based-theory-of-language-acquisition-cambridge-ma-harvard-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work presents a usage-based alternative to generative theories of language acquisition. Tomasello argues that children learn language through general cognitive mechanisms rather than innate grammatical knowledge. The book emphasizes the role of social interaction and statistical learning in language development.</p>
+</section>
+<section id="krashen-s-d-1985-the-input-hypothesis-issues-and-implications-new-york-longman">
+<h2>Krashen, S. D. (1985). The Input Hypothesis: Issues and Implications. New York: Longman.<a class="headerlink" href="#krashen-s-d-1985-the-input-hypothesis-issues-and-implications-new-york-longman" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work presents a comprehensive theory of second language acquisition centered on the input hypothesis. Krashen argues that language acquisition occurs when learners receive comprehensible input slightly above their current level. The book also introduces the affective filter hypothesis and monitor hypothesis as components of second language learning.</p>
+</section>
+<section id="hart-b-risley-t-r-1995-meaningful-differences-in-the-lives-of-american-children-baltimore-paul-h-brookes">
+<h2>Hart, B., &amp; Risley, T. R. (1995). Meaningful Differences in the Lives of American Children. Baltimore: Paul H. Brookes.<a class="headerlink" href="#hart-b-risley-t-r-1995-meaningful-differences-in-the-lives-of-american-children-baltimore-paul-h-brookes" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This longitudinal study examines the relationship between early language experience and later language development. The research demonstrates significant differences in language exposure across socioeconomic groups and shows how these differences affect vocabulary growth and academic achievement.</p>
+</section>
+</section>
+<section id="computational-linguistics">
+<h1>Computational Linguistics<a class="headerlink" href="#computational-linguistics" title="Link to this heading">¶</a></h1>
+<section id="jurafsky-d-martin-j-h-2020-speech-and-language-processing-an-introduction-to-natural-language-processing-computational-linguistics-and-speech-recognition-3rd-ed-stanford-stanford-university-press">
+<h2>Jurafsky, D., &amp; Martin, J. H. (2020). Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition (3rd ed.). Stanford: Stanford University Press.<a class="headerlink" href="#jurafsky-d-martin-j-h-2020-speech-and-language-processing-an-introduction-to-natural-language-processing-computational-linguistics-and-speech-recognition-3rd-ed-stanford-stanford-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive textbook covers the field of computational linguistics, including both traditional rule-based approaches and modern machine learning methods. The book addresses speech recognition, natural language processing, machine translation, and dialogue systems, providing both theoretical foundations and practical applications.</p>
+</section>
+<section id="manning-c-d-schutze-h-1999-foundations-of-statistical-natural-language-processing-cambridge-ma-mit-press">
+<h2>Manning, C. D., &amp; Schütze, H. (1999). Foundations of Statistical Natural Language Processing. Cambridge, MA: MIT Press.<a class="headerlink" href="#manning-c-d-schutze-h-1999-foundations-of-statistical-natural-language-processing-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential textbook introduces statistical methods for natural language processing, covering corpus linguistics, probabilistic models, and machine learning approaches to linguistic problems. The book demonstrates how statistical techniques can be applied to phonology, morphology, syntax, and semantics.</p>
+</section>
+<section id="goldberg-a-e-2019-explain-me-this-creativity-competition-and-the-partial-productivity-of-constructions-princeton-princeton-university-press">
+<h2>Goldberg, A. E. (2019). Explain Me This: Creativity, Competition, and the Partial Productivity of Constructions. Princeton: Princeton University Press.<a class="headerlink" href="#goldberg-a-e-2019-explain-me-this-creativity-competition-and-the-partial-productivity-of-constructions-princeton-princeton-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work examines how speakers create novel expressions within the constraints of existing grammatical constructions. Goldberg argues that linguistic creativity involves the partial productivity of constructions, with speakers extending patterns in systematic but limited ways. The book integrates insights from construction grammar and usage-based approaches.</p>
+</section>
+</section>
+<section id="historical-linguistics">
+<h1>Historical Linguistics<a class="headerlink" href="#historical-linguistics" title="Link to this heading">¶</a></h1>
+<section id="campbell-l-2013-historical-linguistics-an-introduction-3rd-ed-cambridge-ma-mit-press">
+<h2>Campbell, L. (2013). Historical Linguistics: An Introduction (3rd ed.). Cambridge, MA: MIT Press.<a class="headerlink" href="#campbell-l-2013-historical-linguistics-an-introduction-3rd-ed-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive textbook covers the methods and principles of historical linguistics, including sound change, grammaticalization, language contact, and language classification. The book provides extensive examples from diverse language families and demonstrates how historical linguistics contributes to our understanding of language change and human linguistic capacity.</p>
+</section>
+<section id="bybee-j-perkins-r-pagliuca-w-1994-the-evolution-of-grammar-tense-aspect-and-modality-in-the-languages-of-the-world-chicago-university-of-chicago-press">
+<h2>Bybee, J., Perkins, R., &amp; Pagliuca, W. (1994). The Evolution of Grammar: Tense, Aspect, and Modality in the Languages of the World. Chicago: University of Chicago Press.<a class="headerlink" href="#bybee-j-perkins-r-pagliuca-w-1994-the-evolution-of-grammar-tense-aspect-and-modality-in-the-languages-of-the-world-chicago-university-of-chicago-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This cross-linguistic study examines the grammaticalization of tense, aspect, and modality markers across the world’s languages. The authors identify universal pathways of grammatical change and argue that grammaticalization is driven by cognitive and communicative factors rather than purely structural forces.</p>
+</section>
+<section id="heine-b-kuteva-t-2002-world-lexicon-of-grammaticalization-cambridge-cambridge-university-press">
+<h2>Heine, B., &amp; Kuteva, T. (2002). World Lexicon of Grammaticalization. Cambridge: Cambridge University Press.<a class="headerlink" href="#heine-b-kuteva-t-2002-world-lexicon-of-grammaticalization-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive reference work documents grammaticalization pathways across the world’s languages, providing evidence for universal patterns in the evolution of grammatical markers. The book demonstrates how lexical items systematically develop into grammatical morphemes through predictable semantic and phonological changes.</p>
+</section>
+</section>
+<section id="applied-linguistics">
+<h1>Applied Linguistics<a class="headerlink" href="#applied-linguistics" title="Link to this heading">¶</a></h1>
+<section id="ellis-r-2015-understanding-second-language-acquisition-2nd-ed-oxford-oxford-university-press">
+<h2>Ellis, R. (2015). Understanding Second Language Acquisition (2nd ed.). Oxford: Oxford University Press.<a class="headerlink" href="#ellis-r-2015-understanding-second-language-acquisition-2nd-ed-oxford-oxford-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive overview examines theories and research in second language acquisition, covering individual differences, instructional effects, and the role of social factors in language learning. The book synthesizes research from cognitive, social, and usage-based perspectives to provide a balanced view of second language learning processes.</p>
+</section>
+<section id="crystal-d-2000-language-death-cambridge-cambridge-university-press">
+<h2>Crystal, D. (2000). Language Death. Cambridge: Cambridge University Press.<a class="headerlink" href="#crystal-d-2000-language-death-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential work examines the phenomenon of language endangerment and death, documenting the rapid loss of linguistic diversity worldwide. Crystal explores the causes of language death and discusses efforts at language revitalization, arguing for the importance of maintaining linguistic diversity for cultural and scientific reasons.</p>
+</section>
+<section id="cummins-j-2000-language-power-and-pedagogy-bilingual-children-in-the-crossfire-clevedon-multilingual-matters">
+<h2>Cummins, J. (2000). Language, Power, and Pedagogy: Bilingual Children in the Crossfire. Clevedon: Multilingual Matters.<a class="headerlink" href="#cummins-j-2000-language-power-and-pedagogy-bilingual-children-in-the-crossfire-clevedon-multilingual-matters" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work examines the educational experiences of bilingual children, arguing that academic success depends on the development of cognitive academic language proficiency. Cummins proposes that bilingual education programs must support both conversational and academic language development to ensure student success.</p>
+</section>
+</section>
+<section id="typology-and-universals">
+<h1>Typology and Universals<a class="headerlink" href="#typology-and-universals" title="Link to this heading">¶</a></h1>
+<section id="greenberg-j-h-1963-some-universals-of-grammar-with-particular-reference-to-the-order-of-meaningful-elements-in-j-h-greenberg-ed-universals-of-language-pp-73-113-cambridge-ma-mit-press">
+<h2>Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (Ed.), Universals of Language (pp. 73-113). Cambridge, MA: MIT Press.<a class="headerlink" href="#greenberg-j-h-1963-some-universals-of-grammar-with-particular-reference-to-the-order-of-meaningful-elements-in-j-h-greenberg-ed-universals-of-language-pp-73-113-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This seminal paper identifies universal tendencies in word order across the world’s languages, establishing the foundation for modern typological research. Greenberg’s implicational universals demonstrate that certain grammatical features correlate systematically across languages, suggesting constraints on possible human languages.</p>
+</section>
+<section id="comrie-b-1989-language-universals-and-linguistic-typology-2nd-ed-oxford-blackwell">
+<h2>Comrie, B. (1989). Language Universals and Linguistic Typology (2nd ed.). Oxford: Blackwell.<a class="headerlink" href="#comrie-b-1989-language-universals-and-linguistic-typology-2nd-ed-oxford-blackwell" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive introduction to linguistic typology examines universal patterns and cross-linguistic variation in phonology, morphology, syntax, and semantics. The book demonstrates how typological research contributes to our understanding of human language capacity and the relationship between language structure and cognition.</p>
+</section>
+<section id="whaley-l-j-1997-introduction-to-typology-the-unity-and-diversity-of-language-thousand-oaks-ca-sage-publications">
+<h2>Whaley, L. J. (1997). Introduction to Typology: The Unity and Diversity of Language. Thousand Oaks, CA: Sage Publications.<a class="headerlink" href="#whaley-l-j-1997-introduction-to-typology-the-unity-and-diversity-of-language-thousand-oaks-ca-sage-publications" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This textbook provides a comprehensive introduction to linguistic typology, covering phonological, morphological, syntactic, and semantic universals. The book examines how languages vary within universal constraints and discusses the implications of typological research for theories of language acquisition and evolution.</p>
+</section>
+</section>
+<section id="discourse-analysis">
+<h1>Discourse Analysis<a class="headerlink" href="#discourse-analysis" title="Link to this heading">¶</a></h1>
+<section id="halliday-m-a-k-hasan-r-1976-cohesion-in-english-london-longman">
+<h2>Halliday, M. A. K., &amp; Hasan, R. (1976). Cohesion in English. London: Longman.<a class="headerlink" href="#halliday-m-a-k-hasan-r-1976-cohesion-in-english-london-longman" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential work examines the linguistic mechanisms that create textual coherence, identifying grammatical and lexical cohesive devices. The authors demonstrate how reference, substitution, ellipsis, conjunction, and lexical cohesion contribute to the unity of spoken and written texts.</p>
+</section>
+<section id="schiffrin-d-1994-approaches-to-discourse-oxford-blackwell">
+<h2>Schiffrin, D. (1994). Approaches to Discourse. Oxford: Blackwell.<a class="headerlink" href="#schiffrin-d-1994-approaches-to-discourse-oxford-blackwell" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive overview examines different approaches to discourse analysis, including speech act theory, interactional sociolinguistics, ethnomethodology, pragmatics, and conversation analysis. The book demonstrates how different theoretical frameworks illuminate various aspects of language use in context.</p>
+</section>
+<section id="van-dijk-t-a-2008-discourse-and-context-a-sociocognitive-approach-cambridge-cambridge-university-press">
+<h2>van Dijk, T. A. (2008). Discourse and Context: A Sociocognitive Approach. Cambridge: Cambridge University Press.<a class="headerlink" href="#van-dijk-t-a-2008-discourse-and-context-a-sociocognitive-approach-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work presents a comprehensive theory of context in discourse, arguing that context is a subjective mental construct rather than an objective social situation. van Dijk examines how speakers and listeners construct context models that guide discourse production and comprehension.</p>
+</section>
+</section>
+<section id="ethnolinguistics">
+<h1>Ethnolinguistics<a class="headerlink" href="#ethnolinguistics" title="Link to this heading">¶</a></h1>
+<section id="sapir-e-1929-the-status-of-linguistics-as-a-science-language-5-4-207-214">
+<h2>Sapir, E. (1929). The status of linguistics as a science. Language, 5(4), 207-214.<a class="headerlink" href="#sapir-e-1929-the-status-of-linguistics-as-a-science-language-5-4-207-214" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This influential paper presents the principle of linguistic relativity, arguing that language influences thought and perception. Sapir proposes that different languages embody different ways of understanding the world, with grammatical categories shaping speakers’ conceptual frameworks.</p>
+</section>
+<section id="whorf-b-l-1956-language-thought-and-reality-selected-writings-of-benjamin-lee-whorf-cambridge-ma-mit-press">
+<h2>Whorf, B. L. (1956). Language, Thought, and Reality: Selected Writings of Benjamin Lee Whorf. Cambridge, MA: MIT Press.<a class="headerlink" href="#whorf-b-l-1956-language-thought-and-reality-selected-writings-of-benjamin-lee-whorf-cambridge-ma-mit-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This collection of essays develops the Sapir-Whorf hypothesis, arguing that language determines thought patterns and worldview. Whorf’s analysis of Hopi temporal concepts and other linguistic phenomena suggests that grammatical structures influence cognitive categories and reasoning processes.</p>
+</section>
+<section id="levinson-s-c-2003-space-in-language-and-cognition-explorations-in-cognitive-diversity-cambridge-cambridge-university-press">
+<h2>Levinson, S. C. (2003). Space in Language and Cognition: Explorations in Cognitive Diversity. Cambridge: Cambridge University Press.<a class="headerlink" href="#levinson-s-c-2003-space-in-language-and-cognition-explorations-in-cognitive-diversity-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work examines cross-linguistic variation in spatial cognition, demonstrating that languages differ systematically in how they encode spatial relationships. Levinson’s research on absolute versus relative spatial frames of reference provides evidence for linguistic influence on non-linguistic cognition.</p>
+</section>
+</section>
+<section id="corpus-linguistics">
+<h1>Corpus Linguistics<a class="headerlink" href="#corpus-linguistics" title="Link to this heading">¶</a></h1>
+<section id="biber-d-conrad-s-reppen-r-1998-corpus-linguistics-investigating-language-structure-and-use-cambridge-cambridge-university-press">
+<h2>Biber, D., Conrad, S., &amp; Reppen, R. (1998). Corpus Linguistics: Investigating Language Structure and Use. Cambridge: Cambridge University Press.<a class="headerlink" href="#biber-d-conrad-s-reppen-r-1998-corpus-linguistics-investigating-language-structure-and-use-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This comprehensive introduction to corpus linguistics demonstrates how large collections of texts can be used to investigate language structure and use. The book covers corpus design, annotation, and analysis methods, showing how quantitative approaches can reveal patterns invisible to intuitive analysis.</p>
+</section>
+<section id="mcenery-t-wilson-a-2001-corpus-linguistics-an-introduction-2nd-ed-edinburgh-edinburgh-university-press">
+<h2>McEnery, T., &amp; Wilson, A. (2001). Corpus Linguistics: An Introduction (2nd ed.). Edinburgh: Edinburgh University Press.<a class="headerlink" href="#mcenery-t-wilson-a-2001-corpus-linguistics-an-introduction-2nd-ed-edinburgh-edinburgh-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This textbook provides a practical introduction to corpus linguistics, covering both theoretical foundations and practical applications. The book examines how corpus methods can be applied to various areas of linguistics, including lexicography, grammar, discourse analysis, and language teaching.</p>
+</section>
+<section id="hunston-s-2002-corpora-in-applied-linguistics-cambridge-cambridge-university-press">
+<h2>Hunston, S. (2002). Corpora in Applied Linguistics. Cambridge: Cambridge University Press.<a class="headerlink" href="#hunston-s-2002-corpora-in-applied-linguistics-cambridge-cambridge-university-press" title="Link to this heading">¶</a></h2>
+<p><strong>Abstract:</strong> This work examines the applications of corpus linguistics to language teaching and learning, demonstrating how corpus data can inform pedagogical materials and methods. The book covers corpus-based approaches to vocabulary teaching, grammar instruction, and discourse analysis in applied contexts.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sessions/block3_wrapup/2207/multi_agent/resources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Maksim Shmalts
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+</a>
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues/new" aria-label="Issues"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+  <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.1-6.995a.905.905 0 0 1 1.8 0l-.35 4.5a.55.55 0 0 1-1.1 0l-.35-4.5z"/>
+</svg>
+</a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Theoretical Foundations</a><ul>
+<li><a class="reference internal" href="#chomsky-n-1957-syntactic-structures-the-hague-mouton">Chomsky, N. (1957). Syntactic Structures. The Hague: Mouton.</a></li>
+<li><a class="reference internal" href="#chomsky-n-1965-aspects-of-the-theory-of-syntax-cambridge-ma-mit-press">Chomsky, N. (1965). Aspects of the Theory of Syntax. Cambridge, MA: MIT Press.</a></li>
+<li><a class="reference internal" href="#saussure-f-de-1916-course-in-general-linguistics-new-york-columbia-university-press">Saussure, F. de (1916). Course in General Linguistics. New York: Columbia University Press.</a></li>
+<li><a class="reference internal" href="#lakoff-g-1987-women-fire-and-dangerous-things-what-categories-reveal-about-the-mind-chicago-university-of-chicago-press">Lakoff, G. (1987). Women, Fire, and Dangerous Things: What Categories Reveal About the Mind. Chicago: University of Chicago Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#phonology-and-phonetics">Phonology and Phonetics</a><ul>
+<li><a class="reference internal" href="#jakobson-r-1941-child-language-aphasia-and-phonological-universals-the-hague-mouton">Jakobson, R. (1941). Child Language, Aphasia and Phonological Universals. The Hague: Mouton.</a></li>
+<li><a class="reference internal" href="#prince-a-smolensky-p-1993-optimality-theory-constraint-interaction-in-generative-grammar-rutgers-university-center-for-cognitive-science">Prince, A., &amp; Smolensky, P. (1993). Optimality Theory: Constraint Interaction in Generative Grammar. Rutgers University Center for Cognitive Science.</a></li>
+<li><a class="reference internal" href="#liberman-a-m-mattingly-i-g-1985-the-motor-theory-of-speech-perception-cognition-21-1-1-36">Liberman, A. M., &amp; Mattingly, I. G. (1985). The motor theory of speech perception. Cognition, 21(1), 1-36.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#morphology-and-lexicon">Morphology and Lexicon</a><ul>
+<li><a class="reference internal" href="#aronoff-m-1976-word-formation-in-generative-grammar-cambridge-ma-mit-press">Aronoff, M. (1976). Word Formation in Generative Grammar. Cambridge, MA: MIT Press.</a></li>
+<li><a class="reference internal" href="#bybee-j-l-1985-morphology-a-study-of-the-relation-between-meaning-and-form-amsterdam-john-benjamins">Bybee, J. L. (1985). Morphology: A Study of the Relation Between Meaning and Form. Amsterdam: John Benjamins.</a></li>
+<li><a class="reference internal" href="#pinker-s-1999-words-and-rules-the-ingredients-of-language-new-york-basic-books">Pinker, S. (1999). Words and Rules: The Ingredients of Language. New York: Basic Books.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#syntax-and-grammar">Syntax and Grammar</a><ul>
+<li><a class="reference internal" href="#fillmore-c-j-1988-the-mechanisms-of-construction-grammar-berkeley-linguistics-society-14-35-55">Fillmore, C. J. (1988). The mechanisms of “Construction Grammar”. Berkeley Linguistics Society, 14, 35-55.</a></li>
+<li><a class="reference internal" href="#halliday-m-a-k-1985-an-introduction-to-functional-grammar-london-edward-arnold">Halliday, M. A. K. (1985). An Introduction to Functional Grammar. London: Edward Arnold.</a></li>
+<li><a class="reference internal" href="#bresnan-j-1982-the-mental-representation-of-grammatical-relations-cambridge-ma-mit-press">Bresnan, J. (1982). The Mental Representation of Grammatical Relations. Cambridge, MA: MIT Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#semantics-and-pragmatics">Semantics and Pragmatics</a><ul>
+<li><a class="reference internal" href="#grice-h-p-1975-logic-and-conversation-in-p-cole-j-morgan-eds-syntax-and-semantics-speech-acts-pp-41-58-new-york-academic-press">Grice, H. P. (1975). Logic and conversation. In P. Cole &amp; J. Morgan (Eds.), Syntax and Semantics: Speech Acts (pp. 41-58). New York: Academic Press.</a></li>
+<li><a class="reference internal" href="#austin-j-l-1962-how-to-do-things-with-words-oxford-oxford-university-press">Austin, J. L. (1962). How to Do Things with Words. Oxford: Oxford University Press.</a></li>
+<li><a class="reference internal" href="#searle-j-r-1969-speech-acts-an-essay-in-the-philosophy-of-language-cambridge-cambridge-university-press">Searle, J. R. (1969). Speech Acts: An Essay in the Philosophy of Language. Cambridge: Cambridge University Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sociolinguistics">Sociolinguistics</a><ul>
+<li><a class="reference internal" href="#labov-w-1972-sociolinguistic-patterns-philadelphia-university-of-pennsylvania-press">Labov, W. (1972). Sociolinguistic Patterns. Philadelphia: University of Pennsylvania Press.</a></li>
+<li><a class="reference internal" href="#weinreich-u-labov-w-herzog-m-i-1968-empirical-foundations-for-a-theory-of-language-change-in-w-lehmann-y-malkiel-eds-directions-for-historical-linguistics-pp-95-195-austin-university-of-texas-press">Weinreich, U., Labov, W., &amp; Herzog, M. I. (1968). Empirical foundations for a theory of language change. In W. Lehmann &amp; Y. Malkiel (Eds.), Directions for Historical Linguistics (pp. 95-195). Austin: University of Texas Press.</a></li>
+<li><a class="reference internal" href="#trudgill-p-1974-the-social-differentiation-of-english-in-norwich-cambridge-cambridge-university-press">Trudgill, P. (1974). The Social Differentiation of English in Norwich. Cambridge: Cambridge University Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycholinguistics">Psycholinguistics</a><ul>
+<li><a class="reference internal" href="#lenneberg-e-h-1967-biological-foundations-of-language-new-york-wiley">Lenneberg, E. H. (1967). Biological Foundations of Language. New York: Wiley.</a></li>
+<li><a class="reference internal" href="#levelt-w-j-m-1989-speaking-from-intention-to-articulation-cambridge-ma-mit-press">Levelt, W. J. M. (1989). Speaking: From Intention to Articulation. Cambridge, MA: MIT Press.</a></li>
+<li><a class="reference internal" href="#tanenhaus-m-k-spivey-knowlton-m-j-eberhard-k-m-sedivy-j-c-1995-integration-of-visual-and-linguistic-information-in-spoken-language-comprehension-science-268-5217-1632-1634">Tanenhaus, M. K., Spivey-Knowlton, M. J., Eberhard, K. M., &amp; Sedivy, J. C. (1995). Integration of visual and linguistic information in spoken language comprehension. Science, 268(5217), 1632-1634.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#neurolinguistics">Neurolinguistics</a><ul>
+<li><a class="reference internal" href="#broca-p-1861-remarks-on-the-seat-of-the-faculty-of-articulated-language-following-an-observation-of-aphemia-bulletin-de-la-societe-anatomique-6-330-357">Broca, P. (1861). Remarks on the seat of the faculty of articulated language, following an observation of aphemia. Bulletin de la Société Anatomique, 6, 330-357.</a></li>
+<li><a class="reference internal" href="#friederici-a-d-2002-towards-a-neural-basis-of-auditory-sentence-processing-trends-in-cognitive-sciences-6-2-78-84">Friederici, A. D. (2002). Towards a neural basis of auditory sentence processing. Trends in Cognitive Sciences, 6(2), 78-84.</a></li>
+<li><a class="reference internal" href="#hickok-g-poeppel-d-2007-the-cortical-organization-of-speech-processing-nature-reviews-neuroscience-8-5-393-402">Hickok, G., &amp; Poeppel, D. (2007). The cortical organization of speech processing. Nature Reviews Neuroscience, 8(5), 393-402.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#language-acquisition">Language Acquisition</a><ul>
+<li><a class="reference internal" href="#tomasello-m-2003-constructing-a-language-a-usage-based-theory-of-language-acquisition-cambridge-ma-harvard-university-press">Tomasello, M. (2003). Constructing a Language: A Usage-Based Theory of Language Acquisition. Cambridge, MA: Harvard University Press.</a></li>
+<li><a class="reference internal" href="#krashen-s-d-1985-the-input-hypothesis-issues-and-implications-new-york-longman">Krashen, S. D. (1985). The Input Hypothesis: Issues and Implications. New York: Longman.</a></li>
+<li><a class="reference internal" href="#hart-b-risley-t-r-1995-meaningful-differences-in-the-lives-of-american-children-baltimore-paul-h-brookes">Hart, B., &amp; Risley, T. R. (1995). Meaningful Differences in the Lives of American Children. Baltimore: Paul H. Brookes.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#computational-linguistics">Computational Linguistics</a><ul>
+<li><a class="reference internal" href="#jurafsky-d-martin-j-h-2020-speech-and-language-processing-an-introduction-to-natural-language-processing-computational-linguistics-and-speech-recognition-3rd-ed-stanford-stanford-university-press">Jurafsky, D., &amp; Martin, J. H. (2020). Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition (3rd ed.). Stanford: Stanford University Press.</a></li>
+<li><a class="reference internal" href="#manning-c-d-schutze-h-1999-foundations-of-statistical-natural-language-processing-cambridge-ma-mit-press">Manning, C. D., &amp; Schütze, H. (1999). Foundations of Statistical Natural Language Processing. Cambridge, MA: MIT Press.</a></li>
+<li><a class="reference internal" href="#goldberg-a-e-2019-explain-me-this-creativity-competition-and-the-partial-productivity-of-constructions-princeton-princeton-university-press">Goldberg, A. E. (2019). Explain Me This: Creativity, Competition, and the Partial Productivity of Constructions. Princeton: Princeton University Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#historical-linguistics">Historical Linguistics</a><ul>
+<li><a class="reference internal" href="#campbell-l-2013-historical-linguistics-an-introduction-3rd-ed-cambridge-ma-mit-press">Campbell, L. (2013). Historical Linguistics: An Introduction (3rd ed.). Cambridge, MA: MIT Press.</a></li>
+<li><a class="reference internal" href="#bybee-j-perkins-r-pagliuca-w-1994-the-evolution-of-grammar-tense-aspect-and-modality-in-the-languages-of-the-world-chicago-university-of-chicago-press">Bybee, J., Perkins, R., &amp; Pagliuca, W. (1994). The Evolution of Grammar: Tense, Aspect, and Modality in the Languages of the World. Chicago: University of Chicago Press.</a></li>
+<li><a class="reference internal" href="#heine-b-kuteva-t-2002-world-lexicon-of-grammaticalization-cambridge-cambridge-university-press">Heine, B., &amp; Kuteva, T. (2002). World Lexicon of Grammaticalization. Cambridge: Cambridge University Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#applied-linguistics">Applied Linguistics</a><ul>
+<li><a class="reference internal" href="#ellis-r-2015-understanding-second-language-acquisition-2nd-ed-oxford-oxford-university-press">Ellis, R. (2015). Understanding Second Language Acquisition (2nd ed.). Oxford: Oxford University Press.</a></li>
+<li><a class="reference internal" href="#crystal-d-2000-language-death-cambridge-cambridge-university-press">Crystal, D. (2000). Language Death. Cambridge: Cambridge University Press.</a></li>
+<li><a class="reference internal" href="#cummins-j-2000-language-power-and-pedagogy-bilingual-children-in-the-crossfire-clevedon-multilingual-matters">Cummins, J. (2000). Language, Power, and Pedagogy: Bilingual Children in the Crossfire. Clevedon: Multilingual Matters.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typology-and-universals">Typology and Universals</a><ul>
+<li><a class="reference internal" href="#greenberg-j-h-1963-some-universals-of-grammar-with-particular-reference-to-the-order-of-meaningful-elements-in-j-h-greenberg-ed-universals-of-language-pp-73-113-cambridge-ma-mit-press">Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (Ed.), Universals of Language (pp. 73-113). Cambridge, MA: MIT Press.</a></li>
+<li><a class="reference internal" href="#comrie-b-1989-language-universals-and-linguistic-typology-2nd-ed-oxford-blackwell">Comrie, B. (1989). Language Universals and Linguistic Typology (2nd ed.). Oxford: Blackwell.</a></li>
+<li><a class="reference internal" href="#whaley-l-j-1997-introduction-to-typology-the-unity-and-diversity-of-language-thousand-oaks-ca-sage-publications">Whaley, L. J. (1997). Introduction to Typology: The Unity and Diversity of Language. Thousand Oaks, CA: Sage Publications.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#discourse-analysis">Discourse Analysis</a><ul>
+<li><a class="reference internal" href="#halliday-m-a-k-hasan-r-1976-cohesion-in-english-london-longman">Halliday, M. A. K., &amp; Hasan, R. (1976). Cohesion in English. London: Longman.</a></li>
+<li><a class="reference internal" href="#schiffrin-d-1994-approaches-to-discourse-oxford-blackwell">Schiffrin, D. (1994). Approaches to Discourse. Oxford: Blackwell.</a></li>
+<li><a class="reference internal" href="#van-dijk-t-a-2008-discourse-and-context-a-sociocognitive-approach-cambridge-cambridge-university-press">van Dijk, T. A. (2008). Discourse and Context: A Sociocognitive Approach. Cambridge: Cambridge University Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ethnolinguistics">Ethnolinguistics</a><ul>
+<li><a class="reference internal" href="#sapir-e-1929-the-status-of-linguistics-as-a-science-language-5-4-207-214">Sapir, E. (1929). The status of linguistics as a science. Language, 5(4), 207-214.</a></li>
+<li><a class="reference internal" href="#whorf-b-l-1956-language-thought-and-reality-selected-writings-of-benjamin-lee-whorf-cambridge-ma-mit-press">Whorf, B. L. (1956). Language, Thought, and Reality: Selected Writings of Benjamin Lee Whorf. Cambridge, MA: MIT Press.</a></li>
+<li><a class="reference internal" href="#levinson-s-c-2003-space-in-language-and-cognition-explorations-in-cognitive-diversity-cambridge-cambridge-university-press">Levinson, S. C. (2003). Space in Language and Cognition: Explorations in Cognitive Diversity. Cambridge: Cambridge University Press.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#corpus-linguistics">Corpus Linguistics</a><ul>
+<li><a class="reference internal" href="#biber-d-conrad-s-reppen-r-1998-corpus-linguistics-investigating-language-structure-and-use-cambridge-cambridge-university-press">Biber, D., Conrad, S., &amp; Reppen, R. (1998). Corpus Linguistics: Investigating Language Structure and Use. Cambridge: Cambridge University Press.</a></li>
+<li><a class="reference internal" href="#mcenery-t-wilson-a-2001-corpus-linguistics-an-introduction-2nd-ed-edinburgh-edinburgh-university-press">McEnery, T., &amp; Wilson, A. (2001). Corpus Linguistics: An Introduction (2nd ed.). Edinburgh: Edinburgh University Press.</a></li>
+<li><a class="reference internal" href="#hunston-s-2002-corpora-in-applied-linguistics-cambridge-cambridge-university-press">Hunston, S. (2002). Corpora in Applied Linguistics. Cambridge: Cambridge University Press.</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    </body>
+</html>
