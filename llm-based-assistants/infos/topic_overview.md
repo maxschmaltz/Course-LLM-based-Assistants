@@ -412,8 +412,8 @@ The last lecture of the course will turn to societal considerations regarding LL
 * Ethical, legal & environmental aspects
 
 **Core Reading**:
-* 📌 [Protecting Human Cognition in the Age of AI](https://arxiv.org/abs/2502.12447) (pages 1-5), The University of Texas at Austin et al.
-* 📌 [Artificial intelligence governance: Ethical considerations and implications for social responsibility](https://onlinelibrary.wiley.com/doi/full/10.1111/exsy.13406) (pages 1-12), `University of Malta`
+* 📌 [Protecting Human Cognition in the Age of AI](https://arxiv.org/abs/2502.12447) (pages 1-5), The University of Texas at Austin et al. 🔴
+* 📌 [Artificial intelligence governance: Ethical considerations and implications for social responsibility](https://onlinelibrary.wiley.com/doi/full/10.1111/exsy.13406) (pages 1-12), `University of Malta` 🟠
 
 **Additional Reading**:
 * [Augmenting Minds or Automating Skills: The Differential Role of Human Capital in Generative AI's Impact on Creative Tasks](https://arxiv.org/abs/2412.03963), `Tsinghua University & Wuhan University of Technology`
