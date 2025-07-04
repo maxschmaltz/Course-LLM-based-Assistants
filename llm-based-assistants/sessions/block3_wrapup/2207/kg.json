@@ -1,0 +1,654 @@
+{
+    "entities": {
+        "phonology": {
+            "type": "subfield",
+            "description": "Study of sound patterns in language"
+        },
+        "phonetics": {
+            "type": "subfield",
+            "description": "Study of speech sounds and their production"
+        },
+        "morphology": {
+            "type": "subfield", 
+            "description": "Study of word structure and formation"
+        },
+        "syntax": {
+            "type": "subfield",
+            "description": "Study of sentence structure and grammar rules"
+        },
+        "semantics": {
+            "type": "subfield",
+            "description": "Study of meaning in language"
+        },
+        "pragmatics": {
+            "type": "subfield",
+            "description": "Study of language use in context"
+        },
+        "sociolinguistics": {
+            "type": "subfield",
+            "description": "Study of language variation and social factors"
+        },
+        "psycholinguistics": {
+            "type": "subfield",
+            "description": "Study of psychological aspects of language processing"
+        },
+        "neurolinguistics": {
+            "type": "subfield",
+            "description": "Study of neural mechanisms underlying language"
+        },
+        "computational_linguistics": {
+            "type": "subfield",
+            "description": "Application of computational methods to linguistic problems"
+        },
+        "historical_linguistics": {
+            "type": "subfield",
+            "description": "Study of language change over time"
+        },
+        "typology": {
+            "type": "subfield",
+            "description": "Study of structural similarities and differences across languages"
+        },
+        "discourse_analysis": {
+            "type": "subfield",
+            "description": "Study of language use beyond the sentence level"
+        },
+        "applied_linguistics": {
+            "type": "subfield",
+            "description": "Practical application of linguistic knowledge"
+        },
+        "ethnolinguistics": {
+            "type": "subfield",
+            "description": "Study of language and culture relationships"
+        },
+        
+        "universal_grammar": {
+            "type": "theory",
+            "description": "Chomsky's theory of innate language faculty"
+        },
+        "generative_grammar": {
+            "type": "theory",
+            "description": "Formal approach to syntax and language generation"
+        },
+        "cognitive_linguistics": {
+            "type": "theory",
+            "description": "Language as embodied cognition and conceptual metaphor"
+        },
+        "construction_grammar": {
+            "type": "theory",
+            "description": "Grammar as learned form-meaning pairings"
+        },
+        "usage_based_theory": {
+            "type": "theory",
+            "description": "Language learning through usage and frequency"
+        },
+        "transformational_grammar": {
+            "type": "theory",
+            "description": "Grammar based on transformational rules"
+        },
+        "minimalist_program": {
+            "type": "theory",
+            "description": "Chomsky's approach to reduce grammatical principles"
+        },
+        "functional_grammar": {
+            "type": "theory",
+            "description": "Grammar explained by communicative functions"
+        },
+        "dependency_grammar": {
+            "type": "theory",
+            "description": "Grammar based on dependency relations between words"
+        },
+        "lexical_functional_grammar": {
+            "type": "theory",
+            "description": "Grammar with separate levels of representation"
+        },
+        "head_driven_phrase_structure_grammar": {
+            "type": "theory",
+            "description": "Constraint-based grammar formalism"
+        },
+        "optimality_theory": {
+            "type": "theory",
+            "description": "Grammar as constraint interaction and ranking"
+        },
+        "relevance_theory": {
+            "type": "theory",
+            "description": "Theory of communication and cognition"
+        },
+        "prototype_theory": {
+            "type": "theory",
+            "description": "Categorization based on prototypical members"
+        },
+        "speech_act_theory": {
+            "type": "theory",
+            "description": "Theory of utterances as actions"
+        },
+        
+        "phoneme": {
+            "type": "concept",
+            "description": "Smallest unit of sound that distinguishes meaning"
+        },
+        "morpheme": {
+            "type": "concept",
+            "description": "Smallest meaningful unit of language"
+        },
+        "lexeme": {
+            "type": "concept",
+            "description": "Abstract unit of lexical meaning"
+        },
+        "lexicon": {
+            "type": "concept",
+            "description": "Mental dictionary of words and their meanings"
+        },
+        "grammar": {
+            "type": "concept",
+            "description": "System of rules governing language structure"
+        },
+        "constituent": {
+            "type": "concept",
+            "description": "Syntactic unit that functions as a single element"
+        },
+        "phrase_structure": {
+            "type": "concept",
+            "description": "Hierarchical organization of linguistic units"
+        },
+        "deep_structure": {
+            "type": "concept",
+            "description": "Underlying syntactic representation"
+        },
+        "surface_structure": {
+            "type": "concept",
+            "description": "Actual spoken or written form"
+        },
+        "competence": {
+            "type": "concept",
+            "description": "Idealized knowledge of language"
+        },
+        "performance": {
+            "type": "concept",
+            "description": "Actual use of language in context"
+        },
+        "register": {
+            "type": "concept",
+            "description": "Language variety used in specific contexts"
+        },
+        "dialect": {
+            "type": "concept",
+            "description": "Regional or social variety of language"
+        },
+        "idiolect": {
+            "type": "concept",
+            "description": "Individual's unique language variety"
+        },
+        "creole": {
+            "type": "concept",
+            "description": "Fully developed language from pidgin"
+        },
+        "pidgin": {
+            "type": "concept",
+            "description": "Simplified language for communication"
+        },
+        "lingua_franca": {
+            "type": "concept",
+            "description": "Language used for communication between groups"
+        },
+        "diglossia": {
+            "type": "concept",
+            "description": "Coexistence of two language varieties"
+        },
+        
+        "code_switching": {
+            "type": "phenomenon",
+            "description": "Alternation between languages or dialects in speech"
+        },
+        "code_mixing": {
+            "type": "phenomenon",
+            "description": "Mixing elements from different languages"
+        },
+        "borrowing": {
+            "type": "phenomenon",
+            "description": "Adoption of words from other languages"
+        },
+        "calque": {
+            "type": "phenomenon",
+            "description": "Literal translation of foreign expressions"
+        },
+        "interference": {
+            "type": "phenomenon",
+            "description": "Influence of one language on another"
+        },
+        "fossilization": {
+            "type": "phenomenon",
+            "description": "Permanent incorrect language forms"
+        },
+        "interlanguage": {
+            "type": "phenomenon",
+            "description": "Intermediate language system in L2 learning"
+        },
+        "language_attrition": {
+            "type": "phenomenon",
+            "description": "Loss of language skills over time"
+        },
+        "language_shift": {
+            "type": "phenomenon",
+            "description": "Change in language use patterns"
+        },
+        "language_death": {
+            "type": "phenomenon",
+            "description": "Complete loss of a language"
+        },
+        "language_revitalization": {
+            "type": "phenomenon",
+            "description": "Efforts to restore endangered languages"
+        },
+        "sound_change": {
+            "type": "phenomenon",
+            "description": "Historical change in pronunciation"
+        },
+        "grammaticalization": {
+            "type": "phenomenon",
+            "description": "Evolution of lexical items into grammatical markers"
+        },
+        "lexicalization": {
+            "type": "phenomenon",
+            "description": "Formation of new lexical items"
+        },
+        "semantic_change": {
+            "type": "phenomenon",
+            "description": "Change in word meaning over time"
+        },
+        
+        "language_acquisition": {
+            "type": "process",
+            "description": "Process of learning first or second language"
+        },
+        "first_language_acquisition": {
+            "type": "process",
+            "description": "Natural acquisition of native language"
+        },
+        "second_language_acquisition": {
+            "type": "process",
+            "description": "Learning of additional languages"
+        },
+        "language_processing": {
+            "type": "process",
+            "description": "Real-time comprehension and production"
+        },
+        "parsing": {
+            "type": "process",
+            "description": "Syntactic analysis of sentences"
+        },
+        "lexical_access": {
+            "type": "process",
+            "description": "Retrieval of words from memory"
+        },
+        "speech_perception": {
+            "type": "process",
+            "description": "Process of hearing and understanding speech"
+        },
+        "speech_production": {
+            "type": "process",
+            "description": "Process of generating spoken language"
+        },
+        "language_comprehension": {
+            "type": "process",
+            "description": "Understanding of linguistic input"
+        },
+        "phonological_processing": {
+            "type": "process",
+            "description": "Processing of sound patterns"
+        },
+        "morphological_processing": {
+            "type": "process",
+            "description": "Processing of word structure"
+        },
+        "syntactic_processing": {
+            "type": "process",
+            "description": "Processing of sentence structure"
+        },
+        "semantic_processing": {
+            "type": "process",
+            "description": "Processing of meaning"
+        },
+        "pragmatic_processing": {
+            "type": "process",
+            "description": "Processing of contextual meaning"
+        },
+        
+        "critical_period": {
+            "type": "concept",
+            "description": "Optimal time window for language learning"
+        },
+        "poverty_of_stimulus": {
+            "type": "concept",
+            "description": "Argument for innate language knowledge"
+        },
+        "language_universals": {
+            "type": "concept",
+            "description": "Properties common to all languages"
+        },
+        "parameter_setting": {
+            "type": "concept",
+            "description": "Setting of universal grammar parameters"
+        },
+        "input_hypothesis": {
+            "type": "concept",
+            "description": "Role of input in language acquisition"
+        },
+        "output_hypothesis": {
+            "type": "concept",
+            "description": "Role of production in language learning"
+        },
+        "interaction_hypothesis": {
+            "type": "concept",
+            "description": "Role of interaction in language acquisition"
+        },
+        "noticing_hypothesis": {
+            "type": "concept",
+            "description": "Conscious attention in language learning"
+        },
+        "monitor_hypothesis": {
+            "type": "concept",
+            "description": "Conscious monitoring of language output"
+        },
+        "affective_filter": {
+            "type": "concept",
+            "description": "Emotional barriers to language learning"
+        },
+        "scaffolding": {
+            "type": "concept",
+            "description": "Temporary support in language learning"
+        },
+        "zone_of_proximal_development": {
+            "type": "concept",
+            "description": "Range of learnable tasks with assistance"
+        },
+        "metalinguistic_awareness": {
+            "type": "concept",
+            "description": "Conscious knowledge about language"
+        },
+        "linguistic_relativity": {
+            "type": "concept",
+            "description": "Language influences thought"
+        },
+        "sapir_whorf_hypothesis": {
+            "type": "concept",
+            "description": "Language determines thought patterns"
+        },
+        
+        "corpus_linguistics": {
+            "type": "method",
+            "description": "Study of language through large text collections"
+        },
+        "experimental_linguistics": {
+            "type": "method",
+            "description": "Controlled experiments in language research"
+        },
+        "field_work": {
+            "type": "method",
+            "description": "Data collection in natural settings"
+        },
+        "ethnographic_methods": {
+            "type": "method",
+            "description": "Qualitative study of language in culture"
+        },
+        "statistical_methods": {
+            "type": "method",
+            "description": "Quantitative analysis of linguistic data"
+        },
+        "computational_methods": {
+            "type": "method",
+            "description": "Computer-assisted language analysis"
+        },
+        "neural_networks": {
+            "type": "method",
+            "description": "Computational models inspired by brain structure"
+        },
+        "machine_learning": {
+            "type": "method",
+            "description": "Automated learning from linguistic data"
+        },
+        "natural_language_processing": {
+            "type": "method",
+            "description": "Computer processing of human language"
+        },
+        "eye_tracking": {
+            "type": "method",
+            "description": "Monitoring eye movements during language tasks"
+        },
+        "erp_studies": {
+            "type": "method",
+            "description": "Event-related potential studies of language"
+        },
+        "fmri_studies": {
+            "type": "method",
+            "description": "Functional magnetic resonance imaging of language"
+        },
+        "reaction_time_studies": {
+            "type": "method",
+            "description": "Measuring response times in language tasks"
+        },
+        "priming_studies": {
+            "type": "method",
+            "description": "Studies of unconscious language activation"
+        },
+        "acceptability_judgments": {
+            "type": "method",
+            "description": "Native speaker intuitions about language"
+        },
+        
+        "chomsky": {
+            "type": "researcher",
+            "description": "Founder of generative grammar and universal grammar"
+        },
+        "saussure": {
+            "type": "researcher",
+            "description": "Father of modern linguistics and structuralism"
+        },
+        "bloomfield": {
+            "type": "researcher",
+            "description": "American structuralist linguist"
+        },
+        "jakobson": {
+            "type": "researcher",
+            "description": "Russian-American linguist and phonologist"
+        },
+        "halliday": {
+            "type": "researcher",
+            "description": "Developer of systemic functional linguistics"
+        },
+        "labov": {
+            "type": "researcher",
+            "description": "Pioneer of sociolinguistics and variation studies"
+        },
+        "fillmore": {
+            "type": "researcher",
+            "description": "Developer of construction grammar"
+        },
+        "lakoff": {
+            "type": "researcher",
+            "description": "Founder of cognitive linguistics"
+        },
+        "tomasello": {
+            "type": "researcher",
+            "description": "Proponent of usage-based language acquisition"
+        },
+        "krashen": {
+            "type": "researcher",
+            "description": "Developer of second language acquisition theories"
+        },
+        "pinker": {
+            "type": "researcher",
+            "description": "Cognitive scientist and language evolution researcher"
+        },
+        "crystal": {
+            "type": "researcher",
+            "description": "Linguist known for work on language death"
+        },
+        "grice": {
+            "type": "researcher",
+            "description": "Philosopher of language and pragmatics"
+        },
+        "austin": {
+            "type": "researcher",
+            "description": "Developer of speech act theory"
+        },
+        "searle": {
+            "type": "researcher",
+            "description": "Philosopher of language and speech acts"
+        }
+    },
+    "relations": [
+        ["phonetics", "part_of", "phonology"],
+        ["phonology", "deals_with", "phoneme"],
+        ["morphology", "deals_with", "morpheme"],
+        ["syntax", "part_of", "generative_grammar"],
+        ["semantics", "interacts_with", "pragmatics"],
+        ["phonology", "foundation_for", "morphology"],
+        ["morphology", "foundation_for", "syntax"],
+        ["syntax", "foundation_for", "semantics"],
+        ["neurolinguistics", "combines", "psycholinguistics"],
+        ["computational_linguistics", "applies", "natural_language_processing"],
+        ["sociolinguistics", "studies", "dialect"],
+        ["sociolinguistics", "studies", "code_switching"],
+        ["discourse_analysis", "extends", "pragmatics"],
+        ["applied_linguistics", "applies", "sociolinguistics"],
+        ["ethnolinguistics", "combines", "sociolinguistics"],
+        ["historical_linguistics", "studies", "sound_change"],
+        ["typology", "compares", "language_universals"],
+        
+        ["universal_grammar", "proposed_by", "chomsky"],
+        ["generative_grammar", "developed_by", "chomsky"],
+        ["transformational_grammar", "developed_by", "chomsky"],
+        ["minimalist_program", "developed_by", "chomsky"],
+        ["cognitive_linguistics", "developed_by", "lakoff"],
+        ["construction_grammar", "developed_by", "fillmore"],
+        ["usage_based_theory", "developed_by", "tomasello"],
+        ["speech_act_theory", "developed_by", "austin"],
+        ["relevance_theory", "developed_by", "grice"],
+        ["cognitive_linguistics", "opposes", "generative_grammar"],
+        ["construction_grammar", "alternative_to", "generative_grammar"],
+        ["usage_based_theory", "supports", "construction_grammar"],
+        ["functional_grammar", "developed_by", "halliday"],
+        ["optimality_theory", "applies_to", "phonology"],
+        ["prototype_theory", "influences", "cognitive_linguistics"],
+        ["dependency_grammar", "alternative_to", "phrase_structure"],
+        ["lexical_functional_grammar", "extends", "generative_grammar"],
+        ["head_driven_phrase_structure_grammar", "alternative_to", "generative_grammar"],
+        
+        ["lexicon", "contains", "morpheme"],
+        ["lexicon", "contains", "lexeme"],
+        ["grammar", "governs", "syntax"],
+        ["competence", "contrasts", "performance"],
+        ["deep_structure", "transforms_to", "surface_structure"],
+        ["constituent", "forms", "phrase_structure"],
+        ["phoneme", "combines_into", "morpheme"],
+        ["morpheme", "combines_into", "lexeme"],
+        ["dialect", "variant_of", "language"],
+        ["idiolect", "individual", "dialect"],
+        ["creole", "develops_from", "pidgin"],
+        ["lingua_franca", "facilitates", "communication"],
+        ["diglossia", "involves", "register"],
+        ["register", "varies_by", "context"],
+        
+        ["language_acquisition", "includes", "first_language_acquisition"],
+        ["language_acquisition", "includes", "second_language_acquisition"],
+        ["psycholinguistics", "studies", "language_acquisition"],
+        ["psycholinguistics", "studies", "language_processing"],
+        ["language_processing", "includes", "parsing"],
+        ["language_processing", "includes", "lexical_access"],
+        ["speech_perception", "part_of", "language_comprehension"],
+        ["speech_production", "part_of", "language_processing"],
+        ["phonological_processing", "part_of", "language_processing"],
+        ["morphological_processing", "part_of", "language_processing"],
+        ["syntactic_processing", "part_of", "language_processing"],
+        ["semantic_processing", "part_of", "language_processing"],
+        ["pragmatic_processing", "part_of", "language_processing"],
+        
+        ["code_switching", "type_of", "language_contact"],
+        ["code_mixing", "type_of", "language_contact"],
+        ["borrowing", "type_of", "language_contact"],
+        ["calque", "type_of", "borrowing"],
+        ["interference", "occurs_in", "second_language_acquisition"],
+        ["fossilization", "occurs_in", "second_language_acquisition"],
+        ["interlanguage", "occurs_in", "second_language_acquisition"],
+        ["language_attrition", "opposite_of", "language_acquisition"],
+        ["language_shift", "leads_to", "language_death"],
+        ["language_revitalization", "counters", "language_death"],
+        ["sound_change", "studied_by", "historical_linguistics"],
+        ["grammaticalization", "studied_by", "historical_linguistics"],
+        ["lexicalization", "studied_by", "historical_linguistics"],
+        ["semantic_change", "studied_by", "historical_linguistics"],
+        
+        ["corpus_linguistics", "method_for", "sociolinguistics"],
+        ["experimental_linguistics", "method_for", "psycholinguistics"],
+        ["field_work", "method_for", "ethnolinguistics"],
+        ["ethnographic_methods", "method_for", "sociolinguistics"],
+        ["statistical_methods", "used_in", "corpus_linguistics"],
+        ["computational_methods", "used_in", "computational_linguistics"],
+        ["neural_networks", "applied_to", "language_acquisition"],
+        ["machine_learning", "applied_to", "natural_language_processing"],
+        ["natural_language_processing", "applies", "computational_linguistics"],
+        ["eye_tracking", "method_for", "psycholinguistics"],
+        ["erp_studies", "method_for", "neurolinguistics"],
+        ["fmri_studies", "method_for", "neurolinguistics"],
+        ["reaction_time_studies", "method_for", "psycholinguistics"],
+        ["priming_studies", "method_for", "psycholinguistics"],
+        ["acceptability_judgments", "method_for", "syntax"],
+        ["psycholinguistics", "uses", "neural_networks"],
+        ["usage_based_theory", "relies_on", "corpus_linguistics"],
+        
+        ["critical_period", "relates_to", "language_acquisition"],
+        ["critical_period", "relates_to", "first_language_acquisition"],
+        ["poverty_of_stimulus", "supports", "universal_grammar"],
+        ["parameter_setting", "part_of", "universal_grammar"],
+        ["input_hypothesis", "relates_to", "second_language_acquisition"],
+        ["output_hypothesis", "relates_to", "second_language_acquisition"],
+        ["interaction_hypothesis", "relates_to", "second_language_acquisition"],
+        ["noticing_hypothesis", "relates_to", "second_language_acquisition"],
+        ["monitor_hypothesis", "proposed_by", "krashen"],
+        ["affective_filter", "proposed_by", "krashen"],
+        ["scaffolding", "relates_to", "zone_of_proximal_development"],
+        ["metalinguistic_awareness", "develops_in", "second_language_acquisition"],
+        ["linguistic_relativity", "same_as", "sapir_whorf_hypothesis"],
+        
+        ["saussure", "founded", "structuralism"],
+        ["bloomfield", "advocate_of", "behaviorism"],
+        ["jakobson", "contributed_to", "phonology"],
+        ["halliday", "developed", "functional_grammar"],
+        ["labov", "founded", "sociolinguistics"],
+        ["fillmore", "developed", "construction_grammar"],
+        ["lakoff", "founded", "cognitive_linguistics"],
+        ["tomasello", "advocates", "usage_based_theory"],
+        ["krashen", "developed", "input_hypothesis"],
+        ["pinker", "studies", "language_evolution"],
+        ["crystal", "studies", "language_death"],
+        ["grice", "developed", "relevance_theory"],
+        ["austin", "developed", "speech_act_theory"],
+        ["searle", "extended", "speech_act_theory"],
+        
+        ["neurolinguistics", "studies", "language_processing"],
+        ["computational_linguistics", "models", "language_processing"],
+        ["psycholinguistics", "investigates", "critical_period"],
+        ["sociolinguistics", "examines", "language_shift"],
+        ["applied_linguistics", "addresses", "language_attrition"],
+        ["historical_linguistics", "traces", "language_change"],
+        ["typology", "identifies", "language_universals"],
+        ["discourse_analysis", "analyzes", "pragmatic_processing"],
+        ["ethnolinguistics", "explores", "linguistic_relativity"],
+        ["first_language_acquisition", "occurs_during", "critical_period"],
+        ["second_language_acquisition", "affected_by", "affective_filter"],
+        ["interlanguage", "shows", "fossilization"],
+        ["code_switching", "requires", "metalinguistic_awareness"],
+        ["borrowing", "causes", "language_change"],
+        ["grammaticalization", "type_of", "language_change"],
+        ["phonological_processing", "involves", "phoneme"],
+        ["morphological_processing", "involves", "morpheme"],
+        ["lexical_access", "retrieves", "lexeme"],
+        ["parsing", "builds", "phrase_structure"],
+        ["speech_perception", "processes", "phoneme"],
+        ["speech_production", "generates", "phoneme"],
+        ["corpus_linguistics", "reveals", "usage_patterns"],
+        ["experimental_linguistics", "tests", "linguistic_theories"],
+        ["neural_networks", "model", "language_acquisition"],
+        ["machine_learning", "improves", "natural_language_processing"]
+    ]
+}
