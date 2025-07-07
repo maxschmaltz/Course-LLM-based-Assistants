@@ -385,7 +385,7 @@ The first lecture dedicated to scientific applications shows how LLMs are used t
 * [Improving Scientific Hypothesis Generation with Knowledge Grounded Large Language Models](https://arxiv.org/abs/2411.02382), `University of Virginia` 🟡
 * [Mapping the Increasing Use of LLMs in Scientific Papers](https://arxiv.org/abs/2404.01268), `Stanford`
 * [LLMs for Science: Usage for Code Generation and Data Analysis](https://arxiv.org/abs/2311.16733), `TUM` 🟡
-* [Operating Robotic Laboratories with Large Language Models and Teachable Agents](https://openreview.net/forum?id=iA9UN1dEgJ), `Argonne National Laboratory`
+* [Operating Robotic Laboratories with Large Language Models and Teachable Agents](https://openreview.net/forum?id=iA9UN1dEgJ), `Argonne National Laboratory` 🟠
 * [The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery](https://arxiv.org/abs/2408.06292), `Sakana AI et al.`
 
 <a name="0307"></a>
