@@ -299,15 +299,15 @@
 <h2>Task<a class="headerlink" href="#task" title="Link to this heading">¶</a></h2>
 <p>The project folder has the following structure:</p>
 <ol class="arabic simple">
-<li><p>The <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/resources"><code class="docutils literal notranslate"><span class="pre">resources</span></code> folder</a> contains sample research abstracts and domain knowledge about linguistics generated with Claude. You will use it to simulate the literature base for the agents.</p></li>
-<li><p>The <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent"><code class="docutils literal notranslate"><span class="pre">multi_agent</span></code> folder</a> folder will store the implementation of your system.</p>
+<li><p>The <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/resources"><code class="docutils literal notranslate"><span class="pre">resources</span></code> folder</a> contains sample research abstracts and domain knowledge about linguistics generated with Claude. You will use it to simulate the literature base for the agents.</p></li>
+<li><p>The <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent"><code class="docutils literal notranslate"><span class="pre">multi_agent</span></code> folder</a> folder will store the implementation of your system.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent/tools.py"><code class="docutils literal notranslate"><span class="pre">tools.py</span></code></a> will contain the tools for your agents. It now contains a single tool for querying KG but you may want to add a RAG tool for literature in case you want it more custom than the standard LangChain implementation or if you choose another framework.</p></li>
-<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent/prompts.py"><code class="docutils literal notranslate"><span class="pre">prompts.py</span></code></a> will contain the prompts for your system.</p></li>
-<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent/agents.py"><code class="docutils literal notranslate"><span class="pre">agents.py</span></code></a> will implement the multi-agent system.</p></li>
+<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent/tools.py"><code class="docutils literal notranslate"><span class="pre">tools.py</span></code></a> will contain the tools for your agents. It now contains a single tool for querying KG but you may want to add a RAG tool for literature in case you want it more custom than the standard LangChain implementation or if you choose another framework.</p></li>
+<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent/prompts.py"><code class="docutils literal notranslate"><span class="pre">prompts.py</span></code></a> will contain the prompts for your system.</p></li>
+<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent/agents.py"><code class="docutils literal notranslate"><span class="pre">agents.py</span></code></a> will implement the multi-agent system.</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/demo.ipynb"><code class="docutils literal notranslate"><span class="pre">demo.ipynb</span></code></a> will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from <code class="docutils literal notranslate"><span class="pre">multi_agent/agents.py</span></code> and run it with different research questions.</p></li>
+<li><p><a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/demo.ipynb"><code class="docutils literal notranslate"><span class="pre">demo.ipynb</span></code></a> will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from <code class="docutils literal notranslate"><span class="pre">multi_agent/agents.py</span></code> and run it with different research questions.</p></li>
 </ol>
 <p>Your task is to fill in the code in the provided boilerplates following the instructions <a class="reference internal" href="#steps"><span class="xref myst">below</span></a>.</p>
 <ul class="simple">
@@ -322,7 +322,7 @@
 <section id="setup">
 <h3>Setup<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Download the <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207">project folder</a>.</p></li>
+<li><p>Download the <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207">project folder</a>.</p></li>
 <li><p>Go through the <a class="reference external" href="https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html">usual setup routine</a> to setup your environment for the project. Put the resulting <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file with the dependencies in the project folder.</p></li>
 </ol>
 </section>
@@ -341,7 +341,7 @@
 </ol>
 <ul class="simple">
 <li><p>If you want it more custom RAG tool the standard LangChain implementation or if you choose another framework for orchestration, put your RAG tool here.</p></li>
-<li><p>It should extract relevant literature fragments from the literature base in <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/resources/litbase.md"><code class="docutils literal notranslate"><span class="pre">litbase.md</span></code></a>.</p></li>
+<li><p>It should extract relevant literature fragments from the literature base in <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/resources/litbase.md"><code class="docutils literal notranslate"><span class="pre">litbase.md</span></code></a>.</p></li>
 </ul>
 </section>
 <section id="prompts-in-multi-agent-prompts-py">
@@ -364,7 +364,7 @@
 <li><p><strong>Invoke the <em>Literature Reviewer</em> (<code class="docutils literal notranslate"><span class="pre">literature_reviewer_node()</span></code>)</strong></p></li>
 </ol>
 <ul class="simple">
-<li><p>Extract the most relevant papers from the literature base in <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/resources/litbase.md"><code class="docutils literal notranslate"><span class="pre">litbase.md</span></code></a>.</p></li>
+<li><p>Extract the most relevant papers from the literature base in <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/resources/litbase.md"><code class="docutils literal notranslate"><span class="pre">litbase.md</span></code></a>.</p></li>
 <li><p>Generate a summary with key information, findings, theories etc.</p></li>
 </ul>
 <ol class="arabic simple" start="3">

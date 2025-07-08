@@ -16,10 +16,10 @@ As before, you don't have to strictly follow this scheme, it is just a quick sta
 ## Task
 
 The project folder has the following structure:
-1. The [`webagent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/webagent) folder will store the implementation of your system.
-    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/webagent/prompts.py) will contain the prompts for your system.
-    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/webagent/agents.py) will implement the agent (or the multi-agent system, if you want to).
-2. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized pipeline from `webagent/agents.py` and run it a few times.
+1. The [`webagent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1707/webagent) folder will store the implementation of your system.
+    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1707/webagent/prompts.py) will contain the prompts for your system.
+    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1707/webagent/agents.py) will implement the agent (or the multi-agent system, if you want to).
+2. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1707/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized pipeline from `webagent/agents.py` and run it a few times.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any LLM and any orchestration framework you like.
@@ -33,7 +33,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 ### Setup
 
-1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1707).
+1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1707).
 2. Go through the [usual setup routine](https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html) to setup your environment for the project. Put the resulting `requirements.txt` file with the dependencies in the project folder.
 
 ### Prompts in `webagent/prompts.py`
