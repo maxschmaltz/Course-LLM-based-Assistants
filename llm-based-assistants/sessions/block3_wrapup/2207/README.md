@@ -23,12 +23,12 @@ As always, you don't have to strictly follow this scheme, it is just a quick sta
 ## Task
 
 The project folder has the following structure:
-1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/resources) contains sample research abstracts and domain knowledge about linguistics generated with Claude. You will use it to simulate the literature base for the agents.
-2. The [`multi_agent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent) folder will store the implementation of your system.
-    * [`tools.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent/tools.py) will contain the tools for your agents. It now contains a single tool for querying KG but you may want to add a RAG tool for literature in case you want it more custom than the standard LangChain implementation or if you choose another framework.
-    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent/prompts.py) will contain the prompts for your system.
-    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/multi_agent/agents.py) will implement the multi-agent system.
-3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from `multi_agent/agents.py` and run it with different research questions.
+1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/resources) contains sample research abstracts and domain knowledge about linguistics generated with Claude. You will use it to simulate the literature base for the agents.
+2. The [`multi_agent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent) folder will store the implementation of your system.
+    * [`tools.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent/tools.py) will contain the tools for your agents. It now contains a single tool for querying KG but you may want to add a RAG tool for literature in case you want it more custom than the standard LangChain implementation or if you choose another framework.
+    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent/prompts.py) will contain the prompts for your system.
+    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/multi_agent/agents.py) will implement the multi-agent system.
+3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from `multi_agent/agents.py` and run it with different research questions.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any LLM and any orchestration framework you like.
@@ -41,7 +41,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 ### Setup
 
-1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207).
+1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207).
 2. Go through the [usual setup routine](https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html) to setup your environment for the project. Put the resulting `requirements.txt` file with the dependencies in the project folder.
 
 ### Knowledge Graph Tools in `multi_agent/tools.py`
@@ -53,7 +53,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 2. (Optional) **RAG Tool**
 * If you want it more custom RAG tool the standard LangChain implementation or if you choose another framework for orchestration, put your RAG tool here.
-* It should extract relevant literature fragments from the literature base in [`litbase.md`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/resources/litbase.md).
+* It should extract relevant literature fragments from the literature base in [`litbase.md`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/resources/litbase.md).
 
 ### Prompts in `multi_agent/prompts.py`
 
@@ -70,7 +70,7 @@ Complete the `ResearchLaMA` class as follows:
 * Replace the placeholder for the keyword arguments (`**kwargs`) with specific parameters that you need to initialize the agent (or none, if none is needed).
 
 2. **Invoke the _Literature Reviewer_ (`literature_reviewer_node()`)**  
-* Extract the most relevant papers from the literature base in [`litbase.md`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/2207/resources/litbase.md).
+* Extract the most relevant papers from the literature base in [`litbase.md`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/2207/resources/litbase.md).
 * Generate a summary with key information, findings, theories etc.
 
 3. **Invoke the _Hypothesis Generator_ (`hypothesis_generator_node()`)**  

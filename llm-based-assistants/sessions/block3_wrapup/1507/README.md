@@ -28,12 +28,12 @@ As always, you don't have to strictly follow this scheme, it is just a quick sta
 ## Task
 
 The project folder has the following structure:
-1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/resources) contains the single file: FAQs about the _FitTrack Pro_ app generated with Claude. You will use it to make the RAG tools for the _support expert_.
-2. The [`multi_agent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent) folder will store the implementation of your system.
-    * [`tools.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent/tools.py) will contain the tools for your agents. As mentioned, the tools for the _ticket manager_ are given to you, and you will have to make only a simple RAG tool.
-    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent/prompts.py) will contain the prompts for your system. There is now a prompt for generation of incoming ticket messages (will simulate the real messages).
-    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/multi_agent/agents.py) will implement the multi-agent system.
-3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from `multi_agent/agents.py` and run it a few times.
+1. The [`resources` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1507/resources) contains the single file: FAQs about the _FitTrack Pro_ app generated with Claude. You will use it to make the RAG tools for the _support expert_.
+2. The [`multi_agent` folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1507/multi_agent) folder will store the implementation of your system.
+    * [`tools.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1507/multi_agent/tools.py) will contain the tools for your agents. As mentioned, the tools for the _ticket manager_ are given to you, and you will have to make only a simple RAG tool.
+    * [`prompts.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1507/multi_agent/prompts.py) will contain the prompts for your system. There is now a prompt for generation of incoming ticket messages (will simulate the real messages).
+    * [`agents.py`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1507/multi_agent/agents.py) will implement the multi-agent system.
+3. [`demo.ipynb`](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1507/demo.ipynb) will showcase the capabilities and the limitations of the resulting system. It will take the initialized multi-agent system from `multi_agent/agents.py` and run it a few times.
 
 Your task is to fill in the code in the provided boilerplates following the instructions [below](#steps).
 * You may use any LLM and any orchestration framework you like.
@@ -47,7 +47,7 @@ You don't have to find a perfect solution, imagine you are building an initial b
 
 ### Setup
 
-1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/pitches/1507).
+1. Download the [project folder](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block3_wrapup/1507).
 2. Go through the [usual setup routine](https://maxschmaltz.github.io/Course-LLM-based-Assistants/infos/llm_inference_guide/README.html) to setup your environment for the project. Put the resulting `requirements.txt` file with the dependencies in the project folder.
 
 ### RAG Tool in `multi_agent/tools.py`
