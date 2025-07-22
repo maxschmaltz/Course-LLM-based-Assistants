@@ -1,6 +1,6 @@
 # Debates
 
-In a debate, there are two teams of 2-3 speakers: the _affirmative team_ supports and the _negative team_ opposes a certain motion (position). The point of the debates is to look at a question from diverse perspectives and to get some practice of using the information in arguments and expressing ideas clearly and convincingly.
+In a debate, there are two teams of 2 speakers: the _affirmative team_ supports and the _negative team_ opposes a certain motion (position). The point of the debates is to look at a question from diverse perspectives and to get some practice of using the information in arguments and expressing ideas clearly and convincingly.
 
 
 ## Contents
@@ -23,13 +23,13 @@ The start materials for each position (counterposition) are given in advance, bu
 
 ## Procedure
 
-As mentioned, each debate has two teams: the _affirmative team_, which supports the motion, and the _negative team_, which opposes it. In a perfect case, a team consists of 3 speakers; if there are only 2 speakers in the team, the role of the 3rd speaker is overtaken by one of the team members. I moderate the debate, ensuring orderly proceedings.
+As mentioned, each debate has two teams: the _affirmative team_, which supports the motion, and the _negative team_, which opposes it. I moderate the debate, ensuring orderly proceedings.
 
 There are 3 stages to the procedure:
 
 ### Prepared Speeches
 
-Each team has three prepared speeches (3 min each), the sides speak in turn (starting with the _affirmative_). Each speech presents a point (or several points, which is however not recommended) to their case, so to support / oppose the motion. At this stage, the teams are only presenting their points independently from each other and do not counterargue. There is a 30 sec break between the speeches.
+Each team has two prepared speeches (3 min each), the sides speak in turn (starting with the _affirmative_). Each speech presents a point (or several points, which is however not recommended) to their case, so to support / oppose the motion. At this stage, the teams are only presenting their points independently from each other and do not counterargue. There is a 30 sec break between the speeches.
 
 ### Floor Speeches
 
@@ -69,10 +69,6 @@ The final summary of the procedure is as follows (A stands for affirmative, N fo
 | | Break _(30 sec)_ | |
 | | | **N2** against the motion _(3 min)_ |
 | | Break _(30 sec)_ | |
-| **A3** for the motion _(3 min)_ | | |
-| | Break _(30 sec)_ | |
-| | | **N3** against the motion _(3 min)_ |
-| | Break _(30 sec)_ | |
 | | _**Floor Speeches**_ | |
 | | **F1** for/against the motion _(2 min)_ (optional) |  |
 | | Break _(30 sec)_ | |
@@ -90,7 +86,7 @@ The final summary of the procedure is as follows (A stands for affirmative, N fo
 | **A** responds to N _(2 min)_ | | |
 
 
-One debate therefore lasts for about 45 minutes (if there are 3 floor speakers).
+One debate therefore lasts for about 35 minutes.
 
 
 ## References
