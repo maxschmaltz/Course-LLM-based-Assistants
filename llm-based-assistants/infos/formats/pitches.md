@@ -33,6 +33,6 @@ The procedure is fairly straightforward: the contractors give their presentation
 A pitch is an informal presentation, so it doesn't have any particular rules. The presentation is of a free format as long as the main points (see in [preparation](#preparation)) are covered. A video or a live demonstration is highly encouraged yet not required. Other than that, there are only a few rules to stick to:
 
 * Each of the contractors should speak more or less the equal amount of time.
-* Each of the board member should have at least one question, and the board together should have not less than 5.
+* Each of the board member should have at least two questions.
 * The questions to the contractors should concern only the product and product-related topics; it is however **okay** to ask questions about usage / behavior etc. of the product in unexpected settings.
 * It is **totally fine** for the contractors to suggest improvised workarounds and improvements.
