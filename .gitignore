@@ -3,3 +3,5 @@
 **.DS_Store
 **.ipynb_checkpoints
 llm-based-assistants/_build
+/papers
+**.__pycache__
