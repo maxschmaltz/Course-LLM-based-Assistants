@@ -1,16 +1,5 @@
 # Topics Overview
 
-_Notes_:
-* This schedule may be changed, should the need arise.
-* You are **not** required to read anything. However, you are strongly encouraged to read sources marked by pin emojis 📌: those are comprehensive overviews on the topics or important works that are beneficial for a better understanding of the key concepts.
-* Sources marked with a popcorn emoji 🍿 is misc material you might want to take a look at: blog posts, GitHub repos, leaderboards etc.
-* For the _labs_, you are provided with practical tutorials that the respective lab tasks will mostly derive from. The core tutorials are marked with a writing emoji ✍️; you are asked to inspect them **in advance** (better yet: try them out).
-
-_Disclaimer_: the reading entries are no proper citations; detailed infos about the authors, publication date, venue etc. can be found under the entry links.
-
-
-
-## Course Contents
 
 * October: INTRO
     * Week 1
@@ -49,6 +38,26 @@ _Disclaimer_: the reading entries are no proper citations; detailed infos about 
 
 _____________________________________________________________________________
 
+
+
+See detailed descriptions if the sessions below.
+
+<div style="font-size:9pt">
+    <div class="notes">
+        <p><em>Notes</em>:</p>
+        <ul>
+            <li>This schedule may be changed, should the need arise.</li>
+            <li>You are <strong>not</strong> required to read anything. However, you are strongly encouraged to read sources marked by pin emojis 📌: those are comprehensive overviews on the topics or important works that are beneficial for a better understanding of the key concepts.</li>
+            <li>Sources marked with a popcorn emoji 🍿 is misc material you might want to take a look at: blog posts, GitHub repos, leaderboards etc.</li>
+            <li>For the <em>labs</em>, you are provided with practical tutorials that the respective lab tasks will mostly derive from. The core tutorials are marked with a writing emoji ✍️; you are asked to inspect them in advance (better yet: try them out).</li>
+        </ul>
+    </div>
+
+_Disclaimer_: the reading entries are no proper citations; detailed infos about the authors, publication date, venue etc. can be found under the entry links.
+</div>
+
+
+_____________________________________________________________________________
 
 
 
