@@ -1,6 +1,0 @@
-langgraph
-pyppeteer
-pypdf
-langchain_community
-langchain-huggingface
-langchain-qdrant

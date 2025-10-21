@@ -1,3 +1,0 @@
-pypdf
-langchain_community
-langchain-qdrant
