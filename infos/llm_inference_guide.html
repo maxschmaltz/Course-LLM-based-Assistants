@@ -1,20 +1,20 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="../../">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines" href="../../sessions/block1_intro/2204.html" /><link rel="prev" title="Pitches" href="../formats/pitches.html" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html">
 
-    <!-- Generated with Sphinx 7.4.7 and Furo 2025.07.19 -->
+    <!-- Generated with Sphinx 7.4.7 and Furo 2025.09.25 -->
         <title>LLM Inference Guide - LLM-based Assistants</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     
     
 
@@ -27,14 +27,14 @@
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #2b2b2b;
-  --color-code-foreground: #f8f8f2;
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #2b2b2b;
-  --color-code-foreground: #f8f8f2;
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
   
       }
     }
@@ -149,14 +149,10 @@
   </symbol>
 </svg>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
 <a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
@@ -166,17 +162,15 @@
   <header class="mobile-header">
     <div class="header-left">
       <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">LLM-based Assistants</div></a>
+      <a href="../index.html"><div class="brand">LLM-based Assistants</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
           <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
           <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -184,62 +178,60 @@
         </button>
       </div>
       <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
   </header>
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   <span class="sidebar-brand-text">LLM-based Assistants</span>
   
-</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Infos and Stuff</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../topic_overview.html">Topics Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../formats/debates.html">Debates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../formats/pitches.html">Pitches</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">LLM Inference Guide</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="topic_overview.html">Topics Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats/debates.html">Debates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formats/pitches.html">Pitches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 1: Intro</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block1_intro/2204.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block1_intro/2404.html">24.04. LLM &amp; Agent Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block1_intro/2904/2904.html">29.04. Intro to LangChain 🦜🔗</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block1_intro/2204.html">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block1_intro/2404.html">24.04. LLM &amp; Agent Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block1_intro/2904/2904.html">29.04. Intro to LangChain 🦜🔗</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 1: Business Applications</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/0605.html">06.05. Virtual Assistants Pt. 1: Chatbots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/0805/0805.html">08.05. Basic LLM-based Chatbot 🤖</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/1305.html">13.05. Virtual Assistants Pt. 2: RAG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/1505/1505.html">15.05. RAG Chatbot Pt. 1 📚</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/2005/2005.html">20.05. RAG Chatbot Pt. 2 📚</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/2705/2705.html">27.05. Multi-agent Environment 👾🤖👾</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/2205.html">22.05. Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/0306.html">03.06. LLMs in Software Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/0506/0506.html">05.06. LLM-powered Website 💻</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt1_business/1706.html">17.06. Other Business Applications: Game Design, Financial Analysis etc.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/0605.html">06.05. Virtual Assistants Pt. 1: Chatbots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/0805/0805.html">08.05. Basic LLM-based Chatbot 🤖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/1305.html">13.05. Virtual Assistants Pt. 2: RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/1505/1505.html">15.05. RAG Chatbot Pt. 1 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/2005/2005.html">20.05. RAG Chatbot Pt. 2 📚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/2705/2705.html">27.05. Multi-agent Environment 👾🤖👾</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/2205.html">22.05. Virtual Assistants Pt. 3: Multi-agent Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/0306.html">03.06. LLMs in Software Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/0506/0506.html">05.06. LLM-powered Website 💻</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt1_business/1706.html">17.06. Other Business Applications: Game Design, Financial Analysis etc.</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 2: Core Topics | Part 2: Applications in Science</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt2_science/0107.html">01.07. LLMs for Research</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt2_science/0307/0307.html">03.07. LLM-Based Hypothesis Generation💡</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block2_core_topics/pt2_science/0807.html">08.07. Role of AI in Recent Years</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt2_science/0107.html">01.07. LLMs for Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt2_science/0307/0307.html">03.07. LLM-Based Hypothesis Generation💡</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block2_core_topics/pt2_science/0807.html">08.07. Role of AI in Recent Years</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Block 3: Activities</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block3_wrapup/1007/README.html">10.07. <em>Pitch</em>: RAG Chatbot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block3_wrapup/1507/README.html">15.07. <em>Pitch</em>: Handling Customer Requests in a Multi-agent Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block3_wrapup/1707/README.html">17.07. <em>Pitch</em>: Agent for Web Resumes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sessions/block3_wrapup/2207/README.html">22.07. <em>Pitch</em>: LLM-based Research Assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block3_wrapup/1007/README.html">10.07. <em>Pitch</em>: RAG Chatbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block3_wrapup/1507/README.html">15.07. <em>Pitch</em>: Handling Customer Requests in a Multi-agent Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block3_wrapup/1707/README.html">17.07. <em>Pitch</em>: Agent for Web Resumes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/block3_wrapup/2207/README.html">22.07. <em>Pitch</em>: LLM-based Research Assistant</a></li>
 </ul>
 
 </div>
@@ -260,8 +252,7 @@
         </a>
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -269,8 +260,7 @@
             </button>
           </div>
           <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
@@ -299,21 +289,44 @@
 <section id="environment-setup">
 <h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading">¶</a></h2>
 <p>It is a good practice to have a separate isolated environment for each project. Such environment includes all of your code, resources, tests etc, as well as dependencies, (sometimes) executables and such.</p>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p>Make a new directory where your project will be stored and open it in your IDE.</p></li>
 <li><p>Open the terminal. If you are a Windows user, open GitBash (will be available after Git installation) and not the default cmd.</p></li>
-<li><p>Create a Python virtual environment with <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a>. The virtual environment is a directory that will contain a copy of Python and Pip as well as all the dependencies. An example for creating a virtual environment in folder <em>.venv</em> with venv is below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w">   </span><span class="c1"># create a copy of Python and so</span>
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w"> </span><span class="c1"># for Unix-based (including MacOS)</span>
-<span class="nb">source</span><span class="w"> </span>.venv/Scripts/activate<span class="w">   </span><span class="c1"># for Windows</span>
+<li><p>Create a Python virtual environment with <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w">  </span>#<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>copy<span class="w"> </span>of<span class="w"> </span>Python<span class="w"> </span>and<span class="w"> </span>so
 </pre></div>
 </div>
-</li>
-<li><p>Install requirements. Here, for the setup test purposes, we only need <code class="docutils literal notranslate"><span class="pre">langchain_nvidia_ai_endpoints</span></code> and <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>langchain_nvidia_ai_endpoints<span class="w"> </span>python-dotenv
+</div>
+</div>
+<p>Activate your environment to tell the interpreter that you will be working with this particular copy of Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w"> </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>Unix-based<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>MacOS<span class="o">)</span>
 </pre></div>
 </div>
-<p>A more robust (and really used) alternative is to create a <em>requirements.txt</em> file like this:</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">source</span><span class="w"> </span>.venv/Scripts/activate<span class="w">   </span>#<span class="w"> </span><span class="k">for</span><span class="w"> </span>Windows
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Install requirements. Here, for the test purposes, we only need <code class="docutils literal notranslate"><span class="pre">langchain_nvidia_ai_endpoints</span></code> and <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>:</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install langchain_nvidia_ai_endpoints python-dotenv
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note</em>: a more robust (and really used) alternative is to create a <em>requirements.txt</em> file like this:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>langchain_nvidia_ai_endpoints==0.3.9
 python-dotenv==1.1.0
 </pre></div>
@@ -322,9 +335,6 @@ python-dotenv==1.1.0
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
-</li>
-<li><p>To make this guide shorter, we do not create a git repository.</p></li>
-</ol>
 </section>
 <section id="getting-api-key">
 <h2>Getting API Key<a class="headerlink" href="#getting-api-key" title="Link to this heading">¶</a></h2>
@@ -342,26 +352,40 @@ python-dotenv==1.1.0
 </section>
 <section id="test">
 <h2>Test<a class="headerlink" href="#test" title="Link to this heading">¶</a></h2>
-<p>Finally, you can test if the API works for you. Here’s a sample code you can run in a <em>.py</em> file in the root of your project directory:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<p>Finally, you can test if the API works for you. Below is a sample code you can run for that purpose.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">dotenv</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_nvidia_ai_endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatNVIDIA</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemMessage</span><span class="p">,</span> <span class="n">HumanMessage</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.rate_limiters</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryRateLimiter</span>
 
 <span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>    <span class="c1"># that loads the .env file variables into os.environ</span>
-
-
-<span class="c1"># choose any model, catalogue is available under https://build.nvidia.com/models</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose any model, catalogue is available under https://build.nvidia.com/models</span>
 <span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.3-70b-instruct&quot;</span>
 
 <span class="c1"># prompts are usually stored in a separate file</span>
 <span class="c1"># but for the sake of simplicity, we will have it here</span>
 <span class="n">SYSTEM_MESSAGE</span> <span class="o">=</span> <span class="s2">&quot;You are a medieval French knight.&quot;</span>
-
-
-<span class="c1"># the most simple example (synchronous implementation)</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Agent</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Agent</span><span class="p">:</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># this rate limiter will ensure we do not exceed the rate limit</span>
@@ -378,6 +402,7 @@ python-dotenv==1.1.0
             <span class="n">rate_limiter</span><span class="o">=</span><span class="n">rate_limiter</span>  <span class="c1"># bind the rate limiter</span>
         <span class="p">)</span>
 
+    <span class="c1"># the simplest example (synchronous implementation)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_query</span><span class="p">):</span>
         <span class="c1"># prepare the messages</span>
         <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
@@ -391,9 +416,13 @@ python-dotenv==1.1.0
         <span class="c1"># inference</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
     <span class="c1"># ask the knight a question</span>
     <span class="n">user_query</span> <span class="o">=</span> <span class="s2">&quot;Give me a summary of the Battle of Agincourt.&quot;</span>
@@ -401,11 +430,29 @@ python-dotenv==1.1.0
     <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bonjour, my friend. I, Sir Guillaume, shall recount to thee the tale of the Battle of Agincourt, a most glorious and bloody conflict that took place on the 25th day of October, in the year of our Lord 1415.
+
+As a knight of the realm, I must admit that our French army, led by the noble Charles d&#39;Albret, Constable of France, and Charles, Duke of Orléans, was confident in our superior numbers and chivalry. We had assembled a vast host, with estimates ranging from 20,000 to 30,000 men-at-arms, knights, and men of the common sort.
+
+However, the English army, led by the cunning King Henry V, had other plans. Though outnumbered, with a force of around 6,000 to 9,000 men, they had chosen a most advantageous position, with a narrow field between two forests, which funneled our attacks and limited our mobility.
+
+The English, with their longbowmen and men-at-arms, formed a defensive line, with stakes driven into the ground to protect themselves from our cavalry charges. Our French knights, weighed down by our armor and hindered by the muddy terrain, charged valiantly, but were cut down by the hail of arrows and the English defensive line.
+
+The battle raged on for hours, with our knights and men-at-arms making repeated charges, only to be repelled by the English. The mud and the stakes proved to be our undoing, as our horses became mired and our men were unable to breach the English lines.
+
+In the end, it is said that the English suffered fewer than 100 casualties, while our French army lost thousands, including many noble knights and men of high birth. The Constable of France, Charles d&#39;Albret, was among the fallen, and the Duke of Orléans was taken prisoner.
+
+Verily, the Battle of Agincourt was a dark day for France, and a testament to the cunning and bravery of the English. Mayhap, one day, we shall avenge this defeat and restore the honor of our noble kingdom. Vive la France!
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
-<p>As for now, you’re good to go! An example directory you must have gotten after going through this guide is stored <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/infos/llm_inference_guide">here</a> (excluding <em>.venv</em> and <em>.env</em>).</p>
-<p>Later, for each of the projects, you will only do the <a class="reference internal" href="#environment-setup"><span class="xref myst">environment setup</span></a> and the steps 1 and 4 of <a class="reference internal" href="#getting-api-key"><span class="xref myst">getting API Key</span></a>; and instead of the sample code, you will have cool complex stuff, but we’ll get to that yet.</p>
+<p>As for now, you’re good to go! Later, for each of the projects, you will only do the <a class="reference internal" href="#environment-setup"><span class="xref myst">environment setup</span></a> and the steps 1 and 4 of <a class="reference internal" href="#getting-api-key"><span class="xref myst">getting API Key</span></a>; and instead of the sample code, you will have cool complex stuff, but we’ll get to that yet.</p>
 <p>Contact me in case of any questions and problems you encounter during the setup.</p>
 </section>
 </section>
@@ -423,7 +470,7 @@ python-dotenv==1.1.0
         },
         kernelOptions: {
             name: "python3",
-            path: "./infos/llm_inference_guide"
+            path: "./infos"
         },
         predefinedOutput: true
     }
@@ -434,26 +481,8 @@ python-dotenv==1.1.0
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../../sessions/block1_intro/2204.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">22.04. LLMs as a Form of Intelligence vs LLMs as Statistical Machines</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="../formats/pitches.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Pitches</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -513,21 +542,21 @@ python-dotenv==1.1.0
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+</div><script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     </body>
