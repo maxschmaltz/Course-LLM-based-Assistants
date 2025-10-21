@@ -1,5 +1,10 @@
 .venv
 .env
+
 **.DS_Store
 **.ipynb_checkpoints
+**.__pycache__
+
 llm-based-assistants/_build
+/papers
+/slides_raw
