@@ -21,7 +21,7 @@ When they were first introduced, LLMs were mainly seen as seq2seq models exclusi
 1) to provide a comprehensive overview of how the LLMs are used in the real world;
 2) to teach you the basics of implementing LLM-based pipelines for various purposes.
 
-While the course will focus mostly on the practical uses of LLMs, it will also briefly touch on ethical, societal, and broader considerations.
+While the course will mostly focus on the practical uses of LLMs, it will also briefly touch on ethical, societal, and broader considerations.
 
 The course contents, slides, tasks, reading, etc. will be hosted in this webbook. [Moodle](TODO) will be used for administrative stuff.
 
