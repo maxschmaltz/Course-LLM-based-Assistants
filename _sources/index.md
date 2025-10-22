@@ -23,7 +23,7 @@ When they were first introduced, LLMs were mainly seen as seq2seq models exclusi
 
 While the course will mostly focus on the practical uses of LLMs, it will also briefly touch on ethical, societal, and broader considerations.
 
-The course contents, slides, tasks, reading, etc. will be hosted in this webbook. [Moodle](TODO) will be used for administrative stuff.
+The course contents, slides, tasks, reading, etc. will be hosted in this webbook. [Moodle](https://moodle.zdv.uni-tuebingen.de/course/view.php?id=1288) will be used for administrative stuff.
 
 ## Contents Overview
 
