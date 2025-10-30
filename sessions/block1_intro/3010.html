@@ -279,11 +279,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;LANGCHAIN&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -291,11 +286,6 @@
 <span class="n">reverse</span> <span class="o">=</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">reverse</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;langchain&quot;</span><span class="p">)</span>  <span class="c1"># output: niahcgnal</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;niahcgnal&#39;
 </pre></div>
 </div>
 </div>
@@ -311,20 +301,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;NIAHCGNAL&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pipeline_c</span><span class="p">,</span> <span class="n">Runnable</span><span class="p">)</span>  <span class="c1"># output: True</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -347,20 +327,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Summary: LANGCHAIN and niahcgnal&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pipeline_p</span><span class="p">,</span> <span class="n">Runnable</span><span class="p">)</span>  <span class="c1"># output: True</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -401,11 +371,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
-</pre></div>
-</div>
-</div>
 </div>
 <h2 id="chat_models">4. Chat Models 💬</h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">ChatModel</span></code> is an LLM interface that lets you configure and call LLMs easily. It receives a list of messages and passes them to the underlying LLM for it to generate the output. In fact, it is common to use <code class="docutils literal notranslate"><span class="pre">ChatModel</span></code>s even for non-conversational settings.</p>
@@ -424,11 +389,6 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">dotenv</span>
 
 <span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>    <span class="c1"># that loads the .env file variables into os.environ</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -467,11 +427,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -486,11 +441,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>langchain_core.messages.ai.AIMessage
-</pre></div>
-</div>
-</div>
 </div>
 <p>In the standard case (no structured output or such), the generated text is stored under the <code class="docutils literal notranslate"><span class="pre">content</span></code> attribute.</p>
 <div class="cell docutils container">
@@ -499,34 +449,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AIMessage(content=&quot;Bonjour! Ze Battle of Agincourt, eet ees a day that will be etched in my memory forever. &#39;Twas a day of great triumph for ze English, and a day of great shame for ze French.\n\nEet ees the year 1415, and our beloved France ees at war with ze English. Ze English king, Henry V, ees a cunning and ambitious man, and he ees determined to claim ze throne of France for himself.\n\nZe English army, eet ees a small force, no more than 6,000 men, but zay are well-trained and well-led. Ze French army, on ze other hand, ees a massive force, with over 20,000 men. We are confident of victory, no?\n\nBut ze English, zay have a secret weapon - ze longbow. Zay have brought with zem thousands of longbowmen, who can fire arrows at a rate of 12 per minute. Ze French knights, we are weighed down by our armor, and we are no match for ze English archers.\n\nZe battle begins, and ze English longbowmen unleash a hail of arrows upon us. Ze French knights, we charge forward, but we are cut down by ze arrows. Ze mud, eet ees thick and heavy, and our horses, zay are bogged down in ze mire.\n\nZe English, zay are well-positioned, and zay take advantage of ze terrain. Zay form a defensive line, with ze longbowmen at ze center, and ze men-at-arms on ze flanks. We, ze French, we are unable to break through zeir lines.\n\nZe battle rages on for hours, but in ze end, ze English emerge victorious. Ze French army, eet ees decimated, and many of our nobles, zay are killed or captured. I, myself, I am one of ze lucky ones, I escape with my life, but my honor, eet ees wounded.\n\nZe Battle of Agincourt, eet ees a great defeat for France, and a great victory for ze English. But I, I will not forget ze lessons of that day. Ze longbow, eet ees a powerful weapon, and ze English, zay are a force to be reckoned with. Vive la France!&quot;, additional_kwargs={}, response_metadata={&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &quot;Bonjour! Ze Battle of Agincourt, eet ees a day that will be etched in my memory forever. &#39;Twas a day of great triumph for ze English, and a day of great shame for ze French.\n\nEet ees the year 1415, and our beloved France ees at war with ze English. Ze English king, Henry V, ees a cunning and ambitious man, and he ees determined to claim ze throne of France for himself.\n\nZe English army, eet ees a small force, no more than 6,000 men, but zay are well-trained and well-led. Ze French army, on ze other hand, ees a massive force, with over 20,000 men. We are confident of victory, no?\n\nBut ze English, zay have a secret weapon - ze longbow. Zay have brought with zem thousands of longbowmen, who can fire arrows at a rate of 12 per minute. Ze French knights, we are weighed down by our armor, and we are no match for ze English archers.\n\nZe battle begins, and ze English longbowmen unleash a hail of arrows upon us. Ze French knights, we charge forward, but we are cut down by ze arrows. Ze mud, eet ees thick and heavy, and our horses, zay are bogged down in ze mire.\n\nZe English, zay are well-positioned, and zay take advantage of ze terrain. Zay form a defensive line, with ze longbowmen at ze center, and ze men-at-arms on ze flanks. We, ze French, we are unable to break through zeir lines.\n\nZe battle rages on for hours, but in ze end, ze English emerge victorious. Ze French army, eet ees decimated, and many of our nobles, zay are killed or captured. I, myself, I am one of ze lucky ones, I escape with my life, but my honor, eet ees wounded.\n\nZe Battle of Agincourt, eet ees a great defeat for France, and a great victory for ze English. But I, I will not forget ze lessons of that day. Ze longbow, eet ees a powerful weapon, and ze English, zay are a force to be reckoned with. Vive la France!&quot;, &#39;token_usage&#39;: {&#39;prompt_tokens&#39;: 35, &#39;total_tokens&#39;: 520, &#39;completion_tokens&#39;: 485}, &#39;finish_reason&#39;: &#39;stop&#39;, &#39;model_name&#39;: &#39;meta/llama-3.1-405b-instruct&#39;}, id=&#39;run--fdc42134-1a35-4d1a-826c-776606ddec34-0&#39;, usage_metadata={&#39;input_tokens&#39;: 35, &#39;output_tokens&#39;: 485, &#39;total_tokens&#39;: 520}, role=&#39;assistant&#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bonjour! Ze Battle of Agincourt, eet ees a day that will be etched in my memory forever. &#39;Twas a day of great triumph for ze English, and a day of great shame for ze French.
-
-Eet ees the year 1415, and our beloved France ees at war with ze English. Ze English king, Henry V, ees a cunning and ambitious man, and he ees determined to claim ze throne of France for himself.
-
-Ze English army, eet ees a small force, no more than 6,000 men, but zay are well-trained and well-led. Ze French army, on ze other hand, ees a massive force, with over 20,000 men. We are confident of victory, no?
-
-But ze English, zay have a secret weapon - ze longbow. Zay have brought with zem thousands of longbowmen, who can fire arrows at a rate of 12 per minute. Ze French knights, we are weighed down by our armor, and we are no match for ze English archers.
-
-Ze battle begins, and ze English longbowmen unleash a hail of arrows upon us. Ze French knights, we charge forward, but we are cut down by ze arrows. Ze mud, eet ees thick and heavy, and our horses, zay are bogged down in ze mire.
-
-Ze English, zay are well-positioned, and zay take advantage of ze terrain. Zay form a defensive line, with ze longbowmen at ze center, and ze men-at-arms on ze flanks. We, ze French, we are unable to break through zeir lines.
-
-Ze battle rages on for hours, but in ze end, ze English emerge victorious. Ze French army, eet ees decimated, and many of our nobles, zay are killed or captured. I, myself, I am one of ze lucky ones, I escape with my life, but my honor, eet ees wounded.
-
-Ze Battle of Agincourt, eet ees a great defeat for France, and a great victory for ze English. But I, I will not forget ze lessons of that day. Ze longbow, eet ees a powerful weapon, and ze English, zay are a force to be reckoned with. Vive la France!
 </pre></div>
 </div>
 </div>
@@ -582,21 +508,11 @@ Ze Battle of Agincourt, eet ees a great defeat for France, and a great victory f
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Battle(name=&#39;Battle of Agincourt&#39;, year=1415, location=&#39;Agincourt, France&#39;, description=[&#39;In fourteen hundred and fifteen, a year of great renown&#39;, &#39;King Henry of England, with courage in his crown&#39;, &#39;Did lead his army forth, to claim the French throne&#39;, &#39;And at Agincourt, the battle was to be known&#39;, &#39;The English longbowmen, with arrows swift and true&#39;, &#39;Did cut down the French knights, like wheat in the dew&#39;, &#39;Their armor, no match for the hail of arrows bright&#39;, &#39;The French nobles fell, in the muddy field of fight&#39;, &quot;Their cries of &#39;Havoc!&#39; and &#39;St. Denis!&#39; did fill the air&quot;, &#39;As the English lines, held firm, without a care&#39;, &#39;The battle raged on, through the muddy field of Agincourt&#39;, &#39;Where honor and glory, were won, and many a life was lost&#39;, &#39;The English emerged, victorious, their banners held high&#39;, &#39;And the French, defeated, did mourn, and wonder why&#39;, &#39;Their chivalry, and honor, had not been enough&#39;, &quot;To withstand, the English, and their longbow&#39;s deadly stuff&quot;])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Note that now the response is now a <code class="docutils literal notranslate"><span class="pre">Pydantic</span></code> model and it will be structured exactly as the provided schema, so instead of <code class="docutils literal notranslate"><span class="pre">content</span></code>, you would need to refer to the actual keys you have provided in the schema.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">)</span>  <span class="c1"># output: True</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -608,54 +524,11 @@ Ze Battle of Agincourt, eet ees a great defeat for France, and a great victory f
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In fourteen hundred and fifteen, a year of great renown
-King Henry of England, with courage in his crown
-Did lead his army forth, to claim the French throne
-And at Agincourt, the battle was to be known
-The English longbowmen, with arrows swift and true
-Did cut down the French knights, like wheat in the dew
-Their armor, no match for the hail of arrows bright
-The French nobles fell, in the muddy field of fight
-Their cries of &#39;Havoc!&#39; and &#39;St. Denis!&#39; did fill the air
-As the English lines, held firm, without a care
-The battle raged on, through the muddy field of Agincourt
-Where honor and glory, were won, and many a life was lost
-The English emerged, victorious, their banners held high
-And the French, defeated, did mourn, and wonder why
-Their chivalry, and honor, had not been enough
-To withstand, the English, and their longbow&#39;s deadly stuff
-</pre></div>
-</div>
-</div>
 </div>
 <p>To convert the model into a <code class="docutils literal notranslate"><span class="pre">dict</span></code>, use <code class="docutils literal notranslate"><span class="pre">model_dump</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Battle of Agincourt&#39;,
- &#39;year&#39;: 1415,
- &#39;location&#39;: &#39;Agincourt, France&#39;,
- &#39;description&#39;: [&#39;In fourteen hundred and fifteen, a year of great renown&#39;,
-  &#39;King Henry of England, with courage in his crown&#39;,
-  &#39;Did lead his army forth, to claim the French throne&#39;,
-  &#39;And at Agincourt, the battle was to be known&#39;,
-  &#39;The English longbowmen, with arrows swift and true&#39;,
-  &#39;Did cut down the French knights, like wheat in the dew&#39;,
-  &#39;Their armor, no match for the hail of arrows bright&#39;,
-  &#39;The French nobles fell, in the muddy field of fight&#39;,
-  &quot;Their cries of &#39;Havoc!&#39; and &#39;St. Denis!&#39; did fill the air&quot;,
-  &#39;As the English lines, held firm, without a care&#39;,
-  &#39;The battle raged on, through the muddy field of Agincourt&#39;,
-  &#39;Where honor and glory, were won, and many a life was lost&#39;,
-  &#39;The English emerged, victorious, their banners held high&#39;,
-  &#39;And the French, defeated, did mourn, and wonder why&#39;,
-  &#39;Their chivalry, and honor, had not been enough&#39;,
-  &quot;To withstand, the English, and their longbow&#39;s deadly stuff&quot;]}
 </pre></div>
 </div>
 </div>
@@ -717,14 +590,6 @@ To withstand, the English, and their longbow&#39;s deadly stuff
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;name&#39;: &#39;get_temperature&#39;,
-  &#39;args&#39;: {&#39;location&#39;: &#39;Paris&#39;, &#39;is_celcius&#39;: True},
-  &#39;id&#39;: &#39;chatcmpl-tool-8ea62c7bd2e045fcb92b4bf29ded117b&#39;,
-  &#39;type&#39;: &#39;tool_call&#39;}]
-</pre></div>
-</div>
-</div>
 </div>
 <p>To proceed with the generation, we should configure our pipeline to call the tools based on the generated name and arguments and then give it back to the LLM. Tools are also <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>s so they can be executed directly with the <code class="docutils literal notranslate"><span class="pre">invoke</span></code> method. It will return a new type of messages: a <code class="docutils literal notranslate"><span class="pre">ToolMessage</span></code>.</p>
 <div class="cell docutils container">
@@ -741,11 +606,6 @@ To withstand, the English, and their longbow&#39;s deadly stuff
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ToolMessage(content=&#39;10&#39;, name=&#39;get_temperature&#39;, tool_call_id=&#39;chatcmpl-tool-8ea62c7bd2e045fcb92b4bf29ded117b&#39;)]
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now this <code class="docutils literal notranslate"><span class="pre">ToolMessage</span></code> should be added to the rest of the messages and passed back to the LLM.</p>
 <div class="cell docutils container">
@@ -758,11 +618,6 @@ To withstand, the English, and their longbow&#39;s deadly stuff
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">content</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The current temperature in Paris is 10 degrees Celsius.&#39;
 </pre></div>
 </div>
 </div>
