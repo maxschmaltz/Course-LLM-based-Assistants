@@ -39,11 +39,11 @@ The course will feature both theoretical and practical sessions.
 
 * **Theory**:
 
-    * _Lectures_. At the lectures, we will mostly discuss applications of LLMs in different fields (on the examples of existing solutions), how the respective solutions are built and how they function, what their limitations are etc. You are highly encouraged to engage in discussions and arguments, constructively criticize the solutions and suggest your improvements and edits. The lecture slides are released 2 hours prior to the lecture.
+    * _Lectures_. At the lectures, we will mostly discuss applications of LLMs in different fields (on the examples of existing solutions), how the respective solutions are built and how they function, what their limitations are etc. You are highly encouraged to engage in discussions and arguments, constructively criticize the solutions and suggest your improvements and edits. 
 
 * **Practice**:
 
-    * _Labs_. In labs, we will practice technical skills by implementing toy LLM-based solutions. Labs tasks are released 3 days prior to the respective sessions.
+    * _Labs_. In labs, we will practice technical skills by implementing toy LLM-based solutions.
 
     * _Debates_. The debates will be conducted on material of the sessions dedicated to philosophical / ethical etc. considerations (weeks 1 and 13). In the debates, a certain motion (position) will be debated over by two teams: one will support it (the affirmative) and one will oppose it (the negative). See [Debates](./infos/debates.md) for more details. 
 
