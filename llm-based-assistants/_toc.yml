@@ -15,7 +15,7 @@ parts:
 
   - caption: "October: INTRO"
     chapters:
-    - file: sessions/block1_intro/2210.md
+    # - file: sessions/block1_intro/2210.md
     - file: sessions/block1_intro/2310/2310.md
     - file: sessions/block1_intro/2910/2910.md
     - file: sessions/block1_intro/3010/3010.ipynb
