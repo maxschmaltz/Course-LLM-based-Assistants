@@ -1,0 +1,930 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html"><link rel="next" title="05.11. Lecture: Virtual Assistants" href="../../block2_core/0511.html"><link rel="prev" title="23.10. Ontological Status of LLMs" href="../2310/2310.html">
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2025.09.25 -->
+        <title>30.10. Intro to LangChain 🦜🔗 - LLM-based Assistants</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">LLM-based Assistants</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">LLM-based Assistants</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Infos and Stuff</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/topic_overview.html">Topics Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/llm_inference_guide.html">LLM Inference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infos/debates.html">Debates</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">October: INTRO</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../2210.html">22.10. Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2310/2310.html">23.10. Ontological Status of LLMs</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">30.10. Intro to LangChain 🦜🔗</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">November-December: CORE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../block2_core/0511.html">05.11. Lecture: Virtual Assistants</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">January-February: PROJECTS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../block3_projects/projects.html">Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="intro-to-langchain">
+<h1>30.10. Intro to LangChain 🦜🔗<a class="headerlink" href="#intro-to-langchain" title="Link to this heading">¶</a></h1>
+<p>📍 <a class="reference external" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block1_intro/3010">Download notebook and session files</a></p>
+<p><a class="reference external" href="https://python.langchain.com/docs/introduction/">LangChain</a> is a powerful framework for <strong>building</strong> and <strong>orchestration</strong> of LLM-driven applications. It enables you to chain together language models, tools, and logic into flexible pipelines while maintaining the high level of abstraction. In other words, LangChain manages most of the engineering stuff for you so you can build LLM-based applications seamlessly.</p>
+<p>This tutorial covers the <strong>basic concepts</strong> you need to get started:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#runnables"><span class="xref myst">Runnables</span></a></p></li>
+<li><p><a class="reference internal" href="#lcel"><span class="xref myst">LCEL (LangChain Expression Language)</span></a></p></li>
+<li><p><a class="reference internal" href="#messages"><span class="xref myst">Messages</span></a></p></li>
+<li><p><a class="reference internal" href="#chat_models"><span class="xref myst">Chat Models</span></a></p></li>
+<li><p><a class="reference internal" href="#structured_output"><span class="xref myst">Structured Output</span></a></p></li>
+<li><p><a class="reference internal" href="#tool_calling"><span class="xref myst">Tool Calling</span></a></p></li>
+</ul>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<p>To start with the tutorial, complete the steps <a class="reference internal" href="#../../../../infos/llm_inference_guide/README.md#prerequisites"><span class="xref myst">Prerequisites</span></a>, <a class="reference internal" href="#../../../../infos/llm_inference_guide/README.md#environment-setup"><span class="xref myst">Environment Setup</span></a>, and <a class="reference internal" href="#../../../../infos/llm_inference_guide/README.md#getting-api-key"><span class="xref myst">Getting API Key</span></a> from the <a class="reference internal" href="#../../../../infos/llm_inference_guide/README.md"><span class="xref myst">LLM Inference Guide</span></a>.</p>
+<h2 id="runnables">1. Runnables 🔁</h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> is the foundational building block in LangChain. It is an abstraction for anything that can be <em>invoked</em> — meaning you can call it with an input and get an output. <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>s share the same interface for the core functionality for you to be able to unify usage of components of different types under the same logic: <strong>input in - output out</strong>. This enables piping components for different purposes easily and intuitively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables</span><span class="w"> </span><span class="kn">import</span> <span class="n">Runnable</span><span class="p">,</span> <span class="n">RunnableLambda</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a simple function as a Runnable</span>
+<span class="n">uppercase</span> <span class="o">=</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+
+<span class="n">uppercase</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;langchain&quot;</span><span class="p">)</span>  <span class="c1"># output: LANGCHAIN</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;LANGCHAIN&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define another simple function as a Runnable</span>
+<span class="n">reverse</span> <span class="o">=</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">reverse</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;langchain&quot;</span><span class="p">)</span>  <span class="c1"># output: niahcgnal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;niahcgnal&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="lcel">2. LCEL (LangChain Expression Language) 🔗</h2>
+<p><em>LCEL</em> is a syntax for composing LangChain components (so <code class="docutils literal notranslate"><span class="pre">Runnables</span></code>s) using a <code class="docutils literal notranslate"><span class="pre">|</span></code> pipe operator — similar to Unix pipes. Since LangChain components are (almost) all <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>s, you can pipe them with LCEL and the output of the previous <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> will become the input of the next one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># combine the two Runnables into a single pipeline</span>
+<span class="n">pipeline_c</span> <span class="o">=</span> <span class="n">uppercase</span> <span class="o">|</span> <span class="n">reverse</span>
+
+<span class="n">pipeline_c</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;langchain&quot;</span><span class="p">)</span>  <span class="c1"># output: NIAHCGNAL</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;NIAHCGNAL&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pipeline_c</span><span class="p">,</span> <span class="n">Runnable</span><span class="p">)</span>  <span class="c1"># output: True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>LCEL also support parallelization. If you pass a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>s as values, LangChain will run them in parallel and return a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with outputs under the corresponding keys.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;upper&quot;</span><span class="p">:</span> <span class="n">uppercase</span><span class="p">,</span>
+    <span class="s2">&quot;rev&quot;</span><span class="p">:</span> <span class="n">reverse</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">summarizer</span> <span class="o">=</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Summary: </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;upper&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;rev&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># this will 1) run `uppercase` and put the result in `upper` key</span>
+<span class="c1"># 2) run `reverse` and put the result in `rev` key</span>
+<span class="c1"># 3) pass this dict to summarizer for it to combine the results</span>
+<span class="n">pipeline_p</span> <span class="o">=</span> <span class="n">mapping</span> <span class="o">|</span> <span class="n">summarizer</span>
+
+<span class="n">pipeline_p</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;langchain&quot;</span><span class="p">)</span>  <span class="c1"># output: Summary: LANGCHAIN and niahcgnal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Summary: LANGCHAIN and niahcgnal&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pipeline_p</span><span class="p">,</span> <span class="n">Runnable</span><span class="p">)</span>  <span class="c1"># output: True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="messages">3. Messages 🗨️</h2>
+<p>Messages are needed to give LLMs instructions. Different types of messages improve the behavior of the model in multi-turn settings.</p>
+<p>There are 3 basic message types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SystemMessage</span></code>: sets LLM role and describes the desired behavior</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HumanMessage</span></code>: user input</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AIMessage</span></code>: model output</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemMessage</span><span class="p">,</span> <span class="n">HumanMessage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">SystemMessage</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="s2">&quot;You are a medieval French knight.&quot;</span> <span class="c1"># role</span>
+    <span class="p">),</span>
+    <span class="n">HumanMessage</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Give me a summary of the Battle of Agincourt.&quot;</span> <span class="c1"># user request</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Messages are no <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>s! They are the data in the pipeline and not a part of it itself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Runnable</span><span class="p">)</span>  <span class="c1"># output: False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="chat_models">4. Chat Models 💬</h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">ChatModel</span></code> is an LLM interface that lets you configure and call LLMs easily. It receives a list of messages and passes them to the underlying LLM for it to generate the output. In fact, it is common to use <code class="docutils literal notranslate"><span class="pre">ChatModel</span></code>s even for non-conversational settings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_nvidia_ai_endpoints</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatNVIDIA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.rate_limiters</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryRateLimiter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read system variables</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dotenv</span>
+
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>    <span class="c1"># that loads the .env file variables into os.environ</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose any model, catalogue is available under https://build.nvidia.com/models</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;meta/llama-3.1-405b-instruct&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this rate limiter will ensure we do not exceed the rate limit</span>
+<span class="c1"># of 40 RPM given by NVIDIA</span>
+<span class="n">rate_limiter</span> <span class="o">=</span> <span class="n">InMemoryRateLimiter</span><span class="p">(</span>
+    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">35</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># 35 requests per minute to be sure</span>
+    <span class="n">check_every_n_seconds</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># wake up every 100 ms to check whether allowed to make a request,</span>
+    <span class="n">max_bucket_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>  <span class="c1"># controls the maximum burst size</span>
+<span class="p">)</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatNVIDIA</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">MODEL_NAME</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NVIDIA_API_KEY&quot;</span><span class="p">),</span> 
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>   <span class="c1"># ensure reproducibility,</span>
+    <span class="n">rate_limiter</span><span class="o">=</span><span class="n">rate_limiter</span>  <span class="c1"># bind the rate limiter</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">Runnable</span><span class="p">)</span>  <span class="c1"># output: True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>  <span class="c1"># output: AIMessage</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>langchain_core.messages.ai.AIMessage
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the standard case (no structured output or such), the generated text is stored under the <code class="docutils literal notranslate"><span class="pre">content</span></code> attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AIMessage(content=&quot;Bonjour! Ze Battle of Agincourt, eet ees a day that will be etched in my memory forever. &#39;Twas a day of great triumph for ze English, and a day of great shame for ze French.\n\nEet ees the year 1415, and our beloved France ees at war with ze English. Ze English king, Henry V, ees a cunning and ambitious man, and he ees determined to claim ze throne of France for himself.\n\nZe English army, eet ees a small force, no more than 6,000 men, but zay are well-trained and well-led. Ze French army, on ze other hand, ees a massive force, with over 20,000 men. We are confident of victory, no?\n\nBut ze English, zay have a secret weapon - ze longbow. Zay have brought with zem thousands of longbowmen, who can fire arrows at a rate of 12 per minute. Ze French knights, we are weighed down by our armor, and we are no match for ze English archers.\n\nZe battle begins, and ze English longbowmen unleash a hail of arrows upon us. Ze French knights, we charge forward, but we are cut down by ze arrows. Ze mud, eet ees thick and heavy, and our horses, zay are bogged down in ze mire.\n\nZe English, zay are well-positioned, and zay take advantage of ze terrain. Zay form a defensive line, with ze longbowmen at ze center, and ze men-at-arms on ze flanks. We, ze French, we are unable to break through zeir lines.\n\nZe battle rages on for hours, but in ze end, ze English emerge victorious. Ze French army, eet ees decimated, and many of our nobles, zay are killed or captured. I, myself, I am one of ze lucky ones, I escape with my life, but my honor, eet ees wounded.\n\nZe Battle of Agincourt, eet ees a great defeat for France, and a great victory for ze English. But I, I will not forget ze lessons of that day. Ze longbow, eet ees a powerful weapon, and ze English, zay are a force to be reckoned with. Vive la France!&quot;, additional_kwargs={}, response_metadata={&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &quot;Bonjour! Ze Battle of Agincourt, eet ees a day that will be etched in my memory forever. &#39;Twas a day of great triumph for ze English, and a day of great shame for ze French.\n\nEet ees the year 1415, and our beloved France ees at war with ze English. Ze English king, Henry V, ees a cunning and ambitious man, and he ees determined to claim ze throne of France for himself.\n\nZe English army, eet ees a small force, no more than 6,000 men, but zay are well-trained and well-led. Ze French army, on ze other hand, ees a massive force, with over 20,000 men. We are confident of victory, no?\n\nBut ze English, zay have a secret weapon - ze longbow. Zay have brought with zem thousands of longbowmen, who can fire arrows at a rate of 12 per minute. Ze French knights, we are weighed down by our armor, and we are no match for ze English archers.\n\nZe battle begins, and ze English longbowmen unleash a hail of arrows upon us. Ze French knights, we charge forward, but we are cut down by ze arrows. Ze mud, eet ees thick and heavy, and our horses, zay are bogged down in ze mire.\n\nZe English, zay are well-positioned, and zay take advantage of ze terrain. Zay form a defensive line, with ze longbowmen at ze center, and ze men-at-arms on ze flanks. We, ze French, we are unable to break through zeir lines.\n\nZe battle rages on for hours, but in ze end, ze English emerge victorious. Ze French army, eet ees decimated, and many of our nobles, zay are killed or captured. I, myself, I am one of ze lucky ones, I escape with my life, but my honor, eet ees wounded.\n\nZe Battle of Agincourt, eet ees a great defeat for France, and a great victory for ze English. But I, I will not forget ze lessons of that day. Ze longbow, eet ees a powerful weapon, and ze English, zay are a force to be reckoned with. Vive la France!&quot;, &#39;token_usage&#39;: {&#39;prompt_tokens&#39;: 35, &#39;total_tokens&#39;: 520, &#39;completion_tokens&#39;: 485}, &#39;finish_reason&#39;: &#39;stop&#39;, &#39;model_name&#39;: &#39;meta/llama-3.1-405b-instruct&#39;}, id=&#39;run--fdc42134-1a35-4d1a-826c-776606ddec34-0&#39;, usage_metadata={&#39;input_tokens&#39;: 35, &#39;output_tokens&#39;: 485, &#39;total_tokens&#39;: 520}, role=&#39;assistant&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bonjour! Ze Battle of Agincourt, eet ees a day that will be etched in my memory forever. &#39;Twas a day of great triumph for ze English, and a day of great shame for ze French.
+
+Eet ees the year 1415, and our beloved France ees at war with ze English. Ze English king, Henry V, ees a cunning and ambitious man, and he ees determined to claim ze throne of France for himself.
+
+Ze English army, eet ees a small force, no more than 6,000 men, but zay are well-trained and well-led. Ze French army, on ze other hand, ees a massive force, with over 20,000 men. We are confident of victory, no?
+
+But ze English, zay have a secret weapon - ze longbow. Zay have brought with zem thousands of longbowmen, who can fire arrows at a rate of 12 per minute. Ze French knights, we are weighed down by our armor, and we are no match for ze English archers.
+
+Ze battle begins, and ze English longbowmen unleash a hail of arrows upon us. Ze French knights, we charge forward, but we are cut down by ze arrows. Ze mud, eet ees thick and heavy, and our horses, zay are bogged down in ze mire.
+
+Ze English, zay are well-positioned, and zay take advantage of ze terrain. Zay form a defensive line, with ze longbowmen at ze center, and ze men-at-arms on ze flanks. We, ze French, we are unable to break through zeir lines.
+
+Ze battle rages on for hours, but in ze end, ze English emerge victorious. Ze French army, eet ees decimated, and many of our nobles, zay are killed or captured. I, myself, I am one of ze lucky ones, I escape with my life, but my honor, eet ees wounded.
+
+Ze Battle of Agincourt, eet ees a great defeat for France, and a great victory for ze English. But I, I will not forget ze lessons of that day. Ze longbow, eet ees a powerful weapon, and ze English, zay are a force to be reckoned with. Vive la France!
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="structured_output">5. Structured Output 🔌</h2>
+<p>LLMs usually return text, but LangChain allows parsing that text into <strong>structured data</strong> like JSON. That enables <strong>machine-readable</strong> responses and compatibility of the components when connecting the LLMs to external stuff or have it do actions.</p>
+<p>JSON is the most widely-used structured output time, and <code class="docutils literal notranslate"><span class="pre">Pydantic</span></code> provides a Python interface to define schemas (using Python classes) that the model’s responses must conform to. That is an easy and intuitive way to provide the LLM with the instructions about how the output should be structured. <code class="docutils literal notranslate"><span class="pre">Pydantic</span></code> also takes care of parsing and validating the LLM output and is therefore a mediator between the LLM and the output JSON.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Battle</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the battle&quot;</span><span class="p">)</span>
+    <span class="n">year</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Year of the battle&quot;</span><span class="p">)</span>
+    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Location of the battle&quot;</span><span class="p">)</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A list of verses to describe the battle, one string per verse&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">structured_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">Battle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">SystemMessage</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="s2">&quot;You are a medieval French knight.&quot;</span>
+    <span class="p">),</span>
+    <span class="n">HumanMessage</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Give me a few verses (5 or more) about the Battle of Agincourt as well as information about its year and location.&quot;</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">structured_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">new_messages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Battle(name=&#39;Battle of Agincourt&#39;, year=1415, location=&#39;Agincourt, France&#39;, description=[&#39;In fourteen hundred and fifteen, a year of great renown&#39;, &#39;King Henry of England, with courage in his crown&#39;, &#39;Did lead his army forth, to claim the French throne&#39;, &#39;And at Agincourt, the battle was to be known&#39;, &#39;The English longbowmen, with arrows swift and true&#39;, &#39;Did cut down the French knights, like wheat in the dew&#39;, &#39;Their armor, no match for the hail of arrows bright&#39;, &#39;The French nobles fell, in the muddy field of fight&#39;, &quot;Their cries of &#39;Havoc!&#39; and &#39;St. Denis!&#39; did fill the air&quot;, &#39;As the English lines, held firm, without a care&#39;, &#39;The battle raged on, through the muddy field of Agincourt&#39;, &#39;Where honor and glory, were won, and many a life was lost&#39;, &#39;The English emerged, victorious, their banners held high&#39;, &#39;And the French, defeated, did mourn, and wonder why&#39;, &#39;Their chivalry, and honor, had not been enough&#39;, &quot;To withstand, the English, and their longbow&#39;s deadly stuff&quot;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that now the response is now a <code class="docutils literal notranslate"><span class="pre">Pydantic</span></code> model and it will be structured exactly as the provided schema, so instead of <code class="docutils literal notranslate"><span class="pre">content</span></code>, you would need to refer to the actual keys you have provided in the schema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">)</span>  <span class="c1"># output: True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">verse</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">description</span><span class="p">:</span>  <span class="c1"># output: List of verses describing the battle</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">verse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In fourteen hundred and fifteen, a year of great renown
+King Henry of England, with courage in his crown
+Did lead his army forth, to claim the French throne
+And at Agincourt, the battle was to be known
+The English longbowmen, with arrows swift and true
+Did cut down the French knights, like wheat in the dew
+Their armor, no match for the hail of arrows bright
+The French nobles fell, in the muddy field of fight
+Their cries of &#39;Havoc!&#39; and &#39;St. Denis!&#39; did fill the air
+As the English lines, held firm, without a care
+The battle raged on, through the muddy field of Agincourt
+Where honor and glory, were won, and many a life was lost
+The English emerged, victorious, their banners held high
+And the French, defeated, did mourn, and wonder why
+Their chivalry, and honor, had not been enough
+To withstand, the English, and their longbow&#39;s deadly stuff
+</pre></div>
+</div>
+</div>
+</div>
+<p>To convert the model into a <code class="docutils literal notranslate"><span class="pre">dict</span></code>, use <code class="docutils literal notranslate"><span class="pre">model_dump</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Battle of Agincourt&#39;,
+ &#39;year&#39;: 1415,
+ &#39;location&#39;: &#39;Agincourt, France&#39;,
+ &#39;description&#39;: [&#39;In fourteen hundred and fifteen, a year of great renown&#39;,
+  &#39;King Henry of England, with courage in his crown&#39;,
+  &#39;Did lead his army forth, to claim the French throne&#39;,
+  &#39;And at Agincourt, the battle was to be known&#39;,
+  &#39;The English longbowmen, with arrows swift and true&#39;,
+  &#39;Did cut down the French knights, like wheat in the dew&#39;,
+  &#39;Their armor, no match for the hail of arrows bright&#39;,
+  &#39;The French nobles fell, in the muddy field of fight&#39;,
+  &quot;Their cries of &#39;Havoc!&#39; and &#39;St. Denis!&#39; did fill the air&quot;,
+  &#39;As the English lines, held firm, without a care&#39;,
+  &#39;The battle raged on, through the muddy field of Agincourt&#39;,
+  &#39;Where honor and glory, were won, and many a life was lost&#39;,
+  &#39;The English emerged, victorious, their banners held high&#39;,
+  &#39;And the French, defeated, did mourn, and wonder why&#39;,
+  &#39;Their chivalry, and honor, had not been enough&#39;,
+  &quot;To withstand, the English, and their longbow&#39;s deadly stuff&quot;]}
+</pre></div>
+</div>
+</div>
+</div>
+<h2 id="tool_calling">6. Tool Calling 🛠️</h2>
+<p>Tools are Python functions (hence former name: function calling) that can be “called” by the model to expand its abilities. It makes sense to call tool to do stuff LLMs is incapable of: real-time search, doing actions via external APIs (reading emails, scheduling appointments etc.).</p>
+<p>An <strong>LLM cannot actually call the function</strong>. What it does is it returns the name of the function it thinks it is now necessary to call and and the arguments provided by the scheme of the function. These arguments can then be parsed for the tool to be executed.</p>
+<p>The easiest way to convert a function into a tool is to use the <code class="docutils literal notranslate"><span class="pre">&#64;tool</span></code> decorator. It will automatically create a tool scheme based on the docstring and the input and output types of the provided function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_temperature</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_celcius</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get current weather.&quot;&quot;&quot;</span>
+    <span class="c1"># dummy function</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">location</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_celcius</span><span class="p">:</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+    <span class="k">return</span> <span class="n">temp</span>
+
+<span class="c1"># will be used to actually execute tools</span>
+<span class="n">tools_index</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;get_temperature&quot;</span><span class="p">:</span> <span class="n">get_temperature</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">llm_with_tool</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">([</span><span class="n">get_temperature</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">HumanMessage</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="s2">&quot;What is the temperature in Paris?&quot;</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">llm_with_tool</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the model decides to call tools, the respective outputs will be stored in the <code class="docutils literal notranslate"><span class="pre">tool_calls</span></code> attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">tool_calls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;name&#39;: &#39;get_temperature&#39;,
+  &#39;args&#39;: {&#39;location&#39;: &#39;Paris&#39;, &#39;is_celcius&#39;: True},
+  &#39;id&#39;: &#39;chatcmpl-tool-8ea62c7bd2e045fcb92b4bf29ded117b&#39;,
+  &#39;type&#39;: &#39;tool_call&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To proceed with the generation, we should configure our pipeline to call the tools based on the generated name and arguments and then give it back to the LLM. Tools are also <code class="docutils literal notranslate"><span class="pre">Runnable</span></code>s so they can be executed directly with the <code class="docutils literal notranslate"><span class="pre">invoke</span></code> method. It will return a new type of messages: a <code class="docutils literal notranslate"><span class="pre">ToolMessage</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tool_outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>
+    <span class="n">tool_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+    <span class="n">tool_output</span> <span class="o">=</span> <span class="n">tools_index</span><span class="p">[</span><span class="n">tool_name</span><span class="p">]</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+        <span class="n">tool_call</span>
+    <span class="p">)</span>
+    <span class="n">tool_outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tool_output</span><span class="p">)</span>
+
+<span class="n">tool_outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ToolMessage(content=&#39;10&#39;, name=&#39;get_temperature&#39;, tool_call_id=&#39;chatcmpl-tool-8ea62c7bd2e045fcb92b4bf29ded117b&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now this <code class="docutils literal notranslate"><span class="pre">ToolMessage</span></code> should be added to the rest of the messages and passed back to the LLM.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span> <span class="o">+</span> <span class="n">tool_outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The current temperature in Paris is 10 degrees Celsius.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary 🧩<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Used For</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Runnables</strong></p></td>
+<td><p>Core executable units</p></td>
+<td><p>Universality, piping logic</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LCEL</strong></p></td>
+<td><p>Pipe syntax for chaining components</p></td>
+<td><p>Easy, clean composition</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Messages</strong></p></td>
+<td><p>Human / System / AI messages for giving the context</p></td>
+<td><p>Providing instructions to the LLM</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Chat Models</strong></p></td>
+<td><p>LLMs designed for taking message input and generating a certain output</p></td>
+<td><p>Conversations, reasoning, tools</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Structured Output</strong></p></td>
+<td><p>Parsing LLM text into JSON / Pydantic types</p></td>
+<td><p>Data extraction, validation</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tool Calling</strong></p></td>
+<td><p>Calling external Python functions from withing the LLM-based pipeline</p></td>
+<td><p>Extend LLMs with external logic</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./sessions/block1_intro/3010"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../block2_core/0511.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">05.11. Lecture: Virtual Assistants</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../2310/2310.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">23.10. Ontological Status of LLMs</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Maksim Shmalts
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants" aria-label="GitHub"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+</a>
+              <a class="muted-link footer-icon" href="https://github.com/maxschmaltz/Course-LLM-based-Assistants/issues/new" aria-label="Issues"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 18 18">
+  <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm.1-6.995a.905.905 0 0 1 1.8 0l-.35 4.5a.55.55 0 0 1-1.1 0l-.35-4.5z"/>
+</svg>
+</a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">30.10. Intro to LangChain 🦜🔗</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#summary">Summary 🧩</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    </body>
+</html>
