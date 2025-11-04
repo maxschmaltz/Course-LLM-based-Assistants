@@ -174,11 +174,11 @@ The first core topic addresses single-LLM virtual assistants such as chatbots an
 **Sources**:
 * [A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications](https://arxiv.org/abs/2402.07927), `Indian Institute of Technology Patna, Stanford & Amazon AI`
 * 📌 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903) (pages 1-9), `Google Research`
+* [Automatic Prompt Selection for Large Language Models](https://arxiv.org/abs/2404.02717), `Cinnamon AI, Hung Yen University of Technology and Education & Deakin University`
+* [PromptGen: Automatically Generate Prompts using Generative Models](https://aclanthology.org/2022.findings-naacl.3/), `Baidu Research`
 * [A Survey on the Memory Mechanism of Large Language Model based Agents](https://arxiv.org/abs/2404.13501), `Renmin University of China & Huawei Noah’s Ark Lab`
 * [Augmenting Language Models with Long-Term Memory](https://arxiv.org/abs/2306.07174), `UC Santa Barbara & Microsoft Research`
 * [From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models](https://arxiv.org/abs/2401.02777), `Beike Inc.`
-* [Automatic Prompt Selection for Large Language Models](https://arxiv.org/abs/2404.02717), `Cinnamon AI, Hung Yen University of Technology and Education & Deakin University`
-* [PromptGen: Automatically Generate Prompts using Generative Models](https://aclanthology.org/2022.findings-naacl.3/), `Baidu Research`
 * 📌 [Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach](https://arxiv.org/abs/2407.16833) (pages 1-7), `Google DeepMind & University of Michigan`
 * [A Survey on Retrieval-Augmented Text Generation for Large Language Models](https://arxiv.org/abs/2404.10981), `York University`
 * [Don't Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks](https://arxiv.org/abs/2412.15605), `National Chengchi University & Academia Sinica`

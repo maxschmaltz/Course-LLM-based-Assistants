@@ -22,7 +22,7 @@ parts:
 
   - caption: "November-December: CORE"
     chapters:
-    - file: sessions/block2_core/0511.md
+    - file: sessions/block2_core/0511/0511.md
 
   - caption: "January-February: PROJECTS"
     chapters:
