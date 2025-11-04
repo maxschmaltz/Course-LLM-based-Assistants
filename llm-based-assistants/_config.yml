@@ -1,5 +1,4 @@
-# Book settings
-# Learn more at https://jupyterbook.org/customize/config.html
+# Book settings, learn more at https://jupyterbook.org/customize/config.html
 
 title: LLM-based Assistants
 author: Maksim Shmalts
