@@ -166,7 +166,7 @@ This is the first lab which will guide you through the basic concepts of LangCha
 The first core topic addresses single-LLM virtual assistants such as chatbots and RAG systems. We'll discuss how these systems are built and how you can tune them for your use case.
 
 **Key points**:
-* Prompting techniques
+* Recap: Prompting
 * Memory
 * RAG workflow & techniques
 * RAG vs long-context LLMs
