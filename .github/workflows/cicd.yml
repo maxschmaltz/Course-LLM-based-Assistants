@@ -11,30 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-    # Install dependencies
-    - name: Set up Python
-      uses: actions/setup-python@v1
-      with:
-        python-version: "3.13"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
+      - name: Build the Jupyter Book
+        run: |
+          jupyter-book build llm-based-assistants
 
-    # Build the book
-    - name: Build the book
-      run: |
-        jupyter-book build llm-based-assistants
+      - name: Check if gh-pages branch exists
+        run: |
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+        shell: bash
 
-    # Push the book's HTML to github-pages
-    - name: GitHub Pages action
-      uses: peaceiris/actions-gh-pages@v3.5.9
-      with:
-        github_token: ${{ secrets.ACCESS_TOKEN_FOR_BOT }}
-        publish_dir: llm-based-assistants/_build/html
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN_FOR_BOT }}
+          publish_dir: ./llm-based-assistants/_build/html
 
     # steps:
     #   - name: Checkout repo
