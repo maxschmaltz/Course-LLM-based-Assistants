@@ -13,16 +13,16 @@ parts:
     - file: infos/debates.md
    
 
-  - caption: "October: INTRO"
-    chapters:
-    - file: sessions/block1_intro/2210.md
-    - file: sessions/block1_intro/2310/2310.md
-    - file: sessions/block1_intro/2910/2910.md
+  # - caption: "October: INTRO"
+  #   chapters:
+  #   - file: sessions/block1_intro/2210.md
+  #   - file: sessions/block1_intro/2310/2310.md
+  #   - file: sessions/block1_intro/2910/2910.md
 
-  - caption: "November-December: CORE"
-    chapters:
-    - file: sessions/block2_core/0511.md
+  # - caption: "November-December: CORE"
+  #   chapters:
+  #   - file: sessions/block2_core/0511.md
 
-  - caption: "January-February: PROJECTS"
-    chapters:
-    - file: sessions/block3_projects/projects.md
+  # - caption: "January-February: PROJECTS"
+  #   chapters:
+  #   - file: sessions/block3_projects/projects.md
