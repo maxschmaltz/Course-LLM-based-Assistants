@@ -12,12 +12,13 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -28,13 +29,19 @@ jobs:
         run: |
           jupyter-book build llm-based-assistants
 
-      - name: Check if gh-pages branch exists
+      - name: Verify build output exists
         run: |
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-        shell: bash
+          test -f llm-based-assistants/_build/html/index.html || (echo "ERROR: index.html not found under llm-based-assistants/_build/html" && ls -R llm-based-assistants/_build || true && exit 1)
+
+      - name: Upload site artifact (for debugging)
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-html
+          path: llm-based-assistants/_build/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACCESS_TOKEN_FOR_BOT }}
+          publish_branch: gh-pages
           publish_dir: ./llm-based-assistants/_build/html
