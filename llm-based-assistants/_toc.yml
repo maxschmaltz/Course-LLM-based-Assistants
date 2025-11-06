@@ -7,23 +7,22 @@ parts:
 
   - caption: Infos and Stuff
     chapters:
-    - file: infos/topic_overview.md
-    - file: infos/llm_inference_guide.ipynb
-    - file: infos/debates.md
-   
+    - file: infos/topic_overview
+    - file: infos/llm_inference_guide
+    - file: infos/debates
 
   - caption: "October: INTRO"
     chapters:
-    - file: sessions/block1_intro/2210.md
-    - file: sessions/block1_intro/2310/2310.md
-    - file: sessions/block1_intro/2910/2910.md
-    - file: sessions/block1_intro/3010.ipynb
+    - file: sessions/block1_intro/2210
+    - file: sessions/block1_intro/2310/2310
+    - file: sessions/block1_intro/2910/2910
+    - file: sessions/block1_intro/3010
 
   - caption: "November-December: CORE"
     chapters:
-    - file: sessions/block2_core/0511/0511.md
-    - file: sessions/block2_core/0611.ipynb
+    - file: sessions/block2_core/0511/0511
+    - file: sessions/block2_core/0611
 
   - caption: "January-February: PROJECTS"
     chapters:
-    - file: sessions/block3_projects/projects.md
+    - file: sessions/block3_projects/projects
