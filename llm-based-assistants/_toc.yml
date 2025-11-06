@@ -1,13 +1,13 @@
 # Table of contents, learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: index
+root: index.md
 
 parts:
 
   - caption: Infos and Stuff
     chapters:
-    - file: infos/topic_overview
+    - file: infos/topic_overview.md
   #   - file: infos/llm_inference_guide.ipynb
   #   - file: infos/debates.md
 
