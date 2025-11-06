@@ -33,7 +33,8 @@ project:
             - file: llm-based-assistants/sessions/block3_projects/projects.md
     
 site:
-  template: furo
+  template: book-theme
+  # template: furo
   # options:
   #   favicon: favicon.ico
   #   logo: site_logo.png
