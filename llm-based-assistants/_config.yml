@@ -5,7 +5,7 @@ author: Maksim Shmalts
 email: maksim.shmalts@uni-tuebingen.de
 copyright: "2025, Maksim Shmalts"
 # description: Webbook for the course LLM-based Assistants @ Uni Tübingen (SoSe25)
-exclude_patterns: ["**.DS_Store", "**.ipynb_checkpoints", "_buildx"]
+exclude_patterns: ["**.DS_Store", "**.ipynb_checkpoints", "_buildx", "**.pdf"]
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
