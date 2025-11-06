@@ -6,7 +6,7 @@ author: Maksim Shmalts
 email: maksim.shmalts@uni-tuebingen.de
 copyright: "2025, Maksim Shmalts"
 # description: Webbook for the course LLM-based Assistants @ Uni Tübingen (WiSe25/26)
-exclude_patterns: ["**.DS_Store", "**.ipynb_checkpoints", "_buildx"]
+exclude_patterns: ["**.DS_Store", "**.ipynb_checkpoints", "_buildx", "**.pdf"]
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -24,8 +24,8 @@ repository:
   branch: main  # Which branch of the repository should be used when creating links (optional)
   path_to_book: llm-based-assistants  # Optional path to your book, relative to the repository root
 
-extra_files:
-  - "**.pdf"
+# extra_files:
+#   - "**.pdf"
 
 sphinx:
   config:
