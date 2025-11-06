@@ -7,7 +7,7 @@ parts:
 
   - caption: Infos and Stuff
     chapters:
-    - file: infos/topic_overview.md
+    - file: infos/topic_overview
   #   - file: infos/llm_inference_guide.ipynb
   #   - file: infos/debates.md
 
