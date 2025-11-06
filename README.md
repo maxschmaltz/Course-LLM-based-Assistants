@@ -1,7 +1,7 @@
 # LLM-based Assistants
-Webbook for the course LLM-based Assistants @ Uni Tübingen (SoSe25)
+Webbook for the course LLM-based Assistants @ Uni Tübingen (WiSe25/26)
 
-Full webbook can be found [here](https://maxschmaltz.github.io//Course-LLM-based-Assistants/).
+Full webbook can be found [here](https://maxschmaltz.github.io/Course-LLM-based-Assistants/).
 
 ## Summary
 
