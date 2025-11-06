@@ -11,39 +11,65 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.12"
-          cache: 'pip'
+    # Install dependencies
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: "3.13"
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
 
-      - name: Build the Jupyter Book
-        run: |
-          set -e
-          jupyter-book build llm-based-assistants
-          ls -la llm-based-assistants/_build/html
 
-      - name: Verify build output exists
-        run: |
-          test -f llm-based-assistants/_build/html/index.html || (echo "ERROR: index.html not found under llm-based-assistants/_build/html" && ls -R llm-based-assistants/_build || true && exit 1)
+    # Build the book
+    - name: Build the book
+      run: |
+        jupyter-book build llm-based-assistants
 
-      - name: Upload site artifact (for debugging)
-        uses: actions/upload-artifact@v4
-        with:
-          name: site-html
-          path: llm-based-assistants/_build/html
+    # Push the book's HTML to github-pages
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v3.5.9
+      with:
+        github_token: ${{ secrets.ACCESS_TOKEN_FOR_BOT }}
+        publish_dir: llm-based-assistants/_build/html
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.ACCESS_TOKEN_FOR_BOT }}
-          publish_branch: gh-pages
-          publish_dir: ./llm-based-assistants/_build/html
+    # steps:
+    #   - name: Checkout repo
+    #     uses: actions/checkout@v4
+
+    #   - name: Set up Python
+    #     uses: actions/setup-python@v4
+    #     with:
+    #       python-version: "3.12"
+    #       cache: 'pip'
+
+    #   - name: Install dependencies
+    #     run: |
+    #       python -m pip install --upgrade pip
+    #       pip install -r requirements.txt
+
+    #   - name: Build the Jupyter Book
+    #     run: |
+    #       set -e
+    #       jupyter-book build llm-based-assistants
+    #       ls -la llm-based-assistants/_build/html
+
+    #   - name: Verify build output exists
+    #     run: |
+    #       test -f llm-based-assistants/_build/html/index.html || (echo "ERROR: index.html not found under llm-based-assistants/_build/html" && ls -R llm-based-assistants/_build || true && exit 1)
+
+    #   - name: Upload site artifact (for debugging)
+    #     uses: actions/upload-artifact@v4
+    #     with:
+    #       name: site-html
+    #       path: llm-based-assistants/_build/html
+
+    #   - name: Deploy to GitHub Pages
+    #     uses: peaceiris/actions-gh-pages@v3
+    #     with:
+    #       github_token: ${{ secrets.ACCESS_TOKEN_FOR_BOT }}
+    #       publish_branch: gh-pages
+    #       publish_dir: ./llm-based-assistants/_build/html
