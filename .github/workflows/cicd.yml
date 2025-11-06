@@ -27,7 +27,10 @@ jobs:
 
       - name: Build the Jupyter Book
         run: |
+          set -e
           jupyter-book build llm-based-assistants
+          echo "Build completed successfully"
+          ls -la llm-based-assistants/_build/html
 
       - name: Verify build output exists
         run: |
