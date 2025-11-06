@@ -28,7 +28,7 @@ jobs:
       - name: Build the Jupyter Book
         run: |
           set -e
-          jupyter-book build llm-based-assistants --verbose
+          jupyter-book build llm-based-assistants
           ls -la llm-based-assistants/_build/html
 
       - name: Verify build output exists
