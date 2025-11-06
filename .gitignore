@@ -9,3 +9,5 @@ llm-based-assistants/_build
 .github/copilot-instructions.md
 /papers
 /slides_raw
+# MyST build outputs
+_build

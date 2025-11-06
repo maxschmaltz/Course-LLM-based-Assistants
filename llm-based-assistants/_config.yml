@@ -5,7 +5,7 @@ title: LLM-based Assistants
 author: Maksim Shmalts
 email: maksim.shmalts@uni-tuebingen.de
 copyright: "2025, Maksim Shmalts"
-# description: Webbook for the course LLM-based Assistants @ Uni Tübingen (WiSe25/26)
+description: Webbook for the course LLM-based Assistants @ Uni Tübingen (WiSe25/26)
 exclude_patterns: ["**.DS_Store", "**.ipynb_checkpoints", "_buildx", "**.pdf"]
 
 # Force re-execution of notebooks on each build.
