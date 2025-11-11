@@ -215,6 +215,7 @@ In this lab, we'll start expanding the functionality of the chatbot built at the
 
 **Sources**:
 * ✍️ [Retrieval](https://docs.langchain.com/oss/python/langchain/retrieval), `LangChain`
+* ✍️ [Build a custom RAG agent](https://docs.langchain.com/oss/python/langgraph/agentic-rag), `LangChain`
 * [Document loaders](https://docs.langchain.com/oss/python/integrations/document_loaders), `LangChain`
 * [Text splitters](https://docs.langchain.com/oss/python/integrations/splitters), `LangChain`
 * [Embedding models](https://docs.langchain.com/oss/python/integrations/text_embedding), `LangChain`
