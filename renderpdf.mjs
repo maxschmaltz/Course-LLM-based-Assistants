@@ -1,5 +1,5 @@
 const pdfDirective = {
-  name: 'pdf',
+  name: 'renderpdf',
   doc: 'A directive for embedding PDF files from a URL into your document.',
   alias: ['pdf-viewer', 'pdf-embed'],
   arg: {
