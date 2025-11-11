@@ -78,3 +78,12 @@ const pdfDirective = {
     return [{ type: 'html', value: html }];
   },
 };
+
+
+const plugin = {
+  name: 'PDF Embed Plugin',
+  description: 'Embed PDF files from URLs directly into your MyST documents',
+  directives: [pdfDirective],
+};
+
+export default plugin;
