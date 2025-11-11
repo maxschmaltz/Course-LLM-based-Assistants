@@ -56,27 +56,23 @@ const pdfDirective = {
     // Parse options
     const width = data.options?.width ?? '100%';
     const height = data.options?.height ?? '600px';
-    const showToolbar = data.options?.toolbar !== false;
-
-    // Construct PDF URL with parameters (use a single fragment)
+    const toolbar = data.options?.toolbar !== false ? 1 : 0;
+    
+    // Construct PDF URL with parameters
     let pdfUrl = url;
-    const fragmentParts = [];
     if (data.options?.page) {
-      fragmentParts.push(`page=${data.options.page}`);
+      pdfUrl += `#page=${data.options.page}`;
     }
-    if (!showToolbar) {
-      fragmentParts.push(`toolbar=0`);
-    }
-    if (fragmentParts.length) {
-      pdfUrl += `#${fragmentParts.join('&')}`;
+    if (!toolbar) {
+      pdfUrl += `#toolbar=${toolbar}`;
     }
 
-    // Create <object> HTML node
-    const objectNode = {
-      type: 'html',
-      value: `<object data="${pdfUrl}" type="application/pdf" width="${width}" height="${height}">` +
-             `\n  <p>Your browser does not support embedded PDFs. You can <a href="${url}">download the PDF</a>.</p>\n` +
-             `</object>`,
+    // Create iframe node
+    const iframe = {
+      type: 'iframe',
+      src: pdfUrl,
+      width,
+      height,
     };
 
     // If there's a caption, wrap in a container
@@ -85,7 +81,7 @@ const pdfDirective = {
         {
           type: 'container',
           children: [
-            objectNode,
+            iframe,
             {
               type: 'caption',
               children: [
@@ -100,7 +96,7 @@ const pdfDirective = {
       ];
     }
 
-    return [objectNode];
+    return [iframe];
   },
 };
 
