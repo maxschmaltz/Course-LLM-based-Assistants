@@ -1,4 +1,5 @@
 langchain_community
+langchain_docling
 langchain_nvidia_ai_endpoints
 langchain-huggingface
 langchain-qdrant
