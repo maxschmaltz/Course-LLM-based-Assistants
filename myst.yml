@@ -32,6 +32,7 @@ project:
         - file: llm-based-assistants/sessions/block2_core/0511/0511.md
         - file: llm-based-assistants/sessions/block2_core/0611.ipynb
         - file: llm-based-assistants/sessions/block2_core/1211_1311/1211_1311.ipynb
+        - file: llm-based-assistants/sessions/block2_core/1911/1911.md
     - title: 'January-February: PROJECTS'
       children:
         - file: llm-based-assistants/sessions/block3_projects/projects.md
