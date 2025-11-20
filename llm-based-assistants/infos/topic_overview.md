@@ -1,7 +1,12 @@
-# Topics Overview
+---
+title: Topics Overview
+---
 
 :::{hide_references}
 :::
+
+
+# Topics Overview
 
 
 * October: INTRO
