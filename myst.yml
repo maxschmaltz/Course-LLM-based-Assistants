@@ -45,32 +45,7 @@ project:
     
 site:
   template: book-theme
+  # see https://mystmd.org/guide/website-templates#template-site-myst-book-theme
   options:
-  #   favicon: favicon.ico
-  #   logo: site_logo.png
-    extra_head: |
-      <script>
-        (function() {
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', hideReferences);
-          } else {
-            hideReferences();
-          }
-          
-          function hideReferences() {
-            const referencesSection = document.getElementById('references');
-            if (referencesSection) {
-              referencesSection.style.display = 'none';
-            }
-            
-            const sections = document.querySelectorAll('section.article-grid');
-            sections.forEach(section => {
-              const header = section.querySelector('header');
-              if (header && header.textContent.includes('References')) {
-                section.style.display = 'none';
-              }
-            });
-          }
-        })();
-      </script>
-
+    style:
+      - hide_references.css

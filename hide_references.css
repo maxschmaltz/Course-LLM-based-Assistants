@@ -1,0 +1,4 @@
+/* Hide MyST auto-generated references section */
+section#references {
+  display: none !important;
+}
