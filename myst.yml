@@ -41,7 +41,9 @@ project:
   plugins:
     - renderpdf.mjs
 
-  suppress_bibliography: true
+  parse:
+    myst_url_schemes: ["http", "https", "mailto", "ftp"]
+
     
 site:
   template: book-theme
