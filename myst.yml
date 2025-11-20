@@ -41,7 +41,7 @@ project:
   plugins:
     - renderpdf.mjs
 
-  bibliography: false
+  myst_disable_syntax: ["doi"]
     
 site:
   template: book-theme
