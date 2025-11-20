@@ -41,7 +41,6 @@ project:
   plugins:
     - renderpdf.mjs
 
-
   bibliography:
     - null
     
