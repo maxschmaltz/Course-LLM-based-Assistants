@@ -40,6 +40,8 @@ project:
 
   plugins:
     - renderpdf.mjs
+
+  myst_disable_syntax: ["citation"]
     
 site:
   template: book-theme
