@@ -96,7 +96,7 @@ This lecture will suggest a warm-up discussion about different perspectives on L
 * [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627), `The University of Texas at Austin et al.`
 * [Do Large Language Models Understand Us?](https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us), `Google Research`
 * [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712) (chapters 1-8 & 10), `Microsoft Research`
-* [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?🦜](https://dl.acm.org/doi/abs/10.1145/3442188.3445922), `University of Washington et al.`
+* [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜](https://dl.acm.org/doi/abs/10.1145/3442188.3445922), `University of Washington et al.`
 * [Large Language Models: The Need for Nuance in Current Debates and a Pragmatic Perspective on Understanding](https://arxiv.org/abs/2310.19671), `Leiden Institute of Advanced Computer Science & Leiden University Medical Centre`
 
 
@@ -321,7 +321,7 @@ The last _lecture_ of the course will turn to societal considerations regarding 
 * 🍿 [The 2025 AI Index Report: Top Takeaways](https://hai.stanford.edu/ai-index/2025-ai-index-report), `Stanford`
 * [Growing Up: Navigating Generative AI’s Early Years – AI Adoption Report: Executive Summary](https://ai.wharton.upenn.edu/focus-areas/human-technology-interaction/2024-ai-adoption-report/), `AI at Wharton`
 * [Ethical Implications of AI in Data Collection: Balancing Innovation with Privacy](https://arxiv.org/abs/2503.14539), `AI Data Chronicles`
-* [Legal and ethical implications of AI-based crowd analysis: the AI Act and beyond](https://link.springer.com/article/10.1007/s43681-024-00644-x), `Vrije Universiteit`
+* [Legal and ethical implications of AI-based crowd analysis: the AI Act and beyond](https://pubmed.ncbi.nlm.nih.gov/40421374/), `Vrije Universiteit`
 * [A Survey of Sustainability in Large Language Models: Applications, Economics, and Challenges](https://arxiv.org/abs/2412.04782v1), `Cleveland State University et al.`
 
 
