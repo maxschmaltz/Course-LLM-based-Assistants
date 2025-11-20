@@ -47,5 +47,5 @@ site:
   template: book-theme
   # see https://mystmd.org/guide/website-templates#template-site-myst-book-theme
   options:
-    style:
-      - hide_references.css
+    style: hide_references.css
+    numbered_references: true
