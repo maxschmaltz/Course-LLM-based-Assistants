@@ -41,9 +41,6 @@ project:
   plugins:
     - renderpdf.mjs
 
-  parse:
-    myst_url_schemes: ["http", "https", "mailto", "ftp"]
-
     
 site:
   template: book-theme
