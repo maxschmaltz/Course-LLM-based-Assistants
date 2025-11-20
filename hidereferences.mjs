@@ -10,8 +10,7 @@ const hideReferencesDirective = {
     return [
       {
         type: 'html',
-        value: `<!-- Hide References Script Loaded -->
-        <script>
+        value: `<script>
           console.log('Hide references script is running!');
           (function() {
             if (document.readyState === 'loading') {
