@@ -1,5 +1,8 @@
 # Topics Overview
 
+:::{hide-references-script}
+:::
+
 
 * October: INTRO
     * Week 1

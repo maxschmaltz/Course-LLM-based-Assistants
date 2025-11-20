@@ -1,56 +1,52 @@
 /**
- * MyST Plugin to hide auto-generated references sections
+ * Client-side MyST Plugin to hide references sections using DOM manipulation
  */
 
-/**
- * Transform to remove references sections from the document tree
- * 
- * @param {object} opts - options (unused)
- * @param {object} utils - utility functions provided by MyST
- */
-function hideReferencesTransform(opts, utils) {
-  return (mdast) => {
-    // Find all sections with id="references"
-    const referenceSections = utils.selectAll('section[identifier=references]', mdast);
-    
-    // Remove each references section
-    referenceSections.forEach((node) => {
-      // Find the parent of this node
-      utils.remove(node);
-    });
-    
-    // Alternative approach: Find by checking children for "References" header
-    utils.selectAll('section', mdast).forEach((section) => {
-      // Check if this section has a heading child with text "References"
-      const heading = section.children?.find(
-        (child) => child.type === 'heading' && 
-        child.children?.some(
-          (grandchild) => grandchild.type === 'text' && 
-          grandchild.value === 'References'
-        )
-      );
-      
-      if (heading) {
-        utils.remove(section);
-      }
-    });
-  };
-}
-
-// Register the transform to run at the document stage
-const hideReferencesTransformPlugin = {
-  plugin: hideReferencesTransform,
-  stage: 'document',
+const hideReferencesDirective = {
+  name: 'hide_references',
+  doc: 'Injects a script to hide the references section on page load',
+  run() {
+    // Return a raw HTML node that contains a script
+    return [
+      {
+        type: 'html',
+        value: `<script>
+          (function() {
+            // Wait for DOM to be ready
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', hideReferences);
+            } else {
+              hideReferences();
+            }
+            
+            function hideReferences() {
+              // Find and hide the references section
+              const referencesSection = document.getElementById('references');
+              if (referencesSection) {
+                referencesSection.style.display = 'none';
+                console.log('References section hidden');
+              }
+              
+              // Alternative: find by class
+              const sections = document.querySelectorAll('section.article-grid');
+              sections.forEach(section => {
+                const header = section.querySelector('header');
+                if (header && header.textContent.includes('References')) {
+                  section.style.display = 'none';
+                  console.log('References section hidden by header text');
+                }
+              });
+            }
+          })();
+        </script>`,
+      },
+    ];
+  },
 };
 
-/**
- * Export the plugin
- */
 const plugin = {
-  name: 'Hide References Section',
-  author: 'Custom',
-  license: 'MIT',
-  transforms: [hideReferencesTransformPlugin],
+  name: 'Hide References Client-Side',
+  directives: [hideReferencesDirective],
 };
 
 export default plugin;
