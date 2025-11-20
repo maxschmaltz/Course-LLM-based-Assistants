@@ -314,7 +314,7 @@ The last _lecture_ of the course will turn to societal considerations regarding 
 
 **Sources**:
 * 📌 [Protecting Human Cognition in the Age of AI](https://arxiv.org/abs/2502.12447) (pages 1-5), The University of Texas at Austin et al.
-* 📌 [Artificial intelligence governance: Ethical considerations and implications for social responsibility](https://doi.org/10.1111/exsy.13406) (pages 1-12), `University of Malta`
+* 📌 [Artificial intelligence governance: Ethical considerations and implications for social responsibility](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4515121) (pages 1-12), `University of Malta`
 * [Augmenting Minds or Automating Skills: The Differential Role of Human Capital in Generative AI's Impact on Creative Tasks](https://arxiv.org/abs/2412.03963), `Tsinghua University & Wuhan University of Technology`
 * [Human Creativity in the Age of LLMs: Randomized Experiments on Divergent and Convergent Thinking](https://arxiv.org/abs/2410.03703), `University of Toronto`
 * [Empirical evidence of Large Language Model's influence on human spoken communication](https://arxiv.org/abs/2409.01754v1), `Max-Planck Institute for Human Development`
