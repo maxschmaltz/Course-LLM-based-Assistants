@@ -1,6 +1,6 @@
 # Topics Overview
 
-:::{hide-references-script}
+:::{hide_references}
 :::
 
 
