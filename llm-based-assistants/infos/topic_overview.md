@@ -1,15 +1,3 @@
----
-title: Topics Overview
----
-
-:::{hide_references}
-:::
-
-:::{renderpdf} https://raw.githubusercontent.com/maxschmaltz/Course-LLM-based-Assistants/main/llm-based-assistants/sessions/block1_intro/2310/2310.pdf
-:viewer: mozilla
-:::
-
-
 # Topics Overview
 
 
