@@ -10,9 +10,10 @@ const hideReferencesDirective = {
     return [
       {
         type: 'html',
-        value: `<script>
+        value: `<!-- Hide References Script Loaded -->
+        <script>
+          console.log('Hide references script is running!');
           (function() {
-            // Wait for DOM to be ready
             if (document.readyState === 'loading') {
               document.addEventListener('DOMContentLoaded', hideReferences);
             } else {
@@ -20,20 +21,22 @@ const hideReferencesDirective = {
             }
             
             function hideReferences() {
-              // Find and hide the references section
               const referencesSection = document.getElementById('references');
               if (referencesSection) {
                 referencesSection.style.display = 'none';
-                console.log('References section hidden');
+                console.log('✅ References section hidden by ID');
+              } else {
+                console.log('❌ No element with id="references" found');
               }
               
-              // Alternative: find by class
               const sections = document.querySelectorAll('section.article-grid');
+              console.log('Found ' + sections.length + ' article-grid sections');
+              
               sections.forEach(section => {
                 const header = section.querySelector('header');
                 if (header && header.textContent.includes('References')) {
                   section.style.display = 'none';
-                  console.log('References section hidden by header text');
+                  console.log('✅ References section hidden by header text');
                 }
               });
             }
@@ -46,6 +49,7 @@ const hideReferencesDirective = {
 
 const plugin = {
   name: 'Hide References Client-Side',
+  description: 'A MyST plugin to hide references sections using client-side JavaScript',
   directives: [hideReferencesDirective],
 };
 
