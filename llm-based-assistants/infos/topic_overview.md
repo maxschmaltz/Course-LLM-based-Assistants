@@ -96,7 +96,8 @@ This lecture will suggest a warm-up discussion about different perspectives on L
 * [Dissociating language and thought in large language models](https://arxiv.org/abs/2301.06627), `The University of Texas at Austin et al.`
 * [Do Large Language Models Understand Us?](https://direct.mit.edu/daed/article/151/2/183/110604/Do-Large-Language-Models-Understand-Us), `Google Research`
 * [Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/abs/2303.12712) (chapters 1-8 & 10), `Microsoft Research`
-* [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜](https://dl.acm.org/doi/abs/10.1145/3442188.3445922), `University of Washington et al.`
+* <a href="https://doi.org/10.1145/3442188.3445922">On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜</a>
+<!-- * [On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜](https://dl.acm.org/doi/abs/10.1145/3442188.3445922), `University of Washington et al.` -->
 * [Large Language Models: The Need for Nuance in Current Debates and a Pragmatic Perspective on Understanding](https://arxiv.org/abs/2310.19671), `Leiden Institute of Advanced Computer Science & Leiden University Medical Centre`
 
 
