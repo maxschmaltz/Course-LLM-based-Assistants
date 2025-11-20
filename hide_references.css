@@ -2,7 +2,3 @@
 section#references {
   display: none !important;
 }
-:is(h1,h2,h3,h4,h5,h6,[role="heading"]) {
-    color: #ff69b4 !important;
-    font-style: italic !important;
-}
