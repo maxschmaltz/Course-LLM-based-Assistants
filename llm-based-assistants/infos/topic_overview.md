@@ -18,10 +18,8 @@
     * Week 5
         * [19.11. Lecture: Multi-agent Environment](#1911)
         * [20.11. Lab: Multi-agent Environment](#2011)
-    * Week 6
-        * [26.11 & 27.11. Labs: LLM-powered Website](#2611)
-    * Week 7
-        * [03.12 & 04.12. Labs: LLM-powered Research Assistant](#0312)
+    * Weeks 6-7
+        * [26.11 & 27.11 & 03.12 & 04.12. Labs: LLM-powered Website](#2611)
     * Week 8
         * [10.12. Lecture: Role of AI in Recent Years](#1012)
         * [11.12. Wrap-up](#1112)
@@ -269,32 +267,19 @@ This lab will introduce a short walkthrough to creation of a multi-agent environ
 
 
 
-### Week 6
+### Weeks 6-7
 
 
 
 <a name="2611"></a>
-#### 26.11 & 27.11. _Labs_: LLM-powered Website
+#### 26.11 & 27.11 & 03.12 & 04.12. _Labs_: LLM-powered Website
 
-This lab open a mini-cycle of labs, where you will individually build a couple of smaller multi-agent systems. These labs are needed for you to practice the technical implementation of such systems, identify and work on your weak spots, as well as discuss all the doubts and difficulties you encounter. Consider it preparation for the final project. During the first two labs, you will create a workflow to generate websites with LLMs. The LLMs will generate both the contents and the code required for rendering, styling and navigation.
+This is a mini-cycle of labs, where you will individually build a multi-agent system. These labs are needed for you to practice the technical implementation of such systems, identify and work on your weak spots, as well as discuss all the doubts and difficulties you encounter. Consider it preparation for the final project. As a result, you will create a workflow to generate websites with LLMs. The LLMs will generate both the contents and the code required for rendering, styling and navigation by communicating in a semi-centralized manner and using reasoning and critique to improve the output.
 
 **Sources**:
 * see [_Lab_: Multi-agent Environment](#2011)
 * ✍️ [HTML: Creating the content](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content), `MDN`
 * ✍️ [Getting started with CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started), `MDN`
-
-
-
-### Week 7
-
-
-
-<a name="0312"></a>
-#### 03.12 & 04.12. _Labs_: LLM-powered Research Assistant
-
-The second system you will build individually will be a multi-agent research assistant. It will facilitate in planning the research, generating and evaluating hypotheses, and finding the literature for a given scientific problem.
-
-**Sources**: see [_Lab_: Multi-agent Environment](#2011)
 
 
 
