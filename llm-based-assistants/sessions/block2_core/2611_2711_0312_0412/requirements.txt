@@ -1,0 +1,6 @@
+ddgs
+langchain_community
+langchain_nvidia_ai_endpoints
+langgraph
+python-dotenv
+pytidylib
