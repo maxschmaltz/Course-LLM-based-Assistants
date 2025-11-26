@@ -48,3 +48,8 @@ Your starter code contains ready fragments for the basic ReACT agent and all too
 * Agents must confirm when the project is done before the system ends.
 
 **Important**: The key is to show how roles, workflows, and cooperation can emerge, not to hard-code assignments.
+
+
+## Source
+
+📍 [Download archive](https://github.com/maxschmaltz/Course-LLM-based-Assistants/tree/main/llm-based-assistants/sessions/block2_core/2611_2711_0312_0412/2611_2711_0312_0412.zip)
