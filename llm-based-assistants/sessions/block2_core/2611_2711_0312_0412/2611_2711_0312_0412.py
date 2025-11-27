@@ -60,7 +60,7 @@ class WebsiteGenerationLaMA:
         self._graph_builder = StateGraph(State)
         # add the nodes
         # TODO
-        # define edges;
+        # define edges
         # TODO
         # compile the graph
         self._compile()
@@ -118,7 +118,7 @@ class WebsiteGenerationLaMA:
             "plan_gradings": [],
             "messages": []
         }
-        shown_messages = []
+        shown_ids = []
         for event in self.lama.stream(
             input,
             config={"recursion_limit": 250},
@@ -126,20 +126,24 @@ class WebsiteGenerationLaMA:
         ):
             if event["messages"]:
                 for message in event["messages"]:
-                    if not message.id in shown_messages:
-                        shown_messages.append(message.id)
-                        message.pretty_print()
+                    if not message.id in shown_ids:
+                        shown_ids.append(message.id)
+                        message.pretty_print()  # ======= X's Message =======
                         print("\n")
             if event.get("plans"):
-                print("================================= Plans Generated =================================\n\n")
                 for plan in event["plans"]:
-                    print(self._pydantic2str(plan))
-                    print("\n")
+                    if not plan.id in shown_ids:
+                        shown_ids.append(plan.id)
+                        print(f"====================== Plan From {plan.author} ======================\n\n")
+                        print(self._pydantic2str(plan))
+                        print("\n")
             if event.get("plan_gradings"):
-                print("================================= Plan Gradings =================================\n\n")
                 for plan_grading in event["plan_gradings"]:
-                    print(self._pydantic2str(plan_grading))
-                    print("\n")
+                    if not plan_grading.id in shown_ids:
+                        shown_ids.append(plan_grading.id)
+                        print(f"====================== Grading of {plan_grading.plan_author}'s Plan from {plan_grading.grader} ======================\n\n")
+                        print(self._pydantic2str(plan_grading))
+                        print("\n")
 
 
 if __name__ == "__main__":
