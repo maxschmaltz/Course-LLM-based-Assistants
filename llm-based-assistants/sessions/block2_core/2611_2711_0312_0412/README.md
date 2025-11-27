@@ -9,7 +9,7 @@ In this assignment, you will build an LLM-based **multi-agent system** using Lan
 
 There are 3 agents:
 * **Amily:** Has strengths in writing, research, and some hobbies.
-* **John:** Interested in visual arts, can find images, loves UI and design.
+* **Kai:** Interested in visual arts, can find images, loves UI and design.
 * **Riya:** Knows code and static analysis, but also likes chess and outdoor sports.
 
 Each agent only has access to some tools — web search, image search, file manager, or code checker.
